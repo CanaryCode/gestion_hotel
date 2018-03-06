@@ -3,3 +3,23 @@
     Author     : deico
 */
 
+.ventanaPrincipal{
+    -fx-background-image: url(../imagenes/FondoVentanaPrincipal.jpg);
+    -fx-background-size: stretch;
+}
+.ventanaLogIn{
+    -fx-background-image: url(../imagenes/FondoVentanaLogIn.jpg);
+    -fx-background-size: stretch;
+}
+.ventanaCliente, .quienesSomos,.ventanaReserva{
+    -fx-background-image: url(../imagenes/gridFondo.png);
+    -fx-background-size: cover;
+}
+.menuPrincipal{
+    -fx-background-color: #3366ff;
+     -fx-font-size: 10pt;
+    -fx-text-fill: white;
+}
+.menus{
+   -fx-text-fill: white; 
+}
