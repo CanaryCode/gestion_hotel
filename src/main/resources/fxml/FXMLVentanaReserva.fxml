@@ -1,23 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.6858054226475279" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="629.0" prefWidth="1178.0" styleClass="ventanaReserva" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorReserva">
+<SplitPane dividerPositions="0.41626794258373206" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="576.0" prefWidth="1178.0" styleClass="ventanaReserva" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorReserva">
   <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="1182.0" styleClass="ventanaReserva" stylesheets="@../styles/estilos.css">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="378.0" prefWidth="1176.0" styleClass="ventanaReserva" stylesheets="@../styles/estilos.css">
          <children>
-            <VBox layoutX="577.0" layoutY="76.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="60.0">
+            <VBox layoutX="577.0" layoutY="76.0" prefHeight="200.0" prefWidth="127.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                <children>
-                  <Button mnemonicParsing="false" text="nuevo" />
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Buscar">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Borrar campos">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin></Button>
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Añadir reserva">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Button>
                </children>
             </VBox>
+            <GridPane layoutX="388.0" layoutY="24.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="20.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Primer Apellido" textFill="WHITE" GridPane.columnIndex="2">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <TextField GridPane.columnIndex="1" />
+                  <Label text="Segundo Apellido" textFill="WHITE" GridPane.columnIndex="4">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Nombre" textFill="WHITE" />
+                  <TextField GridPane.columnIndex="3" />
+                  <TextField GridPane.columnIndex="5" />
+                  <Label text="Pais" textFill="WHITE" GridPane.rowIndex="1" />
+                  <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="Agencia" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <ComboBox prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <Label text="Dni" textFill="WHITE" GridPane.rowIndex="2" />
+                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="Voucher" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <TextField GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <Label text="Habitación" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Pasaporte" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <TextField GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                  <TextField GridPane.columnIndex="5" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
          </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="ventanaReserva" stylesheets="@../styles/estilos.css">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="323.0" prefWidth="1176.0" styleClass="ventanaReserva" stylesheets="@../styles/estilos.css">
          <children>
             <TableView layoutX="154.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
               <columns>
