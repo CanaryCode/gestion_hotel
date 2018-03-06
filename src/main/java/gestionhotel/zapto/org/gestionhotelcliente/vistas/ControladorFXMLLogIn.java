@@ -12,7 +12,6 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -48,7 +47,7 @@ public class ControladorFXMLLogIn implements Initializable {
         try {
             root = FXMLLoader.load(getClass().getResource("/fxml/FXMLVentanaPrincipal.fxml"));
             Scene scene = new Scene(root);
-            stage.setTitle("Log - in");
+            stage.setTitle("Ventana Principal");
             stage.setScene(scene);
             Ventanas.ventanaLogin.close();
             Ventanas.ventanaPrincipal=stage;
