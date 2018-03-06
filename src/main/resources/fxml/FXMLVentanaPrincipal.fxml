@@ -11,17 +11,17 @@
         <menus>
           <Menu mnemonicParsing="false" text="Reservas">
             <items>
-              <MenuItem mnemonicParsing="false" text="previsión" />
+              <MenuItem fx:id="reserva" mnemonicParsing="false" text="previsión" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Recepcíon">
             <items>
-              <MenuItem mnemonicParsing="false" text="Check-In" />
+              <MenuItem fx:id="kardex" mnemonicParsing="false" text="Kardex" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Acerca de">
             <items>
-              <MenuItem mnemonicParsing="false" text="Quienes somos" />
+              <MenuItem fx:id="quienesSomos" mnemonicParsing="false" text="Quienes somos" />
             </items>
           </Menu>
         </menus>
