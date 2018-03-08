@@ -1,6 +1,6 @@
 /*
     Created on : 02-mar-2018, 12:30:18
-    Author     : deico
+    Author     : Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
 */
 
 .ventanaPrincipal{
@@ -11,7 +11,7 @@
     -fx-background-image: url(../imagenes/FondoVentanaLogIn.jpg);
     -fx-background-size: stretch;
 }
-.ventanaCliente, .quienesSomos,.ventanaReserva{
+.baseVentanas{
     -fx-background-image: url(../imagenes/gridFondo.png);
     -fx-background-size: cover;
 }
