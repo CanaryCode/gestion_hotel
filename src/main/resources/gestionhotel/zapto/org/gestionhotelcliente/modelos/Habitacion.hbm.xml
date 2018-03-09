@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-mar-2018 17:01:25 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.Pojos.Habitacion" optimistic-lock="version" schema="public" table="habitacion">
+    <id name="idHabitacion" type="int">
+      <column name="id_habitacion"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="gestionhotel.zapto.org.gestionhotelcliente.modelos.Pojos.Tipo" fetch="select" name="tipo">
+      <column name="id_tipo"/>
+    </many-to-one>
+    <property name="descripcion" type="string">
+      <column name="descripcion"/>
+    </property>
+    <property name="limpiar" type="java.lang.Boolean">
+      <column name="limpiar"/>
+    </property>
+    <property name="camaExtra" type="java.lang.Short">
+      <column name="cama_extra"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="detallesReservas" table="detalles_reserva">
+      <key>
+        <column name="id_habitacion"/>
+      </key>
+      <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.Pojos.DetallesReserva"/>
+    </set>
+  </class>
+</hibernate-mapping>

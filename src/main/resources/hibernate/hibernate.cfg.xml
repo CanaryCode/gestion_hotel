@@ -47,6 +47,15 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:postgresql://gestionhotel.zapto.org:5432/DB_Gestion_Hotel?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
-    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/Prueba.hbm.xml"/>
+    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/Situacion.hbm.xml"/>
+    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/Persona.hbm.xml"/>
+    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/DetallesReserva.hbm.xml"/>
+    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/TelefonoPersona.hbm.xml"/>
+    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/Tipo.hbm.xml"/>
+    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/Habitacion.hbm.xml"/>
+    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/Parentesco.hbm.xml"/>
+    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/EstadoHabitacion.hbm.xml"/>
+    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/Reserva.hbm.xml"/>
+    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/Usuario.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

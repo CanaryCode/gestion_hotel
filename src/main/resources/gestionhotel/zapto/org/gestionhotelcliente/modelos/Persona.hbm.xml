@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-mar-2018 17:01:25 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.Pojos.Persona" optimistic-lock="version" schema="public" table="persona">
+    <id name="codPersona" type="int">
+      <column name="cod_persona"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="tipoDocumento" type="string">
+      <column length="20" name="tipo_documento" not-null="true"/>
+    </property>
+    <property name="documentoNumero" type="string">
+      <column length="12" name="documento_numero" not-null="true" unique="true"/>
+    </property>
+    <property name="nombre" type="string">
+      <column length="60" name="nombre" not-null="true"/>
+    </property>
+    <property name="calle" type="string">
+      <column length="120" name="calle"/>
+    </property>
+    <property name="codPostal" type="string">
+      <column length="5" name="cod_postal"/>
+    </property>
+    <property name="ciudad" type="string">
+      <column length="40" name="ciudad"/>
+    </property>
+    <property name="provincia" type="string">
+      <column length="40" name="provincia"/>
+    </property>
+    <property name="estado" type="string">
+      <column length="40" name="estado"/>
+    </property>
+    <property name="nacionalidad" type="string">
+      <column length="40" name="nacionalidad"/>
+    </property>
+    <property name="jurEmpresa" type="java.lang.Boolean">
+      <column name="jur_empresa"/>
+    </property>
+    <property name="jurNombreComercial" type="string">
+      <column length="20" name="jur_nombre_comercial"/>
+    </property>
+    <property name="fisApellidos" type="string">
+      <column length="40" name="fis_apellidos"/>
+    </property>
+    <property name="fisFechaNacimiento" type="date">
+      <column length="13" name="fis_fecha_nacimiento"/>
+    </property>
+    <property name="fisEdad" type="java.lang.Integer">
+      <column name="fis_edad"/>
+    </property>
+    <property name="fisTratamiento" type="string">
+      <column length="10" name="fis_tratamiento"/>
+    </property>
+    <property name="fisCodPersona" type="java.lang.Integer">
+      <column name="fis_cod_persona"/>
+    </property>
+    <property name="fisCargo" type="string">
+      <column length="40" name="fis_cargo"/>
+    </property>
+    <property name="cliEscliente" type="java.lang.Boolean">
+      <column name="cli_escliente"/>
+    </property>
+    <property name="empEsempleado" type="java.lang.Boolean">
+      <column name="emp_esempleado"/>
+    </property>
+    <one-to-one class="gestionhotel.zapto.org.gestionhotelcliente.modelos.Pojos.Usuario" name="usuario"/>
+    <set fetch="select" inverse="true" lazy="true" name="parentescosForCodPersona" table="parentesco">
+      <key>
+        <column name="cod_persona" not-null="true"/>
+      </key>
+      <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.Pojos.Parentesco"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="detallesReservas" table="huesped_habitacion">
+      <key>
+        <column name="cod_huesped" not-null="true"/>
+      </key>
+      <many-to-many entity-name="gestionhotel.zapto.org.gestionhotelcliente.modelos.DetallesReserva">
+        <column name="id_detalles_reserva" not-null="true"/>
+      </many-to-many>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="reservasForCodEmpleado" table="reserva">
+      <key>
+        <column name="cod_empleado" not-null="true"/>
+      </key>
+      <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.Pojos.Reserva"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="telefonoPersonas" table="telefono_persona">
+      <key>
+        <column name="cod_persona" not-null="true"/>
+      </key>
+      <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.Pojos.TelefonoPersona"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="parentescosForCodPariente" table="parentesco">
+      <key>
+        <column name="cod_pariente" not-null="true"/>
+      </key>
+      <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.Pojos.Parentesco"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="reservasForCodCliente" table="reserva">
+      <key>
+        <column name="cod_cliente" not-null="true"/>
+      </key>
+      <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.Pojos.Reserva"/>
+    </set>
+  </class>
+</hibernate-mapping>

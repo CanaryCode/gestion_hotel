@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-mar-2018 17:01:25 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.Pojos.Situacion" optimistic-lock="version" schema="public" table="situacion">
+    <id name="idSituacion" type="int">
+      <column name="id_situacion"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="descripcion" type="string">
+      <column name="descripcion" not-null="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="estadoHabitacions" table="estado_habitacion">
+      <key>
+        <column name="id_situacion" not-null="true"/>
+      </key>
+      <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.Pojos.EstadoHabitacion"/>
+    </set>
+  </class>
+</hibernate-mapping>

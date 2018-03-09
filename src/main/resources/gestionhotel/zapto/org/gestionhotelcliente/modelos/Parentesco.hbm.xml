@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-mar-2018 17:01:25 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.Pojos.Parentesco" optimistic-lock="version" schema="public" table="parentesco">
+    <composite-id class="gestionhotel.zapto.org.gestionhotelcliente.modelos.Pojos.ParentescoId" name="id">
+      <key-property name="codPersona" type="int">
+        <column name="cod_persona"/>
+      </key-property>
+      <key-property name="codPariente" type="int">
+        <column name="cod_pariente"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="gestionhotel.zapto.org.gestionhotelcliente.modelos.Pojos.Persona" fetch="select" insert="false" name="personaByCodPersona" update="false">
+      <column name="cod_persona" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="gestionhotel.zapto.org.gestionhotelcliente.modelos.Pojos.Persona" fetch="select" insert="false" name="personaByCodPariente" update="false">
+      <column name="cod_pariente" not-null="true"/>
+    </many-to-one>
+    <property name="tipoParentesco" type="string">
+      <column length="30" name="tipo_parentesco" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

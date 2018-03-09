@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-mar-2018 17:01:25 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.Pojos.DetallesReserva" optimistic-lock="version" schema="public" table="detalles_reserva">
+    <id name="idDetallesReserva" type="int">
+      <column name="id_detalles_reserva"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="gestionhotel.zapto.org.gestionhotelcliente.modelos.Pojos.Habitacion" fetch="select" name="habitacion">
+      <column name="id_habitacion"/>
+    </many-to-one>
+    <many-to-one class="gestionhotel.zapto.org.gestionhotelcliente.modelos.Pojos.Reserva" fetch="select" name="reserva">
+      <column name="cod_reserva" not-null="true"/>
+    </many-to-one>
+    <property name="nombreReserva" type="string">
+      <column length="30" name="nombre_reserva"/>
+    </property>
+    <property name="cantidadHuespedes" type="java.lang.Integer">
+      <column name="cantidad_huespedes"/>
+    </property>
+    <property name="fechaEntradaPrevista" type="date">
+      <column length="13" name="fecha_entrada_prevista" not-null="true"/>
+    </property>
+    <property name="fechaSalidaPrevista" type="date">
+      <column length="13" name="fecha_salida_prevista" not-null="true"/>
+    </property>
+    <property name="fechaEntrada" type="date">
+      <column length="13" name="fecha_entrada"/>
+    </property>
+    <property name="fechaSalida" type="date">
+      <column length="13" name="fecha_salida"/>
+    </property>
+    <set fetch="select" inverse="false" lazy="true" name="personas" table="huesped_habitacion">
+      <key>
+        <column name="id_detalles_reserva" not-null="true"/>
+      </key>
+      <many-to-many entity-name="gestionhotel.zapto.org.gestionhotelcliente.modelos.Persona">
+        <column name="cod_huesped" not-null="true"/>
+      </many-to-many>
+    </set>
+  </class>
+</hibernate-mapping>

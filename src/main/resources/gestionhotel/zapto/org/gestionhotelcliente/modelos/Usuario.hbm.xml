@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-mar-2018 17:01:25 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.Pojos.Usuario" optimistic-lock="version" schema="public" table="usuario">
+    <id name="codUsuario" type="int">
+      <column name="cod_usuario"/>
+      <generator class="foreign">
+        <param name="property">persona</param>
+      </generator>
+    </id>
+    <one-to-one class="gestionhotel.zapto.org.gestionhotelcliente.modelos.Pojos.Persona" constrained="true" name="persona"/>
+    <property name="nombreUsuario" type="string">
+      <column length="20" name="nombre_usuario" not-null="true"/>
+    </property>
+    <property name="passUsuario" type="string">
+      <column length="16" name="pass_usuario" not-null="true"/>
+    </property>
+    <property name="bloqueado" type="java.lang.Boolean">
+      <column name="bloqueado"/>
+    </property>
+    <property name="ultimaActividad" type="date">
+      <column length="13" name="ultima_actividad"/>
+    </property>
+    <property name="fechaCaducidad" type="date">
+      <column length="13" name="fecha_caducidad"/>
+    </property>
+  </class>
+</hibernate-mapping>
