@@ -74,3 +74,20 @@
 #botonBorrar:pressed{
     -fx-graphic:url(../imagenes/borrar24.png);
 }
+#botonBuscar{
+    -fx-graphic:url(../imagenes/buscar24.png);
+    -fx-background-color: #3366ff;
+    -fx-alignment:BOTTOM_CENTER;
+    -fx-content-display:top;
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+    -fx-border-color: #ffffff;
+    -fx-border-radius: 10;
+}
+#botonBuscar:hover{
+    -fx-graphic:url(../imagenes/buscar32.png);
+    -fx-background-color: #329fe6
+}
+#botonBuscar:pressed{
+    -fx-graphic:url(../imagenes/buscar24.png);
+}
