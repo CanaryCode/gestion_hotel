@@ -11,135 +11,11 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="771.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorHuesped">
+<AnchorPane id="AnchorPane" prefHeight="496.0" prefWidth="720.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorHuesped">
    <children>
-      <GridPane layoutX="23.0" layoutY="85.0" prefHeight="291.0" prefWidth="731.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label text="Nombre" textFill="WHITE" />
-            <Label text="Primer Apellido" textFill="WHITE" GridPane.columnIndex="2">
-               <GridPane.margin>
-                  <Insets left="10.0" />
-               </GridPane.margin>
-            </Label>
-            <Label text="Fecha Nacimiento" textFill="WHITE" GridPane.rowIndex="1" />
-            <Label text="Dni" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets left="10.0" />
-               </GridPane.margin>
-            </Label>
-            <Label text="Pasaporte" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </Label>
-            <Label text="Nacionalidad" textFill="WHITE" GridPane.rowIndex="3" />
-            <Label text="Ciudad" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </Label>
-            <Label text="Código Postal" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3">
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </Label>
-            <TextField GridPane.columnIndex="1" />
-            <Label text="Segundo Apellido" textFill="WHITE" GridPane.columnIndex="4">
-               <GridPane.margin>
-                  <Insets left="10.0" />
-               </GridPane.margin>
-            </Label>
-            <TextField GridPane.columnIndex="3" />
-            <TextField GridPane.columnIndex="5" />
-            <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <Label text="Expedición Pasaporte" textFill="WHITE" GridPane.rowIndex="2" />
-            <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="Sexo" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </Label>
-            <RadioButton mnemonicParsing="false" text="M" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </RadioButton>
-            <RadioButton mnemonicParsing="false" text="F" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets left="80.0" />
-               </GridPane.margin>
-            </RadioButton>
-            <Label text="Discapacitado" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </Label>
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="5" GridPane.rowIndex="3" />
-            <RadioButton mnemonicParsing="false" text="no" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="2">
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-               <GridPane.margin>
-                  <Insets left="60.0" />
-               </GridPane.margin>
-            </RadioButton>
-            <RadioButton mnemonicParsing="false" text="si" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets left="10.0" />
-               </GridPane.margin>
-            </RadioButton>
-            <Label text="Tratamiento" textFill="WHITE" GridPane.rowIndex="5" />
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Label text="Calle" textFill="WHITE" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <Label text="Número" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4">
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </Label>
-            <Label text="Teléfono fijo" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="5">
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </Label>
-            <Label text="Teléfono Móvil" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="5">
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </Label>
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="5" />
-            <Label text="Correo electrónico" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="4">
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </Label>
-            <TextField GridPane.columnIndex="5" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="5" GridPane.rowIndex="5" />
-         </children>
-      </GridPane>
       <GridPane layoutX="154.0" layoutY="311.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -167,5 +43,214 @@
             </Button>
          </children>
       </GridPane>
+      <VBox layoutX="11.0" layoutY="5.0" prefHeight="389.0" prefWidth="767.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <Label prefHeight="25.0" prefWidth="815.0" styleClass="etiquetaTitulo" text="DATOS PERSONALES">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Label>
+            <GridPane prefHeight="90.0" prefWidth="254.0">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Nombre" textFill="WHITE" />
+                  <TextField GridPane.columnIndex="1" />
+                  <Label text="Primer Apellido" textFill="WHITE" GridPane.columnIndex="2">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField GridPane.columnIndex="3" />
+                  <Label text="Fecha Nacimiento" textFill="WHITE" GridPane.rowIndex="1" />
+                  <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="Segundo Apellido" textFill="WHITE" GridPane.columnIndex="4">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField GridPane.columnIndex="5" />
+                  <Label text="Sexo" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <RadioButton mnemonicParsing="false" text="M" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </RadioButton>
+                  <RadioButton mnemonicParsing="false" text="F" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="80.0" />
+                     </GridPane.margin>
+                  </RadioButton>
+                  <Label text="Discapacitado" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <RadioButton mnemonicParsing="false" text="Si" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </RadioButton>
+                  <RadioButton mnemonicParsing="false" text="No" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets left="60.0" />
+                     </GridPane.margin>
+                  </RadioButton>
+               </children>
+            </GridPane>
+            <Label prefHeight="25.0" prefWidth="783.0" styleClass="etiquetaTitulo" text="DATOS DIRECCIÓN">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <GridPane>
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ComboBox prefWidth="150.0" GridPane.columnIndex="1" />
+                  <Label text="Nacionalidad" textFill="WHITE" />
+                  <Label text="Ciudad" textFill="WHITE" GridPane.columnIndex="2">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <TextField GridPane.columnIndex="3" />
+                  <Label text="Calle" textFill="WHITE" GridPane.columnIndex="4">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <TextField GridPane.columnIndex="5" />
+                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="Número" textFill="WHITE" GridPane.rowIndex="1" />
+                  <Label text="Código Postal" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+            <Label prefHeight="25.0" prefWidth="806.0" styleClass="etiquetaTitulo" text="DOCUMENTACIÓN">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Exp. Pasaporte" textFill="WHITE" GridPane.columnIndex="4">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <DatePicker GridPane.columnIndex="5" />
+                  <Label text="Pasaporte" textFill="WHITE" GridPane.columnIndex="2">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <TextField GridPane.columnIndex="3" />
+                  <Label text="Dni" textFill="WHITE">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField GridPane.columnIndex="1" />
+               </children>
+            </GridPane>
+            <Label prefHeight="25.0" prefWidth="933.0" styleClass="etiquetaTitulo" text="OTROS DATOS">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <GridPane>
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Teléfono fijo" textFill="WHITE">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <TextField GridPane.columnIndex="1" />
+                  <Label text="Teléfono Móvil" textFill="WHITE" GridPane.columnIndex="2">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <TextField GridPane.columnIndex="3" />
+                  <Label text="Correo electrónico" textFill="WHITE" GridPane.columnIndex="4">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <TextField GridPane.columnIndex="5" />
+                  <Label text="Tratamiento" textFill="WHITE" GridPane.rowIndex="1">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="Categoría" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <ComboBox prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

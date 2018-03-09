@@ -32,13 +32,16 @@
     -fx-opacity: 0.9;
     -fx-border-color: #ffffff;
     -fx-border-radius: 10;
+    -fx-cursor:hand;
 }
 #botonAdd:hover{
     -fx-graphic:url(../imagenes/add32.png);
-    -fx-background-color: #329fe6
+    -fx-background-color: #329fe6;
+    -fx-cursor:hand;
 }
 #botonAdd:pressed{
     -fx-graphic:url(../imagenes/add24.png);
+    -fx-cursor:hand;
 }
 #botonActualizar{
     -fx-graphic:url(../imagenes/actualizar24.png);
@@ -49,13 +52,16 @@
     -fx-opacity: 0.9;
     -fx-border-color: #ffffff;
     -fx-border-radius: 10;
+    -fx-cursor:hand;
 }
 #botonActualizar:hover{
     -fx-graphic:url(../imagenes/actualizar32.png);
-    -fx-background-color: #329fe6
+    -fx-background-color: #329fe6;
+    -fx-cursor:hand;
 }
 #botonActualizar:pressed{
     -fx-graphic:url(../imagenes/actualizar24.png);
+    -fx-cursor:hand;
 }
 #botonBorrar{
     -fx-graphic:url(../imagenes/borrar24.png);
@@ -66,13 +72,16 @@
     -fx-opacity: 0.9;
     -fx-border-color: #ffffff;
     -fx-border-radius: 10;
+    -fx-cursor:hand;
 }
 #botonBorrar:hover{
     -fx-graphic:url(../imagenes/borrar32.png);
-    -fx-background-color: #329fe6
+    -fx-background-color: #329fe6;
+    -fx-cursor:hand;
 }
 #botonBorrar:pressed{
     -fx-graphic:url(../imagenes/borrar24.png);
+    -fx-cursor:hand;
 }
 #botonBuscar{
     -fx-graphic:url(../imagenes/buscar24.png);
@@ -83,13 +92,16 @@
     -fx-opacity: 0.9;
     -fx-border-color: #ffffff;
     -fx-border-radius: 10;
+    -fx-cursor:hand;
 }
 #botonBuscar:hover{
     -fx-graphic:url(../imagenes/buscar32.png);
-    -fx-background-color: #329fe6
+    -fx-background-color: #329fe6;
+    -fx-cursor:hand;
 }
 #botonBuscar:pressed{
     -fx-graphic:url(../imagenes/buscar24.png);
+    -fx-cursor:hand;
 }
 #botonOk{
     -fx-graphic:url(../imagenes/ok24.png);
@@ -100,11 +112,21 @@
     -fx-opacity: 0.9;
     -fx-border-color: #ffffff;
     -fx-border-radius: 10;
+    -fx-cursor:hand;
 }
 #botonOk:hover{
-    -fx-graphic:url(../imagenes/Ok32.png);
-    -fx-background-color: #329fe6
+    -fx-graphic:url(../imagenes/ok32.png);
+    -fx-background-color: #329fe6;
+    -fx-cursor:hand;
 }
 #botonOk:pressed{
-    -fx-graphic:url(../imagenes/Ok24.png);
+    -fx-graphic:url(../imagenes/ok24.png);
+    -fx-cursor:hand;
+}
+.etiquetaTitulo{
+    -fx-background-color: #329fe6;
+    -fx-font-size: 12pt;
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+    -fx-alignment: center;
 }
