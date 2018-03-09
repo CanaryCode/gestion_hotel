@@ -91,3 +91,20 @@
 #botonBuscar:pressed{
     -fx-graphic:url(../imagenes/buscar24.png);
 }
+#botonOk{
+    -fx-graphic:url(../imagenes/ok24.png);
+    -fx-background-color: #3366ff;
+    -fx-alignment:BOTTOM_CENTER;
+    -fx-content-display:top;
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+    -fx-border-color: #ffffff;
+    -fx-border-radius: 10;
+}
+#botonOk:hover{
+    -fx-graphic:url(../imagenes/Ok32.png);
+    -fx-background-color: #329fe6
+}
+#botonOk:pressed{
+    -fx-graphic:url(../imagenes/Ok24.png);
+}

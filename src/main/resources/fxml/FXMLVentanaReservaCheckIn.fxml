@@ -15,13 +15,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.41626794258373206" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="576.0" prefWidth="1214.0" styleClass="ventanaReserva" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorReservaCheckIn">
+<SplitPane dividerPositions="0.524390243902439" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="576.0" prefWidth="1214.0" styleClass="ventanaReserva" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorReservaCheckIn">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="378.0" prefWidth="1176.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css">
          <children>
             <VBox layoutX="577.0" layoutY="76.0" prefHeight="200.0" prefWidth="127.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Buscar">
+                  <Button id="botonBuscar" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Buscar">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -29,14 +29,22 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Borrar campos">
+                  <Button id="botonBuscar" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Borrar campos">
                      <font>
                         <Font size="15.0" />
                      </font>
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin></Button>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Añadir reserva">
+                  <Button id="botonAdd" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Añadir reserva">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button id="botonOk" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Check-In">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -106,7 +114,7 @@
                </children>
             </GridPane>
          </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="323.0" prefWidth="1176.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="267.0" prefWidth="1212.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css">
          <children>
             <TableView layoutX="205.0" layoutY="146.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
               <columns>
