@@ -17,9 +17,60 @@
 }
 .menuPrincipal{
     -fx-background-color: #3366ff;
-     -fx-font-size: 10pt;
+    -fx-font-size: 10pt;
     -fx-text-fill: white;
 }
 .menus{
-   -fx-text-fill: white; 
+    -fx-text-fill: white; 
+}
+#botonAdd{
+    -fx-graphic:url(../imagenes/add24.png);
+    -fx-background-color: #3366ff;
+    -fx-alignment:BOTTOM_CENTER;
+    -fx-content-display:top;
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+    -fx-border-color: #ffffff;
+    -fx-border-radius: 10;
+}
+#botonAdd:hover{
+    -fx-graphic:url(../imagenes/add32.png);
+    -fx-background-color: #329fe6
+}
+#botonAdd:pressed{
+    -fx-graphic:url(../imagenes/add24.png);
+}
+#botonActualizar{
+    -fx-graphic:url(../imagenes/actualizar24.png);
+    -fx-background-color: #3366ff;
+    -fx-alignment:BOTTOM_CENTER;
+    -fx-content-display:top;
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+    -fx-border-color: #ffffff;
+    -fx-border-radius: 10;
+}
+#botonActualizar:hover{
+    -fx-graphic:url(../imagenes/actualizar32.png);
+    -fx-background-color: #329fe6
+}
+#botonActualizar:pressed{
+    -fx-graphic:url(../imagenes/actualizar24.png);
+}
+#botonBorrar{
+    -fx-graphic:url(../imagenes/borrar24.png);
+    -fx-background-color: #3366ff;
+    -fx-alignment:BOTTOM_CENTER;
+    -fx-content-display:top;
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+    -fx-border-color: #ffffff;
+    -fx-border-radius: 10;
+}
+#botonBorrar:hover{
+    -fx-graphic:url(../imagenes/borrar32.png);
+    -fx-background-color: #329fe6
+}
+#botonBorrar:pressed{
+    -fx-graphic:url(../imagenes/borrar24.png);
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
@@ -19,9 +14,6 @@ import javafx.scene.control.MenuItem;
  */
 public class ControladorVentanaPrincipal implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
     @FXML
     MenuItem kardex;
     @FXML
