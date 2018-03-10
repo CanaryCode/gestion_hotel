@@ -6,8 +6,13 @@ import java.util.List;
 /**
  *
  * @author Antonio Jesús Pérez Delgado
+ * sirve para centralizar inputs que se vayan a añadir a la base de datos,
+ * para que estén escritos correctamente. 
  */
 public class Registro{
+    /**
+     * lista de todos los paises del mundo
+     */
 
    private final String[] arrayPaises = {"desconocido","España","Alemania","Inglaterra","Francia","Italia",
         "Austria","Bèlgica","Holanda","Portugal","Suiza","Luxemburgo","Rusia","Suecia","Noruega",

@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -85,12 +86,15 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <RadioButton mnemonicParsing="false" text="M" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                  <RadioButton mnemonicParsing="false" selected="true" text="M" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="sexo" />
+                     </toggleGroup>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="F" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                  <RadioButton mnemonicParsing="false" text="F" textFill="WHITE" toggleGroup="$sexo" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="80.0" />
                      </GridPane.margin>
@@ -100,12 +104,15 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <RadioButton mnemonicParsing="false" text="Si" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                  <RadioButton mnemonicParsing="false" selected="true" text="No" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="discapacitado" />
+                     </toggleGroup>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="No" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                  <RadioButton mnemonicParsing="false" text="Si" textFill="WHITE" toggleGroup="$discapacitado" GridPane.columnIndex="5" GridPane.rowIndex="1">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
@@ -136,26 +143,31 @@
                <children>
                   <ComboBox prefWidth="150.0" GridPane.columnIndex="1" />
                   <Label text="Nacionalidad" textFill="WHITE" />
-                  <Label text="Ciudad" textFill="WHITE" GridPane.columnIndex="2">
+                  <Label text="Provincia" textFill="WHITE" GridPane.columnIndex="2">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                   </Label>
                   <TextField GridPane.columnIndex="3" />
-                  <Label text="Calle" textFill="WHITE" GridPane.columnIndex="4">
+                  <Label text="Ciudad" textFill="WHITE" GridPane.columnIndex="4">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                   </Label>
                   <TextField GridPane.columnIndex="5" />
                   <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label text="Número" textFill="WHITE" GridPane.rowIndex="1" />
-                  <Label text="Código Postal" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <Label text="Calle" textFill="WHITE" GridPane.rowIndex="1" />
+                  <Label text="Número" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                   </Label>
                   <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <Label text="Código Postal" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
                </children>
             </GridPane>
             <Label prefHeight="25.0" prefWidth="806.0" styleClass="etiquetaTitulo" text="DOCUMENTACIÓN">

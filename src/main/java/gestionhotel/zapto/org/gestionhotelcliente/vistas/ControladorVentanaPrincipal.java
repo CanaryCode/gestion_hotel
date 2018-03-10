@@ -20,6 +20,8 @@ public class ControladorVentanaPrincipal implements Initializable {
     MenuItem reserva;
     @FXML
     MenuItem quienesSomos;
+    @FXML
+    MenuItem registroClientes;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -34,18 +36,24 @@ public class ControladorVentanaPrincipal implements Initializable {
         quienesSomos.setOnAction((ActionEvent event) -> {
             codigoMenuQuienesSomos();
         });
+        registroClientes.setOnAction((ActionEvent event) -> {
+            codigoMenuRegistroClientes();
+        });
 
     }
 
     private void codigoMenuKardex() {
-        new Ventanas().abrirVentanaHuesped();
+        new Ventanas().abrirVentanaHuesped(Ventanas.ventanaPrincipal);
     }
 
     private void codigoMenuReserva() {
-        new Ventanas().abrirVentanaReservaCheckIn();
+        new Ventanas().abrirVentanaReservaCheckIn(Ventanas.ventanaPrincipal);
     }
 
     private void codigoMenuQuienesSomos() {
-        new Ventanas().abrirVentanaQuienesSomos();
+        new Ventanas().abrirVentanaQuienesSomos(Ventanas.ventanaPrincipal);
+    }
+    private void codigoMenuRegistroClientes() {
+        new Ventanas().abrirVentanaRegistroClientes(Ventanas.ventanaPrincipal);
     }
 }

@@ -9,7 +9,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        new Ventanas().abrirVentanaPrincipal();
+        new Ventanas().abrirVentanaLogIn();
     }
 
     public static void main(String[] args) {

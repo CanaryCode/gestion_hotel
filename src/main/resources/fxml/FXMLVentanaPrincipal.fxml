@@ -19,6 +19,11 @@
               <MenuItem fx:id="kardex" mnemonicParsing="false" text="Kardex" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Gestión">
+              <items>
+                <MenuItem fx:id="registroClientes" mnemonicParsing="false" text="Registro Cliente" />
+              </items>
+            </Menu>
           <Menu mnemonicParsing="false" text="Acerca de">
             <items>
               <MenuItem fx:id="quienesSomos" mnemonicParsing="false" text="Quienes somos" />

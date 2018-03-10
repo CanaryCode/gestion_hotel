@@ -42,20 +42,6 @@ public class ControladorFXMLLogIn implements Initializable {
     }
 
     private void logicaBoton() {
-        Parent root;
-        Stage stage=new Stage();
-        try {
-            root = FXMLLoader.load(getClass().getResource("/fxml/FXMLVentanaPrincipal.fxml"));
-            Scene scene = new Scene(root);
-            stage.setTitle("Ventana Principal");
-            stage.setScene(scene);
-            Ventanas.ventanaLogin.close();
-            Ventanas.ventanaPrincipal=stage;
-            stage.show();
-            
-        } catch (IOException ex) {
-            Logger.getLogger(ControladorFXMLLogIn.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        new Ventanas().abrirVentanaPrincipal();
     }
 }
