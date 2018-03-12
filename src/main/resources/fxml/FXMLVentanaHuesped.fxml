@@ -23,7 +23,7 @@
          <children>
             <VBox prefHeight="389.0" prefWidth="767.0">
                <children>
-                  <Label prefHeight="25.0" prefWidth="815.0" styleClass="etiquetaTitulo" text="DATOS PERSONALES">
+                  <Label prefHeight="25.0" prefWidth="815.0" styleClass="etiquetaTitulo" text="%label.titulos.datosPersonales">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
@@ -42,28 +42,28 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Nombre" textFill="WHITE" />
+                        <Label text="%label.textField.nombre" textFill="WHITE" />
                         <TextField GridPane.columnIndex="1" />
-                        <Label text="Primer Apellido" textFill="WHITE" GridPane.columnIndex="2">
+                        <Label text="%label.textField.primerApellido" textFill="WHITE" GridPane.columnIndex="2">
                            <GridPane.margin>
                               <Insets left="10.0" />
                            </GridPane.margin>
                         </Label>
                         <TextField GridPane.columnIndex="3" />
-                        <Label text="Fecha Nacimiento" textFill="WHITE" GridPane.rowIndex="1" />
+                        <Label text="%label.datePicker.fechaNacimiento" textFill="WHITE" GridPane.rowIndex="1" />
                         <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label text="Segundo Apellido" textFill="WHITE" GridPane.columnIndex="4">
+                        <Label text="%label.textField.segundoApellido" textFill="WHITE" GridPane.columnIndex="4">
                            <GridPane.margin>
                               <Insets left="10.0" />
                            </GridPane.margin>
                         </Label>
                         <TextField GridPane.columnIndex="5" />
-                        <Label text="Sexo" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <Label text="%label.radioButton.sexo" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
                         </Label>
-                        <RadioButton mnemonicParsing="false" selected="true" text="M" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <RadioButton mnemonicParsing="false" selected="true" text="%radioButton.masculino" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
@@ -71,17 +71,17 @@
                               <ToggleGroup fx:id="sexo" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" text="F" textFill="WHITE" toggleGroup="$sexo" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <RadioButton mnemonicParsing="false" text="%radioButton.femenino" textFill="WHITE" toggleGroup="$sexo" GridPane.columnIndex="3" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets left="80.0" />
                            </GridPane.margin>
                         </RadioButton>
-                        <Label text="Discapacitado" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                        <Label text="%label.radioButton.discapacitado" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
                         </Label>
-                        <RadioButton mnemonicParsing="false" selected="true" text="No" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                        <RadioButton mnemonicParsing="false" selected="true" text="%radioButton.no" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets left="10.0" />
                            </GridPane.margin>
@@ -89,7 +89,7 @@
                               <ToggleGroup fx:id="discapacitado" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" text="Si" textFill="WHITE" toggleGroup="$discapacitado" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                        <RadioButton mnemonicParsing="false" text="%radioButton.si" textFill="WHITE" toggleGroup="$discapacitado" GridPane.columnIndex="5" GridPane.rowIndex="1">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
@@ -99,7 +99,7 @@
                         </RadioButton>
                      </children>
                   </GridPane>
-                  <Label prefHeight="25.0" prefWidth="783.0" styleClass="etiquetaTitulo" text="DATOS DIRECCIÓN">
+                  <Label prefHeight="25.0" prefWidth="783.0" styleClass="etiquetaTitulo" text="%label.titulos.datosDireccion">
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
@@ -119,28 +119,28 @@
                     </rowConstraints>
                      <children>
                         <ComboBox prefWidth="150.0" GridPane.columnIndex="1" />
-                        <Label text="Nacionalidad" textFill="WHITE" />
-                        <Label text="Provincia" textFill="WHITE" GridPane.columnIndex="2">
+                        <Label text="%label.comboBox.nacionalidad" textFill="WHITE" />
+                        <Label text="%label.textField.provincia" textFill="WHITE" GridPane.columnIndex="2">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
                         </Label>
                         <TextField GridPane.columnIndex="3" />
-                        <Label text="Ciudad" textFill="WHITE" GridPane.columnIndex="4">
+                        <Label text="%label.textField.ciudad" textFill="WHITE" GridPane.columnIndex="4">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
                         </Label>
                         <TextField GridPane.columnIndex="5" />
                         <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label text="Calle" textFill="WHITE" GridPane.rowIndex="1" />
-                        <Label text="Número" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <Label text="%label.textField.calle" textFill="WHITE" GridPane.rowIndex="1" />
+                        <Label text="%label.textField.numero" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
                         </Label>
                         <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                        <Label text="Código Postal" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                        <Label text="%label.textField.codigoPostal" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
@@ -148,7 +148,7 @@
                         <TextField GridPane.columnIndex="5" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
-                  <Label prefHeight="25.0" prefWidth="806.0" styleClass="etiquetaTitulo" text="DOCUMENTACIÓN">
+                  <Label prefHeight="25.0" prefWidth="806.0" styleClass="etiquetaTitulo" text="%label.titulos.documentacion">
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
@@ -166,7 +166,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Exp. Pasaporte" textFill="WHITE" GridPane.columnIndex="4">
+                        <Label text="%label.datePicker.expedicionPasaporte" textFill="WHITE" GridPane.columnIndex="4">
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin>
@@ -175,13 +175,13 @@
                            </padding>
                         </Label>
                         <DatePicker GridPane.columnIndex="5" />
-                        <Label text="Pasaporte" textFill="WHITE" GridPane.columnIndex="2">
+                        <Label text="%label.textField.pasaporte" textFill="WHITE" GridPane.columnIndex="2">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
                         </Label>
                         <TextField GridPane.columnIndex="3" />
-                        <Label text="Dni" textFill="WHITE">
+                        <Label text="%label.textField.dni" textFill="WHITE">
                            <GridPane.margin>
                               <Insets left="10.0" />
                            </GridPane.margin>
@@ -189,7 +189,7 @@
                         <TextField GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
-                  <Label prefHeight="25.0" prefWidth="933.0" styleClass="etiquetaTitulo" text="OTROS DATOS">
+                  <Label prefHeight="25.0" prefWidth="933.0" styleClass="etiquetaTitulo" text="%label.titulos.otrosDatos">
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
@@ -208,31 +208,31 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Teléfono fijo" textFill="WHITE">
+                        <Label text="%label.textField.telefonoFijo" textFill="WHITE">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
                         </Label>
                         <TextField GridPane.columnIndex="1" />
-                        <Label text="Teléfono Móvil" textFill="WHITE" GridPane.columnIndex="2">
+                        <Label text="%label.textField.telefonoMovil" textFill="WHITE" GridPane.columnIndex="2">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
                         </Label>
                         <TextField GridPane.columnIndex="3" />
-                        <Label text="Correo electrónico" textFill="WHITE" GridPane.columnIndex="4">
+                        <Label text="%label.textField.correoElectronico" textFill="WHITE" GridPane.columnIndex="4">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
                         </Label>
                         <TextField GridPane.columnIndex="5" />
-                        <Label text="Tratamiento" textFill="WHITE" GridPane.rowIndex="1">
+                        <Label text="%label.comboBox.tratamiento" textFill="WHITE" GridPane.rowIndex="1">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
                         </Label>
                         <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label text="Categoría" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <Label text="%label.comboBox.categoria" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
@@ -247,7 +247,7 @@
             </VBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Comentario" textFill="WHITE">
+                  <Label text="%label.textArea.comentario" textFill="WHITE">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
@@ -274,17 +274,17 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button id="botonAdd" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="Crear">
+            <Button id="botonAdd" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="%button.crear">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button id="botonActualizar" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="actualizar" GridPane.columnIndex="1">
+            <Button id="botonActualizar" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="%button.actualizar" GridPane.columnIndex="1">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button id="botonBorrar" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="Borrar" GridPane.columnIndex="2">
+            <Button id="botonBorrar" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="%button.borrar" GridPane.columnIndex="2">
                <font>
                   <Font size="15.0" />
                </font>

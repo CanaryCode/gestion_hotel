@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.35714285714285715" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="576.0" prefWidth="1214.0" styleClass="ventanaReserva" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorReservaCheckIn">
+<SplitPane dividerPositions="0.35714285714285715, 0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="576.0" prefWidth="1214.0" styleClass="ventanaReserva" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorReservaCheckIn">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="255.0" prefWidth="1212.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css">
          <children>
@@ -94,19 +94,17 @@
                </children>
             </VBox>
          </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="365.0" prefWidth="1212.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css">
-         <children>
-            <TableView layoutX="205.0" layoutY="146.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
-              <columns>
-                <TableColumn prefWidth="108.00003051757812" text="Código de reserva" />
-                <TableColumn prefWidth="431.9999694824219" text="Cliente" />
-                  <TableColumn minWidth="0.0" prefWidth="77.0" text="Habitación" />
-                  <TableColumn prefWidth="114.0" text="Tipo de habitación" />
-                  <TableColumn prefWidth="152.0" text="Fecha prevista de entrada" />
-                  <TableColumn prefWidth="151.0" text="Fecha prevista de salida" />
-                  <TableColumn prefWidth="124.0" text="Nombre huésped" />
-              </columns>
-            </TableView>
-         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="365.0" prefWidth="1212.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css" />
+      <TableView prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn prefWidth="108.00003051757812" text="Código de reserva" />
+          <TableColumn prefWidth="431.9999694824219" text="Cliente" />
+            <TableColumn minWidth="0.0" prefWidth="77.0" text="Habitación" />
+            <TableColumn prefWidth="114.0" text="Tipo de habitación" />
+            <TableColumn prefWidth="152.0" text="Fecha prevista de entrada" />
+            <TableColumn prefWidth="151.0" text="Fecha prevista de salida" />
+            <TableColumn prefWidth="124.0" text="Nombre huésped" />
+        </columns>
+      </TableView>
   </items>
 </SplitPane>

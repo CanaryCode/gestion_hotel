@@ -9,24 +9,24 @@
    <children>
       <MenuBar layoutX="35.0" layoutY="14.0" styleClass="menuPrincipal" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
-          <Menu mnemonicParsing="false" text="Reservas">
+          <Menu mnemonicParsing="false" text="%menu.reservas">
             <items>
-              <MenuItem fx:id="reserva" mnemonicParsing="false" text="previsión" />
+              <MenuItem fx:id="reserva" mnemonicParsing="false" text="%menuItem.prevision" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Recepcíon">
+          <Menu mnemonicParsing="false" text="%menu.recepcion">
             <items>
-              <MenuItem fx:id="kardex" mnemonicParsing="false" text="Kardex" />
+              <MenuItem fx:id="kardex" mnemonicParsing="false" text="%menuItem.kardex" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" text="Gestión">
+            <Menu mnemonicParsing="false" text="%menu.gestion">
               <items>
-                <MenuItem fx:id="registroClientes" mnemonicParsing="false" text="Registro Cliente" />
+                <MenuItem fx:id="registroClientes" mnemonicParsing="false" text="%menuItem.registroCliente" />
               </items>
             </Menu>
-          <Menu mnemonicParsing="false" text="Acerca de">
+          <Menu mnemonicParsing="false" text="%menu.acercaDe">
             <items>
-              <MenuItem fx:id="quienesSomos" mnemonicParsing="false" text="Quienes somos" />
+              <MenuItem fx:id="quienesSomos" mnemonicParsing="false" text="%menuItem.quienesSomos" />
             </items>
           </Menu>
         </menus>
