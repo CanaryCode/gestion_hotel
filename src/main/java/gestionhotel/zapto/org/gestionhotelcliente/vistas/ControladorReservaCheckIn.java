@@ -1,26 +1,59 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TextField;
 
 /**
  *
- * @author deico
+ * @author Antonio Jesús Pérez Delgado
  */
 public class ControladorReservaCheckIn implements Initializable {
-    
-    
+
+    @FXML
+    TextField cliente, reserva;
+
+    @FXML
+    DatePicker fecha;
+
+    @FXML
+    Button buscar, resetearCampos, checkIn, addReserva;
+
+    @FXML
+    TableColumn tableColumnNumeroReserva, tableColumnCliente, tableColumnHabitacion, tableColumnTipoHabitacion,
+            tableColumnFechaPrevistaEntrada, tableColumnFechaPrevistaSalida, tableColumnHuesped;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-       
+        buscar.setOnAction((event) -> {
+            accionBuscar();
+        });
+        resetearCampos.setOnAction((event) -> {
+            accionCampos();
+        });
+        checkIn.setOnAction((event) -> {
+            accionCheckIn();
+        });
+        addReserva.setOnAction((event) -> {
+            accionReserva();
+        });
+    }
+
+    private void accionBuscar() {
+
+    }
+    private void accionCampos() {
+
+    }
+    private void accionCheckIn() {
+
+    }
+    private void accionReserva() {
+
+    }
 }
-    
