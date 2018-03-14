@@ -1,8 +1,10 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.ConfiguradorIdioma;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -12,9 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import org.hibernate.Hibernate;
-import org.hibernate.Query;
-import org.hibernate.Session;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -45,10 +45,13 @@ public class ControladorFXMLLogIn implements Initializable {
             logicaBoton();
         });
         lenguaje.setItems(FXCollections.observableArrayList(Registro.ListaLenguajes));
-
+        lenguaje.getSelectionModel().selectFirst();
     }
 
     private void logicaBoton() {
+        
+        Locale.setDefault(ConfiguradorIdioma.cambiaIdioma(lenguaje.getSelectionModel().getSelectedItem().toString()));
         new Ventanas().abrirVentanaPrincipal();
+       
     }
 }

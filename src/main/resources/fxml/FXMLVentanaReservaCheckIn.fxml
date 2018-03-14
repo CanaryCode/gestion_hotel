@@ -15,18 +15,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.35714285714285715, 0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="576.0" prefWidth="1214.0" styleClass="ventanaReserva" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorReservaCheckIn">
+<SplitPane dividerPositions="0.343205574912892" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="576.0" prefWidth="1233.0" styleClass="ventanaReserva" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorReservaCheckIn">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="255.0" prefWidth="1212.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css">
          <children>
-            <VBox layoutX="577.0" layoutY="76.0" prefHeight="200.0" prefWidth="150.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+            <VBox layoutX="577.0" layoutY="76.0" prefHeight="200.0" prefWidth="137.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                <children>
-                  <Label prefWidth="1000.0" styleClass="etiquetaTitulo" text="ACCIÓN" textFill="WHITE">
+                  <Label prefWidth="1000.0" styleClass="etiquetaTitulo" text="%label.titulos.accion" textFill="WHITE">
                      <font>
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <Button id="botonAdd" mnemonicParsing="false" prefHeight="61.0" prefWidth="140.0" text="Añadir reserva">
+                  <Button id="botonAdd" fx:id="addReserva" mnemonicParsing="false" prefHeight="61.0" prefWidth="140.0" text="%button.addReserva">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -34,7 +34,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button id="botonOk" mnemonicParsing="false" prefHeight="61.0" prefWidth="140.0" text="Check-In">
+                  <Button id="botonOk" fx:id="checkIn" mnemonicParsing="false" prefHeight="61.0" prefWidth="140.0" text="%button.checkIn">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -44,47 +44,51 @@
                   </Button>
                </children>
             </VBox>
-            <VBox layoutX="38.0" layoutY="-86.0" prefHeight="200.0" prefWidth="931.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+            <VBox layoutX="-1.0" layoutY="20.0" prefHeight="200.0" prefWidth="1037.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
                <children>
-                  <Label prefWidth="1000.0" styleClass="etiquetaTitulo" text="FILTROS" textFill="WHITE">
+                  <Label prefHeight="25.0" prefWidth="1475.0" styleClass="etiquetaTitulo" text="%label.titulos.filtros" textFill="WHITE">
                      <font>
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <GridPane prefHeight="125.0" prefWidth="942.0">
+                  <GridPane prefHeight="125.0" prefWidth="1009.0">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="150.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Reserva" textFill="WHITE" GridPane.columnIndex="2">
+                        <Label text="%label.textField.reserva" textFill="WHITE" GridPane.columnIndex="4">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
                         </Label>
-                        <TextField GridPane.columnIndex="1" />
-                        <Label text="Fecha" textFill="WHITE" GridPane.columnIndex="4">
+                        <TextField fx:id="cliente" prefWidth="130.0" GridPane.columnIndex="3" />
+                        <Label text="%label.datePicker.fecha" textFill="WHITE" GridPane.columnIndex="6">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
                         </Label>
-                        <Label text="Cliente" textFill="WHITE" />
-                        <TextField GridPane.columnIndex="3" />
-                        <DatePicker GridPane.columnIndex="5" />
-                        <Button id="botonActualizar" mnemonicParsing="false" prefHeight="61.0" prefWidth="140.0" text="resetear campos" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label text="%label.textField.cliente" textFill="WHITE" GridPane.columnIndex="2">
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin></Label>
+                        <TextField fx:id="reserva" GridPane.columnIndex="5" />
+                        <DatePicker fx:id="fecha" GridPane.columnIndex="7" />
+                        <Button id="botonActualizar" fx:id="resetearCampos" mnemonicParsing="false" prefHeight="61.0" prefWidth="150.0" text="%button.resetearCampos" GridPane.columnIndex="1">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Button>
-                        <Button id="botonBuscar" mnemonicParsing="false" prefHeight="61.0" prefWidth="140.0" text="Buscar" GridPane.rowIndex="1">
+                        <Button id="botonBuscar" fx:id="buscar" mnemonicParsing="false" prefHeight="61.0" prefWidth="150.0" text="%button.buscar">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -94,17 +98,19 @@
                </children>
             </VBox>
          </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="365.0" prefWidth="1212.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css" />
-      <TableView prefHeight="200.0" prefWidth="200.0">
-        <columns>
-          <TableColumn prefWidth="108.00003051757812" text="Código de reserva" />
-          <TableColumn prefWidth="431.9999694824219" text="Cliente" />
-            <TableColumn minWidth="0.0" prefWidth="77.0" text="Habitación" />
-            <TableColumn prefWidth="114.0" text="Tipo de habitación" />
-            <TableColumn prefWidth="152.0" text="Fecha prevista de entrada" />
-            <TableColumn prefWidth="151.0" text="Fecha prevista de salida" />
-            <TableColumn prefWidth="124.0" text="Nombre huésped" />
-        </columns>
-      </TableView>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="365.0" prefWidth="1212.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css">
+         <children>
+            <TableView prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+              <columns>
+                <TableColumn fx:id="tableColumnNumeroReserva" prefWidth="120.0" text="%tableColumn.codigoDeReserva" />
+                <TableColumn fx:id="tableColumnCliente" prefWidth="270.0" text="%tableColumn.cliente" />
+                  <TableColumn fx:id="tableColumnHabitacion" minWidth="0.0" text="%tableColumn.habitacion" />
+                  <TableColumn fx:id="tableColumnTipoHabitacion" prefWidth="160.0" text="%tableColumn.tipoDeHabitacion" />
+                  <TableColumn fx:id="tableColumnFechaPrevistaEntrada" prefWidth="150.0" text="%tableColumn.fechaPrevistaDeEntrada" />
+                  <TableColumn fx:id="tableColumnFechaPrevistaSalida" prefWidth="180.0" text="%tableColumn.fechaPrevistaDeSalida" />
+                  <TableColumn fx:id="tableColumnHuesped" prefWidth="275.0" text="%tableColumn.nombreHuesped" />
+              </columns>
+            </TableView>
+         </children></AnchorPane>
   </items>
 </SplitPane>

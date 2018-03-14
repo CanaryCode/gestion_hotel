@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-mar-2018 20:11:33 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Reserva" table="reserva" schema="public" optimistic-lock="version">
+        <id name="codReserva" type="int">
+            <column name="cod_reserva" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="personaByCodEmpleado" class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona" fetch="select">
+            <column name="cod_empleado" not-null="true" />
+        </many-to-one>
+        <many-to-one name="personaByCodCliente" class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona" fetch="select">
+            <column name="cod_cliente" not-null="true" />
+        </many-to-one>
+        <property name="fecha" type="date">
+            <column name="fecha" length="13" not-null="true" />
+        </property>
+        <property name="fechaCancelada" type="date">
+            <column name="fecha_cancelada" length="13" />
+        </property>
+        <property name="motivoCancelacion" type="string">
+            <column name="motivo_cancelacion" />
+        </property>
+        <property name="comentario" type="string">
+            <column name="comentario" />
+        </property>
+        <set name="detallesReservas" table="detalles_reserva" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cod_reserva" not-null="true" />
+            </key>
+            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva" />
+        </set>
+    </class>
+</hibernate-mapping>

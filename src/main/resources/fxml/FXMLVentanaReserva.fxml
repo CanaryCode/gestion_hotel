@@ -6,6 +6,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -14,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="720.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ContoladorVentanaReserva">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="720.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ContoladorVentanaReserva">
    <children>
       <VBox prefHeight="324.0" prefWidth="720.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <children>
@@ -33,26 +34,27 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Fecha inicio" textFill="WHITE" />
-                  <Label text="Fecha fin" textFill="WHITE" GridPane.columnIndex="2">
+                  <Label text="%label.datePicker.fechaInicio" textFill="WHITE" />
+                  <Label text="%label.datePicker.fechaInicio" textFill="WHITE" GridPane.columnIndex="2">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Nombre" textFill="WHITE" GridPane.columnIndex="4">
+                  <Label text="algo" textFill="WHITE" GridPane.columnIndex="4">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <DatePicker GridPane.columnIndex="1" />
-                  <DatePicker GridPane.columnIndex="3" />
-                  <Label text="Número personas" textFill="WHITE" GridPane.rowIndex="1" />
-                  <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <DatePicker fx:id="fechaInicio" GridPane.columnIndex="1" />
+                  <DatePicker fx:id="fechaFin" GridPane.columnIndex="3" />
+                  <Label text="%label.textField.numeroPersonas" textFill="WHITE" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="numeroPersonas" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField GridPane.columnIndex="5" />
                </children>
             </GridPane>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Comentario" textFill="WHITE">
+                  <Label text="%label.textField.comentario" textFill="WHITE">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
@@ -60,7 +62,7 @@
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Label>
-                  <TextArea prefHeight="100.0" prefWidth="587.0">
+                  <TextArea fx:id="comentario" prefHeight="100.0" prefWidth="587.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -79,17 +81,17 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button id="botonAdd" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="Crear">
+            <Button id="botonAdd" fx:id="crear" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="%label.button.crear">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button id="botonActualizar" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="actualizar" GridPane.columnIndex="1">
+            <Button id="botonActualizar" fx:id="actualizar" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="%label.button.actualizar" GridPane.columnIndex="1">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button id="botonBorrar" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="Borrar" GridPane.columnIndex="2">
+            <Button id="botonBorrar" fx:id="borrar" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="%label.button.borrar" GridPane.columnIndex="2">
                <font>
                   <Font size="15.0" />
                </font>

@@ -40,16 +40,16 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-reverse-engineering>
-  <schema-selection match-catalog="DB_Gestion_Hotel" match-schema="Schema_DB_GestionHotel"/>
-  <table-filter match-name="estado_habitacion"/>
-  <table-filter match-name="telefono_persona"/>
-  <table-filter match-name="detalles_reserva"/>
-  <table-filter match-name="reserva"/>
-  <table-filter match-name="usuario"/>
-  <table-filter match-name="huesped_habitacion"/>
-  <table-filter match-name="tipo"/>
-  <table-filter match-name="habitacion"/>
-  <table-filter match-name="situacion"/>
+  <schema-selection match-catalog="DB_Gestion_Hotel" match-schema="public"/>
   <table-filter match-name="persona"/>
   <table-filter match-name="parentesco"/>
+  <table-filter match-name="usuario"/>
+  <table-filter match-name="detalles_reserva"/>
+  <table-filter match-name="estado_habitacion"/>
+  <table-filter match-name="habitacion"/>
+  <table-filter match-name="situacion"/>
+  <table-filter match-name="huesped_habitacion"/>
+  <table-filter match-name="tipo"/>
+  <table-filter match-name="telefono_persona"/>
+  <table-filter match-name="reserva"/>
 </hibernate-reverse-engineering>

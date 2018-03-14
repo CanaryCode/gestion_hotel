@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-mar-2018 20:11:33 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva" table="detalles_reserva" schema="public" optimistic-lock="version">
+        <id name="idDetallesReserva" type="int">
+            <column name="id_detalles_reserva" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="habitacion" class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Habitacion" fetch="select">
+            <column name="id_habitacion" />
+        </many-to-one>
+        <many-to-one name="reserva" class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Reserva" fetch="select">
+            <column name="cod_reserva" not-null="true" />
+        </many-to-one>
+        <property name="nombreReserva" type="string">
+            <column name="nombre_reserva" length="30" />
+        </property>
+        <property name="cantidadHuespedes" type="java.lang.Integer">
+            <column name="cantidad_huespedes" />
+        </property>
+        <property name="fechaEntradaPrevista" type="date">
+            <column name="fecha_entrada_prevista" length="13" not-null="true" />
+        </property>
+        <property name="fechaSalidaPrevista" type="date">
+            <column name="fecha_salida_prevista" length="13" not-null="true" />
+        </property>
+        <property name="fechaEntrada" type="date">
+            <column name="fecha_entrada" length="13" />
+        </property>
+        <property name="fechaSalida" type="date">
+            <column name="fecha_salida" length="13" />
+        </property>
+        <set name="huespedHabitacions" table="huesped_habitacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_detalles_reserva" not-null="true" />
+            </key>
+            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.HuespedHabitacion" />
+        </set>
+    </class>
+</hibernate-mapping>

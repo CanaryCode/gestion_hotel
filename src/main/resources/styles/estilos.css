@@ -6,6 +6,7 @@
 .ventanaPrincipal{
     -fx-background-image: url(../imagenes/FondoVentanaPrincipal.jpg);
     -fx-background-size: stretch;
+      -fx-opacity: 0.7;
 }
 .ventanaLogIn{
     -fx-background-image: url(../imagenes/FondoVentanaLogIn.jpg);
@@ -126,6 +127,20 @@
 .etiquetaTitulo{
     -fx-background-color: #329fe6;
     -fx-font-size: 12pt;
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+    -fx-alignmen: center;
+}
+.etiquetaTituloPrincipal{
+    -fx-background-color: #329fe6;
+    -fx-font-size: 34pt;
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+    -fx-alignment: bottom-center;
+}
+.etiquetaTituloPie{
+    -fx-background-color: #329fe6;
+    -fx-font-size: 20pt;
     -fx-text-fill: white;
     -fx-opacity: 0.9;
     -fx-alignment: center;
