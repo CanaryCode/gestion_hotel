@@ -2,28 +2,145 @@
     Created on : 02-mar-2018, 12:30:18
     Author     : Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
 */
+.baseVentanas{
+    -fx-background-image: url(../imagenes/gridFondo.png);
+    -fx-background-size: cover;
+}
 
+
+/*------------------RELOJ------------------------------------------------------*/
+
+#face {
+    -fx-fill: radial-gradient(radius 180%, white, #3366ff, derive(#1d1d1d, 10%));
+    -fx-stroke: derive(white, 10%);
+    -fx-stroke-width: 5;
+    -fx-opacity: 0.9;
+}
+
+#brand {
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+
+}
+
+#hourHand {
+    -fx-stroke: white;
+    -fx-stroke-width: 4;
+    -fx-stroke-line-cap: round;
+}
+
+#minuteHand {
+    -fx-stroke: derive(white, 0%);
+    -fx-stroke-width: 3;
+    -fx-stroke-line-cap: round;
+}
+
+#secondHand {
+    -fx-stroke: derive(white, 0%);
+    -fx-stroke-width: 2;
+    -fx-stroke-line-cap: round;
+}
+
+#spindle {
+    -fx-fill: derive(darkslategray, +5%);
+}
+
+#digitalClock {
+    -fx-font-size: 20px;
+    -fx-font-family: 'Courier New';
+    -fx-text-fill: white;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+.tick {
+    -fx-stroke: derive(white, -15%);
+    -fx-stroke-width: 3;
+    -fx-stroke-line-cap: round;
+}
+
+/*------------------COMBOBOX------------------------------------------------------*/
+.combo-box{
+    -fx-background-color: white;
+    -fx-cursor:hand;
+}
+/*------------------DATEPICKER------------------------------------------------------*/
+
+.date-picker .day-cell {
+    -fx-cursor: hand ;
+}
+.date-picker{
+    -fx-background-color: white;
+    -fx-cursor: hand;
+}
+/*------------------LABEL------------------------------------------------------*/
+.etiquetaTitulo{
+    -fx-background-color: #329fe6;
+    -fx-font-size: 12pt;
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+    -fx-alignment: center;
+}
+.etiquetaTituloPrincipal{
+    -fx-font-size: 26pt;
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+    -fx-alignment: bottom-center;
+}
+.etiquetaTituloPie{
+    -fx-font-size: 15pt;
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+    -fx-alignment: center;
+}
+
+/*------------------BUTTON------------------------------------------------------*/
+.button{
+    -fx-cursor:hand;
+}
+/*------------------TEXTFIELD------------------------------------------------------*/
+/*------------------TEXTAREA------------------------------------------------------*/
+/*------------------TABPANE------------------------------------------------------*/
+.tab {
+    -fx-background-color:#3366ff;
+    -fx-cursor:hand;
+}
+
+.tab:selected {
+    -fx-background-color: white;
+}
+.tab .tab-label{
+    -fx-text-fill: white;
+}
+.tab:selected .tab-label{
+    -fx-text-fill: black;
+}
+.tab-pane *.tab-header-area *.tab-header-background {
+    -fx-background-image:url(../imagenes/gridFondo.png);
+}
+
+/*------------------PANE------------------------------------------------------*/
+/*------------------TABLE------------------------------------------------------*/
+.table-view .column-header .label {
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+
+}
+.table-view .column-header {
+    -fx-border-color: #3366ff;
+    -fx-background-color:white;
+    -fx-cursor: hand;
+}
+/*------------------VENTANAS------------------------------------------------------*/
 .ventanaPrincipal{
-    -fx-background-image: url(../imagenes/FondoVentanaPrincipal.jpg);
+    -fx-background-image: url(../imagenes/FondoVentanaMain.png);
     -fx-background-size: stretch;
-      -fx-opacity: 0.7;
+    -fx-opacity: 0.7;
 }
 .ventanaLogIn{
     -fx-background-image: url(../imagenes/FondoVentanaLogIn.jpg);
     -fx-background-size: stretch;
 }
-.baseVentanas{
-    -fx-background-image: url(../imagenes/gridFondo.png);
-    -fx-background-size: cover;
-}
-.menuPrincipal{
-    -fx-background-color: #3366ff;
-    -fx-font-size: 10pt;
-    -fx-text-fill: white;
-}
-.menus{
-    -fx-text-fill: white; 
-}
+/*------------------BOTONES ESPECIALES------------------------------------------------------*/
 #botonAdd{
     -fx-graphic:url(../imagenes/add24.png);
     -fx-background-color: #3366ff;
@@ -124,24 +241,32 @@
     -fx-graphic:url(../imagenes/ok24.png);
     -fx-cursor:hand;
 }
-.etiquetaTitulo{
-    -fx-background-color: #329fe6;
-    -fx-font-size: 12pt;
-    -fx-text-fill: white;
-    -fx-opacity: 0.9;
-    -fx-alignmen: center;
+/*--------------------------MENUS-------------------------------------------*/
+.menu{
+    -fx-cursor:hand;
 }
-.etiquetaTituloPrincipal{
-    -fx-background-color: #329fe6;
-    -fx-font-size: 34pt;
-    -fx-text-fill: white;
-    -fx-opacity: 0.9;
-    -fx-alignment: bottom-center;
+.menu-item{
+    -fx-cursor:hand;
 }
-.etiquetaTituloPie{
-    -fx-background-color: #329fe6;
-    -fx-font-size: 20pt;
+.menu-bar{
+    -fx-background-color: #3366ff;
+    -fx-font-size: 10pt;
     -fx-text-fill: white;
-    -fx-opacity: 0.9;
-    -fx-alignment: center;
+}
+.menu .label{
+    -fx-font-size: 10pt;
+    -fx-text-fill: white; 
+}
+.menu:hover {
+    -fx-background-color: white;
+    -fx-text-fill: black; 
+    -fx-cursor: hand;
+}
+.menu:hover .label{
+    -fx-text-fill: black; 
+}
+/*---------------------RADIOBUTTON-------------------------------*/
+.radio-button .radio{
+    -fx-background-color: white;
+    -fx-cursor: hand;
 }

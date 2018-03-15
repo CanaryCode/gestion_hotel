@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -35,6 +36,7 @@ public class Ventanas {
     private Stage configuraVentana(Stage ventana, Stage owner, String titulo) {
         ventana.setResizable(false);
         ventana.setTitle(titulo);
+        ventana.getIcons().add(new Image("/imagenes/hotel.png"));
         if (owner != null) {
             ventana.initOwner(owner);
         }
@@ -45,6 +47,7 @@ public class Ventanas {
         Stage stage = new Stage();
         stage.setScene(creaEscena("FXMLVentanaLogIn"));
         stage.setTitle(resourceBundle.getString("windows.logIn"));
+        stage.getIcons().add(new Image("/imagenes/hotel.png"));
         Ventanas.ventanaLogin = stage;
         stage.setResizable(false);
         stage.setOnCloseRequest(Event -> {
@@ -58,16 +61,20 @@ public class Ventanas {
             try {
                 Stage stage = new Stage();
                 Parent root;
-                root = FXMLLoader.load(getClass().getResource("/fxml/FXMLVentanaPrincipal.fxml"),resourceBundle);
+                root = FXMLLoader.load(getClass().getResource("/fxml/FXMLVentanaPrincipal.fxml"), resourceBundle);
                 Scene scene = new Scene(root);
                 stage.setTitle(resourceBundle.getString("windows.principal"));
                 stage.setScene(scene);
                 Ventanas.ventanaPrincipal = stage;
+                stage.getIcons().add(new Image("/imagenes/hotel.png"));
+
                 stage.setOnCloseRequest(Event -> {
                     Ventanas.ventanaPrincipal = null;
                 });
                 Ventanas.ventanaLogin.close();
                 stage.show();
+                stage.setMinWidth(stage.getWidth());
+                stage.setMinHeight(stage.getHeight());
             } catch (IOException ex) {
                 Logger.getLogger(Ventanas.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -77,7 +84,7 @@ public class Ventanas {
     public void abrirVentanaHuesped(Stage owner) {
         if (Ventanas.ventanaHuesped == null) {
             Stage stage = new Stage();
-            Ventanas.ventanaHuesped=stage;
+            Ventanas.ventanaHuesped = stage;
             configuraVentana(stage, ventanaPrincipal, resourceBundle.getString("windows.huesped")).setScene(creaEscena("FXMLVentanaHuesped"));
             stage.setOnCloseRequest(Event -> {
                 Ventanas.ventanaHuesped = null;
@@ -89,7 +96,7 @@ public class Ventanas {
     public void abrirVentanaReservaCheckIn(Stage owner) {
         if (ventanaReservaCheckIn == null) {
             Stage stage = new Stage();
-            Ventanas.ventanaReservaCheckIn=stage;
+            Ventanas.ventanaReservaCheckIn = stage;
             configuraVentana(stage, ventanaPrincipal, resourceBundle.getString("windows.checkIn")).setScene(creaEscena("FXMLVentanaReservaCheckIn"));
             stage.setOnCloseRequest(Event -> {
                 Ventanas.ventanaReservaCheckIn = null;
@@ -101,7 +108,7 @@ public class Ventanas {
     public void abrirVentanaQuienesSomos(Stage owner) {
         if (ventanaQuienesSomos == null) {
             Stage stage = new Stage();
-            Ventanas.ventanaQuienesSomos=stage;
+            Ventanas.ventanaQuienesSomos = stage;
             configuraVentana(stage, ventanaPrincipal, resourceBundle.getString("windows.quienesSomos")).setScene(creaEscena("FXMLVentanaQuienesSomos"));
             stage.setOnCloseRequest(Event -> {
                 Ventanas.ventanaQuienesSomos = null;
@@ -113,7 +120,7 @@ public class Ventanas {
     public void abrirVentanaRegistroClientes(Stage owner) {
         if (ventanaRegistroCliente == null) {
             Stage stage = new Stage();
-            Ventanas.ventanaRegistroCliente=stage;
+            Ventanas.ventanaRegistroCliente = stage;
             configuraVentana(stage, ventanaPrincipal, resourceBundle.getString("windows.cliente")).setScene(creaEscena("FXMLVentanaCliente"));
             stage.setOnCloseRequest(Event -> {
                 Ventanas.ventanaRegistroCliente = null;
