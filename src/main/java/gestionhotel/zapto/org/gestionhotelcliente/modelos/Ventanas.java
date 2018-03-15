@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -21,6 +22,12 @@ public class Ventanas {
             ventanaHuesped, ventanaQuienesSomos;
     private ResourceBundle resourceBundle = ResourceBundle.getBundle("i18n/mensajes");
 
+    /**
+     * configura las propiedades de la escena.
+     *
+     * @param nombreFXML nombre del archivo "FXML" que se va a cargar.
+     * @return la escena configurada.
+     */
     public Scene creaEscena(String nombreFXML) {
         Scene scene = null;
         try {
@@ -33,9 +40,18 @@ public class Ventanas {
         return scene;
     }
 
-    private Stage configuraVentana(Stage ventana, Stage owner, String titulo) {
-       // ventana.setResizable(false);
+    /**
+     * Configura los parámetros del "Stage".
+     *
+     * @param ventana ventana que se va a configurar.
+     * @param owner ventana padre de la ventana que se va a configurar.
+     * @param titulo Nombre de la ventana.
+     * @param modalidad Tipo de modalidad (modal,normal).
+     * @return stage ya configurado
+     */
+    private Stage configuraVentana(Stage ventana, Stage owner, String titulo, Modality modalidad) {
         ventana.setTitle(titulo);
+        ventana.initModality(modalidad);
         ventana.getIcons().add(new Image("/imagenes/hotel.png"));
         if (owner != null) {
             ventana.initOwner(owner);
@@ -43,6 +59,10 @@ public class Ventanas {
         return ventana;
     }
 
+    /**
+     * abre la ventana de "Log-in". No se apoya en las clases privadas de
+     * configuración debido a sus características especiales.
+     */
     public void abrirVentanaLogIn() {
         Stage stage = new Stage();
         stage.setScene(creaEscena("FXMLVentanaLogIn"));
@@ -56,6 +76,10 @@ public class Ventanas {
         stage.show();
     }
 
+    /**
+     * abre la ventana de "Ventana". No se apoya en las clases privadas de
+     * configuración debido a sus características especiales.
+     */
     public void abrirVentanaPrincipal() {
         if (ventanaPrincipal == null) {
             try {
@@ -81,11 +105,19 @@ public class Ventanas {
         }
     }
 
-    public void abrirVentanaHuesped(Stage owner) {
+    /**
+     * abre la ventana "Huesped". Se apoya en las clases privadas para
+     * configurarla.
+     *
+     * @param owner ventana padre.
+     * @param modalidad modalidad de esta ventana (modal,normal).
+     */
+
+    public void abrirVentanaHuesped(Stage owner, Modality modalidad) {
         if (Ventanas.ventanaHuesped == null) {
             Stage stage = new Stage();
             Ventanas.ventanaHuesped = stage;
-            configuraVentana(stage, ventanaPrincipal, resourceBundle.getString("windows.huesped")).setScene(creaEscena("FXMLVentanaHuesped"));
+            configuraVentana(stage, owner, resourceBundle.getString("windows.huesped"), modalidad).setScene(creaEscena("FXMLVentanaHuesped"));
             stage.setOnCloseRequest(Event -> {
                 Ventanas.ventanaHuesped = null;
             });
@@ -94,12 +126,18 @@ public class Ventanas {
             stage.setMinHeight(stage.getHeight());
         }
     }
-
-    public void abrirVentanaReservaCheckIn(Stage owner) {
+  /**
+     * abre la ventana Reserva "Check-In". Se apoya en las clases privadas para
+     * configurarla.
+     *
+     * @param owner ventana padre.
+     * @param modalidad modalidad de esta ventana (modal,normal).
+     */
+    public void abrirVentanaReservaCheckIn(Stage owner, Modality modalidad) {
         if (ventanaReservaCheckIn == null) {
             Stage stage = new Stage();
             Ventanas.ventanaReservaCheckIn = stage;
-            configuraVentana(stage, ventanaPrincipal, resourceBundle.getString("windows.checkIn")).setScene(creaEscena("FXMLVentanaReservaCheckIn"));
+            configuraVentana(stage, owner, resourceBundle.getString("windows.checkIn"), modalidad).setScene(creaEscena("FXMLVentanaReservaCheckIn"));
             stage.setOnCloseRequest(Event -> {
                 Ventanas.ventanaReservaCheckIn = null;
             });
@@ -108,12 +146,18 @@ public class Ventanas {
             stage.setMinHeight(stage.getHeight());
         }
     }
-
-    public void abrirVentanaQuienesSomos(Stage owner) {
+  /**
+     * abre la ventana "quienes somos". Se apoya en las clases privadas para
+     * configurarla.
+     *
+     * @param owner ventana padre.
+     * @param modalidad modalidad de esta ventana (modal,normal).
+     */
+    public void abrirVentanaQuienesSomos(Stage owner, Modality modalidad) {
         if (ventanaQuienesSomos == null) {
             Stage stage = new Stage();
             Ventanas.ventanaQuienesSomos = stage;
-            configuraVentana(stage, ventanaPrincipal, resourceBundle.getString("windows.quienesSomos")).setScene(creaEscena("FXMLVentanaQuienesSomos"));
+            configuraVentana(stage, owner, resourceBundle.getString("windows.quienesSomos"), modalidad).setScene(creaEscena("FXMLVentanaQuienesSomos"));
             stage.setOnCloseRequest(Event -> {
                 Ventanas.ventanaQuienesSomos = null;
             });
@@ -122,12 +166,18 @@ public class Ventanas {
             stage.setMinHeight(stage.getHeight());
         }
     }
-
-    public void abrirVentanaRegistroClientes(Stage owner) {
+  /**
+     * abre la ventana "Registro Clientes". Se apoya en las clases privadas para
+     * configurarla.
+     *
+     * @param owner ventana padre.
+     * @param modalidad modalidad de esta ventana (modal,normal).
+     */
+    public void abrirVentanaRegistroClientes(Stage owner, Modality modalidad) {
         if (ventanaRegistroCliente == null) {
             Stage stage = new Stage();
             Ventanas.ventanaRegistroCliente = stage;
-            configuraVentana(stage, ventanaPrincipal, resourceBundle.getString("windows.cliente")).setScene(creaEscena("FXMLVentanaCliente"));
+            configuraVentana(stage, owner, resourceBundle.getString("windows.cliente"), modalidad).setScene(creaEscena("FXMLVentanaCliente"));
             stage.setOnCloseRequest(Event -> {
                 Ventanas.ventanaRegistroCliente = null;
             });

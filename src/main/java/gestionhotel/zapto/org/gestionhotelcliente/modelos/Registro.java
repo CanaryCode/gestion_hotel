@@ -47,7 +47,7 @@ public class Registro {
     private static final String[] arrayCategoria = {
         "Normal", "V.I.P", "Especial", "Repetidor"
     };
-    public static List<String> listaCategoria = Arrays.asList(arrayCategoria);
+    public static List<String> listaCategoriaHuesped = Arrays.asList(arrayCategoria);
 
     private static String[] arrayPension = {
         "M.P.", "Completa", "Alo Y Des"
@@ -67,5 +67,15 @@ public class Registro {
         "Español", "English"
     };
     public static List<String> ListaLenguajes = Arrays.asList(lenguajes);
+    
+    private static final String[] razonSocial = {
+        "desconocido","Emp. individual","S.L", "S.L.N.E", "S.A", "COOP.","C.B"
+    };
+    public static List<String> ListaRazonSocial = Arrays.asList(razonSocial);
+   
+    private static final String[] categoriaCliente = {
+        "desconocido","especial","mongolo", "mongolo profundo"
+    };
+    public static List<String> ListaCategoriaClente = Arrays.asList(categoriaCliente);
 
 }

@@ -16,16 +16,16 @@ import javafx.scene.control.TextField;
 public class ControladorReservaCheckIn implements Initializable {
 
     @FXML
-    TextField cliente, reserva;
+    private TextField cliente, reserva;
 
     @FXML
-    DatePicker fecha;
+    private DatePicker fecha;
 
     @FXML
-    Button buscar, resetearCampos, checkIn, addReserva;
+    private Button buscar, resetearCampos, checkIn, addReserva;
 
     @FXML
-    TableColumn tableColumnNumeroReserva, tableColumnCliente, tableColumnHabitacion, tableColumnTipoHabitacion,
+    private TableColumn tableColumnNumeroReserva, tableColumnCliente, tableColumnHabitacion, tableColumnTipoHabitacion,
             tableColumnFechaPrevistaEntrada, tableColumnFechaPrevistaSalida, tableColumnHuesped;
 
     @Override

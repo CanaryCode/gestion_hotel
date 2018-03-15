@@ -18,11 +18,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="566.0" prefWidth="720.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorVentanaCliente">
+<AnchorPane id="AnchorPane" prefHeight="569.0" prefWidth="720.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorVentanaCliente">
    <children>
       <GridPane layoutX="33.0" layoutY="95.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0">
          <columnConstraints>
-            <ColumnConstraints />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -31,17 +30,17 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button id="botonAdd" fx:id="add" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="%button.crear" GridPane.columnIndex="1">
+            <Button id="botonAdd" fx:id="add" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="%button.crear">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button id="botonActualizar" fx:id="actualizar" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="%button.actualizar" GridPane.columnIndex="2">
+            <Button id="botonActualizar" fx:id="actualizar" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="%button.actualizar" GridPane.columnIndex="1">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button id="botonBorrar" fx:id="borrar" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="%button.borrar" GridPane.columnIndex="3">
+            <Button id="botonBorrar" fx:id="borrar" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="%button.borrar" GridPane.columnIndex="2">
                <font>
                   <Font size="15.0" />
                </font>
@@ -173,7 +172,7 @@
           </Tab>
         </tabs>
       </TabPane>
-      <VBox prefHeight="348.0" prefWidth="680.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="200.0">
+      <VBox prefHeight="287.0" prefWidth="679.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="200.0">
          <children>
             <Label prefHeight="25.0" prefWidth="5000.0" styleClass="etiquetaTitulo" text="%label.titulos.datosDireccion">
                <VBox.margin>
@@ -288,7 +287,11 @@
               </rowConstraints>
                <children>
                   <Label text="%label.textArea.comentario" textFill="WHITE" />
-                  <TextArea fx:id="comentario" prefHeight="80.0" prefWidth="5000.0" GridPane.columnIndex="1" />
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                     <children>
+                        <TextArea fx:id="comentario" prefHeight="80.0" prefWidth="5000.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
                </children>
             </GridPane>
          </children>

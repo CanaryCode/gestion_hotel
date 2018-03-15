@@ -67,7 +67,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Button>
-            <Label fx:id="mensajeError" alignment="CENTER" prefHeight="88.0" prefWidth="239.0" text="mensajes de errores" textAlignment="CENTER" textFill="RED">
+            <Label fx:id="mensajeError" alignment="CENTER" opacity="0.0" prefHeight="88.0" prefWidth="239.0" text="mensajes de errores" textAlignment="CENTER" textFill="RED">
                <font>
                   <Font size="18.0" />
                </font>

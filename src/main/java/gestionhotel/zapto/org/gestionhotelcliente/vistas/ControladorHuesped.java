@@ -1,7 +1,9 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -22,7 +24,7 @@ public class ControladorHuesped implements Initializable {
     TextField nombre, primerApellido, segundoApellido, calle, numero, provincia, ciudad,
             correoElectronico, telefonoMovil, telefonoFijo, codigoPostal, dni;
     @FXML
-    ComboBox estado, categoria, tratamiento, nacionalidad;
+    ComboBox  categoria, tratamiento, nacionalidad;
 
     @FXML
     TextArea comentario;
@@ -38,6 +40,12 @@ public class ControladorHuesped implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        tratamiento.setItems(FXCollections.observableArrayList(Registro.ListaTratamiento));
+        tratamiento.getSelectionModel().selectFirst();
+        categoria.setItems(FXCollections.observableArrayList(Registro.listaCategoriaHuesped));
+        categoria.getSelectionModel().selectFirst();
+        nacionalidad.setItems(FXCollections.observableArrayList(Registro.listaPaises));
+        nacionalidad.getSelectionModel().selectFirst();
         add.setOnAction((event) -> {
             accionAdd();
         });

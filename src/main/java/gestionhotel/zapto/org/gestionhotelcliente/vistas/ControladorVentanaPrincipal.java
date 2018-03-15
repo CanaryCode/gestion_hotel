@@ -11,38 +11,29 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 
 /**
  * FXML Controller class
  *
- * @author deico
+ * @author Antonio Jesús Pérez Delgado
  */
 public class ControladorVentanaPrincipal implements Initializable {
 
     @FXML
-    MenuItem kardex;
+    private MenuItem kardex, reserva, quienesSomos, registroClientes;
     @FXML
-    MenuItem reserva;
+    private Label nombreUsuario, pieDePágina, horaActual;
     @FXML
-    MenuItem quienesSomos;
+    private ImageView ImagenUsuario;
     @FXML
-    MenuItem registroClientes;
-    @FXML
-    Label nombreUsuario, pieDePágina;
-    @FXML
-    ImageView ImagenUsuario;
+    private HBox panelReloj;
 
-    @FXML
-    HBox panelReloj;
-    @FXML
-    Label horaActual;
-    
-    Fechas fechas = new Fechas();
-    Reloj reloj = new Reloj();
-    VBox relojArrancable;
+    private Fechas fechas;
+    private Reloj reloj ;
+    private VBox relojArrancable;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -61,7 +52,29 @@ public class ControladorVentanaPrincipal implements Initializable {
         registroClientes.setOnAction((ActionEvent event) -> {
             codigoMenuRegistroClientes();
         });
+        configuracionReloj();
+    }
 
+    private void codigoMenuKardex() {
+        new Ventanas().abrirVentanaHuesped(Ventanas.ventanaPrincipal, Modality.WINDOW_MODAL);
+    }
+
+    private void codigoMenuReserva() {
+        new Ventanas().abrirVentanaReservaCheckIn(Ventanas.ventanaPrincipal, Modality.WINDOW_MODAL);
+    }
+
+    private void codigoMenuQuienesSomos() {
+        new Ventanas().abrirVentanaQuienesSomos(Ventanas.ventanaPrincipal, Modality.WINDOW_MODAL);
+    }
+
+    private void codigoMenuRegistroClientes() {
+        new Ventanas().abrirVentanaRegistroClientes(Ventanas.ventanaPrincipal, Modality.WINDOW_MODAL);
+    }
+
+    private void configuracionReloj() {
+//configuración reloj
+        fechas = new Fechas();
+        reloj = new Reloj();
         Thread hilo = new Thread(new Runnable() {
 
             @Override
@@ -74,21 +87,5 @@ public class ControladorVentanaPrincipal implements Initializable {
         hilo.run();
         panelReloj.getChildren().add(relojArrancable);
         horaActual.setText(fechas.getTimeActual());
-    }
-
-    private void codigoMenuKardex() {
-        new Ventanas().abrirVentanaHuesped(Ventanas.ventanaPrincipal);
-    }
-
-    private void codigoMenuReserva() {
-        new Ventanas().abrirVentanaReservaCheckIn(Ventanas.ventanaPrincipal);
-    }
-
-    private void codigoMenuQuienesSomos() {
-        new Ventanas().abrirVentanaQuienesSomos(Ventanas.ventanaPrincipal);
-    }
-
-    private void codigoMenuRegistroClientes() {
-        new Ventanas().abrirVentanaRegistroClientes(Ventanas.ventanaPrincipal);
     }
 }
