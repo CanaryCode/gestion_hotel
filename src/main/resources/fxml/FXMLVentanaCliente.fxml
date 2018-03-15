@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="611.0" prefWidth="720.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorVentanaCliente">
+<AnchorPane id="AnchorPane" prefHeight="566.0" prefWidth="720.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorVentanaCliente">
    <children>
       <GridPane layoutX="33.0" layoutY="95.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0">
          <columnConstraints>
@@ -54,10 +54,10 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="172.0" prefWidth="720.0">
                      <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                        <VBox layoutY="34.0" prefHeight="200.0" prefWidth="680.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                            <children>
-                              <Label prefHeight="25.0" prefWidth="815.0" styleClass="etiquetaTitulo" text="%label.titulos.datosPersonales" />
-                              <GridPane prefHeight="95.0" prefWidth="680.0">
+                              <Label prefHeight="25.0" prefWidth="5000.0" styleClass="etiquetaTitulo" text="%label.titulos.datosPersonales" />
+                              <GridPane prefHeight="90.0" prefWidth="680.0">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -81,7 +81,7 @@
                                     </Label>
                                     <TextField fx:id="primerApellido" GridPane.columnIndex="3" />
                                     <Label text="%label.datePicker.fechaNacimiento" textFill="WHITE" GridPane.rowIndex="1" />
-                                    <DatePicker fx:id="fechaNacimiento" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <DatePicker fx:id="fechaNacimiento" prefWidth="5000.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <Label text="%label.textField.segundoApellido" textFill="WHITE" GridPane.columnIndex="4">
                                        <GridPane.margin>
                                           <Insets left="10.0" />
@@ -106,12 +106,12 @@
                                           <Insets left="80.0" />
                                        </GridPane.margin>
                                     </RadioButton>
-                                    <ComboBox fx:id="nacionalidad" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                                    <ComboBox fx:id="nacionalidad" prefWidth="5000.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
                                     <Label text="%label.comboBox.nacionalidad" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets left="10.0" />
                                        </GridPane.margin></Label>
-                                    <ComboBox fx:id="tratamiento" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <ComboBox fx:id="tratamiento" prefWidth="5000.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                     <Label text="%label.comboBox.tratamiento" textFill="WHITE" GridPane.rowIndex="2" />
                                     <TextField fx:id="dni" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                                     <Label text="%label.textField.dni" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
@@ -133,8 +133,8 @@
                      <children>
                         <VBox layoutX="67.0" layoutY="45.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                            <children>
-                              <Label prefHeight="25.0" prefWidth="815.0" styleClass="etiquetaTitulo" text="%label.titulos.datosJuridicos" />
-                              <GridPane prefHeight="118.0" prefWidth="680.0">
+                              <Label prefHeight="25.0" prefWidth="5000.0" styleClass="etiquetaTitulo" text="%label.titulos.datosJuridicos" />
+                              <GridPane prefHeight="90.0" prefWidth="680.0">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -161,7 +161,7 @@
                                           <Insets left="10.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <ComboBox fx:id="razonSocial" prefWidth="150.0" GridPane.columnIndex="3" />
+                                    <ComboBox fx:id="razonSocial" prefWidth="5000.0" GridPane.columnIndex="3" />
                                     <TextField fx:id="cif" GridPane.columnIndex="5" />
                                  </children>
                               </GridPane>
@@ -175,12 +175,12 @@
       </TabPane>
       <VBox prefHeight="348.0" prefWidth="680.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="200.0">
          <children>
-            <Label prefHeight="25.0" prefWidth="783.0" styleClass="etiquetaTitulo" text="%label.titulos.datosDireccion">
+            <Label prefHeight="25.0" prefWidth="5000.0" styleClass="etiquetaTitulo" text="%label.titulos.datosDireccion">
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets bottom="10.0" />
                </VBox.margin>
             </Label>
-            <GridPane>
+            <GridPane prefWidth="5000.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -194,7 +194,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <ComboBox fx:id="estado" prefWidth="150.0" GridPane.columnIndex="1" />
+                  <ComboBox fx:id="estado" prefWidth="5000.0" GridPane.columnIndex="1" />
                   <Label text="%label.comboBox.estado" textFill="WHITE" />
                   <Label text="%label.textField.provincia" textFill="WHITE" GridPane.columnIndex="2">
                      <padding>
@@ -224,12 +224,12 @@
                   <TextField fx:id="codigoPostal" GridPane.columnIndex="5" GridPane.rowIndex="1" />
                </children>
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets bottom="10.0" />
                </VBox.margin>
             </GridPane>
-            <Label prefHeight="25.0" prefWidth="933.0" styleClass="etiquetaTitulo" text="%label.titulos.otrosDatos">
+            <Label prefHeight="25.0" prefWidth="5000.0" styleClass="etiquetaTitulo" text="%label.titulos.otrosDatos">
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets bottom="10.0" />
                </VBox.margin>
             </Label>
             <GridPane>
@@ -260,12 +260,8 @@
                      </padding>
                   </Label>
                   <TextField fx:id="correoElectronico" GridPane.columnIndex="5" />
-                  <Label text="%label.comboBox.categoria" textFill="WHITE" GridPane.rowIndex="1">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <ComboBox fx:id="categoria" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="%label.comboBox.categoria" textFill="WHITE" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="categoria" prefWidth="5000.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <GridPane>
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -282,7 +278,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </GridPane>
-            <GridPane prefHeight="68.0" prefWidth="680.0">
+            <GridPane prefHeight="80.0" prefWidth="5000.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="333.0" minWidth="10.0" prefWidth="113.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="576.0" minWidth="10.0" prefWidth="567.0" />
@@ -292,7 +288,7 @@
               </rowConstraints>
                <children>
                   <Label text="%label.textArea.comentario" textFill="WHITE" />
-                  <TextArea fx:id="comentario" prefHeight="68.0" prefWidth="582.0" GridPane.columnIndex="1" />
+                  <TextArea fx:id="comentario" prefHeight="80.0" prefWidth="5000.0" GridPane.columnIndex="1" />
                </children>
             </GridPane>
          </children>

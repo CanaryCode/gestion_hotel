@@ -34,7 +34,7 @@ public class Ventanas {
     }
 
     private Stage configuraVentana(Stage ventana, Stage owner, String titulo) {
-        ventana.setResizable(false);
+       // ventana.setResizable(false);
         ventana.setTitle(titulo);
         ventana.getIcons().add(new Image("/imagenes/hotel.png"));
         if (owner != null) {
@@ -90,6 +90,8 @@ public class Ventanas {
                 Ventanas.ventanaHuesped = null;
             });
             stage.show();
+            stage.setMinWidth(stage.getWidth());
+            stage.setMinHeight(stage.getHeight());
         }
     }
 
@@ -102,6 +104,8 @@ public class Ventanas {
                 Ventanas.ventanaReservaCheckIn = null;
             });
             stage.show();
+            stage.setMinWidth(stage.getWidth());
+            stage.setMinHeight(stage.getHeight());
         }
     }
 
@@ -114,6 +118,8 @@ public class Ventanas {
                 Ventanas.ventanaQuienesSomos = null;
             });
             stage.show();
+            stage.setMinWidth(stage.getWidth());
+            stage.setMinHeight(stage.getHeight());
         }
     }
 
@@ -126,6 +132,8 @@ public class Ventanas {
                 Ventanas.ventanaRegistroCliente = null;
             });
             stage.show();
+            stage.setMinWidth(stage.getWidth());
+            stage.setMinHeight(stage.getHeight());
         }
     }
 }

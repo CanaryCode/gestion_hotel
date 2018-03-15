@@ -46,7 +46,7 @@
             </VBox>
             <VBox layoutX="-1.0" layoutY="20.0" prefHeight="200.0" prefWidth="1037.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
                <children>
-                  <Label prefHeight="25.0" prefWidth="1475.0" styleClass="etiquetaTitulo" text="%label.titulos.filtros" textFill="WHITE">
+                  <Label prefHeight="25.0" prefWidth="5000.0" styleClass="etiquetaTitulo" text="%label.titulos.filtros" textFill="WHITE">
                      <font>
                         <Font size="22.0" />
                      </font>
@@ -82,7 +82,7 @@
                               <Insets left="10.0" />
                            </GridPane.margin></Label>
                         <TextField fx:id="reserva" GridPane.columnIndex="5" />
-                        <DatePicker fx:id="fecha" GridPane.columnIndex="7" />
+                        <DatePicker fx:id="fecha" prefWidth="5000.0" GridPane.columnIndex="7" />
                         <Button id="botonActualizar" fx:id="resetearCampos" mnemonicParsing="false" prefHeight="61.0" prefWidth="150.0" text="%button.resetearCampos" GridPane.columnIndex="1">
                            <font>
                               <Font size="15.0" />

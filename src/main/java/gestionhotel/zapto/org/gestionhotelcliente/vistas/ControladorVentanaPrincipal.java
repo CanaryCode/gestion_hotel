@@ -70,6 +70,7 @@ public class ControladorVentanaPrincipal implements Initializable {
 
             }
         });
+        hilo.setPriority(Thread.MIN_PRIORITY);
         hilo.run();
         panelReloj.getChildren().add(relojArrancable);
         horaActual.setText(fechas.getTimeActual());
