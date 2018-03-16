@@ -6,6 +6,10 @@
     -fx-background-image: url(../imagenes/gridFondo.png);
     -fx-background-size: cover;
 }
+.mainFxmlClass{
+      -fx-background-image: url(../imagenes/gridFondo.png);
+    -fx-background-size: cover;
+}
 
 
 /*------------------RELOJ------------------------------------------------------*/

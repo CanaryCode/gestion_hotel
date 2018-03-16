@@ -59,7 +59,7 @@ public class Registro {
     };
     public static List<String> ListaHabitacion = Arrays.asList(arrayHabitacion);
     private static final String[] arrayTratamiento = {
-        "Sr/Sra", "Dr/Dra", "Ingeniero/a", "Don/Doña", "Ilustrisimo/a", "Excelentisimo/a", "ninguno"
+        "ninguno","Sr/Sra", "Dr/Dra", "Ingeniero/a", "Don/Doña", "Ilustrisimo/a", "Excelentisimo/a"
     };
     public static List<String> ListaTratamiento = Arrays.asList(arrayTratamiento);
 
