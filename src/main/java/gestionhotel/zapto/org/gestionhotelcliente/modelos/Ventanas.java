@@ -19,7 +19,7 @@ public class Ventanas {
 //todas de las ventanas de la app
 
     public static Stage ventanaPrincipal, ventanaLogin, ventanaReservaCheckIn, ventanaRegistroCliente,
-            ventanaHuesped, ventanaQuienesSomos;
+            ventanaHuesped, ventanaQuienesSomos, ventanaAddReserva,ventanaHuespedBuscador;
     private ResourceBundle resourceBundle = ResourceBundle.getBundle("i18n/mensajes");
 
     /**
@@ -180,6 +180,32 @@ public class Ventanas {
             configuraVentana(stage, owner, resourceBundle.getString("windows.cliente"), modalidad).setScene(creaEscena("FXMLVentanaCliente"));
             stage.setOnCloseRequest(Event -> {
                 Ventanas.ventanaRegistroCliente = null;
+            });
+            stage.show();
+            stage.setMinWidth(stage.getWidth());
+            stage.setMinHeight(stage.getHeight());
+        }
+    }
+    public void abrirVentanaAddReserva(Stage owner, Modality modalidad) {
+        if (ventanaAddReserva == null) {
+            Stage stage = new Stage();
+            Ventanas.ventanaAddReserva = stage;
+            configuraVentana(stage, owner, resourceBundle.getString("windows.addReserva"), modalidad).setScene(creaEscena("FXMLVentanaReserva"));
+            stage.setOnCloseRequest(Event -> {
+                Ventanas.ventanaAddReserva = null;
+            });
+            stage.show();
+            stage.setMinWidth(stage.getWidth());
+            stage.setMinHeight(stage.getHeight());
+        }
+    }
+    public void abrirVentanaBuscarHuesped(Stage owner, Modality modalidad) {
+        if (ventanaHuespedBuscador == null) {
+            Stage stage = new Stage();
+            Ventanas.ventanaHuespedBuscador= stage;
+            configuraVentana(stage, owner, resourceBundle.getString("windows.huespedBuscador"), modalidad).setScene(creaEscena("FXMLHuespedBuscador"));
+            stage.setOnCloseRequest(Event -> {
+                Ventanas.ventanaHuespedBuscador = null;
             });
             stage.show();
             stage.setMinWidth(stage.getWidth());

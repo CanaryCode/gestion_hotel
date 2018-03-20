@@ -66,7 +66,8 @@
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3">
                                  <children>
                                     <Button id="botonAdd" layoutX="81.0" layoutY="2.0" mnemonicParsing="false" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
-                                 </children></AnchorPane>
+                                 </children>
+                              </AnchorPane>
                            </children>
                         </GridPane>
                      </children>
@@ -125,6 +126,7 @@
           <Menu mnemonicParsing="false" text="%menu.reservas">
             <items>
               <MenuItem fx:id="reserva" mnemonicParsing="false" text="%menuItem.prevision" />
+                  <MenuItem fx:id="addReservas" mnemonicParsing="false" text="añadir reserva" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="%menu.recepcion">
@@ -135,6 +137,7 @@
             <Menu mnemonicParsing="false" text="%menu.gestion">
               <items>
                 <MenuItem fx:id="registroClientes" mnemonicParsing="false" text="%menuItem.registroCliente" />
+                  <MenuItem fx:id="buscadorHuesped" mnemonicParsing="false" text="Buscador huésped" />
               </items>
             </Menu>
           <Menu mnemonicParsing="false" text="%menu.acercaDe">

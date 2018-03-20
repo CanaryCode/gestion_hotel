@@ -1,5 +1,6 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -8,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 
 /**
  * FXML Controller class
@@ -16,44 +17,38 @@ import javafx.scene.control.TextField;
  * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
 public class ContoladorVentanaReserva implements Initializable {
-    
- @FXML
-    Button crear, actualizar, borrar;
- 
- @FXML
- TextArea comentario;
- 
- @FXML
- DatePicker fechaInicio, FechaFin;
- 
- @FXML
- ComboBox numeroPersonas;
- 
- @FXML
- TextField algo;
 
-    public ContoladorVentanaReserva(Button crear, Button actualizar, Button borrar, TextArea comentario, DatePicker fechaInicio, DatePicker FechaFin) {
-        this.crear = crear;
-        this.actualizar = actualizar;
-        this.borrar = borrar;
-        this.comentario = comentario;
-        this.fechaInicio = fechaInicio;
-        this.FechaFin = FechaFin;
-    }
+    @FXML
+    private DatePicker fechaInicio, fechaFin;
+
+    @FXML
+    private ComboBox<?> numeroPersonas, numeroPersonas1, numeroPersonas11, numeroPersonas2,
+            numeroPersonas21, numeroPersonas3, numeroPersonas4;
+
+    @FXML
+    private TextArea comentario;
+
+    @FXML
+    private Button confirmar, buscarCliente, addCliente;
 
     public ContoladorVentanaReserva() {
     }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    private void accionAdd(){
-        
+        addCliente.setOnAction((e)->{
+            accionAddCliente();
+        });
     }
-    private void accionActualizar(){
-        
+
+    private void accionConfirmar() {
+
     }
-    private void accionBorrar(){
-        
+
+    private void accionBuscarCliente() {
     }
+    private void accionAddCliente() {
+        new Ventanas().abrirVentanaRegistroClientes(Ventanas.ventanaRegistroCliente, Modality.WINDOW_MODAL);
+    }
+
 }

@@ -23,7 +23,8 @@ import javafx.stage.Modality;
 public class ControladorVentanaPrincipal implements Initializable {
 
     @FXML
-    private MenuItem kardex, reserva, quienesSomos, registroClientes;
+    private MenuItem kardex, reserva, quienesSomos, registroClientes, addReservas,
+            buscadorHuesped;
     @FXML
     private Label nombreUsuario, pieDePágina, horaActual;
     @FXML
@@ -52,9 +53,19 @@ public class ControladorVentanaPrincipal implements Initializable {
         registroClientes.setOnAction((ActionEvent event) -> {
             codigoMenuRegistroClientes();
         });
+        addReservas.setOnAction((ActionEvent event) -> {
+            codigoMenuAddReservas();
+        });
+        buscadorHuesped.setOnAction((ActionEvent event) -> {
+            codigoMenuBuscadorHuesped();
+        });
+        
         configuracionReloj();
     }
 
+    private  void codigoMenuAddReservas(){
+        new Ventanas().abrirVentanaAddReserva(Ventanas.ventanaPrincipal, Modality.WINDOW_MODAL);
+    }
     private void codigoMenuKardex() {
         new Ventanas().abrirVentanaHuesped(Ventanas.ventanaPrincipal, Modality.WINDOW_MODAL);
     }
@@ -69,6 +80,9 @@ public class ControladorVentanaPrincipal implements Initializable {
 
     private void codigoMenuRegistroClientes() {
         new Ventanas().abrirVentanaRegistroClientes(Ventanas.ventanaPrincipal, Modality.WINDOW_MODAL);
+    }
+    private void codigoMenuBuscadorHuesped() {
+        new Ventanas().abrirVentanaBuscarHuesped(Ventanas.ventanaPrincipal, Modality.WINDOW_MODAL);
     }
 
     private void configuracionReloj() {

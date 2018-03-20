@@ -7,7 +7,7 @@
     -fx-background-size: cover;
 }
 .mainFxmlClass{
-      -fx-background-image: url(../imagenes/gridFondo.png);
+    -fx-background-image: url(../imagenes/gridFondo.png);
     -fx-background-size: cover;
 }
 
@@ -66,6 +66,10 @@
 .combo-box{
     -fx-background-color: white;
     -fx-cursor:hand;
+    -fx-font-size: 8pt;
+    -fx-text-fill: black;
+    -fx-alignment: left;
+
 }
 /*------------------DATEPICKER------------------------------------------------------*/
 
@@ -75,11 +79,15 @@
 .date-picker{
     -fx-background-color: white;
     -fx-cursor: hand;
+    -fx-font-size: 8pt;
+    -fx-text-fill: black;
+    -fx-alignment: left;
+
 }
 /*------------------LABEL------------------------------------------------------*/
 .etiquetaTitulo{
     -fx-background-color: #329fe6;
-    -fx-font-size: 12pt;
+    -fx-font-size: 10pt;
     -fx-text-fill: white;
     -fx-opacity: 0.9;
     -fx-alignment: center;
@@ -96,13 +104,31 @@
     -fx-opacity: 0.9;
     -fx-alignment: center;
 }
-
-/*------------------BUTTON------------------------------------------------------*/
-.button{
-    -fx-cursor:hand;
+.etiquetaNormal{
+    -fx-font-size: 8pt;
+    -fx-text-fill: white;
+    -fx-alignment: left;
 }
+
 /*------------------TEXTFIELD------------------------------------------------------*/
+.texfieldNormal{
+    -fx-font-size: 8pt;
+    -fx-text-fill: black;
+    -fx-alignment: left;
+
+}
+.text-field{
+    -fx-font-size: 8pt;
+    -fx-text-fill: black;
+    -fx-alignment: left;
+
+}
 /*------------------TEXTAREA------------------------------------------------------*/
+.text-area{
+    -fx-font-size: 8pt;
+    -fx-text-fill: black;
+    -fx-alignment: left;
+}
 /*------------------TABPANE------------------------------------------------------*/
 .tab {
     -fx-background-color:#3366ff;
@@ -127,7 +153,8 @@
 .table-view .column-header .label {
     -fx-text-fill: black;
     -fx-font-weight: bold;
-
+    -fx-font-size: 8pt;
+    -fx-alignment: left;
 }
 .table-view .column-header {
     -fx-border-color: #3366ff;
@@ -144,6 +171,41 @@
     -fx-background-image: url(../imagenes/FondoVentanaLogIn.jpg);
     -fx-background-size: stretch;
 }
+/*------------------BUTTON------------------------------------------------------*/
+.button{
+    -fx-cursor:hand;
+    -fx-background-color: white;
+    -fx-alignment:CENTER;
+    -fx-content-display:top;
+    -fx-text-fill: black;
+    -fx-opacity: 0.9;
+    -fx-cursor:hand;
+    -fx-font-size: 8pt;
+}
+.button:hover{
+    -fx-background-color: #329fe6;
+    -fx-cursor:hand;
+    -fx-text-fill: white;
+}
+.button:pressed{
+    -fx-cursor:hand;
+    -fx-background-color: white;
+    -fx-alignment:CENTER;
+    -fx-content-display:top;
+    -fx-text-fill: black;
+    -fx-opacity: 0.9;
+    -fx-cursor:hand;
+    -fx-font-size: 8pt;
+}
+.toogleButtonOn{
+    -fx-text-fill: white;
+    -fx-background-color: red;
+    -fx-cursor: hand;
+}
+.toogleButtonOn:selected{
+    -fx-text-fill: white;
+    -fx-background-color: green;
+}
 /*------------------BOTONES ESPECIALES------------------------------------------------------*/
 #botonAdd{
     -fx-graphic:url(../imagenes/add24.png);
@@ -155,6 +217,7 @@
     -fx-border-color: #ffffff;
     -fx-border-radius: 10;
     -fx-cursor:hand;
+    -fx-font-size: 8pt;
 }
 #botonAdd:hover{
     -fx-graphic:url(../imagenes/add32.png);
@@ -165,6 +228,7 @@
     -fx-graphic:url(../imagenes/add24.png);
     -fx-cursor:hand;
 }
+
 #botonActualizar{
     -fx-graphic:url(../imagenes/actualizar24.png);
     -fx-background-color: #3366ff;
@@ -175,6 +239,7 @@
     -fx-border-color: #ffffff;
     -fx-border-radius: 10;
     -fx-cursor:hand;
+    -fx-font-size: 8pt;
 }
 #botonActualizar:hover{
     -fx-graphic:url(../imagenes/actualizar32.png);
@@ -195,7 +260,9 @@
     -fx-border-color: #ffffff;
     -fx-border-radius: 10;
     -fx-cursor:hand;
+    -fx-font-size: 8pt;
 }
+
 #botonBorrar:hover{
     -fx-graphic:url(../imagenes/borrar32.png);
     -fx-background-color: #329fe6;
@@ -215,6 +282,7 @@
     -fx-border-color: #ffffff;
     -fx-border-radius: 10;
     -fx-cursor:hand;
+    -fx-font-size: 8pt;
 }
 #botonBuscar:hover{
     -fx-graphic:url(../imagenes/buscar32.png);
@@ -235,6 +303,7 @@
     -fx-border-color: #ffffff;
     -fx-border-radius: 10;
     -fx-cursor:hand;
+    -fx-font-size: 8pt;
 }
 #botonOk:hover{
     -fx-graphic:url(../imagenes/ok32.png);
@@ -251,6 +320,9 @@
 }
 .menu-item{
     -fx-cursor:hand;
+    -fx-font-size: 8pt;
+    -fx-text-fill: white;
+    -fx-alignment: left;
 }
 .menu-bar{
     -fx-background-color: #3366ff;
@@ -260,6 +332,9 @@
 .menu .label{
     -fx-font-size: 10pt;
     -fx-text-fill: white; 
+    -fx-font-size: 8pt;
+    -fx-alignment: left;
+
 }
 .menu:hover {
     -fx-background-color: white;
@@ -270,6 +345,11 @@
     -fx-text-fill: black; 
 }
 /*---------------------RADIOBUTTON-------------------------------*/
+.radio-button .label{
+    -fx-font-size: 8pt;
+    -fx-text-fill: black;
+    -fx-alignment: left;
+}
 .radio-button .radio{
     -fx-background-color: white;
     -fx-cursor: hand;

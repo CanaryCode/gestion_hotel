@@ -41,45 +41,45 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="%label.datePicker.fechaInicio" textFill="WHITE" />
-                  <Label text="%label.datePicker.fechaInicio" textFill="WHITE" GridPane.columnIndex="2">
+                  <Label styleClass="etiquetaNormal" text="%label.datePicker.fechaInicio" textFill="WHITE" />
+                  <Label styleClass="etiquetaNormal" text="%label.datePicker.fechaInicio" textFill="WHITE" GridPane.columnIndex="2">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="algo" textFill="WHITE" GridPane.columnIndex="4">
+                  <Label styleClass="etiquetaNormal" text="algo" textFill="WHITE" GridPane.columnIndex="4">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
                   <DatePicker fx:id="fechaInicio" GridPane.columnIndex="1" />
                   <DatePicker fx:id="fechaFin" GridPane.columnIndex="3" />
-                  <Label text="%label.textField.numeroPersonas" textFill="WHITE" GridPane.rowIndex="1" />
+                  <Label styleClass="etiquetaNormal" text="%label.textField.numeroPersonas" textFill="WHITE" GridPane.rowIndex="1" />
                   <ComboBox fx:id="numeroPersonas" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField GridPane.columnIndex="5" />
+                  <TextField styleClass="texfieldNormal" GridPane.columnIndex="5" />
                   <ComboBox fx:id="numeroPersonas1" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                  <Label text="ndf ncdv" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                  <Label styleClass="etiquetaNormal" text="ndf ncdv" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
                      <padding>
                         <Insets left="10.0" />
                      </padding></Label>
-                  <Label text="pension" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <Label styleClass="etiquetaNormal" text="pension" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="tipo habitacion" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                  <Label styleClass="etiquetaNormal" text="tipo habitacion" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
                   <ComboBox fx:id="numeroPersonas11" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                  <Label text="cama extra" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <Label styleClass="etiquetaNormal" text="cama extra" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
                   <ComboBox fx:id="numeroPersonas2" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                  <Label text="tipo de cama" textFill="WHITE" GridPane.rowIndex="2" />
+                  <Label styleClass="etiquetaNormal" text="tipo de cama" textFill="WHITE" GridPane.rowIndex="2" />
                   <ComboBox fx:id="numeroPersonas21" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
                   <ComboBox fx:id="numeroPersonas3" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
@@ -96,7 +96,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="%label.textField.comentario" textFill="WHITE" />
+                  <Label styleClass="etiquetaNormal" text="%label.textArea.comentario" textFill="WHITE" />
                   <TextArea fx:id="comentario" prefHeight="50.0" prefWidth="565.0" GridPane.columnIndex="1" />
                </children>
                <VBox.margin>
@@ -116,20 +116,25 @@
                   <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="10.0" prefWidth="117.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="483.0" minWidth="10.0" prefWidth="463.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="99.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="483.0" minWidth="10.0" prefWidth="387.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="92.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="97.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label text="nombre del cliente" textFill="WHITE" />
-                        <TextField editable="false" prefHeight="25.0" prefWidth="455.0" GridPane.columnIndex="1" />
-                        <Button mnemonicParsing="false" text="Añadir cliente" GridPane.columnIndex="2">
+                        <Label styleClass="etiquetaNormal" text="nombre del cliente" textFill="WHITE" />
+                        <TextField editable="false" prefHeight="25.0" prefWidth="455.0" styleClass="texfieldNormal" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin></TextField>
+                        <Button id="botonAdd" fx:id="addCliente" mnemonicParsing="false" text="Añadir cliente" GridPane.columnIndex="3">
                            <GridPane.margin>
                               <Insets left="10.0" />
                            </GridPane.margin>
                         </Button>
+                        <Button id="botonBuscar" fx:id="busscarCliente" mnemonicParsing="false" text="Buscar Cliente" GridPane.columnIndex="2" />
                      </children>
                   </GridPane>
                </children>
@@ -150,14 +155,14 @@
                         <RowConstraints vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label text="tipo tarjeta credito" textFill="WHITE" />
-                        <Label prefHeight="17.0" prefWidth="92.0" text="tarjeta de credito" textFill="WHITE" GridPane.columnIndex="2">
+                        <Label styleClass="etiquetaNormal" text="tipo tarjeta credito" textFill="WHITE" />
+                        <Label prefHeight="17.0" prefWidth="92.0" styleClass="etiquetaNormal" text="tarjeta de credito" textFill="WHITE" GridPane.columnIndex="2">
                            <GridPane.margin>
                               <Insets left="10.0" />
                            </GridPane.margin>
                         </Label>
                         <ComboBox fx:id="numeroPersonas4" prefHeight="25.0" prefWidth="124.0" GridPane.columnIndex="1" />
-                        <TextField GridPane.columnIndex="3" />
+                        <TextField styleClass="texfieldNormal" GridPane.columnIndex="3" />
                      </children>
                   </GridPane>
                </children>
@@ -177,17 +182,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button id="botonAdd" fx:id="crear" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="%label.button.crear">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
-            <Button id="botonActualizar" fx:id="actualizar" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="%label.button.actualizar" GridPane.columnIndex="1">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
-            <Button id="botonBorrar" fx:id="borrar" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="%label.button.borrar" GridPane.columnIndex="2">
+            <Button id="botonOk" fx:id="confirmar" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="%button.crear" GridPane.columnIndex="1">
                <font>
                   <Font size="15.0" />
                </font>
