@@ -10,7 +10,10 @@
     -fx-background-image: url(../imagenes/gridFondo.png);
     -fx-background-size: cover;
 }
-
+.baseCalculadora{
+     -fx-background-image: url(../imagenes/fondoCalculadora.jpg);
+    -fx-background-size: stretch;
+}
 
 /*------------------RELOJ------------------------------------------------------*/
 
@@ -295,7 +298,7 @@
 }
 #botonOk{
     -fx-graphic:url(../imagenes/ok24.png);
-    -fx-background-color: #3366ff;
+    -fx-background-color: green;
     -fx-alignment:BOTTOM_CENTER;
     -fx-content-display:top;
     -fx-text-fill: white;
@@ -307,11 +310,32 @@
 }
 #botonOk:hover{
     -fx-graphic:url(../imagenes/ok32.png);
-    -fx-background-color: #329fe6;
+    -fx-background-color: #00ff00;
     -fx-cursor:hand;
 }
 #botonOk:pressed{
     -fx-graphic:url(../imagenes/ok24.png);
+    -fx-cursor:hand;
+}
+#botonCalculadora{
+    -fx-graphic:url(../imagenes/calculadora32.png);
+    -fx-background-color: #3366ff;
+    -fx-alignment:BOTTOM_CENTER;
+    -fx-content-display:top;
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+    -fx-border-color: #ffffff;
+    -fx-border-radius: 10;
+    -fx-cursor:hand;
+    -fx-font-size: 8pt;
+}
+#botonCalculadora:hover{
+    -fx-graphic:url(../imagenes/calculadora64.png);
+    -fx-background-color: #329fe6;
+    -fx-cursor:hand;
+}
+#botonCalculadora:pressed{
+    -fx-graphic:url(../imagenes/calculadora32.png);
     -fx-cursor:hand;
 }
 /*--------------------------MENUS-------------------------------------------*/

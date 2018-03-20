@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
@@ -24,13 +25,15 @@ public class ControladorVentanaPrincipal implements Initializable {
 
     @FXML
     private MenuItem kardex, reserva, quienesSomos, registroClientes, addReservas,
-            buscadorHuesped;
+            buscadorHuesped,buscadorCliente;
     @FXML
     private Label nombreUsuario, pieDePágina, horaActual;
     @FXML
     private ImageView ImagenUsuario;
     @FXML
     private HBox panelReloj;
+    @FXML
+    private Button botonCalculadora;
 
     private Fechas fechas;
     private Reloj reloj ;
@@ -59,6 +62,14 @@ public class ControladorVentanaPrincipal implements Initializable {
         buscadorHuesped.setOnAction((ActionEvent event) -> {
             codigoMenuBuscadorHuesped();
         });
+        buscadorCliente.setOnAction((ActionEvent event) -> {
+            codigoMenuBuscadorCliente();
+        });
+        
+        
+        botonCalculadora.setOnAction((e)->{
+            new Ventanas().abrirVentanaCalculadora(Ventanas.ventanaLogin, Modality.NONE);
+        });
         
         configuracionReloj();
     }
@@ -83,6 +94,9 @@ public class ControladorVentanaPrincipal implements Initializable {
     }
     private void codigoMenuBuscadorHuesped() {
         new Ventanas().abrirVentanaBuscarHuesped(Ventanas.ventanaPrincipal, Modality.WINDOW_MODAL);
+    }
+    private void codigoMenuBuscadorCliente() {
+        new Ventanas().abrirVentanaBuscarCliente(Ventanas.ventanaPrincipal, Modality.WINDOW_MODAL);
     }
 
     private void configuracionReloj() {

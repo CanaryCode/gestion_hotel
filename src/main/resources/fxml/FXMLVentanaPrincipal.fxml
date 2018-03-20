@@ -53,7 +53,7 @@
                            <children>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <Button id="botonAdd" layoutX="55.0" layoutY="13.0" mnemonicParsing="false" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
+                                    <Button id="botonCalculadora" fx:id="botonCalculadora" layoutX="55.0" layoutY="13.0" mnemonicParsing="false" text="%button.calculadora" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
                                  </children></AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                                  <children>
@@ -138,6 +138,7 @@
               <items>
                 <MenuItem fx:id="registroClientes" mnemonicParsing="false" text="%menuItem.registroCliente" />
                   <MenuItem fx:id="buscadorHuesped" mnemonicParsing="false" text="Buscador huésped" />
+                  <MenuItem fx:id="buscadorCliente" mnemonicParsing="false" text="Buscador Cliente" />
               </items>
             </Menu>
           <Menu mnemonicParsing="false" text="%menu.acercaDe">

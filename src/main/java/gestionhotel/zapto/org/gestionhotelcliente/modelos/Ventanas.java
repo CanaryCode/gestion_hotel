@@ -19,7 +19,8 @@ public class Ventanas {
 //todas de las ventanas de la app
 
     public static Stage ventanaPrincipal, ventanaLogin, ventanaReservaCheckIn, ventanaRegistroCliente,
-            ventanaHuesped, ventanaQuienesSomos, ventanaAddReserva,ventanaHuespedBuscador;
+            ventanaHuesped, ventanaQuienesSomos, ventanaAddReserva,ventanaHuespedBuscador,
+            ventanaClienteBuscador, ventanaCalculadora;
     private ResourceBundle resourceBundle = ResourceBundle.getBundle("i18n/mensajes");
 
     /**
@@ -181,7 +182,7 @@ public class Ventanas {
             stage.setOnCloseRequest(Event -> {
                 Ventanas.ventanaRegistroCliente = null;
             });
-            stage.show();
+            stage.showAndWait();
             stage.setMinWidth(stage.getWidth());
             stage.setMinHeight(stage.getHeight());
         }
@@ -194,7 +195,7 @@ public class Ventanas {
             stage.setOnCloseRequest(Event -> {
                 Ventanas.ventanaAddReserva = null;
             });
-            stage.show();
+            stage.showAndWait();
             stage.setMinWidth(stage.getWidth());
             stage.setMinHeight(stage.getHeight());
         }
@@ -203,11 +204,38 @@ public class Ventanas {
         if (ventanaHuespedBuscador == null) {
             Stage stage = new Stage();
             Ventanas.ventanaHuespedBuscador= stage;
-            configuraVentana(stage, owner, resourceBundle.getString("windows.huespedBuscador"), modalidad).setScene(creaEscena("FXMLHuespedBuscador"));
+            configuraVentana(stage, owner, resourceBundle.getString("windows.huespedBuscador"), modalidad).setScene(creaEscena("FXMLVentanaHuespedBuscador"));
             stage.setOnCloseRequest(Event -> {
                 Ventanas.ventanaHuespedBuscador = null;
             });
-            stage.show();
+            stage.showAndWait();
+            stage.setMinWidth(stage.getWidth());
+            stage.setMinHeight(stage.getHeight());
+        }
+    }
+    public void abrirVentanaBuscarCliente(Stage owner, Modality modalidad) {
+        if (ventanaHuespedBuscador == null) {
+            Stage stage = new Stage();
+            Ventanas.ventanaClienteBuscador= stage;
+            configuraVentana(stage, owner, resourceBundle.getString("windows.clienteBuscador"), modalidad).setScene(creaEscena("FXMLVentanaClienteBuscador"));
+            stage.setOnCloseRequest(Event -> {
+                Ventanas.ventanaClienteBuscador = null;
+            });
+            stage.showAndWait();
+            stage.setMinWidth(stage.getWidth());
+            stage.setMinHeight(stage.getHeight());
+        }
+    }
+    public void abrirVentanaCalculadora(Stage owner, Modality modalidad) {
+        if (ventanaCalculadora == null) {
+            Stage stage = new Stage();
+            Ventanas.ventanaCalculadora= stage;
+            configuraVentana(stage, owner, resourceBundle.getString("windows.calculadora"), modalidad).setScene(creaEscena("FXMLCalculadora"));
+            stage.setOnCloseRequest(Event -> {
+                Ventanas.ventanaCalculadora = null;
+            });
+            stage.setAlwaysOnTop(true);
+            stage.showAndWait();
             stage.setMinWidth(stage.getWidth());
             stage.setMinHeight(stage.getHeight());
         }

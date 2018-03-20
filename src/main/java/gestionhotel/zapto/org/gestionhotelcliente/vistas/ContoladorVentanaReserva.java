@@ -48,7 +48,7 @@ public class ContoladorVentanaReserva implements Initializable {
     private void accionBuscarCliente() {
     }
     private void accionAddCliente() {
-        new Ventanas().abrirVentanaRegistroClientes(Ventanas.ventanaRegistroCliente, Modality.WINDOW_MODAL);
+        new Ventanas().abrirVentanaRegistroClientes(Ventanas.ventanaRegistroCliente, Modality.APPLICATION_MODAL);
     }
 
 }
