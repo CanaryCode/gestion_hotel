@@ -62,12 +62,6 @@ public class ControladorVentanaCliente implements Initializable {
     add.setOnAction((event) -> {
         accionAdd();
     });
-    actualizar.setOnAction((event) -> {
-        accionActualizar();
-    });
-    borrar.setOnAction((event) -> {
-        accionBorrar();
-    });
     }
     
     private void accionAdd(){

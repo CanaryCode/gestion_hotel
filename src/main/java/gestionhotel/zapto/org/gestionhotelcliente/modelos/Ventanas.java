@@ -238,6 +238,7 @@ public class Ventanas {
             stage.showAndWait();
             stage.setMinWidth(stage.getWidth());
             stage.setMinHeight(stage.getHeight());
+            stage.setResizable(false);
         }
     }
 }
