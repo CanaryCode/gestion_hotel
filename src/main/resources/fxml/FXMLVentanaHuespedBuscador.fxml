@@ -21,9 +21,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="649.0" prefWidth="900.0" styleClass="mainFxmlClass" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorHuespedBuscador">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="900.0" styleClass="mainFxmlClass" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorHuespedBuscador">
    <children>
-      <SplitPane dividerPositions="0.7263610315186246" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.6894736842105263" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane styleClass="baseVentanas">
                <children>
@@ -474,8 +474,10 @@
                                     </Label>
                                     <AnchorPane>
                                        <children>
-                                          <GridPane AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0">
+                                          <GridPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                              <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                              </columnConstraints>
@@ -483,28 +485,40 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
-                                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
+                                                   <GridPane.margin>
+                                                      <Insets left="10.0" right="10.0" />
+                                                   </GridPane.margin>
                                                    <children>
-                                                      <Button id="botonOk" fx:id="actualizar" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="ok" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                                      <Button id="botonBorrar" fx:id="borrar" layoutX="20.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="295.0" text="Borrar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                   </children>
+                                                </AnchorPane>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3">
+                                                   <children>
+                                                      <Button id="botonBuscar" fx:id="seleccionar" mnemonicParsing="false" prefHeight="54.0" prefWidth="294.0" text="%button.buscar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
                                                       </Button>
                                                    </children>
                                                    <GridPane.margin>
-                                                      <Insets right="10.0" />
+                                                      <Insets left="10.0" right="10.0" />
+                                                   </GridPane.margin>
+                                                </AnchorPane>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Button id="botonAdd" fx:id="crear" mnemonicParsing="false" prefHeight="54.0" prefWidth="295.0" text="Crear" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                   </children>
+                                                   <GridPane.margin>
+                                                      <Insets left="10.0" right="10.0" />
                                                    </GridPane.margin>
                                                 </AnchorPane>
                                                 <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                                                    <children>
-                                                      <Button id="botonBuscar" fx:id="add" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="%button.buscar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                                         <font>
-                                                            <Font size="15.0" />
-                                                         </font>
-                                                      </Button>
+                                                      <Button id="botonActualizar" fx:id="actualizar" layoutX="-53.0" layoutY="-12.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="295.0" text="Actualizar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                    </children>
                                                    <GridPane.margin>
-                                                      <Insets right="10.0" />
+                                                      <Insets left="10.0" right="10.0" />
                                                    </GridPane.margin>
                                                 </AnchorPane>
                                              </children>
@@ -524,25 +538,58 @@
             </AnchorPane>
           <AnchorPane styleClass="baseVentanas">
                <children>
-                  <ScrollPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <content>
-                      <AnchorPane>
+                  <VBox prefHeight="198.0" prefWidth="1299.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane prefHeight="127.0" prefWidth="1259.0">
                            <children>
-                              <TableView AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <columns>
-                                    <TableColumn fx:id="tableColumnNumeroReserva" prefWidth="120.0" text="%tableColumn.codigoDeReserva" />
-                                    <TableColumn fx:id="tableColumnCliente" prefWidth="270.0" text="%tableColumn.cliente" />
-                                    <TableColumn fx:id="tableColumnHabitacion" minWidth="0.0" text="%tableColumn.habitacion" />
-                                    <TableColumn fx:id="tableColumnTipoHabitacion" prefWidth="160.0" text="%tableColumn.tipoDeHabitacion" />
-                                    <TableColumn fx:id="tableColumnFechaPrevistaEntrada" prefWidth="150.0" text="%tableColumn.fechaPrevistaDeEntrada" />
-                                    <TableColumn fx:id="tableColumnFechaPrevistaSalida" prefWidth="180.0" text="%tableColumn.fechaPrevistaDeSalida" />
-                                    <TableColumn fx:id="tableColumnHuesped" prefWidth="275.0" text="%tableColumn.nombreHuesped" />
-                                 </columns>
-                              </TableView>
+                              <ScrollPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <content>
+                                  <AnchorPane prefHeight="211.0" prefWidth="1237.0">
+                                       <children>
+                                          <TableView prefWidth="1237.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <columns>
+                                                <TableColumn fx:id="tableColumnNumeroReserva" prefWidth="120.0" text="%tableColumn.codigoDeReserva" />
+                                                <TableColumn fx:id="tableColumnCliente" prefWidth="270.0" text="%tableColumn.cliente" />
+                                                <TableColumn fx:id="tableColumnHabitacion" minWidth="0.0" text="%tableColumn.habitacion" />
+                                                <TableColumn fx:id="tableColumnTipoHabitacion" prefWidth="160.0" text="%tableColumn.tipoDeHabitacion" />
+                                                <TableColumn fx:id="tableColumnFechaPrevistaEntrada" prefWidth="150.0" text="%tableColumn.fechaPrevistaDeEntrada" />
+                                                <TableColumn fx:id="tableColumnFechaPrevistaSalida" prefWidth="180.0" text="%tableColumn.fechaPrevistaDeSalida" />
+                                                <TableColumn fx:id="tableColumnHuesped" prefWidth="275.0" text="%tableColumn.nombreHuesped" />
+                                             </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </ScrollPane>
                            </children>
+                           <VBox.margin>
+                              <Insets bottom="20.0" left="20.0" right="20.0" />
+                           </VBox.margin>
                         </AnchorPane>
-                    </content>
-                  </ScrollPane>
+                        <GridPane>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </VBox.margin>
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Button id="botonOk" fx:id="aceptar" layoutX="14.0" layoutY="-4.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="ok" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </VBox>
                </children>
             </AnchorPane>
         </items>

@@ -1,5 +1,6 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.stage.Modality;
 
 /**
  * FXML Controller class
@@ -33,7 +35,7 @@ public class ControladorHuespedBuscador implements Initializable {
     private ComboBox<?> nacionalidad, tratamiento, categoria;
 
     @FXML
-    private Button actualizar, add;
+    private Button borrar, crear, actualizar, seleccionar, aceptar;
     @FXML
     private ToggleButton toggleNombre, togglePrimerApellido, toggleSegundoApellido, toggleFnacimiento,
             toggleSexo, toggleDiscapacitado, toggleNacionalidad, toggleProvincia, toggleCiudad,
@@ -108,6 +110,26 @@ public class ControladorHuespedBuscador implements Initializable {
             codigoToogleCategoria();
         });;
 
+        borrar.setOnAction((e) -> {
+            codigoBorrar();
+           
+        });
+
+        crear.setOnAction((e) -> {
+            codigoCrear();
+          
+        });
+        actualizar.setOnAction((e) -> {
+            codigoActualizar();
+        });
+        
+        seleccionar.setOnAction((e) -> {
+            codigoSeleccionar();
+           
+        });
+       aceptar.setOnAction((e)->{
+           codigoAceptar();
+       });
     }
 
     private void codigoToogleNombre() {
@@ -247,10 +269,10 @@ public class ControladorHuespedBuscador implements Initializable {
     }
 
     private void codigoToogleDni() {
-   if(toggleDni.isSelected()){
+        if (toggleDni.isSelected()) {
             dni.setDisable(false);
             toggleDni.setText("1");
-        }else{
+        } else {
             dni.setDisable(true);
             dni.setText("");
             toggleDni.setText("0");
@@ -258,10 +280,10 @@ public class ControladorHuespedBuscador implements Initializable {
     }
 
     private void codigoTooglePasaporte() {
-   if(togglePasaporte.isSelected()){
+        if (togglePasaporte.isSelected()) {
             pasaporte.setDisable(false);
             togglePasaporte.setText("1");
-        }else{
+        } else {
             pasaporte.setDisable(true);
             pasaporte.setText("");
             togglePasaporte.setText("0");
@@ -269,21 +291,21 @@ public class ControladorHuespedBuscador implements Initializable {
     }
 
     private void codigoToogleExpPasaporte() {
-   if(toggleExpPasaporte.isSelected()){
+        if (toggleExpPasaporte.isSelected()) {
             fechaExpedicion.setDisable(false);
             toggleExpPasaporte.setText("1");
-        }else{
-           fechaExpedicion.setDisable(true);
-           fechaExpedicion.setValue(null);
+        } else {
+            fechaExpedicion.setDisable(true);
+            fechaExpedicion.setValue(null);
             toggleExpPasaporte.setText("0");
         }
     }
 
     private void codigoToogleTelefonoFijo() {
-   if(toggleTelefonoFijo.isSelected()){
+        if (toggleTelefonoFijo.isSelected()) {
             telefonoFijo.setDisable(false);
             toggleTelefonoFijo.setText("1");
-        }else{
+        } else {
             telefonoFijo.setDisable(true);
             telefonoFijo.setText("");
             toggleTelefonoFijo.setText("0");
@@ -291,10 +313,10 @@ public class ControladorHuespedBuscador implements Initializable {
     }
 
     private void codigoToogleTelefonoMovil() {
-   if(toggleTelefonoMovil.isSelected()){
-           telefonoMovil.setDisable(false);
+        if (toggleTelefonoMovil.isSelected()) {
+            telefonoMovil.setDisable(false);
             toggleTelefonoMovil.setText("1");
-        }else{
+        } else {
             telefonoMovil.setDisable(true);
             telefonoMovil.setText("");
             toggleTelefonoMovil.setText("0");
@@ -302,10 +324,10 @@ public class ControladorHuespedBuscador implements Initializable {
     }
 
     private void codigoToogleEmail() {
-   if(toggleEmail.isSelected()){
+        if (toggleEmail.isSelected()) {
             correoElectronico.setDisable(false);
             toggleEmail.setText("1");
-        }else{
+        } else {
             correoElectronico.setDisable(true);
             correoElectronico.setText("");
             toggleEmail.setText("0");
@@ -313,10 +335,10 @@ public class ControladorHuespedBuscador implements Initializable {
     }
 
     private void codigoToogleTratamiento() {
-   if(toggleTratamiento.isSelected()){
+        if (toggleTratamiento.isSelected()) {
             tratamiento.setDisable(false);
             toggleTratamiento.setText("1");
-        }else{
+        } else {
             tratamiento.setDisable(true);
             tratamiento.getSelectionModel().selectFirst();
             toggleTratamiento.setText("0");
@@ -324,14 +346,32 @@ public class ControladorHuespedBuscador implements Initializable {
     }
 
     private void codigoToogleCategoria() {
-   if(toggleCategoría.isSelected()){
+        if (toggleCategoría.isSelected()) {
             categoria.setDisable(false);
             toggleCategoría.setText("1");
-        }else{
+        } else {
             categoria.setDisable(true);
             categoria.getSelectionModel().selectFirst();
             toggleCategoría.setText("0");
         }
     }
 
+    private void codigoSeleccionar() {
+
+    }
+
+    private void codigoBorrar() {
+
+    }
+
+    private void codigoActualizar() {
+         new Ventanas().abrirVentanaHuesped(Ventanas.ventanaHuespedBuscador, Modality.APPLICATION_MODAL);
+    }
+
+    private void codigoCrear() {
+        new Ventanas().abrirVentanaHuesped(Ventanas.ventanaHuespedBuscador, Modality.APPLICATION_MODAL);
+    }
+    private void codigoAceptar() {
+        
+    }
 }

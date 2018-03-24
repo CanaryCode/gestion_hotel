@@ -36,7 +36,7 @@ public class ControladorHuesped implements Initializable {
     RadioButton sexoM, sexoF, discapacitadoSi, discapacitadoNo;
 
     @FXML
-    Button add, actualizar, borrar;
+    Button aceptar;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -46,15 +46,10 @@ public class ControladorHuesped implements Initializable {
         categoria.getSelectionModel().selectFirst();
         nacionalidad.setItems(FXCollections.observableArrayList(Registro.listaPaises));
         nacionalidad.getSelectionModel().selectFirst();
-        add.setOnAction((event) -> {
+        aceptar.setOnAction((event) -> {
             accionAdd();
         });
-        actualizar.setOnAction((event) -> {
-            accionActualizar();
-        });
-        borrar.setOnAction((event) -> {
-            accionBorrar();
-        });
+  
     }
 
     private void accionAdd() {

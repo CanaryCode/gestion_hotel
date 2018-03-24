@@ -26,7 +26,7 @@
               <tabs>
                 <Tab fx:id="tabPersona" text="%tab.persona">
                      <content>
-                        <AnchorPane>
+                        <AnchorPane fx:id="panelPersona">
                            <children>
                               <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
@@ -111,7 +111,7 @@
                 </Tab>
                 <Tab fx:id="tabEmpresa" text="%tab.empresa">
                   <content>
-                    <AnchorPane>
+                    <AnchorPane fx:id="panelEmpresa">
                            <children>
                               <VBox layoutX="67.0" layoutY="45.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
@@ -276,7 +276,7 @@
             </GridPane>
          </children>
       </VBox>
-      <GridPane AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+      <GridPane AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
@@ -286,7 +286,7 @@
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button id="botonOk" fx:id="add" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="%button.crear" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+                  <Button id="botonOk" fx:id="add" mnemonicParsing="false" prefHeight="54.0" prefWidth="680.0" text="%button.crear" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font size="15.0" />
                      </font>

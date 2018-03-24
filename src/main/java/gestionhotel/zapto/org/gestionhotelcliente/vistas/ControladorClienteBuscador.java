@@ -1,7 +1,10 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import java.net.URL;
+import java.util.Observable;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -12,6 +15,8 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 
 /**
  * FXML Controller class
@@ -33,11 +38,13 @@ public class ControladorClienteBuscador implements Initializable {
     @FXML
     private ComboBox<?> nacionalidad, tratamiento, categoria, razonSocial, estado;
     @FXML
-    private Button actualizar1, actualizar;
+    private Button borrar, crear, actualizar, seleccionar;
     @FXML
     private TableColumn<?, ?> FtableColumnNumeroReserva, tableColumnCliente,
             tableColumnHabitacion, tableColumnTipoHabitacion, tableColumnFechaPrevistaEntrada,
             tableColumnFechaPrevistaSalida, tableColumnHuesped;
+    @FXML
+    AnchorPane panelPersona, panelEmpresa;
 
     @FXML
     private ToggleButton toggleNombre, togglePrimerApellido, toggleSegundoApellido,
@@ -111,6 +118,33 @@ public class ControladorClienteBuscador implements Initializable {
         toggleSexo.setOnAction((e) -> {
             codigoToggleSexo();
         });
+
+        borrar.setOnAction((e) -> {
+            codigoBorrar();
+            {
+
+            }
+        });
+
+        crear.setOnAction((e) -> {
+            codigoCrear();
+            {
+
+            }
+        });
+        actualizar.setOnAction((e) -> {
+            codigoActualizar();
+            {
+
+            }
+        });
+        seleccionar.setOnAction((e) -> {
+            codigoSeleccionar();
+            {
+
+            }
+        });
+        
     }
 
     private void codigoToggleNombre() {
@@ -180,7 +214,7 @@ public class ControladorClienteBuscador implements Initializable {
     }
 
     private void codigoToggleRazonSocial() {
-  if (toggleRazonSocial.isSelected()) {
+        if (toggleRazonSocial.isSelected()) {
             razonSocial.setDisable(false);
             toggleRazonSocial.setText("1");
         } else {
@@ -344,5 +378,20 @@ public class ControladorClienteBuscador implements Initializable {
             categoria.getSelectionModel().selectFirst();
             toggleCategoria.setText("0");
         }
+    }
+    private void codigoSeleccionar() {
+
+    }
+
+    private void codigoBorrar() {
+
+    }
+
+    private void codigoActualizar() {
+        new Ventanas().abrirVentanaRegistroClientes(Ventanas.ventanaClienteBuscador, Modality.APPLICATION_MODAL);
+    }
+
+    private void codigoCrear() {
+        new Ventanas().abrirVentanaRegistroClientes(Ventanas.ventanaClienteBuscador, Modality.APPLICATION_MODAL);
     }
 }

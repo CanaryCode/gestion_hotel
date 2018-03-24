@@ -69,7 +69,7 @@ public class Registro {
     public static List<String> ListaLenguajes = Arrays.asList(lenguajes);
     
     private static final String[] razonSocial = {
-        "desconocido","Emp. individual","S.L", "S.L.N.E", "S.A", "COOP.","C.B"
+        "desconocido","Emp. Individual","S.L", "S.L.N.E", "S.A", "COOP","C.B"
     };
     public static List<String> ListaRazonSocial = Arrays.asList(razonSocial);
    
@@ -77,5 +77,30 @@ public class Registro {
         "desconocido","especial","mongolo", "mongolo profundo"
     };
     public static List<String> ListaCategoriaClente = Arrays.asList(categoriaCliente);
+    
+    private static final String[] numeroPersonas = {
+        "1","2","3", "4", "5"
+    };
+    public static List<String> ListaNumeroPersonas = Arrays.asList(numeroPersonas);
+   
+    private static final String[] tipoHabitacion = {
+        "Individual","Doble","Doble superior", "Suite", "Suite junior"
+    };
+    public static List<String> ListaTipoHabitacion = Arrays.asList(tipoHabitacion);
+    
+    private static final String[] tipoCama = {
+        "Individual","Matrimonio","doble separadas"
+    };
+    public static List<String> ListaTipoCama= Arrays.asList(tipoCama);
+  
+    private static final String[] tipoTarjeta = {
+        "Visa","Mastercard","American Express", "Maestro", "ServiRed"
+    };
+    public static List<String> ListaTipoTarjeta= Arrays.asList(tipoCama);
+   
+    private static final String[] agencia = {
+        "Tui","Jahn Raisen","Thomson", "Expedia", "Corte ingles", "Halcon"
+    };
+    public static List<String> ListaAgencia= Arrays.asList(agencia);
 
 }
