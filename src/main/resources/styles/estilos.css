@@ -11,7 +11,7 @@
     -fx-background-size: cover;
 }
 .baseCalculadora{
-     -fx-background-image: url(../imagenes/fondoCalculadora.jpg);
+    -fx-background-image: url(../imagenes/fondoCalculadora.jpg);
     -fx-background-size: stretch;
 }
 
@@ -200,6 +200,60 @@
     -fx-cursor:hand;
     -fx-font-size: 8pt;
 }
+.botonDanger{
+    -fx-background-color: orange;
+    -fx-alignment:CENTER;
+    -fx-content-display:top;
+    -fx-text-fill: red;
+    -fx-opacity: 0.9;
+    -fx-cursor:hand;
+    -fx-font-size: 8pt;
+}
+
+.botonDanger:hover{
+    -fx-background-color: orangered;
+    -fx-cursor:hand;
+}
+.botonDanger:pressed{
+    -fx-cursor:hand;
+    -fx-background-color: orange;
+}
+.botonExito{
+    -fx-background-color:green;
+    -fx-alignment:CENTER;
+    -fx-content-display:top;
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+    -fx-cursor:hand;
+    -fx-font-size: 8pt;
+}
+
+.botonExito:hover{
+    -fx-background-color:  #00c622;
+    -fx-cursor:hand;
+}
+.botonExito:pressed{
+    -fx-cursor:hand;
+    -fx-background-color: #00c622;
+}
+.botonError{
+    -fx-background-color: red;
+    -fx-alignment:CENTER;
+    -fx-content-display:top;
+    -fx-text-fill: yellow;
+    -fx-opacity: 0.9;
+    -fx-cursor:hand;
+    -fx-font-size: 8pt;
+}
+
+.botonError:hover{
+    -fx-background-color: orange;
+    -fx-cursor:hand;
+}
+.botonError:pressed{
+    -fx-cursor:hand;
+    -fx-background-color: red;
+}
 .toogleButtonOn{
     -fx-text-fill: white;
     -fx-background-color: red;
@@ -231,7 +285,27 @@
     -fx-graphic:url(../imagenes/add24.png);
     -fx-cursor:hand;
 }
-
+#botonError{
+    -fx-graphic:url(../imagenes/cancel24.png);
+    -fx-background-color: red;
+    -fx-alignment:BOTTOM_CENTER;
+    -fx-content-display:top;
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+    -fx-border-color: #ffffff;
+    -fx-border-radius: 10;
+    -fx-cursor:hand;
+    -fx-font-size: 8pt;
+}
+#botonError:hover{
+    -fx-graphic:url(../imagenes/cancel32.png);
+    -fx-background-color: #ff5517;
+    -fx-cursor:hand;
+}
+#botonError:pressed{
+    -fx-graphic:url(../imagenes/cancel24.png);
+    -fx-cursor:hand;
+}
 #botonActualizar{
     -fx-graphic:url(../imagenes/actualizar24.png);
     -fx-background-color: #3366ff;

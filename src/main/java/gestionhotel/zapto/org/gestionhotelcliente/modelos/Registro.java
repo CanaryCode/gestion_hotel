@@ -96,7 +96,7 @@ public class Registro {
     private static final String[] tipoTarjeta = {
         "Visa","Mastercard","American Express", "Maestro", "ServiRed"
     };
-    public static List<String> ListaTipoTarjeta= Arrays.asList(tipoCama);
+    public static List<String> ListaTipoTarjeta= Arrays.asList(tipoTarjeta);
    
     private static final String[] agencia = {
         "Tui","Jahn Raisen","Thomson", "Expedia", "Corte ingles", "Halcon"

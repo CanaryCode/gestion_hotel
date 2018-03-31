@@ -286,7 +286,7 @@
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button id="botonOk" fx:id="add" mnemonicParsing="false" prefHeight="54.0" prefWidth="680.0" text="%button.crear" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Button id="botonOk" fx:id="add" disable="true" mnemonicParsing="false" prefHeight="54.0" prefWidth="680.0" text="%button.crear" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font size="15.0" />
                      </font>

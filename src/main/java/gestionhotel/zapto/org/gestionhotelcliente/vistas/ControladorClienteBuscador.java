@@ -1,14 +1,17 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.RecorredorPaneles;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import java.net.URL;
-import java.util.Observable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Control;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
@@ -16,6 +19,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 
 /**
@@ -38,13 +42,13 @@ public class ControladorClienteBuscador implements Initializable {
     @FXML
     private ComboBox<?> nacionalidad, tratamiento, categoria, razonSocial, estado;
     @FXML
-    private Button borrar, crear, actualizar, seleccionar;
+    private Button borrar, crear, actualizar, buscar;
     @FXML
     private TableColumn<?, ?> FtableColumnNumeroReserva, tableColumnCliente,
             tableColumnHabitacion, tableColumnTipoHabitacion, tableColumnFechaPrevistaEntrada,
             tableColumnFechaPrevistaSalida, tableColumnHuesped;
     @FXML
-    AnchorPane panelPersona, panelEmpresa;
+    AnchorPane panelPersona, panelEmpresa, panelFiltro;
 
     @FXML
     private ToggleButton toggleNombre, togglePrimerApellido, toggleSegundoApellido,
@@ -138,13 +142,14 @@ public class ControladorClienteBuscador implements Initializable {
 
             }
         });
-        seleccionar.setOnAction((e) -> {
+        buscar.setOnAction((e) -> {
             codigoSeleccionar();
             {
 
             }
         });
-        
+
+
     }
 
     private void codigoToggleNombre() {
@@ -156,6 +161,7 @@ public class ControladorClienteBuscador implements Initializable {
             nombre.setText("");
             toggleNombre.setText("0");
         }
+        activarBotonBuscar(panelFiltro, buscar);
     }
 
     private void codigoTogglePrimerApellido() {
@@ -379,6 +385,7 @@ public class ControladorClienteBuscador implements Initializable {
             toggleCategoria.setText("0");
         }
     }
+
     private void codigoSeleccionar() {
 
     }
@@ -394,4 +401,27 @@ public class ControladorClienteBuscador implements Initializable {
     private void codigoCrear() {
         new Ventanas().abrirVentanaRegistroClientes(Ventanas.ventanaClienteBuscador, Modality.APPLICATION_MODAL);
     }
+
+    private void activarBotonBuscar(Pane pane, Control... control) {
+        //inicializo la variable
+        boolean hayConsulta = false;
+        List<ToggleButton> lista = RecorredorPaneles.recorrePanelesToggle(pane, new ArrayList<>());
+        for (ToggleButton toggleButton : lista) {
+
+            if (toggleButton.isSelected()) {
+                hayConsulta = true;
+                break;
+            } 
+        }
+        if (hayConsulta == true) {
+            for (Control c : control) {
+                c.setDisable(false);
+            }
+        } else {
+            for (Control c : control) {
+                c.setDisable(true);
+            }
+        }
+    }
+
 }

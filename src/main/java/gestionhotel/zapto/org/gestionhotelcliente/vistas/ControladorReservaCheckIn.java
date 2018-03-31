@@ -1,7 +1,10 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.ActivadorDeControles;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
 import javafx.stage.Modality;
 
 /**
@@ -19,10 +23,7 @@ public class ControladorReservaCheckIn implements Initializable {
 
     @FXML
     private TextField cliente, reserva;
-
-    @FXML
-    private DatePicker fecha;
-
+    
     @FXML
     private Button buscar, resetearCampos, checkIn, addReserva;
 
@@ -44,12 +45,17 @@ public class ControladorReservaCheckIn implements Initializable {
         addReserva.setOnAction((event) -> {
             accionReserva();
         });
+        
+        
+        activaBotonesBuscarYResetea();
     }
 
     private void accionBuscar() {
 
     }
     private void accionCampos() {
+        reserva.setText("");
+        cliente.setText("");
 
     }
     private void accionCheckIn() {
@@ -57,5 +63,11 @@ public class ControladorReservaCheckIn implements Initializable {
     }
     private void accionReserva() {
      new Ventanas().abrirVentanaAddReserva(Ventanas.ventanaReservaCheckIn, Modality.APPLICATION_MODAL);
+    }
+    private void activaBotonesBuscarYResetea(){
+        List ticList = Arrays.asList(new TextInputControl[]{
+            reserva, cliente }); 
+    
+        ActivadorDeControles.addActivador(ticList, resetearCampos,buscar);
     }
 }

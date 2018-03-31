@@ -182,7 +182,7 @@ public class Ventanas {
             stage.setOnCloseRequest(Event -> {
                 Ventanas.ventanaRegistroCliente = null;
             });
-            stage.showAndWait();
+            stage.show();
             stage.setMinWidth(stage.getWidth());
             stage.setMinHeight(stage.getHeight());
         }
@@ -195,7 +195,7 @@ public class Ventanas {
             stage.setOnCloseRequest(Event -> {
                 Ventanas.ventanaAddReserva = null;
             });
-            stage.showAndWait();
+            stage.show();
             stage.setMinWidth(stage.getWidth());
             stage.setMinHeight(stage.getHeight());
         }
@@ -208,7 +208,7 @@ public class Ventanas {
             stage.setOnCloseRequest(Event -> {
                 Ventanas.ventanaHuespedBuscador = null;
             });
-            stage.showAndWait();
+            stage.show();
             stage.setMinWidth(stage.getWidth());
             stage.setMinHeight(stage.getHeight());
         }
@@ -221,7 +221,7 @@ public class Ventanas {
             stage.setOnCloseRequest(Event -> {
                 Ventanas.ventanaClienteBuscador = null;
             });
-            stage.showAndWait();
+            stage.show();
             stage.setMinWidth(stage.getWidth());
             stage.setMinHeight(stage.getHeight());
         }
@@ -235,10 +235,10 @@ public class Ventanas {
                 Ventanas.ventanaCalculadora = null;
             });
             stage.setAlwaysOnTop(true);
-            stage.showAndWait();
             stage.setMinWidth(stage.getWidth());
             stage.setMinHeight(stage.getHeight());
             stage.setResizable(false);
+            stage.show();
         }
     }
 }

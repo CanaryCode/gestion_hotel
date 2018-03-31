@@ -13,8 +13,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+
 
 /**
  * FXML Controller class
@@ -30,8 +31,11 @@ public class ControladorFXMLLogIn implements Initializable {
     Label MensajeError;
 
     @FXML
-    TextField usuario, contraseña;
-
+    TextField usuario;
+    
+    @FXML
+    PasswordField contraseña;
+    
     @FXML
     ComboBox lenguaje;
 
