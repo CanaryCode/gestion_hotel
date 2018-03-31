@@ -369,7 +369,7 @@ public class FXMLCalculadora implements Initializable {
         BigDecimal resultado = null;
         //miramos que se pueda hacer la operación y para esto le decimos que exista
         //el primerNumero el signo y el segundo número y que además el segundo numero no acabe en un punto..
-        if (!primerNumero.equals("") && !segundoNumero.equals("") && !signo.equals("") && segundoNumero.charAt(segundoNumero.length()) != '.') {
+        if (!primerNumero.equals("") && !segundoNumero.equals("") && !signo.equals("")) {
             //si la operacion es una suma.
             if (signo.equals("+")) {
                 resultado = new BigDecimal(primerNumero).add(new BigDecimal(segundoNumero));
@@ -426,13 +426,13 @@ public class FXMLCalculadora implements Initializable {
             }
 
         }
-        //al final de hacer lass operaciones se recetean los valos del signo y del segundo numero.
+        //al final de hacer lass operaciones se resetean los valores del signo y del segundo numero.
         signo = "";
         segundoNumero = "";
         //si resultado de la operacion es un null porque ha habido un error el resultado
         //se reinicia a 0 para que pueda ser parseado.
         if (resultado == null) {
-            return "";
+            return primerNumero= "";
             //si hay un resultado valido, el primer numero tomará ese resultado como valor.
         } else {
             return primerNumero = resultado.toString();
