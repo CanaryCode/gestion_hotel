@@ -297,7 +297,7 @@ public class FXMLCalculadora implements Initializable {
      * sirve para determinar donde se debe escribir el numero pulsado si en el
      * primer numero o en el segundo numero
      *
-     * @param tecla el valor de la tecla pulsada.
+     * @param tecla el valor de la tecla ºººººººººpulsada.
      */
     private void acumulaNumeros(String tecla) {
         //si no esta escrito el signo
@@ -317,16 +317,21 @@ public class FXMLCalculadora implements Initializable {
      * @param tecla El Char de la tecla que se ha pulsado.
      */
     private void addSigno(String tecla) {
-        //si no hay nada escrito en signo
-        if (signo.equals("")) {
+        //si no hay nada escrito en signo y si el primer numero no termina en un punto
+        if (signo.equals("")&&primerNumero.charAt(primerNumero.length()-1)!='.') {
             //signo será igual al valor de la tecla pulsada.
             signo = tecla;
             //si hay algo escrito en signo
-        } else {
+        } else if (!signo.equals("")){
             //realiza la operación que esta pendiente.
             accionBotonIgual();
             //y añade y cambia el signo por el de la tecla pulsada.
-            addSigno(tecla);
+            addSigno(tecla);           //si hay un punto en el último indice de 
+
+           //si hay un punto en el último indice del primer numero
+        }else{
+            //haz un sonido de error
+            Toolkit.getDefaultToolkit().beep();
         }
     }
 
@@ -338,7 +343,7 @@ public class FXMLCalculadora implements Initializable {
      */
     private void escribeEnPantalla() {
         //el primer numero a operar que aparecerá en la pantalla metido entre parentesis
-        String primerTermino = "(" + primerNumero + ")";
+        String primerTermino =  primerNumero;
         //el primer segundo a operar que aparecerá en la pantalla metido entre parentesis
         String segundoTermino = "(" + segundoNumero + ")";
         //si el primer numero y el signo y el segundo numero escribe todo en pantalla.
@@ -394,9 +399,9 @@ public class FXMLCalculadora implements Initializable {
                     //iteramos los caracteres de la palabra desde el último hasta el primero
                     //(Esto lo hacemos para quitar los ceros que sobran después de la coma).
                     //los ceros a la izquierda.
-                    for (int i = s.length(); i == 0; i--) {
+                    for (int i = s.length()-1; i > 0; i--) {
                         //si el caracter que estamos evaluando es un punto o es un "0",
-                        if (s.charAt(i) == '.' || s.charAt(i) == '0') {
+                        if (s.charAt(i) == '0') {
                             //entonces almacenamos el valor que tiene la i en ultimo numero.
                             ultimoNumero = i;
                         } else {
@@ -406,7 +411,8 @@ public class FXMLCalculadora implements Initializable {
                     }
                     //decimos que el String del resultado va desde el indice 0 hasta
                     //donde se iteró el último numero el bucle for 
-                    s = s.substring(0, ultimoNumero);
+                    if(ultimoNumero!=0)
+                    s = s.substring(0, ultimoNumero+1);
                     //decimos que el resultado es igual a un nevo bigDecimal creado 
                     //con el resultado de la operacón anterior
                     resultado = new BigDecimal(s);
@@ -418,7 +424,7 @@ public class FXMLCalculadora implements Initializable {
             }
             //si la operacion es un porcentaje.
             if (signo.equals("%")) {
-                resultado = new BigDecimal(primerNumero).multiply(new BigDecimal(segundoNumero)).divide(new BigDecimal("100"));
+                resultado = new BigDecimal(primerNumero).multiply(new BigDecimal(segundoNumero)).divide(new BigDecimal("100"),5,RoundingMode.HALF_UP);
             }
             //si la operacion es una potencia.
             if (signo.equals("^")) {
