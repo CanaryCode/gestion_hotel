@@ -46,7 +46,7 @@ public class ControladorReservaCheckIn implements Initializable {
             accionReserva();
         });
         
-        
+        cargarTableColumns();
         activaBotonesBuscarYResetea();
     }
 
@@ -59,7 +59,7 @@ public class ControladorReservaCheckIn implements Initializable {
 
     }
     private void accionCheckIn() {
-
+      new Ventanas().abrirVentanaHuespedReserva(Ventanas.ventanaReservaCheckIn, Modality.APPLICATION_MODAL);
     }
     private void accionReserva() {
      new Ventanas().abrirVentanaAddReserva(Ventanas.ventanaReservaCheckIn, Modality.APPLICATION_MODAL);
@@ -69,5 +69,8 @@ public class ControladorReservaCheckIn implements Initializable {
             reserva, cliente }); 
     
         ActivadorDeControles.addActivador(ticList, resetearCampos,buscar);
+    }
+    private void cargarTableColumns(){
+        
     }
 }

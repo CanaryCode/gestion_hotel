@@ -20,7 +20,7 @@ public class Ventanas {
 
     public static Stage ventanaPrincipal, ventanaLogin, ventanaReservaCheckIn, ventanaRegistroCliente,
             ventanaHuesped, ventanaQuienesSomos, ventanaAddReserva,ventanaHuespedBuscador,
-            ventanaClienteBuscador, ventanaCalculadora;
+            ventanaClienteBuscador, ventanaCalculadora,ventanaHuespedReserva;
     private ResourceBundle resourceBundle = ResourceBundle.getBundle("i18n/mensajes");
 
     /**
@@ -235,6 +235,20 @@ public class Ventanas {
                 Ventanas.ventanaCalculadora = null;
             });
             stage.setAlwaysOnTop(true);
+            stage.setMinWidth(stage.getWidth());
+            stage.setMinHeight(stage.getHeight());
+            stage.setResizable(false);
+            stage.show();
+        }
+    }
+    public void abrirVentanaHuespedReserva(Stage owner, Modality modalidad) {
+        if (ventanaHuespedReserva == null) {
+            Stage stage = new Stage();
+            Ventanas.ventanaHuespedReserva= stage;
+            configuraVentana(stage, owner, resourceBundle.getString("windows.HuespedReserva"), modalidad).setScene(creaEscena("FXMLVentanaHuespedReserva"));
+            stage.setOnCloseRequest(Event -> {
+                Ventanas.ventanaHuespedReserva = null;
+            });
             stage.setMinWidth(stage.getWidth());
             stage.setMinHeight(stage.getHeight());
             stage.setResizable(false);
