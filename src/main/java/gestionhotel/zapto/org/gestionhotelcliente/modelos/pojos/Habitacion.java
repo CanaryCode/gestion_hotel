@@ -1,5 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos;
-// Generated 13-mar-2018 20:11:32 by Hibernate Tools 4.3.1
+// Generated 24-abr-2018 3:43:16 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,42 +11,35 @@ import java.util.Set;
 public class Habitacion  implements java.io.Serializable {
 
 
-     private int idHabitacion;
-     private Tipo tipo;
+     private int numero;
      private String descripcion;
-     private Boolean limpiar;
-     private Short camaExtra;
+     private String tipo;
+     private Byte limpiar;
+     private Byte camaExtra;
      private Set detallesReservas = new HashSet(0);
 
     public Habitacion() {
     }
 
 	
-    public Habitacion(int idHabitacion) {
-        this.idHabitacion = idHabitacion;
+    public Habitacion(int numero) {
+        this.numero = numero;
     }
-    public Habitacion(int idHabitacion, Tipo tipo, String descripcion, Boolean limpiar, Short camaExtra, Set detallesReservas) {
-       this.idHabitacion = idHabitacion;
-       this.tipo = tipo;
+    public Habitacion(int numero, String descripcion, String tipo, Byte limpiar, Byte camaExtra, Set detallesReservas) {
+       this.numero = numero;
        this.descripcion = descripcion;
+       this.tipo = tipo;
        this.limpiar = limpiar;
        this.camaExtra = camaExtra;
        this.detallesReservas = detallesReservas;
     }
    
-    public int getIdHabitacion() {
-        return this.idHabitacion;
+    public int getNumero() {
+        return this.numero;
     }
     
-    public void setIdHabitacion(int idHabitacion) {
-        this.idHabitacion = idHabitacion;
-    }
-    public Tipo getTipo() {
-        return this.tipo;
-    }
-    
-    public void setTipo(Tipo tipo) {
-        this.tipo = tipo;
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
     public String getDescripcion() {
         return this.descripcion;
@@ -55,18 +48,25 @@ public class Habitacion  implements java.io.Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    public Boolean getLimpiar() {
+    public String getTipo() {
+        return this.tipo;
+    }
+    
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    public Byte getLimpiar() {
         return this.limpiar;
     }
     
-    public void setLimpiar(Boolean limpiar) {
+    public void setLimpiar(Byte limpiar) {
         this.limpiar = limpiar;
     }
-    public Short getCamaExtra() {
+    public Byte getCamaExtra() {
         return this.camaExtra;
     }
     
-    public void setCamaExtra(Short camaExtra) {
+    public void setCamaExtra(Byte camaExtra) {
         this.camaExtra = camaExtra;
     }
     public Set getDetallesReservas() {

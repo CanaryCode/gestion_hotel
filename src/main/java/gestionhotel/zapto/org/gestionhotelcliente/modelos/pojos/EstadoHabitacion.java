@@ -1,5 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos;
-// Generated 13-mar-2018 20:11:32 by Hibernate Tools 4.3.1
+// Generated 24-abr-2018 3:43:16 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -10,48 +10,35 @@ import java.util.Date;
 public class EstadoHabitacion  implements java.io.Serializable {
 
 
-     private int id;
-     private Situacion situacion;
-     private Integer idAlojamiento;
+     private Integer idEstadoHabitacion;
+     private DetallesReserva detallesReserva;
      private Date fechaInicio;
      private Date fechaFin;
+     private int idSituacion;
 
     public EstadoHabitacion() {
     }
 
-	
-    public EstadoHabitacion(int id, Situacion situacion) {
-        this.id = id;
-        this.situacion = situacion;
-    }
-    public EstadoHabitacion(int id, Situacion situacion, Integer idAlojamiento, Date fechaInicio, Date fechaFin) {
-       this.id = id;
-       this.situacion = situacion;
-       this.idAlojamiento = idAlojamiento;
+    public EstadoHabitacion(DetallesReserva detallesReserva, Date fechaInicio, Date fechaFin, int idSituacion) {
+       this.detallesReserva = detallesReserva;
        this.fechaInicio = fechaInicio;
        this.fechaFin = fechaFin;
+       this.idSituacion = idSituacion;
     }
    
-    public int getId() {
-        return this.id;
+    public Integer getIdEstadoHabitacion() {
+        return this.idEstadoHabitacion;
     }
     
-    public void setId(int id) {
-        this.id = id;
+    public void setIdEstadoHabitacion(Integer idEstadoHabitacion) {
+        this.idEstadoHabitacion = idEstadoHabitacion;
     }
-    public Situacion getSituacion() {
-        return this.situacion;
-    }
-    
-    public void setSituacion(Situacion situacion) {
-        this.situacion = situacion;
-    }
-    public Integer getIdAlojamiento() {
-        return this.idAlojamiento;
+    public DetallesReserva getDetallesReserva() {
+        return this.detallesReserva;
     }
     
-    public void setIdAlojamiento(Integer idAlojamiento) {
-        this.idAlojamiento = idAlojamiento;
+    public void setDetallesReserva(DetallesReserva detallesReserva) {
+        this.detallesReserva = detallesReserva;
     }
     public Date getFechaInicio() {
         return this.fechaInicio;
@@ -66,6 +53,13 @@ public class EstadoHabitacion  implements java.io.Serializable {
     
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
+    }
+    public int getIdSituacion() {
+        return this.idSituacion;
+    }
+    
+    public void setIdSituacion(int idSituacion) {
+        this.idSituacion = idSituacion;
     }
 
 

@@ -1,5 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos;
-// Generated 13-mar-2018 20:11:32 by Hibernate Tools 4.3.1
+// Generated 24-abr-2018 3:43:16 by Hibernate Tools 4.3.1
 
 
 
@@ -9,24 +9,23 @@ package gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos;
 public class HuespedHabitacion  implements java.io.Serializable {
 
 
-     private int idHuespedHabitacion;
+     private Integer idHuespedHabitacion;
      private DetallesReserva detallesReserva;
      private Persona persona;
 
     public HuespedHabitacion() {
     }
 
-    public HuespedHabitacion(int idHuespedHabitacion, DetallesReserva detallesReserva, Persona persona) {
-       this.idHuespedHabitacion = idHuespedHabitacion;
+    public HuespedHabitacion(DetallesReserva detallesReserva, Persona persona) {
        this.detallesReserva = detallesReserva;
        this.persona = persona;
     }
    
-    public int getIdHuespedHabitacion() {
+    public Integer getIdHuespedHabitacion() {
         return this.idHuespedHabitacion;
     }
     
-    public void setIdHuespedHabitacion(int idHuespedHabitacion) {
+    public void setIdHuespedHabitacion(Integer idHuespedHabitacion) {
         this.idHuespedHabitacion = idHuespedHabitacion;
     }
     public DetallesReserva getDetallesReserva() {

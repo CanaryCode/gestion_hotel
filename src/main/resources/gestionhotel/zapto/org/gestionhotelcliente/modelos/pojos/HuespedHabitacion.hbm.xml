@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 13-mar-2018 20:11:33 by Hibernate Tools 4.3.1 -->
+<!-- Generated 24-abr-2018 3:43:17 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.HuespedHabitacion" table="huesped_habitacion" schema="public" optimistic-lock="version">
-        <id name="idHuespedHabitacion" type="int">
+    <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.HuespedHabitacion" table="huesped_habitacion" catalog="gestionhotel" optimistic-lock="version">
+        <id name="idHuespedHabitacion" type="java.lang.Integer">
             <column name="id_huesped_habitacion" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <many-to-one name="detallesReserva" class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva" fetch="select">
-            <column name="id_detalles_reserva" not-null="true" />
+            <column name="id_detalles_reservas" not-null="true" />
         </many-to-one>
         <many-to-one name="persona" class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona" fetch="select">
             <column name="cod_huesped" not-null="true" />

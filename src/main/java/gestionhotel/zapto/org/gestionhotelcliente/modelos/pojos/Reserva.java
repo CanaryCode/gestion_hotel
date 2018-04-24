@@ -1,5 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos;
-// Generated 13-mar-2018 20:11:32 by Hibernate Tools 4.3.1
+// Generated 24-abr-2018 3:43:16 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -12,49 +12,49 @@ import java.util.Set;
 public class Reserva  implements java.io.Serializable {
 
 
-     private int codReserva;
-     private Persona personaByCodEmpleado;
+     private Integer codReserva;
      private Persona personaByCodCliente;
+     private Persona personaByCodEmpleado;
      private Date fecha;
      private Date fechaCancelada;
      private String motivoCancelacion;
      private String comentario;
+     private String agencia;
+     private String voucher;
+     private String tipoTarjetaCredito;
+     private String numeroTarjetaCredito;
      private Set detallesReservas = new HashSet(0);
 
     public Reserva() {
     }
 
 	
-    public Reserva(int codReserva, Persona personaByCodEmpleado, Persona personaByCodCliente, Date fecha) {
-        this.codReserva = codReserva;
-        this.personaByCodEmpleado = personaByCodEmpleado;
-        this.personaByCodCliente = personaByCodCliente;
-        this.fecha = fecha;
+    public Reserva(String agencia, String voucher, String tipoTarjetaCredito, String numeroTarjetaCredito) {
+        this.agencia = agencia;
+        this.voucher = voucher;
+        this.tipoTarjetaCredito = tipoTarjetaCredito;
+        this.numeroTarjetaCredito = numeroTarjetaCredito;
     }
-    public Reserva(int codReserva, Persona personaByCodEmpleado, Persona personaByCodCliente, Date fecha, Date fechaCancelada, String motivoCancelacion, String comentario, Set detallesReservas) {
-       this.codReserva = codReserva;
-       this.personaByCodEmpleado = personaByCodEmpleado;
+    public Reserva(Persona personaByCodCliente, Persona personaByCodEmpleado, Date fecha, Date fechaCancelada, String motivoCancelacion, String comentario, String agencia, String voucher, String tipoTarjetaCredito, String numeroTarjetaCredito, Set detallesReservas) {
        this.personaByCodCliente = personaByCodCliente;
+       this.personaByCodEmpleado = personaByCodEmpleado;
        this.fecha = fecha;
        this.fechaCancelada = fechaCancelada;
        this.motivoCancelacion = motivoCancelacion;
        this.comentario = comentario;
+       this.agencia = agencia;
+       this.voucher = voucher;
+       this.tipoTarjetaCredito = tipoTarjetaCredito;
+       this.numeroTarjetaCredito = numeroTarjetaCredito;
        this.detallesReservas = detallesReservas;
     }
    
-    public int getCodReserva() {
+    public Integer getCodReserva() {
         return this.codReserva;
     }
     
-    public void setCodReserva(int codReserva) {
+    public void setCodReserva(Integer codReserva) {
         this.codReserva = codReserva;
-    }
-    public Persona getPersonaByCodEmpleado() {
-        return this.personaByCodEmpleado;
-    }
-    
-    public void setPersonaByCodEmpleado(Persona personaByCodEmpleado) {
-        this.personaByCodEmpleado = personaByCodEmpleado;
     }
     public Persona getPersonaByCodCliente() {
         return this.personaByCodCliente;
@@ -62,6 +62,13 @@ public class Reserva  implements java.io.Serializable {
     
     public void setPersonaByCodCliente(Persona personaByCodCliente) {
         this.personaByCodCliente = personaByCodCliente;
+    }
+    public Persona getPersonaByCodEmpleado() {
+        return this.personaByCodEmpleado;
+    }
+    
+    public void setPersonaByCodEmpleado(Persona personaByCodEmpleado) {
+        this.personaByCodEmpleado = personaByCodEmpleado;
     }
     public Date getFecha() {
         return this.fecha;
@@ -90,6 +97,34 @@ public class Reserva  implements java.io.Serializable {
     
     public void setComentario(String comentario) {
         this.comentario = comentario;
+    }
+    public String getAgencia() {
+        return this.agencia;
+    }
+    
+    public void setAgencia(String agencia) {
+        this.agencia = agencia;
+    }
+    public String getVoucher() {
+        return this.voucher;
+    }
+    
+    public void setVoucher(String voucher) {
+        this.voucher = voucher;
+    }
+    public String getTipoTarjetaCredito() {
+        return this.tipoTarjetaCredito;
+    }
+    
+    public void setTipoTarjetaCredito(String tipoTarjetaCredito) {
+        this.tipoTarjetaCredito = tipoTarjetaCredito;
+    }
+    public String getNumeroTarjetaCredito() {
+        return this.numeroTarjetaCredito;
+    }
+    
+    public void setNumeroTarjetaCredito(String numeroTarjetaCredito) {
+        this.numeroTarjetaCredito = numeroTarjetaCredito;
     }
     public Set getDetallesReservas() {
         return this.detallesReservas;

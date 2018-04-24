@@ -137,7 +137,7 @@
                <children>
                   <ScrollPane prefHeight="231.0" prefWidth="1158.0">
                      <content>
-                        <TableView prefHeight="700.0" prefWidth="1200.0">
+                        <TableView fx:id="tabla" prefHeight="700.0" prefWidth="1200.0">
                           <columns>
                             <TableColumn fx:id="tableColumnNumeroReserva" prefWidth="150.0" text="%tableColumn.codigoDeReserva" />
                             <TableColumn fx:id="tableColumnCliente" prefWidth="630.0" text="%tableColumn.cliente" />

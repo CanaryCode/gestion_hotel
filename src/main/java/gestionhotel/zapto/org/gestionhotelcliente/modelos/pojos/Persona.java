@@ -1,5 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos;
-// Generated 13-mar-2018 20:11:32 by Hibernate Tools 4.3.1
+// Generated 24-abr-2018 3:43:16 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -12,7 +12,7 @@ import java.util.Set;
 public class Persona  implements java.io.Serializable {
 
 
-     private int codPersona;
+     private Integer codPersona;
      private String tipoDocumento;
      private String documentoNumero;
      private String nombre;
@@ -20,9 +20,8 @@ public class Persona  implements java.io.Serializable {
      private String codPostal;
      private String ciudad;
      private String provincia;
-     private String estado;
-     private String nacionalidad;
-     private Boolean jurEmpresa;
+     private Integer estado;
+     private Byte esEmpresa;
      private String jurNombreComercial;
      private String fisApellidos;
      private Date fisFechaNacimiento;
@@ -30,28 +29,34 @@ public class Persona  implements java.io.Serializable {
      private String fisTratamiento;
      private Integer fisCodPersona;
      private String fisCargo;
-     private Boolean cliEscliente;
-     private Boolean empEsempleado;
-     private Usuario usuario;
+     private Byte esCliente;
+     private Byte esEmpleado;
+     private Byte fisSexoHombre;
+     private String jurRazonSocial;
+     private String fisPrimerApellido;
+     private String fisSegundoApellido;
+     private String fisNacionalidad;
+     private String categoria;
+     private String pasaporte;
+     private String email;
+     private String paginaWeb;
+     private Date fisExpPasaporte;
+     private Date fisVencPasaporte;
+     private String comentario;
+     private Byte fisDiscapacitado;
+     private Set telefonoPersonasForNumTelefono = new HashSet(0);
+     private Set telefonoPersonasForCodPersona = new HashSet(0);
      private Set parentescosForCodPersona = new HashSet(0);
-     private Set huespedHabitacions = new HashSet(0);
-     private Set reservasForCodEmpleado = new HashSet(0);
-     private Set telefonoPersonas = new HashSet(0);
      private Set parentescosForCodPariente = new HashSet(0);
      private Set reservasForCodCliente = new HashSet(0);
+     private Set huespedHabitacions = new HashSet(0);
+     private Set reservasForCodEmpleado = new HashSet(0);
+     private Set usuarios = new HashSet(0);
 
     public Persona() {
     }
 
-	
-    public Persona(int codPersona, String tipoDocumento, String documentoNumero, String nombre) {
-        this.codPersona = codPersona;
-        this.tipoDocumento = tipoDocumento;
-        this.documentoNumero = documentoNumero;
-        this.nombre = nombre;
-    }
-    public Persona(int codPersona, String tipoDocumento, String documentoNumero, String nombre, String calle, String codPostal, String ciudad, String provincia, String estado, String nacionalidad, Boolean jurEmpresa, String jurNombreComercial, String fisApellidos, Date fisFechaNacimiento, Integer fisEdad, String fisTratamiento, Integer fisCodPersona, String fisCargo, Boolean cliEscliente, Boolean empEsempleado, Usuario usuario, Set parentescosForCodPersona, Set huespedHabitacions, Set reservasForCodEmpleado, Set telefonoPersonas, Set parentescosForCodPariente, Set reservasForCodCliente) {
-       this.codPersona = codPersona;
+    public Persona(String tipoDocumento, String documentoNumero, String nombre, String calle, String codPostal, String ciudad, String provincia, Integer estado, Byte esEmpresa, String jurNombreComercial, String fisApellidos, Date fisFechaNacimiento, Integer fisEdad, String fisTratamiento, Integer fisCodPersona, String fisCargo, Byte esCliente, Byte esEmpleado, Byte fisSexoHombre, String jurRazonSocial, String fisPrimerApellido, String fisSegundoApellido, String fisNacionalidad, String categoria, String pasaporte, String email, String paginaWeb, Date fisExpPasaporte, Date fisVencPasaporte, String comentario, Byte fisDiscapacitado, Set telefonoPersonasForNumTelefono, Set telefonoPersonasForCodPersona, Set parentescosForCodPersona, Set parentescosForCodPariente, Set reservasForCodCliente, Set huespedHabitacions, Set reservasForCodEmpleado, Set usuarios) {
        this.tipoDocumento = tipoDocumento;
        this.documentoNumero = documentoNumero;
        this.nombre = nombre;
@@ -60,8 +65,7 @@ public class Persona  implements java.io.Serializable {
        this.ciudad = ciudad;
        this.provincia = provincia;
        this.estado = estado;
-       this.nacionalidad = nacionalidad;
-       this.jurEmpresa = jurEmpresa;
+       this.esEmpresa = esEmpresa;
        this.jurNombreComercial = jurNombreComercial;
        this.fisApellidos = fisApellidos;
        this.fisFechaNacimiento = fisFechaNacimiento;
@@ -69,22 +73,36 @@ public class Persona  implements java.io.Serializable {
        this.fisTratamiento = fisTratamiento;
        this.fisCodPersona = fisCodPersona;
        this.fisCargo = fisCargo;
-       this.cliEscliente = cliEscliente;
-       this.empEsempleado = empEsempleado;
-       this.usuario = usuario;
+       this.esCliente = esCliente;
+       this.esEmpleado = esEmpleado;
+       this.fisSexoHombre = fisSexoHombre;
+       this.jurRazonSocial = jurRazonSocial;
+       this.fisPrimerApellido = fisPrimerApellido;
+       this.fisSegundoApellido = fisSegundoApellido;
+       this.fisNacionalidad = fisNacionalidad;
+       this.categoria = categoria;
+       this.pasaporte = pasaporte;
+       this.email = email;
+       this.paginaWeb = paginaWeb;
+       this.fisExpPasaporte = fisExpPasaporte;
+       this.fisVencPasaporte = fisVencPasaporte;
+       this.comentario = comentario;
+       this.fisDiscapacitado = fisDiscapacitado;
+       this.telefonoPersonasForNumTelefono = telefonoPersonasForNumTelefono;
+       this.telefonoPersonasForCodPersona = telefonoPersonasForCodPersona;
        this.parentescosForCodPersona = parentescosForCodPersona;
-       this.huespedHabitacions = huespedHabitacions;
-       this.reservasForCodEmpleado = reservasForCodEmpleado;
-       this.telefonoPersonas = telefonoPersonas;
        this.parentescosForCodPariente = parentescosForCodPariente;
        this.reservasForCodCliente = reservasForCodCliente;
+       this.huespedHabitacions = huespedHabitacions;
+       this.reservasForCodEmpleado = reservasForCodEmpleado;
+       this.usuarios = usuarios;
     }
    
-    public int getCodPersona() {
+    public Integer getCodPersona() {
         return this.codPersona;
     }
     
-    public void setCodPersona(int codPersona) {
+    public void setCodPersona(Integer codPersona) {
         this.codPersona = codPersona;
     }
     public String getTipoDocumento() {
@@ -136,26 +154,19 @@ public class Persona  implements java.io.Serializable {
     public void setProvincia(String provincia) {
         this.provincia = provincia;
     }
-    public String getEstado() {
+    public Integer getEstado() {
         return this.estado;
     }
     
-    public void setEstado(String estado) {
+    public void setEstado(Integer estado) {
         this.estado = estado;
     }
-    public String getNacionalidad() {
-        return this.nacionalidad;
+    public Byte getEsEmpresa() {
+        return this.esEmpresa;
     }
     
-    public void setNacionalidad(String nacionalidad) {
-        this.nacionalidad = nacionalidad;
-    }
-    public Boolean getJurEmpresa() {
-        return this.jurEmpresa;
-    }
-    
-    public void setJurEmpresa(Boolean jurEmpresa) {
-        this.jurEmpresa = jurEmpresa;
+    public void setEsEmpresa(Byte esEmpresa) {
+        this.esEmpresa = esEmpresa;
     }
     public String getJurNombreComercial() {
         return this.jurNombreComercial;
@@ -206,26 +217,124 @@ public class Persona  implements java.io.Serializable {
     public void setFisCargo(String fisCargo) {
         this.fisCargo = fisCargo;
     }
-    public Boolean getCliEscliente() {
-        return this.cliEscliente;
+    public Byte getEsCliente() {
+        return this.esCliente;
     }
     
-    public void setCliEscliente(Boolean cliEscliente) {
-        this.cliEscliente = cliEscliente;
+    public void setEsCliente(Byte esCliente) {
+        this.esCliente = esCliente;
     }
-    public Boolean getEmpEsempleado() {
-        return this.empEsempleado;
-    }
-    
-    public void setEmpEsempleado(Boolean empEsempleado) {
-        this.empEsempleado = empEsempleado;
-    }
-    public Usuario getUsuario() {
-        return this.usuario;
+    public Byte getEsEmpleado() {
+        return this.esEmpleado;
     }
     
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setEsEmpleado(Byte esEmpleado) {
+        this.esEmpleado = esEmpleado;
+    }
+    public Byte getFisSexoHombre() {
+        return this.fisSexoHombre;
+    }
+    
+    public void setFisSexoHombre(Byte fisSexoHombre) {
+        this.fisSexoHombre = fisSexoHombre;
+    }
+    public String getJurRazonSocial() {
+        return this.jurRazonSocial;
+    }
+    
+    public void setJurRazonSocial(String jurRazonSocial) {
+        this.jurRazonSocial = jurRazonSocial;
+    }
+    public String getFisPrimerApellido() {
+        return this.fisPrimerApellido;
+    }
+    
+    public void setFisPrimerApellido(String fisPrimerApellido) {
+        this.fisPrimerApellido = fisPrimerApellido;
+    }
+    public String getFisSegundoApellido() {
+        return this.fisSegundoApellido;
+    }
+    
+    public void setFisSegundoApellido(String fisSegundoApellido) {
+        this.fisSegundoApellido = fisSegundoApellido;
+    }
+    public String getFisNacionalidad() {
+        return this.fisNacionalidad;
+    }
+    
+    public void setFisNacionalidad(String fisNacionalidad) {
+        this.fisNacionalidad = fisNacionalidad;
+    }
+    public String getCategoria() {
+        return this.categoria;
+    }
+    
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+    public String getPasaporte() {
+        return this.pasaporte;
+    }
+    
+    public void setPasaporte(String pasaporte) {
+        this.pasaporte = pasaporte;
+    }
+    public String getEmail() {
+        return this.email;
+    }
+    
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public String getPaginaWeb() {
+        return this.paginaWeb;
+    }
+    
+    public void setPaginaWeb(String paginaWeb) {
+        this.paginaWeb = paginaWeb;
+    }
+    public Date getFisExpPasaporte() {
+        return this.fisExpPasaporte;
+    }
+    
+    public void setFisExpPasaporte(Date fisExpPasaporte) {
+        this.fisExpPasaporte = fisExpPasaporte;
+    }
+    public Date getFisVencPasaporte() {
+        return this.fisVencPasaporte;
+    }
+    
+    public void setFisVencPasaporte(Date fisVencPasaporte) {
+        this.fisVencPasaporte = fisVencPasaporte;
+    }
+    public String getComentario() {
+        return this.comentario;
+    }
+    
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+    public Byte getFisDiscapacitado() {
+        return this.fisDiscapacitado;
+    }
+    
+    public void setFisDiscapacitado(Byte fisDiscapacitado) {
+        this.fisDiscapacitado = fisDiscapacitado;
+    }
+    public Set getTelefonoPersonasForNumTelefono() {
+        return this.telefonoPersonasForNumTelefono;
+    }
+    
+    public void setTelefonoPersonasForNumTelefono(Set telefonoPersonasForNumTelefono) {
+        this.telefonoPersonasForNumTelefono = telefonoPersonasForNumTelefono;
+    }
+    public Set getTelefonoPersonasForCodPersona() {
+        return this.telefonoPersonasForCodPersona;
+    }
+    
+    public void setTelefonoPersonasForCodPersona(Set telefonoPersonasForCodPersona) {
+        this.telefonoPersonasForCodPersona = telefonoPersonasForCodPersona;
     }
     public Set getParentescosForCodPersona() {
         return this.parentescosForCodPersona;
@@ -233,6 +342,20 @@ public class Persona  implements java.io.Serializable {
     
     public void setParentescosForCodPersona(Set parentescosForCodPersona) {
         this.parentescosForCodPersona = parentescosForCodPersona;
+    }
+    public Set getParentescosForCodPariente() {
+        return this.parentescosForCodPariente;
+    }
+    
+    public void setParentescosForCodPariente(Set parentescosForCodPariente) {
+        this.parentescosForCodPariente = parentescosForCodPariente;
+    }
+    public Set getReservasForCodCliente() {
+        return this.reservasForCodCliente;
+    }
+    
+    public void setReservasForCodCliente(Set reservasForCodCliente) {
+        this.reservasForCodCliente = reservasForCodCliente;
     }
     public Set getHuespedHabitacions() {
         return this.huespedHabitacions;
@@ -248,26 +371,12 @@ public class Persona  implements java.io.Serializable {
     public void setReservasForCodEmpleado(Set reservasForCodEmpleado) {
         this.reservasForCodEmpleado = reservasForCodEmpleado;
     }
-    public Set getTelefonoPersonas() {
-        return this.telefonoPersonas;
+    public Set getUsuarios() {
+        return this.usuarios;
     }
     
-    public void setTelefonoPersonas(Set telefonoPersonas) {
-        this.telefonoPersonas = telefonoPersonas;
-    }
-    public Set getParentescosForCodPariente() {
-        return this.parentescosForCodPariente;
-    }
-    
-    public void setParentescosForCodPariente(Set parentescosForCodPariente) {
-        this.parentescosForCodPariente = parentescosForCodPariente;
-    }
-    public Set getReservasForCodCliente() {
-        return this.reservasForCodCliente;
-    }
-    
-    public void setReservasForCodCliente(Set reservasForCodCliente) {
-        this.reservasForCodCliente = reservasForCodCliente;
+    public void setUsuarios(Set usuarios) {
+        this.usuarios = usuarios;
     }
 
 

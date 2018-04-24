@@ -1,23 +1,23 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 13-mar-2018 20:11:33 by Hibernate Tools 4.3.1 -->
+<!-- Generated 24-abr-2018 3:43:17 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Habitacion" table="habitacion" schema="public" optimistic-lock="version">
-        <id name="idHabitacion" type="int">
-            <column name="id_habitacion" />
+    <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Habitacion" table="habitacion" catalog="gestionhotel" optimistic-lock="version">
+        <id name="numero" type="int">
+            <column name="numero" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="tipo" class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Tipo" fetch="select">
-            <column name="id_tipo" />
-        </many-to-one>
         <property name="descripcion" type="string">
-            <column name="descripcion" />
+            <column name="descripcion" length="300" />
         </property>
-        <property name="limpiar" type="java.lang.Boolean">
+        <property name="tipo" type="string">
+            <column name="tipo" length="100" />
+        </property>
+        <property name="limpiar" type="java.lang.Byte">
             <column name="limpiar" />
         </property>
-        <property name="camaExtra" type="java.lang.Short">
+        <property name="camaExtra" type="java.lang.Byte">
             <column name="cama_extra" />
         </property>
         <set name="detallesReservas" table="detalles_reserva" inverse="true" lazy="true" fetch="select">

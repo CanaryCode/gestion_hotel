@@ -41,16 +41,16 @@ Contributor(s):
 -->
 <hibernate-configuration>
   <session-factory>
-    <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-    <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-    <property name="hibernate.connection.url">jdbc:postgresql://gestionhotel.zapto.org:5432/DB_Gestion_Hotel</property>
-    <property name="hibernate.connection.username">postgres</property>
-    <property name="hibernate.connection.password">shashi</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/gestionhotel?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">user_app</property>
+    <property name="hibernate.connection.password">123456</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
     <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/Usuario.hbm.xml"/>
     <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/TelefonoPersona.hbm.xml"/>
     <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/Reserva.hbm.xml"/>
     <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/DetallesReserva.hbm.xml"/>
-    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/Tipo.hbm.xml"/>
     <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/Situacion.hbm.xml"/>
     <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/EstadoHabitacion.hbm.xml"/>
     <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/Parentesco.hbm.xml"/>

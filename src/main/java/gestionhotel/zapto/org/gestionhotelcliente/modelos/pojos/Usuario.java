@@ -1,5 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos;
-// Generated 13-mar-2018 20:11:32 by Hibernate Tools 4.3.1
+// Generated 24-abr-2018 3:43:16 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -14,7 +14,11 @@ public class Usuario  implements java.io.Serializable {
      private Persona persona;
      private String nombreUsuario;
      private String passUsuario;
-     private Boolean bloqueado;
+     private Byte bloqueado;
+     private Byte administrador;
+     private Byte recepcion;
+     private Byte mostrador;
+     private Byte servidor;
      private Date ultimaActividad;
      private Date fechaCaducidad;
 
@@ -22,16 +26,20 @@ public class Usuario  implements java.io.Serializable {
     }
 
 	
-    public Usuario(Persona persona, String nombreUsuario, String passUsuario) {
-        this.persona = persona;
+    public Usuario(int codUsuario, String nombreUsuario) {
+        this.codUsuario = codUsuario;
         this.nombreUsuario = nombreUsuario;
-        this.passUsuario = passUsuario;
     }
-    public Usuario(Persona persona, String nombreUsuario, String passUsuario, Boolean bloqueado, Date ultimaActividad, Date fechaCaducidad) {
+    public Usuario(int codUsuario, Persona persona, String nombreUsuario, String passUsuario, Byte bloqueado, Byte administrador, Byte recepcion, Byte mostrador, Byte servidor, Date ultimaActividad, Date fechaCaducidad) {
+       this.codUsuario = codUsuario;
        this.persona = persona;
        this.nombreUsuario = nombreUsuario;
        this.passUsuario = passUsuario;
        this.bloqueado = bloqueado;
+       this.administrador = administrador;
+       this.recepcion = recepcion;
+       this.mostrador = mostrador;
+       this.servidor = servidor;
        this.ultimaActividad = ultimaActividad;
        this.fechaCaducidad = fechaCaducidad;
     }
@@ -64,12 +72,40 @@ public class Usuario  implements java.io.Serializable {
     public void setPassUsuario(String passUsuario) {
         this.passUsuario = passUsuario;
     }
-    public Boolean getBloqueado() {
+    public Byte getBloqueado() {
         return this.bloqueado;
     }
     
-    public void setBloqueado(Boolean bloqueado) {
+    public void setBloqueado(Byte bloqueado) {
         this.bloqueado = bloqueado;
+    }
+    public Byte getAdministrador() {
+        return this.administrador;
+    }
+    
+    public void setAdministrador(Byte administrador) {
+        this.administrador = administrador;
+    }
+    public Byte getRecepcion() {
+        return this.recepcion;
+    }
+    
+    public void setRecepcion(Byte recepcion) {
+        this.recepcion = recepcion;
+    }
+    public Byte getMostrador() {
+        return this.mostrador;
+    }
+    
+    public void setMostrador(Byte mostrador) {
+        this.mostrador = mostrador;
+    }
+    public Byte getServidor() {
+        return this.servidor;
+    }
+    
+    public void setServidor(Byte servidor) {
+        this.servidor = servidor;
     }
     public Date getUltimaActividad() {
         return this.ultimaActividad;

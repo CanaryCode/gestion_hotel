@@ -1,34 +1,46 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 13-mar-2018 20:11:33 by Hibernate Tools 4.3.1 -->
+<!-- Generated 24-abr-2018 3:43:17 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Reserva" table="reserva" schema="public" optimistic-lock="version">
-        <id name="codReserva" type="int">
+    <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Reserva" table="reserva" catalog="gestionhotel" optimistic-lock="version">
+        <id name="codReserva" type="java.lang.Integer">
             <column name="cod_reserva" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
-        <many-to-one name="personaByCodEmpleado" class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona" fetch="select">
-            <column name="cod_empleado" not-null="true" />
-        </many-to-one>
         <many-to-one name="personaByCodCliente" class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona" fetch="select">
-            <column name="cod_cliente" not-null="true" />
+            <column name="cod_cliente" />
+        </many-to-one>
+        <many-to-one name="personaByCodEmpleado" class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona" fetch="select">
+            <column name="cod_empleado" />
         </many-to-one>
         <property name="fecha" type="date">
-            <column name="fecha" length="13" not-null="true" />
+            <column name="fecha" length="10" />
         </property>
         <property name="fechaCancelada" type="date">
-            <column name="fecha_cancelada" length="13" />
+            <column name="fecha_cancelada" length="10" />
         </property>
         <property name="motivoCancelacion" type="string">
-            <column name="motivo_cancelacion" />
+            <column name="motivo_cancelacion" length="300" />
         </property>
         <property name="comentario" type="string">
-            <column name="comentario" />
+            <column name="comentario" length="300" />
+        </property>
+        <property name="agencia" type="string">
+            <column name="agencia" length="40" not-null="true" />
+        </property>
+        <property name="voucher" type="string">
+            <column name="voucher" length="40" not-null="true" />
+        </property>
+        <property name="tipoTarjetaCredito" type="string">
+            <column name="tipo_tarjeta_credito" length="40" not-null="true" />
+        </property>
+        <property name="numeroTarjetaCredito" type="string">
+            <column name="numero_tarjeta_credito" length="40" not-null="true" />
         </property>
         <set name="detallesReservas" table="detalles_reserva" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="cod_reserva" not-null="true" />
+                <column name="cod_reserva" />
             </key>
             <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva" />
         </set>

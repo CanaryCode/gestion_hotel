@@ -1,5 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos;
-// Generated 13-mar-2018 20:11:32 by Hibernate Tools 4.3.1
+// Generated 24-abr-2018 3:43:16 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -12,7 +12,7 @@ import java.util.Set;
 public class DetallesReserva  implements java.io.Serializable {
 
 
-     private int idDetallesReserva;
+     private Integer idDetallesReserva;
      private Habitacion habitacion;
      private Reserva reserva;
      private String nombreReserva;
@@ -21,20 +21,20 @@ public class DetallesReserva  implements java.io.Serializable {
      private Date fechaSalidaPrevista;
      private Date fechaEntrada;
      private Date fechaSalida;
+     private String pension;
+     private String tipoCama;
      private Set huespedHabitacions = new HashSet(0);
+     private Set estadoHabitacions = new HashSet(0);
 
     public DetallesReserva() {
     }
 
 	
-    public DetallesReserva(int idDetallesReserva, Reserva reserva, Date fechaEntradaPrevista, Date fechaSalidaPrevista) {
-        this.idDetallesReserva = idDetallesReserva;
-        this.reserva = reserva;
-        this.fechaEntradaPrevista = fechaEntradaPrevista;
-        this.fechaSalidaPrevista = fechaSalidaPrevista;
+    public DetallesReserva(String pension, String tipoCama) {
+        this.pension = pension;
+        this.tipoCama = tipoCama;
     }
-    public DetallesReserva(int idDetallesReserva, Habitacion habitacion, Reserva reserva, String nombreReserva, Integer cantidadHuespedes, Date fechaEntradaPrevista, Date fechaSalidaPrevista, Date fechaEntrada, Date fechaSalida, Set huespedHabitacions) {
-       this.idDetallesReserva = idDetallesReserva;
+    public DetallesReserva(Habitacion habitacion, Reserva reserva, String nombreReserva, Integer cantidadHuespedes, Date fechaEntradaPrevista, Date fechaSalidaPrevista, Date fechaEntrada, Date fechaSalida, String pension, String tipoCama, Set huespedHabitacions, Set estadoHabitacions) {
        this.habitacion = habitacion;
        this.reserva = reserva;
        this.nombreReserva = nombreReserva;
@@ -43,14 +43,17 @@ public class DetallesReserva  implements java.io.Serializable {
        this.fechaSalidaPrevista = fechaSalidaPrevista;
        this.fechaEntrada = fechaEntrada;
        this.fechaSalida = fechaSalida;
+       this.pension = pension;
+       this.tipoCama = tipoCama;
        this.huespedHabitacions = huespedHabitacions;
+       this.estadoHabitacions = estadoHabitacions;
     }
    
-    public int getIdDetallesReserva() {
+    public Integer getIdDetallesReserva() {
         return this.idDetallesReserva;
     }
     
-    public void setIdDetallesReserva(int idDetallesReserva) {
+    public void setIdDetallesReserva(Integer idDetallesReserva) {
         this.idDetallesReserva = idDetallesReserva;
     }
     public Habitacion getHabitacion() {
@@ -109,12 +112,33 @@ public class DetallesReserva  implements java.io.Serializable {
     public void setFechaSalida(Date fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
+    public String getPension() {
+        return this.pension;
+    }
+    
+    public void setPension(String pension) {
+        this.pension = pension;
+    }
+    public String getTipoCama() {
+        return this.tipoCama;
+    }
+    
+    public void setTipoCama(String tipoCama) {
+        this.tipoCama = tipoCama;
+    }
     public Set getHuespedHabitacions() {
         return this.huespedHabitacions;
     }
     
     public void setHuespedHabitacions(Set huespedHabitacions) {
         this.huespedHabitacions = huespedHabitacions;
+    }
+    public Set getEstadoHabitacions() {
+        return this.estadoHabitacions;
+    }
+    
+    public void setEstadoHabitacions(Set estadoHabitacions) {
+        this.estadoHabitacions = estadoHabitacions;
     }
 
 
