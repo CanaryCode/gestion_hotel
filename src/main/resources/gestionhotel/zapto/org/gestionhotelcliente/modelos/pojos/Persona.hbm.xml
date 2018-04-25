@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 24-abr-2018 3:43:17 by Hibernate Tools 4.3.1 -->
+<!-- Generated 24-abr-2018 21:28:22 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona" table="persona" catalog="gestionhotel" optimistic-lock="version">
         <id name="codPersona" type="java.lang.Integer">
@@ -29,17 +29,14 @@
         <property name="provincia" type="string">
             <column name="provincia" length="40" />
         </property>
-        <property name="estado" type="java.lang.Integer">
-            <column name="estado" />
+        <property name="estado" type="string">
+            <column name="estado" length="40" />
         </property>
         <property name="esEmpresa" type="java.lang.Byte">
             <column name="es_empresa" />
         </property>
         <property name="jurNombreComercial" type="string">
             <column name="jur_nombre_comercial" length="40" />
-        </property>
-        <property name="fisApellidos" type="string">
-            <column name="fis_apellidos" length="40" />
         </property>
         <property name="fisFechaNacimiento" type="date">
             <column name="fis_fecha_nacimiento" length="10" />
@@ -101,6 +98,48 @@
         <property name="fisDiscapacitado" type="java.lang.Byte">
             <column name="fis_discapacitado" />
         </property>
+        <set name="parentescosForCodPariente" table="parentesco" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cod_pariente" not-null="true" />
+            </key>
+            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Parentesco" />
+        </set>
+        <set name="parentescosForCodPersona" table="parentesco" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cod_persona" not-null="true" />
+            </key>
+            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Parentesco" />
+        </set>
+        <set name="reservasForCodCliente" table="reserva" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cod_cliente" />
+            </key>
+            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Reserva" />
+        </set>
+        <set name="usuarios" table="usuario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cod_persona" />
+            </key>
+            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Usuario" />
+        </set>
+        <set name="reservasForCodEmpleado" table="reserva" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cod_empleado" />
+            </key>
+            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Reserva" />
+        </set>
+        <set name="reservasForAgencia" table="reserva" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="agencia" />
+            </key>
+            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Reserva" />
+        </set>
+        <set name="huespedHabitacions" table="huesped_habitacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cod_huesped" not-null="true" />
+            </key>
+            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.HuespedHabitacion" />
+        </set>
         <set name="telefonoPersonasForNumTelefono" table="telefono_persona" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="num_telefono" not-null="true" />
@@ -112,42 +151,6 @@
                 <column name="cod_persona" not-null="true" />
             </key>
             <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersona" />
-        </set>
-        <set name="parentescosForCodPersona" table="parentesco" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="cod_persona" not-null="true" />
-            </key>
-            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Parentesco" />
-        </set>
-        <set name="parentescosForCodPariente" table="parentesco" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="cod_pariente" not-null="true" />
-            </key>
-            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Parentesco" />
-        </set>
-        <set name="reservasForCodCliente" table="reserva" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="cod_cliente" />
-            </key>
-            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Reserva" />
-        </set>
-        <set name="huespedHabitacions" table="huesped_habitacion" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="cod_huesped" not-null="true" />
-            </key>
-            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.HuespedHabitacion" />
-        </set>
-        <set name="reservasForCodEmpleado" table="reserva" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="cod_empleado" />
-            </key>
-            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Reserva" />
-        </set>
-        <set name="usuarios" table="usuario" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="cod_persona" />
-            </key>
-            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Usuario" />
         </set>
     </class>
 </hibernate-mapping>

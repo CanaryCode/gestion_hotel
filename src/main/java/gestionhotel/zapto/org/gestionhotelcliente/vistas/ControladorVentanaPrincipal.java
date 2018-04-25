@@ -25,7 +25,7 @@ public class ControladorVentanaPrincipal implements Initializable {
 
     @FXML
     private MenuItem kardex, reserva, quienesSomos, registroClientes, addReservas,
-            buscadorHuesped,buscadorCliente;
+            buscadorHuesped, buscadorCliente;
     @FXML
     private Label nombreUsuario, pieDePágina, horaActual;
     @FXML
@@ -36,7 +36,7 @@ public class ControladorVentanaPrincipal implements Initializable {
     private Button botonCalculadora;
 
     private Fechas fechas;
-    private Reloj reloj ;
+    private Reloj reloj;
     private VBox relojArrancable;
 
     @Override
@@ -65,38 +65,50 @@ public class ControladorVentanaPrincipal implements Initializable {
         buscadorCliente.setOnAction((ActionEvent event) -> {
             codigoMenuBuscadorCliente();
         });
-        
-        
-        botonCalculadora.setOnAction((e)->{
-            new Ventanas().abrirVentanaCalculadora(Ventanas.ventanaLogin, Modality.NONE);
+
+        botonCalculadora.setOnAction((e) -> {
+            Ventanas.Objetos obj = new Ventanas().abrirVentanaCalculadora(Ventanas.ventanaLogin, Modality.NONE);
+            obj.getStage().show();
         });
-        
+
         configuracionReloj();
     }
 
-    private  void codigoMenuAddReservas(){
-        new Ventanas().abrirVentanaAddReserva(Ventanas.ventanaPrincipal, Modality.WINDOW_MODAL);
+    private void codigoMenuAddReservas() {
+        Ventanas.Objetos obj = new Ventanas().abrirVentanaAddReserva(Ventanas.ventanaPrincipal, Modality.WINDOW_MODAL);
+        obj.getStage().show();
     }
+
     private void codigoMenuKardex() {
-        new Ventanas().abrirVentanaHuesped(Ventanas.ventanaPrincipal, Modality.WINDOW_MODAL);
+        Ventanas.Objetos obj = new Ventanas().abrirVentanaHuesped(Ventanas.ventanaPrincipal, Modality.WINDOW_MODAL);
+        obj.getStage().show();
     }
 
     private void codigoMenuReserva() {
-        new Ventanas().abrirVentanaReservaCheckIn(Ventanas.ventanaPrincipal, Modality.WINDOW_MODAL);
+        Ventanas.Objetos obj = new Ventanas().abrirVentanaReservaCheckIn(Ventanas.ventanaPrincipal, Modality.WINDOW_MODAL);
+        obj.getStage().show();
     }
 
     private void codigoMenuQuienesSomos() {
-        new Ventanas().abrirVentanaQuienesSomos(Ventanas.ventanaPrincipal, Modality.WINDOW_MODAL);
+        Ventanas.Objetos obj = new Ventanas().abrirVentanaQuienesSomos(Ventanas.ventanaPrincipal, Modality.WINDOW_MODAL);
+        obj.getStage().show();
     }
 
     private void codigoMenuRegistroClientes() {
-        new Ventanas().abrirVentanaRegistroClientes(Ventanas.ventanaPrincipal, Modality.WINDOW_MODAL);
+        Ventanas.Objetos obj = new Ventanas().abrirVentanaRegistroClientes(Ventanas.ventanaPrincipal, Modality.WINDOW_MODAL);
+        obj.getStage().show();
     }
+
     private void codigoMenuBuscadorHuesped() {
-        new Ventanas().abrirVentanaBuscarHuesped(Ventanas.ventanaPrincipal, Modality.WINDOW_MODAL);
+        Ventanas.Objetos obj = new Ventanas().abrirVentanaBuscarHuesped(Ventanas.ventanaPrincipal, Modality.WINDOW_MODAL);
+        obj.getStage().show();
+        obj.getStage().show();
     }
+
     private void codigoMenuBuscadorCliente() {
-        new Ventanas().abrirVentanaBuscarCliente(Ventanas.ventanaPrincipal, Modality.WINDOW_MODAL);
+        Ventanas.Objetos obj = new Ventanas().abrirVentanaBuscarCliente(Ventanas.ventanaPrincipal, Modality.WINDOW_MODAL);
+        obj.getStage().show();
+        obj.getStage().show();
     }
 
     private void configuracionReloj() {

@@ -1,16 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gestionhotel.zapto.org.gestionhotelcliente.modelos;
 
-import gestionhotel.zapto.org.gestionhotelcliente.controladores.HibernateUtil;
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.AbrirCerrarConexiones;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 /**
@@ -19,7 +13,7 @@ import org.hibernate.Transaction;
  */
 public class Consultas {
 
-    public static String pendienteDeCheckIn = "SELECT persona . * \n"
+    public static String pendienteDeCheckIn = "SELECT reserva . * \n"
             + "FROM persona\n"
             + "INNER JOIN reserva ON reserva.cod_cliente = persona.cod_persona\n"
             + "INNER JOIN detalles_reserva ON detalles_reserva.cod_reserva = reserva.cod_reserva\n"
@@ -27,16 +21,12 @@ public class Consultas {
             + "AND reserva.fecha_cancelada IS NULL \n"
             + "AND detalles_reserva.fecha_entrada IS NULL ";
 
-    public static <T> List<T> personasPendientesDeCheckIn(String query, Class<T> clase) {
-
-        SessionFactory sf = HibernateUtil.getSessionFactory();
-        Session s = sf.openSession();
+    public static <T> List<T> realizaQuery(String query, Class<T> clase) {
+        Session s = AbrirCerrarConexiones.getSession();
         Transaction tx=s.beginTransaction();
         SQLQuery q = s.createSQLQuery(Consultas.pendienteDeCheckIn).addEntity(clase);
         tx.commit();
         List<T> lista = q.list();
-        s.close();
-        sf.close();
         if (lista.isEmpty()) {
             return new ArrayList<T>();
         } else {

@@ -55,7 +55,8 @@ public class ControladorFXMLLogIn implements Initializable {
     private void logicaBoton() {
         
         Locale.setDefault(ConfiguradorIdioma.cambiaIdioma(lenguaje.getSelectionModel().getSelectedItem().toString()));
-        new Ventanas().abrirVentanaPrincipal();
+       Ventanas.Objetos obj= new Ventanas().abrirVentanaPrincipal();
+       obj.getStage().show();
        
     }
 }

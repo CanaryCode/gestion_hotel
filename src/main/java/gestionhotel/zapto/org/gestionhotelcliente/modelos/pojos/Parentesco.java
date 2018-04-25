@@ -1,5 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos;
-// Generated 24-abr-2018 3:43:16 by Hibernate Tools 4.3.1
+// Generated 24-abr-2018 21:28:21 by Hibernate Tools 4.3.1
 
 
 
@@ -10,17 +10,23 @@ public class Parentesco  implements java.io.Serializable {
 
 
      private ParentescoId id;
-     private Persona personaByCodPersona;
      private Persona personaByCodPariente;
+     private Persona personaByCodPersona;
      private String tipoParentesco;
 
     public Parentesco() {
     }
 
-    public Parentesco(ParentescoId id, Persona personaByCodPersona, Persona personaByCodPariente, String tipoParentesco) {
+	
+    public Parentesco(ParentescoId id, Persona personaByCodPariente, Persona personaByCodPersona) {
+        this.id = id;
+        this.personaByCodPariente = personaByCodPariente;
+        this.personaByCodPersona = personaByCodPersona;
+    }
+    public Parentesco(ParentescoId id, Persona personaByCodPariente, Persona personaByCodPersona, String tipoParentesco) {
        this.id = id;
-       this.personaByCodPersona = personaByCodPersona;
        this.personaByCodPariente = personaByCodPariente;
+       this.personaByCodPersona = personaByCodPersona;
        this.tipoParentesco = tipoParentesco;
     }
    
@@ -31,19 +37,19 @@ public class Parentesco  implements java.io.Serializable {
     public void setId(ParentescoId id) {
         this.id = id;
     }
-    public Persona getPersonaByCodPersona() {
-        return this.personaByCodPersona;
-    }
-    
-    public void setPersonaByCodPersona(Persona personaByCodPersona) {
-        this.personaByCodPersona = personaByCodPersona;
-    }
     public Persona getPersonaByCodPariente() {
         return this.personaByCodPariente;
     }
     
     public void setPersonaByCodPariente(Persona personaByCodPariente) {
         this.personaByCodPariente = personaByCodPariente;
+    }
+    public Persona getPersonaByCodPersona() {
+        return this.personaByCodPersona;
+    }
+    
+    public void setPersonaByCodPersona(Persona personaByCodPersona) {
+        this.personaByCodPersona = personaByCodPersona;
     }
     public String getTipoParentesco() {
         return this.tipoParentesco;

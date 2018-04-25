@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 24-abr-2018 3:43:17 by Hibernate Tools 4.3.1 -->
+<!-- Generated 24-abr-2018 21:28:22 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Usuario" table="usuario" catalog="gestionhotel" optimistic-lock="version">
         <id name="codUsuario" type="int">
@@ -12,7 +12,7 @@
             <column name="cod_persona" />
         </many-to-one>
         <property name="nombreUsuario" type="string">
-            <column name="nombre_usuario" length="20" not-null="true" />
+            <column name="nombre_usuario" length="20" />
         </property>
         <property name="passUsuario" type="string">
             <column name="pass_usuario" length="20" />

@@ -1,5 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos;
-// Generated 24-abr-2018 3:43:16 by Hibernate Tools 4.3.1
+// Generated 24-abr-2018 21:28:21 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -26,9 +26,8 @@ public class Usuario  implements java.io.Serializable {
     }
 
 	
-    public Usuario(int codUsuario, String nombreUsuario) {
+    public Usuario(int codUsuario) {
         this.codUsuario = codUsuario;
-        this.nombreUsuario = nombreUsuario;
     }
     public Usuario(int codUsuario, Persona persona, String nombreUsuario, String passUsuario, Byte bloqueado, Byte administrador, Byte recepcion, Byte mostrador, Byte servidor, Date ultimaActividad, Date fechaCaducidad) {
        this.codUsuario = codUsuario;

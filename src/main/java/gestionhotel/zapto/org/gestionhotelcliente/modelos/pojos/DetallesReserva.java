@@ -1,5 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos;
-// Generated 24-abr-2018 3:43:16 by Hibernate Tools 4.3.1
+// Generated 24-abr-2018 21:28:21 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -23,18 +23,13 @@ public class DetallesReserva  implements java.io.Serializable {
      private Date fechaSalida;
      private String pension;
      private String tipoCama;
-     private Set huespedHabitacions = new HashSet(0);
      private Set estadoHabitacions = new HashSet(0);
+     private Set huespedHabitacions = new HashSet(0);
 
     public DetallesReserva() {
     }
 
-	
-    public DetallesReserva(String pension, String tipoCama) {
-        this.pension = pension;
-        this.tipoCama = tipoCama;
-    }
-    public DetallesReserva(Habitacion habitacion, Reserva reserva, String nombreReserva, Integer cantidadHuespedes, Date fechaEntradaPrevista, Date fechaSalidaPrevista, Date fechaEntrada, Date fechaSalida, String pension, String tipoCama, Set huespedHabitacions, Set estadoHabitacions) {
+    public DetallesReserva(Habitacion habitacion, Reserva reserva, String nombreReserva, Integer cantidadHuespedes, Date fechaEntradaPrevista, Date fechaSalidaPrevista, Date fechaEntrada, Date fechaSalida, String pension, String tipoCama, Set estadoHabitacions, Set huespedHabitacions) {
        this.habitacion = habitacion;
        this.reserva = reserva;
        this.nombreReserva = nombreReserva;
@@ -45,8 +40,8 @@ public class DetallesReserva  implements java.io.Serializable {
        this.fechaSalida = fechaSalida;
        this.pension = pension;
        this.tipoCama = tipoCama;
-       this.huespedHabitacions = huespedHabitacions;
        this.estadoHabitacions = estadoHabitacions;
+       this.huespedHabitacions = huespedHabitacions;
     }
    
     public Integer getIdDetallesReserva() {
@@ -126,19 +121,19 @@ public class DetallesReserva  implements java.io.Serializable {
     public void setTipoCama(String tipoCama) {
         this.tipoCama = tipoCama;
     }
-    public Set getHuespedHabitacions() {
-        return this.huespedHabitacions;
-    }
-    
-    public void setHuespedHabitacions(Set huespedHabitacions) {
-        this.huespedHabitacions = huespedHabitacions;
-    }
     public Set getEstadoHabitacions() {
         return this.estadoHabitacions;
     }
     
     public void setEstadoHabitacions(Set estadoHabitacions) {
         this.estadoHabitacions = estadoHabitacions;
+    }
+    public Set getHuespedHabitacions() {
+        return this.huespedHabitacions;
+    }
+    
+    public void setHuespedHabitacions(Set huespedHabitacions) {
+        this.huespedHabitacions = huespedHabitacions;
     }
 
 

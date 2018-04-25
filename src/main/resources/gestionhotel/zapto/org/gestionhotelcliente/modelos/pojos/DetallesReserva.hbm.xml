@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 24-abr-2018 3:43:17 by Hibernate Tools 4.3.1 -->
+<!-- Generated 24-abr-2018 21:28:22 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva" table="detalles_reserva" catalog="gestionhotel" optimistic-lock="version">
         <id name="idDetallesReserva" type="java.lang.Integer">
@@ -33,22 +33,22 @@
             <column name="fecha_salida" length="10" />
         </property>
         <property name="pension" type="string">
-            <column name="pension" length="40" not-null="true" />
+            <column name="pension" length="40" />
         </property>
         <property name="tipoCama" type="string">
-            <column name="tipo_cama" length="40" not-null="true" />
+            <column name="tipo_cama" length="40" />
         </property>
+        <set name="estadoHabitacions" table="estado_habitacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_alojamiento" />
+            </key>
+            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.EstadoHabitacion" />
+        </set>
         <set name="huespedHabitacions" table="huesped_habitacion" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="id_detalles_reservas" not-null="true" />
             </key>
             <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.HuespedHabitacion" />
-        </set>
-        <set name="estadoHabitacions" table="estado_habitacion" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_alojamiento" not-null="true" />
-            </key>
-            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.EstadoHabitacion" />
         </set>
     </class>
 </hibernate-mapping>

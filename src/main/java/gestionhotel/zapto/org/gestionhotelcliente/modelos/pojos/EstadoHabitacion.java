@@ -1,5 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos;
-// Generated 24-abr-2018 3:43:16 by Hibernate Tools 4.3.1
+// Generated 24-abr-2018 21:28:21 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -14,12 +14,12 @@ public class EstadoHabitacion  implements java.io.Serializable {
      private DetallesReserva detallesReserva;
      private Date fechaInicio;
      private Date fechaFin;
-     private int idSituacion;
+     private Integer idSituacion;
 
     public EstadoHabitacion() {
     }
 
-    public EstadoHabitacion(DetallesReserva detallesReserva, Date fechaInicio, Date fechaFin, int idSituacion) {
+    public EstadoHabitacion(DetallesReserva detallesReserva, Date fechaInicio, Date fechaFin, Integer idSituacion) {
        this.detallesReserva = detallesReserva;
        this.fechaInicio = fechaInicio;
        this.fechaFin = fechaFin;
@@ -54,11 +54,11 @@ public class EstadoHabitacion  implements java.io.Serializable {
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
     }
-    public int getIdSituacion() {
+    public Integer getIdSituacion() {
         return this.idSituacion;
     }
     
-    public void setIdSituacion(int idSituacion) {
+    public void setIdSituacion(Integer idSituacion) {
         this.idSituacion = idSituacion;
     }
 
