@@ -101,21 +101,25 @@ public class ControladorReservaCheckIn implements Initializable {
 
     }
 
-    private void accionCheckIn() {        
+    public void pasaObjetos(Ventanas.Objetos obj) {
+
         try {
-            FXMLLoader loader =new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fxml/FXMLVentanaHuespedReserva.fxml"));;
-            Parent p =loader.load();
-             ControladorVentanaHuespedReserva chr=loader.getController();
-            chr.setReserva(reservaEnVista);
-            Scene scene =new Scene(p);
+            Parent p;
+            p = obj.getfXMLLoader().load();
+
+            ((ControladorVentanaHuespedReserva) obj.getfXMLLoader().getController()).setReserva(reservaEnVista);
+            Scene scene = new Scene(p);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(ControladorReservaCheckIn.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+    }
+
+    private void accionCheckIn() {
+            Ventanas.Objetos obj = new Ventanas().abrirVentanaHuespedReserva(Ventanas.ventanaReservaCheckIn, Modality.NONE);
+            pasaObjetos(obj);
     }
 
     private void accionReserva() {
