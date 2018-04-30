@@ -2,9 +2,12 @@ package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Reserva;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -27,8 +30,9 @@ public class ControladorVentanaHuespedReserva implements Initializable {
     public TextField TextFieldCliente, TextFieldReserva, TextFieldHuesped1,
             TextFieldHuesped2, TextFieldHuesped3, TextFieldHuesped4, TextFieldHuesped5,
             TextFieldHuesped6;
-    public ObjetoVentana ventanaPadre;
-    public Reserva reserva = new Reserva();
+
+    private Reserva reserva = new Reserva();
+    ObservableList<Persona> listaHuespedes=FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -80,7 +84,10 @@ public class ControladorVentanaHuespedReserva implements Initializable {
 
     public TextField setReserva(Reserva r) {
         reserva = r;
-        TextFieldCliente.setText(reserva.getNumero());
+        TextFieldCliente.setText(reserva.getPersonaByCodCliente().getNombre() + " "
+                + reserva.getPersonaByCodCliente().getFisPrimerApellido() + " "
+                + reserva.getPersonaByCodCliente().getFisSegundoApellido());
+        TextFieldReserva.setText(reserva.getNumero());
         return TextFieldCliente;
     }
 
@@ -89,6 +96,7 @@ public class ControladorVentanaHuespedReserva implements Initializable {
      */
     private void accionAdd1() {
         ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped("ventanaHuespedReserva", Modality.APPLICATION_MODAL, null);
+        ((ControladorHuespedBuscador)obj.getfXMLLoader().getController()).setObjetos(listaHuespedes);
         if (obj != null) {
             obj.ver();
         }

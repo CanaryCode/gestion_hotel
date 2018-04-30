@@ -1,7 +1,6 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.ActivadorDeControles;
-import gestionhotel.zapto.org.gestionhotelcliente.controladores.ObjetoVentanaBuilder;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Consultas;
@@ -40,6 +39,7 @@ public class ControladorReservaCheckIn implements Initializable {
 
     @FXML
     private TableView<CheckIn> tabla;
+    
     ObservableList<CheckIn> listaPendientesCheckIn, listaFiltro;
     List<Reserva> listaReservas;
     public Reserva reservaEnVista;

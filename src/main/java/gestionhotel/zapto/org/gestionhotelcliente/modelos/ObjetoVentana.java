@@ -66,7 +66,7 @@ public class ObjetoVentana {
      * @param modalidad Tipo de modalidad (modal,normal).
      * @return stage ya configurado
      */
-    public Stage configuraVentana() {
+    public ObjetoVentana configuraVentana() {
         try {
             ventana.setTitle(titulo);
             ventana.getIcons().add(new Image("/imagenes/hotel.png"));
@@ -85,8 +85,10 @@ public class ObjetoVentana {
         } catch (IOException ex) {
             Logger.getLogger(ObjetoVentana.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return ventana;
+        return new ObjetoVentana();
     }
+
+  
 
     public void verReajustable() {
         VentanaCustom vc = Ventanas.getVentana(nombreVentana);

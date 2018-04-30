@@ -18,11 +18,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="515.0" prefWidth="720.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorVentanaCliente">
+<AnchorPane id="AnchorPane" prefHeight="475.0" prefWidth="720.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorVentanaCliente">
    <children>
-      <VBox prefHeight="471.0" prefWidth="680.0" AnchorPane.bottomAnchor="69.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
+      <VBox prefHeight="471.0" prefWidth="680.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TabPane prefHeight="157.0" prefWidth="680.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane prefHeight="140.0" prefWidth="680.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab fx:id="tabPersona" text="%tab.persona">
                      <content>
@@ -100,7 +100,7 @@
                                           </Label>
                                        </children>
                                        <VBox.margin>
-                                          <Insets bottom="10.0" />
+                                          <Insets />
                                        </VBox.margin>
                                     </GridPane>
                                  </children>
@@ -284,9 +284,9 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <AnchorPane>
                <children>
-                  <Button id="botonOk" fx:id="add" disable="true" mnemonicParsing="false" prefHeight="54.0" prefWidth="680.0" text="%button.crear" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Button id="botonOk" fx:id="add" disable="true" mnemonicParsing="false" text="%button.crear" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font size="15.0" />
                      </font>

@@ -9,6 +9,8 @@ import javafx.collections.ObservableList;
  */
 public class Ventanas {
 //todas de las ventanas de la app
+    public static final String CLIENTE_BUSCADOR="D",LOGIN="F",HUESPED="C",HUESPED_BUSCADOR="DF",
+            RESERVA_CHECKIN="D",CLIENTE="DD",HUESPED_RESERVA="D",PRINCIPAL="DD",QUIENES_SOMOS="DD";
 
     private static ObservableList<VentanaCustom> listaVentanas = FXCollections.observableArrayList();
 

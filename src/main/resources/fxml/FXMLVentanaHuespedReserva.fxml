@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="457.0" prefWidth="800.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorVentanaHuespedReserva">
+<AnchorPane id="AnchorPane" prefHeight="430.0" prefWidth="800.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorVentanaHuespedReserva">
    <children>
       <VBox layoutX="162.0" layoutY="81.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <children>

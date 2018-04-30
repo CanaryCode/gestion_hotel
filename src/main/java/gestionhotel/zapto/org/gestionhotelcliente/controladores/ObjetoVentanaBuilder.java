@@ -4,7 +4,6 @@ import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.VentanaCustom;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Modality;
 
 /**

@@ -154,11 +154,9 @@ public class ControladorClienteBuscador implements Initializable {
     private void codigoToggleNombre() {
         if (toggleNombre.isSelected()) {
             nombre.setDisable(false);
-            toggleNombre.setText("1");
         } else {
             nombre.setDisable(true);
             nombre.setText("");
-            toggleNombre.setText("0");
         }
         activarBotonBuscar(panelFiltro, buscar);
     }
@@ -166,66 +164,54 @@ public class ControladorClienteBuscador implements Initializable {
     private void codigoTogglePrimerApellido() {
         if (togglePrimerApellido.isSelected()) {
             primerApellido.setDisable(false);
-            togglePrimerApellido.setText("1");
         } else {
             primerApellido.setDisable(true);
             primerApellido.setText("");
-            togglePrimerApellido.setText("0");
         }
     }
 
     private void codigoToggleSegundoApellido() {
         if (toggleSegundoApellido.isSelected()) {
             segundoApellido.setDisable(false);
-            toggleSegundoApellido.setText("1");
         } else {
             segundoApellido.setDisable(true);
             segundoApellido.setText("");
-            toggleSegundoApellido.setText("0");
         }
     }
 
     private void codigoToggleFNacimiento() {
         if (toggleFNacimiento.isSelected()) {
             fechaNacimiento.setDisable(false);
-            toggleFNacimiento.setText("1");
         } else {
             fechaNacimiento.setDisable(true);
             fechaNacimiento.setValue(null);
-            toggleFNacimiento.setText("0");
         }
     }
 
     private void codigoToggleCif() {
         if (toogleCif.isSelected()) {
             cif.setDisable(false);
-            toogleCif.setText("1");
         } else {
             cif.setDisable(true);
             cif.setText("");
-            toogleCif.setText("0");
         }
     }
 
     private void codigoToggleNombreEmpresa() {
         if (toggleNombreEmpresa.isSelected()) {
             nombreEmpresa.setDisable(false);
-            toggleNombreEmpresa.setText("1");
         } else {
             nombreEmpresa.setDisable(true);
             nombreEmpresa.setText("");
-            toggleNombreEmpresa.setText("0");
         }
     }
 
     private void codigoToggleRazonSocial() {
         if (toggleRazonSocial.isSelected()) {
             razonSocial.setDisable(false);
-            toggleRazonSocial.setText("1");
         } else {
             razonSocial.setDisable(true);
             razonSocial.getSelectionModel().selectFirst();
-            toggleRazonSocial.setText("0");
         }
     }
 
@@ -233,155 +219,127 @@ public class ControladorClienteBuscador implements Initializable {
         if (toggleSexo.isSelected()) {
             sexoF.setDisable(false);
             sexoM.setDisable(false);
-            togglePrimerApellido.setText("1");
         } else {
             sexoF.setDisable(true);
             sexoM.setDisable(true);
             sexoM.setSelected(true);
-            toggleSexo.setText("0");
         }
     }
 
     private void codigoToggleNacionalidad() {
         if (toggleNacionalidad.isSelected()) {
             nacionalidad.setDisable(false);
-            toggleNacionalidad.setText("1");
         } else {
             nacionalidad.setDisable(true);
             nacionalidad.getSelectionModel().selectFirst();
-            toggleNacionalidad.setText("0");
         }
     }
 
     private void codigoToggleTratamiento() {
         if (toggleTratamiento.isSelected()) {
             tratamiento.setDisable(false);
-            toggleTratamiento.setText("1");
         } else {
             tratamiento.setDisable(true);
             tratamiento.getSelectionModel().selectFirst();
-            toggleTratamiento.setText("0");
         }
     }
 
     private void codigoToggleDni() {
         if (toggleDni.isSelected()) {
             dni.setDisable(false);
-            toggleDni.setText("1");
         } else {
             dni.setDisable(true);
             dni.setText("");
-            toggleDni.setText("0");
         }
     }
 
     private void codigoToggleEstado() {
         if (toggleEstado.isSelected()) {
             estado.setDisable(false);
-            toggleEstado.setText("1");
         } else {
             estado.setDisable(true);
             estado.getSelectionModel().selectFirst();
-            toggleDni.setText("0");
         }
     }
 
     private void codigoToggleProvincia() {
         if (toggleProvincia.isSelected()) {
             provincia.setDisable(false);
-            toggleProvincia.setText("1");
         } else {
             provincia.setDisable(true);
             provincia.setText("");
-            toggleProvincia.setText("0");
         }
     }
 
     private void codigoToggleCiudad() {
         if (toggleCiudad.isSelected()) {
             ciudad.setDisable(false);
-            toggleCiudad.setText("1");
         } else {
             ciudad.setDisable(true);
             ciudad.setText("");
-            toggleCiudad.setText("0");
         }
     }
 
     private void codigoToggleCalle() {
         if (toggleCalle.isSelected()) {
             calle.setDisable(false);
-            toggleCalle.setText("1");
         } else {
             calle.setDisable(true);
             calle.setText("");
-            toggleCalle.setText("0");
         }
     }
 
     private void codigoToggleNumero() {
         if (toggleNumero.isSelected()) {
             numero.setDisable(false);
-            toggleNumero.setText("1");
         } else {
             numero.setDisable(true);
             numero.setText("");
-            toggleNumero.setText("0");
         }
     }
 
     private void codigoToggleCodigoPostal() {
         if (toggleCodigoPostal.isSelected()) {
             codigoPostal.setDisable(false);
-            toggleCodigoPostal.setText("1");
         } else {
             codigoPostal.setDisable(true);
             codigoPostal.setText("");
-            toggleCodigoPostal.setText("0");
         }
     }
 
     private void codigoToggleTelefonoFijo() {
         if (toggleTelefonoFijo.isSelected()) {
             telefonoFijo.setDisable(false);
-            toggleTelefonoFijo.setText("1");
         } else {
             telefonoFijo.setDisable(true);
             telefonoFijo.setText("");
-            toggleTelefonoFijo.setText("0");
         }
     }
 
     private void codigoToggleTelefonoMovil() {
         if (toggleTelefonoMovil.isSelected()) {
             telefonoMovil.setDisable(false);
-            toggleTelefonoMovil.setText("1");
         } else {
             telefonoMovil.setDisable(true);
-            telefonoMovil.setText("");
-            toggleTelefonoMovil.setText("0");
+            telefonoMovil.setText("");;
         }
     }
 
     private void codigoToggleEmail() {
         if (toggleEmail.isSelected()) {
             correoElectronico.setDisable(false);
-            toggleEmail.setText("1");
         } else {
             correoElectronico.setDisable(true);
             correoElectronico.setText("");
-            toggleEmail.setText("0");
         }
     }
 
     private void codigoToggleCategoria() {
         if (toggleCategoria.isSelected()) {
             categoria.setDisable(false);
-            toggleCategoria.setText("1");
         } else {
             categoria.setDisable(true);
             categoria.getSelectionModel().selectFirst();
-            toggleCategoria.setText("0");
         }
     }
 

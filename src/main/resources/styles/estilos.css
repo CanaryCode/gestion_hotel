@@ -90,7 +90,7 @@
 /*------------------LABEL------------------------------------------------------*/
 .etiquetaTitulo{
     -fx-background-color: #329fe6;
-    -fx-font-size: 10pt;
+    -fx-font-size: 7pt;
     -fx-text-fill: white;
     -fx-opacity: 0.9;
     -fx-alignment: center;
@@ -179,7 +179,6 @@
     -fx-cursor:hand;
     -fx-background-color: white;
     -fx-alignment:CENTER;
-    -fx-content-display:top;
     -fx-text-fill: black;
     -fx-opacity: 0.9;
     -fx-cursor:hand;
@@ -194,7 +193,6 @@
     -fx-cursor:hand;
     -fx-background-color: white;
     -fx-alignment:CENTER;
-    -fx-content-display:top;
     -fx-text-fill: black;
     -fx-opacity: 0.9;
     -fx-cursor:hand;
@@ -203,7 +201,6 @@
 .botonDanger{
     -fx-background-color: orange;
     -fx-alignment:CENTER;
-    -fx-content-display:top;
     -fx-text-fill: red;
     -fx-opacity: 0.9;
     -fx-cursor:hand;
@@ -221,7 +218,6 @@
 .botonExito{
     -fx-background-color:green;
     -fx-alignment:CENTER;
-    -fx-content-display:top;
     -fx-text-fill: white;
     -fx-opacity: 0.9;
     -fx-cursor:hand;
@@ -239,7 +235,6 @@
 .botonError{
     -fx-background-color: red;
     -fx-alignment:CENTER;
-    -fx-content-display:top;
     -fx-text-fill: yellow;
     -fx-opacity: 0.9;
     -fx-cursor:hand;
@@ -268,7 +263,6 @@
     -fx-graphic:url(../imagenes/add24.png);
     -fx-background-color: #3366ff;
     -fx-alignment:BOTTOM_CENTER;
-    -fx-content-display:top;
     -fx-text-fill: white;
     -fx-opacity: 0.9;
     -fx-border-color: #ffffff;
@@ -289,7 +283,6 @@
     -fx-graphic:url(../imagenes/cancel24.png);
     -fx-background-color: red;
     -fx-alignment:BOTTOM_CENTER;
-    -fx-content-display:top;
     -fx-text-fill: white;
     -fx-opacity: 0.9;
     -fx-border-color: #ffffff;
@@ -310,7 +303,6 @@
     -fx-graphic:url(../imagenes/actualizar24.png);
     -fx-background-color: #3366ff;
     -fx-alignment:BOTTOM_CENTER;
-    -fx-content-display:top;
     -fx-text-fill: white;
     -fx-opacity: 0.9;
     -fx-border-color: #ffffff;
@@ -331,7 +323,6 @@
     -fx-graphic:url(../imagenes/borrar24.png);
     -fx-background-color: #3366ff;
     -fx-alignment:BOTTOM_CENTER;
-    -fx-content-display:top;
     -fx-text-fill: white;
     -fx-opacity: 0.9;
     -fx-border-color: #ffffff;
@@ -353,7 +344,6 @@
     -fx-graphic:url(../imagenes/buscar24.png);
     -fx-background-color: #3366ff;
     -fx-alignment:BOTTOM_CENTER;
-    -fx-content-display:top;
     -fx-text-fill: white;
     -fx-opacity: 0.9;
     -fx-border-color: #ffffff;
@@ -374,7 +364,6 @@
     -fx-graphic:url(../imagenes/ok24.png);
     -fx-background-color: green;
     -fx-alignment:BOTTOM_CENTER;
-    -fx-content-display:top;
     -fx-text-fill: white;
     -fx-opacity: 0.9;
     -fx-border-color: #ffffff;
@@ -395,7 +384,6 @@
     -fx-graphic:url(../imagenes/calculadora32.png);
     -fx-background-color: #3366ff;
     -fx-alignment:BOTTOM_CENTER;
-    -fx-content-display:top;
     -fx-text-fill: white;
     -fx-opacity: 0.9;
     -fx-border-color: #ffffff;
