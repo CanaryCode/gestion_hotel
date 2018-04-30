@@ -3,7 +3,6 @@ package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Fechas;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.vistas.reloj.Reloj;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -71,6 +70,7 @@ public class ControladorVentanaPrincipal implements Initializable {
         botonCalculadora.setOnAction((e) -> {
             ObjetoVentana obj = VentanasFactory.getObjetoVentanaCalculadora("ventanaPrincipal", Modality.NONE, null);
             if (obj != null) {
+                obj.getVentana().setAlwaysOnTop(true);
                 obj.ver();
             }
         });

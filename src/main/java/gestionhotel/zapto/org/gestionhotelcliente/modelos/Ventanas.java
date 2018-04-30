@@ -1,6 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos;
-import java.util.List;
-import java.util.stream.Collectors;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -10,37 +9,41 @@ import javafx.collections.ObservableList;
  */
 public class Ventanas {
 //todas de las ventanas de la app
+
     private static ObservableList<VentanaCustom> listaVentanas = FXCollections.observableArrayList();
-    
-/**
- * 
- * @return lista de ventanas activas
- */
+
+    /**
+     *
+     * @return lista de ventanas activas
+     */
     public static ObservableList<VentanaCustom> getListaVentanas() {
         return listaVentanas;
     }
+
     /**
-     * 
+     *
      * @param vc Stage modificado
-     * @return  lista de ventanas activas
+     * @return lista de ventanas activas
      */
     public static ObservableList<VentanaCustom> addVentana(VentanaCustom vc) {
-            listaVentanas.add(vc);
+        listaVentanas.add(vc);
         return listaVentanas;
     }
+
     /**
-     * 
+     *
      * @param nombreVentana nombre que tiene la ventana que se desea eliminar
      * @return lista de ventanas activas
      */
-    public static ObservableList<VentanaCustom> removeVentana(String nombreVentana) {
-       List nuevaLista=listaVentanas.stream().filter((t) -> {
-           return t.getMiNombre().equals(nombreVentana);
-       }).collect(Collectors.toList());
-        listaVentanas=FXCollections.observableArrayList(nuevaLista);
-        return listaVentanas;
+    public static void removeVentana(String nombreVentana) {
+            for (VentanaCustom Vent : listaVentanas) {
+                if (Vent.getMiNombre().equals(nombreVentana)) {
+                    listaVentanas.remove(Vent);
+                    break;
+                }
+            }
     }
-    
+
     public static VentanaCustom getVentana(String nombre) {
         VentanaCustom ventanaCustom = null;
         for (VentanaCustom Vent : listaVentanas) {
@@ -51,5 +54,5 @@ public class Ventanas {
         }
         return ventanaCustom;
     }
-  
+
 }

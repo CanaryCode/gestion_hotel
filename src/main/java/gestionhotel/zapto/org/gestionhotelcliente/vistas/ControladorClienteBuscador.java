@@ -2,14 +2,13 @@ package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.RecorredorPaneles;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Control;
@@ -149,7 +148,6 @@ public class ControladorClienteBuscador implements Initializable {
 
             }
         });
-
 
     }
 
@@ -396,11 +394,17 @@ public class ControladorClienteBuscador implements Initializable {
     }
 
     private void codigoActualizar() {
-        VentanasFactory.getObjetoVentanaRegistroClientes("ventanaHuespedBuscador", Modality.APPLICATION_MODAL,null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaRegistroClientes("ventanaHuespedBuscador", Modality.APPLICATION_MODAL, null);
+        if (obj != null) {
+            obj.ver();
+        }
     }
 
     private void codigoCrear() {
-       VentanasFactory.getObjetoVentanaRegistroClientes("ventanaHuespedBuscador", Modality.APPLICATION_MODAL,null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaRegistroClientes("ventanaHuespedBuscador", Modality.APPLICATION_MODAL, null);
+        if (obj != null) {
+            obj.ver();
+        }
     }
 
     private void activarBotonBuscar(Pane pane, Control... control) {
@@ -412,7 +416,7 @@ public class ControladorClienteBuscador implements Initializable {
             if (toggleButton.isSelected()) {
                 hayConsulta = true;
                 break;
-            } 
+            }
         }
         if (hayConsulta == true) {
             for (Control c : control) {

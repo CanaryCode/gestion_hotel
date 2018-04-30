@@ -1,7 +1,8 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.VentanaCustom;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -113,24 +114,24 @@ public class ControladorHuespedBuscador implements Initializable {
 
         borrar.setOnAction((e) -> {
             codigoBorrar();
-           
+
         });
 
         crear.setOnAction((e) -> {
             codigoCrear();
-          
+
         });
         actualizar.setOnAction((e) -> {
             codigoActualizar();
         });
-        
+
         seleccionar.setOnAction((e) -> {
             codigoSeleccionar();
-           
+
         });
-       aceptar.setOnAction((e)->{
-           codigoAceptar();
-       });
+        aceptar.setOnAction((e) -> {
+            codigoAceptar();
+        });
     }
 
     private void codigoToogleNombre() {
@@ -366,13 +367,20 @@ public class ControladorHuespedBuscador implements Initializable {
     }
 
     private void codigoActualizar() {
-        VentanasFactory.getObjetoVentanaHuesped("ventanaHuespedBuscador", Modality.APPLICATION_MODAL,null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaHuesped("ventanaHuespedBuscador", Modality.APPLICATION_MODAL, null);
+        if (obj != null) {
+
+        }
     }
 
     private void codigoCrear() {
-         VentanasFactory.getObjetoVentanaHuesped("ventanaHuespedBuscador", Modality.APPLICATION_MODAL,null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaHuesped("ventanaHuespedBuscador", Modality.APPLICATION_MODAL, null);
+        if (obj != null) {
+
+        }
     }
+
     private void codigoAceptar() {
-        
+
     }
 }

@@ -19,7 +19,7 @@ public class ObjetoVentanaBuilder {
         VentanaCustom vc = Ventanas.getVentana(NombreVentana);
         if (vc == null || !vc.isActiva()) {
            ObjetoVentana obj=new ObjetoVentana(new FXMLLoader(), new VentanaCustom(NombreVentana),
-                   new VentanaCustom(NombreOwner), null,null, 
+                   NombreOwner, null,null, 
                    nombreFXML, NombreVentana, titulo, modalidad, null, false);
            obj.configuraVentana();
             return obj;

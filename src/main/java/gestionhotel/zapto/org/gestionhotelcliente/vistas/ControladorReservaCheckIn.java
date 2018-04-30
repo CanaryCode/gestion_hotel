@@ -22,7 +22,6 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 
-
 /**
  *
  * @author Antonio Jesús Pérez Delgado
@@ -94,19 +93,20 @@ public class ControladorReservaCheckIn implements Initializable {
         cliente.setText("");
 
     }
-    public static ObjetoVentana getObjetoVentanaBuscarHuesped(String owner, Modality modalidad) {
-        ObjetoVentana obj = ObjetoVentanaBuilder.crear("FXMLVentanaHuespedBuscador", "ventanaHuespedBuscador",
-                owner, ObjetoVentana.resourceBundle.getString("windows.huespedBuscador"), modalidad,null);
-        return obj;
-    }
+
     private void accionCheckIn() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaHuespedReserva("ventanaReservaCheckIn", Modality.WINDOW_MODAL,null);
-        ((ControladorVentanaHuespedReserva) obj.getfXMLLoader().getController()).setReserva(reservaEnVista);
-        obj.ver();
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaHuespedReserva("ventanaReservaCheckIn", Modality.WINDOW_MODAL, null);
+        if (obj != null) {
+            ((ControladorVentanaHuespedReserva) obj.getfXMLLoader().getController()).setReserva(reservaEnVista);
+            obj.ver();
+        }
     }
 
     private void accionReserva() {
-         VentanasFactory.getObjetoVentanaAddReserva("ventanaReservaCheckIn", Modality.APPLICATION_MODAL,null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaAddReserva("ventanaReservaCheckIn", Modality.APPLICATION_MODAL, null);
+        if (obj != null) {
+            obj.ver();
+        }
     }
 
     private void activaBotonesBuscarYResetea() {

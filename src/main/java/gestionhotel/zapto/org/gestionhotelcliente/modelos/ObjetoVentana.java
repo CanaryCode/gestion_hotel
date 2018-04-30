@@ -19,18 +19,18 @@ public class ObjetoVentana {
 
     public static final ResourceBundle resourceBundle = ResourceBundle.getBundle("i18n/mensajes");
     FXMLLoader fXMLLoader;
-    VentanaCustom ventana, owner;
+    VentanaCustom ventana;
     Scene scene;
     Parent parent;
-    String nombreFXML, nombreVentana, titulo;
+    String nombreFXML, nombreVentana, titulo, ownerName;
     Modality modalidad;
     Object controlador;
     boolean cargado;
 
-    public ObjetoVentana(FXMLLoader fXMLLoader, VentanaCustom ventana, VentanaCustom owner, Scene scene, Parent parent, String nombreFXML, String nombreVentana, String titulo, Modality modalidad, Object controlador, boolean cargado) {
+    public ObjetoVentana(FXMLLoader fXMLLoader, VentanaCustom ventana, String owner, Scene scene, Parent parent, String nombreFXML, String nombreVentana, String titulo, Modality modalidad, Object controlador, boolean cargado) {
         this.fXMLLoader = fXMLLoader;
         this.ventana = ventana;
-        this.owner = owner;
+        this.ownerName = owner;
         this.scene = scene;
         this.parent = parent;
         this.nombreFXML = nombreFXML;
@@ -69,20 +69,19 @@ public class ObjetoVentana {
     public Stage configuraVentana() {
         try {
             ventana.setTitle(titulo);
-            ventana.initModality(modalidad);
             ventana.getIcons().add(new Image("/imagenes/hotel.png"));
             ventana.setMiNombre(nombreVentana);
             fXMLLoader = new FXMLLoader(getClass().getResource("/fxml/" + nombreFXML + ".fxml"), resourceBundle);
-            if(controlador!=null){
+            if (controlador != null) {
                 fXMLLoader.setController(controlador);
             }
             ventana.setOnCloseRequest(Event -> {
                 cerrar();
             });
             parent = getfXMLLoader().load();
-            if (owner != null) {
-                ventana.initOwner(owner);
-            }
+            ventana.initModality(modalidad);
+            VentanaCustom ventanaOwner = Ventanas.getVentana(ownerName);
+            ventana.initOwner(ventanaOwner);
         } catch (IOException ex) {
             Logger.getLogger(ObjetoVentana.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -113,9 +112,9 @@ public class ObjetoVentana {
     }
 
     public void cerrar() {
-        Ventanas.removeVentana(nombreVentana);
         this.ventana.setActividad(false);
         this.ventana.close();
+        Ventanas.removeVentana(nombreVentana);
     }
 
     public String getNombreFXML() {
@@ -186,11 +185,11 @@ public class ObjetoVentana {
         this.fXMLLoader = fXMLLoader;
     }
 
-    public VentanaCustom getOwner() {
-        return owner;
+    public String getOwnerName() {
+        return ownerName;
     }
 
-    public void setOwner(String owner) {
-        this.owner = Ventanas.getVentana(owner);
+    public void setOwnerName(String owner) {
+        this.ownerName = owner;
     }
 }

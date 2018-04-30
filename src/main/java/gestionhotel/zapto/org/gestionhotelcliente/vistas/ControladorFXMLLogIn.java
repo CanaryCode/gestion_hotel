@@ -1,6 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
-import com.sun.imageio.plugins.jpeg.JPEG;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.ConfiguradorIdioma;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
@@ -56,9 +55,11 @@ public class ControladorFXMLLogIn implements Initializable {
     private void logicaBoton() {
         Locale.setDefault(ConfiguradorIdioma.cambiaIdioma(lenguaje.getSelectionModel().getSelectedItem().toString()));
         ObjetoVentana obj = VentanasFactory.getObjetoVentanaPrincipal();
-        obj.ver();
-        Ventanas.getVentana("ventanaLogin").close();
-        Ventanas.getVentana("ventanaLogin").setActividad(false);
-        Ventanas.getListaVentanas().remove(0);
+        if (obj != null) {
+            obj.ver();
+            Ventanas.getVentana("ventanaLogin").close();
+            Ventanas.getVentana("ventanaLogin").setActividad(false);
+            Ventanas.getListaVentanas().remove(0);
+        }
     }
 }
