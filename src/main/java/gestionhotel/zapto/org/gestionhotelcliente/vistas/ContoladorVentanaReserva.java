@@ -1,5 +1,6 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import java.net.URL;
@@ -66,7 +67,7 @@ public class ContoladorVentanaReserva implements Initializable {
     }
 
     private void accionBuscarCliente() {
-        new Ventanas().abrirVentanaBuscarCliente(Ventanas.ventanaAddReserva, Modality.APPLICATION_MODAL);
+        VentanasFactory.getObjetoVentanaBuscarCliente("ventanaAddReserva", Modality.APPLICATION_MODAL,null);
     }
   
 

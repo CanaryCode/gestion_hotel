@@ -1,6 +1,9 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
+import com.sun.imageio.plugins.jpeg.JPEG;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.ConfiguradorIdioma;
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import java.net.URL;
@@ -15,7 +18,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
 
 /**
  * FXML Controller class
@@ -32,10 +34,10 @@ public class ControladorFXMLLogIn implements Initializable {
 
     @FXML
     TextField usuario;
-    
+
     @FXML
     PasswordField contraseña;
-    
+
     @FXML
     ComboBox lenguaje;
 
@@ -44,7 +46,6 @@ public class ControladorFXMLLogIn implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         botonEntrar.setOnAction((ActionEvent event) -> {
             logicaBoton();
         });
@@ -53,10 +54,11 @@ public class ControladorFXMLLogIn implements Initializable {
     }
 
     private void logicaBoton() {
-        
         Locale.setDefault(ConfiguradorIdioma.cambiaIdioma(lenguaje.getSelectionModel().getSelectedItem().toString()));
-       Ventanas.Objetos obj= new Ventanas().abrirVentanaPrincipal();
-       obj.getStage().show();
-       
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaPrincipal();
+        obj.ver();
+        Ventanas.getVentana("ventanaLogin").close();
+        Ventanas.getVentana("ventanaLogin").setActividad(false);
+        Ventanas.getListaVentanas().remove(0);
     }
 }

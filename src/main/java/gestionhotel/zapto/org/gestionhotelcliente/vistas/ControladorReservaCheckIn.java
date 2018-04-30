@@ -1,25 +1,19 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.ActivadorDeControles;
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.ObjetoVentanaBuilder;
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Consultas;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Reserva;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.tablas.CheckIn;
-import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.application.Platform;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -27,7 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
-import javafx.stage.Stage;
+
 
 /**
  *
@@ -100,36 +94,24 @@ public class ControladorReservaCheckIn implements Initializable {
         cliente.setText("");
 
     }
-
-    public void pasaObjetos(Ventanas.Objetos obj) {
-
-        try {
-            Parent p;
-            p = obj.getfXMLLoader().load();
-
-            ((ControladorVentanaHuespedReserva) obj.getfXMLLoader().getController()).setReserva(reservaEnVista);
-            Scene scene = new Scene(p);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(ControladorReservaCheckIn.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public static ObjetoVentana getObjetoVentanaBuscarHuesped(String owner, Modality modalidad) {
+        ObjetoVentana obj = ObjetoVentanaBuilder.crear("FXMLVentanaHuespedBuscador", "ventanaHuespedBuscador",
+                owner, ObjetoVentana.resourceBundle.getString("windows.huespedBuscador"), modalidad,null);
+        return obj;
     }
-
     private void accionCheckIn() {
-            Ventanas.Objetos obj = new Ventanas().abrirVentanaHuespedReserva(Ventanas.ventanaReservaCheckIn, Modality.NONE);
-            pasaObjetos(obj);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaHuespedReserva("ventanaReservaCheckIn", Modality.WINDOW_MODAL,null);
+        ((ControladorVentanaHuespedReserva) obj.getfXMLLoader().getController()).setReserva(reservaEnVista);
+        obj.ver();
     }
 
     private void accionReserva() {
-        new Ventanas().abrirVentanaAddReserva(Ventanas.ventanaReservaCheckIn, Modality.APPLICATION_MODAL);
+         VentanasFactory.getObjetoVentanaAddReserva("ventanaReservaCheckIn", Modality.APPLICATION_MODAL,null);
     }
 
     private void activaBotonesBuscarYResetea() {
         List ticList = Arrays.asList(new TextInputControl[]{
             reserva, cliente});
-
         ActivadorDeControles.addActivador(ticList, resetearCampos, buscar);
     }
 

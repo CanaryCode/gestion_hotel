@@ -1,9 +1,12 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Reserva;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -27,8 +30,7 @@ public class ControladorVentanaHuespedReserva implements Initializable {
             TextFieldHuesped2, TextFieldHuesped3, TextFieldHuesped4, TextFieldHuesped5,
             TextFieldHuesped6;
 
-    public Reserva reserva=new Reserva();
-    
+    public Reserva reserva = new Reserva();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -79,39 +81,40 @@ public class ControladorVentanaHuespedReserva implements Initializable {
     }
 
     public TextField setReserva(Reserva r) {
-        reserva =r;
+        reserva = r;
+        TextFieldCliente.setText(reserva.getNumero());
         return TextFieldCliente;
     }
-
-   
-
+/**
+ * 
+ */
     private void accionAdd1() {
-        Ventanas.Objetos obj = new Ventanas().abrirVentanaBuscarHuesped(Ventanas.ventanaHuespedReserva, Modality.APPLICATION_MODAL);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped("ventanaHuespedReserva", Modality.APPLICATION_MODAL,null);
     }
 
     private void accionAdd2() {
-        Ventanas.Objetos obj = new Ventanas().abrirVentanaBuscarHuesped(Ventanas.ventanaHuespedReserva, Modality.APPLICATION_MODAL);
-        obj.getStage().show();
+        ObjetoVentana obj =VentanasFactory.getObjetoVentanaBuscarHuesped("ventanaHuespedReserva", Modality.APPLICATION_MODAL,null);
+
     }
 
     private void accionAdd3() {
-        Ventanas.Objetos obj = new Ventanas().abrirVentanaBuscarHuesped(Ventanas.ventanaHuespedReserva, Modality.APPLICATION_MODAL);
-        obj.getStage().show();
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped("ventanaHuespedReserva", Modality.APPLICATION_MODAL,null);
+
     }
 
     private void accionAdd4() {
-        Ventanas.Objetos obj = new Ventanas().abrirVentanaBuscarHuesped(Ventanas.ventanaHuespedReserva, Modality.APPLICATION_MODAL);
-        obj.getStage().show();
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped ("ventanaHuespedReserva", Modality.APPLICATION_MODAL,null);
+
     }
 
     private void accionAdd5() {
-        Ventanas.Objetos obj = new Ventanas().abrirVentanaBuscarHuesped(Ventanas.ventanaHuespedReserva, Modality.APPLICATION_MODAL);
-        obj.getStage().show();
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped("ventanaHuespedReserva", Modality.APPLICATION_MODAL,null);
+
     }
 
     private void accionAdd6() {
-        Ventanas.Objetos obj = new Ventanas().abrirVentanaBuscarHuesped(Ventanas.ventanaHuespedReserva, Modality.APPLICATION_MODAL);
-        obj.getStage().show();
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped("ventanaHuespedReserva", Modality.APPLICATION_MODAL,null);
+
     }
 
     private void accionBorrar1() {

@@ -1,6 +1,7 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.RecorredorPaneles;
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import java.net.URL;
 import java.util.ArrayList;
@@ -395,11 +396,11 @@ public class ControladorClienteBuscador implements Initializable {
     }
 
     private void codigoActualizar() {
-        new Ventanas().abrirVentanaRegistroClientes(Ventanas.ventanaClienteBuscador, Modality.APPLICATION_MODAL);
+        VentanasFactory.getObjetoVentanaRegistroClientes("ventanaHuespedBuscador", Modality.APPLICATION_MODAL,null);
     }
 
     private void codigoCrear() {
-        new Ventanas().abrirVentanaRegistroClientes(Ventanas.ventanaClienteBuscador, Modality.APPLICATION_MODAL);
+       VentanasFactory.getObjetoVentanaRegistroClientes("ventanaHuespedBuscador", Modality.APPLICATION_MODAL,null);
     }
 
     private void activarBotonBuscar(Pane pane, Control... control) {
