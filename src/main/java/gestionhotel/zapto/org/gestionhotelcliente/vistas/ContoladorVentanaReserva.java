@@ -3,6 +3,7 @@ package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -67,7 +68,7 @@ public class ContoladorVentanaReserva implements Initializable {
     }
 
     private void accionBuscarCliente() {
-        ObjetoVentana obj=VentanasFactory.getObjetoVentanaBuscarCliente("ventanaAddReserva", Modality.APPLICATION_MODAL,null);
+        ObjetoVentana obj=VentanasFactory.getObjetoVentanaBuscarCliente(Ventanas.RESERVA, Modality.APPLICATION_MODAL,null);
       if (obj != null) {
           obj.ver();
       }

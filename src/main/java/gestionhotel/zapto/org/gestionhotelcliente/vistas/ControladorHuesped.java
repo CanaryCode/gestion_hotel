@@ -40,11 +40,11 @@ public class ControladorHuesped implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        tratamiento.setItems(FXCollections.observableArrayList(Registro.ListaTratamiento));
+        tratamiento.setItems(Registro.ListaTratamiento);
         tratamiento.getSelectionModel().selectFirst();
-        categoria.setItems(FXCollections.observableArrayList(Registro.listaCategoriaHuesped));
+        categoria.setItems(Registro.listaCategoriaHuesped);
         categoria.getSelectionModel().selectFirst();
-        nacionalidad.setItems(FXCollections.observableArrayList(Registro.listaPaises));
+        nacionalidad.setItems(Registro.listaPaises);
         nacionalidad.getSelectionModel().selectFirst();
         aceptar.setOnAction((event) -> {
             accionAdd();

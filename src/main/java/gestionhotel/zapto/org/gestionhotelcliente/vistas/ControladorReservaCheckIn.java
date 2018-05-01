@@ -4,6 +4,7 @@ import gestionhotel.zapto.org.gestionhotelcliente.controladores.ActivadorDeContr
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Consultas;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Reserva;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.tablas.CheckIn;
 import java.net.URL;
@@ -13,7 +14,9 @@ import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -31,7 +34,7 @@ public class ControladorReservaCheckIn implements Initializable {
     private TextField cliente, reserva;
 
     @FXML
-    private Button buscar, resetearCampos, checkIn, addReserva;
+    private Button buscar, resetearCampos, checkIn, addReserva, noShow;
 
     @FXML
     private TableColumn tableColumnNumeroReserva, tableColumnCliente, tableColumnHabitacion, tableColumnTipoHabitacion,
@@ -39,7 +42,7 @@ public class ControladorReservaCheckIn implements Initializable {
 
     @FXML
     private TableView<CheckIn> tabla;
-    
+
     ObservableList<CheckIn> listaPendientesCheckIn, listaFiltro;
     List<Reserva> listaReservas;
     public Reserva reservaEnVista;
@@ -58,6 +61,9 @@ public class ControladorReservaCheckIn implements Initializable {
         addReserva.setOnAction((event) -> {
             accionReserva();
         });
+        noShow.setOnAction((event) -> {
+            accionNoshow();
+        });
 
         cargarTableColumns();
         activaBotonesBuscarYResetea();
@@ -73,6 +79,8 @@ public class ControladorReservaCheckIn implements Initializable {
 
         tabla.getSelectionModel().selectedItemProperty().addListener((observable) -> {
             seleccionaReservaEnVista();
+            noShow.setDisable(false);
+            checkIn.setDisable(false);
         });
     }
 
@@ -95,18 +103,29 @@ public class ControladorReservaCheckIn implements Initializable {
     }
 
     private void accionCheckIn() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaHuespedReserva("ventanaReservaCheckIn", Modality.WINDOW_MODAL, null);
-        if (obj != null) {
-            ((ControladorVentanaHuespedReserva) obj.getfXMLLoader().getController()).setReserva(reservaEnVista);
-            obj.ver();
+        if (reservaEnVista != null) {
+            ObjetoVentana obj = VentanasFactory.getObjetoVentanaHuespedReserva(Ventanas.RESERVA_CHECKIN, Modality.WINDOW_MODAL, null);
+            if (obj != null) {
+                ((ControladorVentanaHuespedReserva) obj.getfXMLLoader().getController()).setReserva(reservaEnVista);
+                obj.ver();
+            }
         }
     }
 
     private void accionReserva() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaAddReserva("ventanaReservaCheckIn", Modality.APPLICATION_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaAddReserva(Ventanas.RESERVA_CHECKIN, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
             obj.ver();
         }
+    }
+
+    private void accionNoshow() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Seguro que quiere marcar como: \"NO-SHOW\"."
+                + "\n\na la reserva: " + reservaEnVista.getNumero()
+                + "\n\npertenciente al cliente: " + reservaEnVista.getPersonaByCodCliente().getNombre() + " "
+                + reservaEnVista.getPersonaByCodCliente().getFisPrimerApellido() + " "
+                + reservaEnVista.getPersonaByCodCliente().getFisPrimerApellido(), ButtonType.YES, ButtonType.NO);
+        alert.show();
     }
 
     private void activaBotonesBuscarYResetea() {

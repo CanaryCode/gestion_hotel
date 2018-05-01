@@ -3,6 +3,7 @@ package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Fechas;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.vistas.reloj.Reloj;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -68,7 +69,7 @@ public class ControladorVentanaPrincipal implements Initializable {
         });
 
         botonCalculadora.setOnAction((e) -> {
-            ObjetoVentana obj = VentanasFactory.getObjetoVentanaCalculadora("ventanaPrincipal", Modality.NONE, null);
+            ObjetoVentana obj = VentanasFactory.getObjetoVentanaCalculadora(Ventanas.PRINCIPAL, Modality.NONE, null);
             if (obj != null) {
                 obj.getVentana().setAlwaysOnTop(true);
                 obj.ver();
@@ -79,38 +80,38 @@ public class ControladorVentanaPrincipal implements Initializable {
     }
 
     private void codigoMenuAddReservas() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaAddReserva("ventanaPrincipal", Modality.WINDOW_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaAddReserva(Ventanas.PRINCIPAL, Modality.WINDOW_MODAL, null);
         obj.ver();
     }
 
     private void codigoMenuKardex() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaRegistroClientes("ventanaPrincipal", Modality.WINDOW_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaRegistroClientes(Ventanas.PRINCIPAL, Modality.WINDOW_MODAL, null);
         obj.ver();
     }
 
     private void codigoMenuReserva() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaReservaCheckIn("ventanaPrincipal", Modality.WINDOW_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaReservaCheckIn(Ventanas.PRINCIPAL, Modality.WINDOW_MODAL, null);
         obj.ver();
     }
 
     private void codigoMenuQuienesSomos() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaQuienesSomos("ventanaPrincipal", Modality.WINDOW_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaQuienesSomos(Ventanas.PRINCIPAL, Modality.WINDOW_MODAL, null);
         obj.ver();
     }
 
     private void codigoMenuRegistroClientes() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaRegistroClientes("ventanaPrincipal", Modality.WINDOW_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaRegistroClientes(Ventanas.PRINCIPAL, Modality.WINDOW_MODAL, null);
         obj.ver();
     }
 
     private void codigoMenuBuscadorHuesped() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped("ventanaPrincipal", Modality.WINDOW_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.PRINCIPAL, Modality.WINDOW_MODAL, null);
         obj.ver();
 
     }
 
     private void codigoMenuBuscadorCliente() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarCliente("ventanaPrincipal", Modality.WINDOW_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarCliente(Ventanas.PRINCIPAL, Modality.WINDOW_MODAL, null);
         obj.ver();
 
     }

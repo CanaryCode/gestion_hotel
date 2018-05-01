@@ -57,8 +57,8 @@ public class ControladorFXMLLogIn implements Initializable {
         ObjetoVentana obj = VentanasFactory.getObjetoVentanaPrincipal();
         if (obj != null) {
             obj.ver();
-            Ventanas.getVentana("ventanaLogin").close();
-            Ventanas.getVentana("ventanaLogin").setActividad(false);
+            Ventanas.getVentana(Ventanas.LOGIN).close();
+            Ventanas.getVentana(Ventanas.LOGIN).setActividad(false);
             Ventanas.getListaVentanas().remove(0);
         }
     }

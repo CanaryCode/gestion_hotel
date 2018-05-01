@@ -21,7 +21,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="680.0" prefWidth="900.0" styleClass="mainFxmlClass" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorHuespedBuscador">
+<AnchorPane id="AnchorPane" fx:id="panelPrincipal" prefHeight="680.0" prefWidth="900.0" styleClass="mainFxmlClass" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorHuespedBuscador">
    <children>
       <SplitPane dividerPositions="0.6504424778761062" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -321,7 +321,8 @@
                                     <TextField fx:id="dni" disable="true" styleClass="texfieldNormal" GridPane.columnIndex="1">
                                        <GridPane.margin>
                                           <Insets right="10.0" />
-                                       </GridPane.margin></TextField>
+                                       </GridPane.margin>
+                                    </TextField>
                                     <HBox prefHeight="100.0" prefWidth="200.0">
                                        <children>
                                           <ToggleButton fx:id="toggleDni" mnemonicParsing="false" styleClass="toogleButtonOn">
@@ -478,12 +479,13 @@
                                           <GridPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                              <columnConstraints>
                                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                              </columnConstraints>
                                              <rowConstraints>
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
-                                                <AnchorPane prefHeight="200.0">
+                                                <AnchorPane prefHeight="200.0" GridPane.columnIndex="1">
                                                    <children>
                                                       <Button id="botonBuscar" fx:id="seleccionar" disable="true" mnemonicParsing="false" text="%button.buscar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                          <font>
@@ -492,7 +494,25 @@
                                                       </Button>
                                                    </children>
                                                    <GridPane.margin>
-                                                      <Insets bottom="10.0" />
+                                                      <Insets left="10.0" />
+                                                   </GridPane.margin>
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                </AnchorPane>
+                                                <AnchorPane>
+                                                   <children>
+                                                      <Button id="botonActualizar" fx:id="resetarCampos" disable="true" layoutX="259.0" layoutY="-10.0" mnemonicParsing="false" text="Resetear campos" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </Button>
+                                                   </children>
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <GridPane.margin>
+                                                      <Insets right="10.0" />
                                                    </GridPane.margin>
                                                 </AnchorPane>
                                              </children>

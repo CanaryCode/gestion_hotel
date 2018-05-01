@@ -49,15 +49,15 @@ public class ControladorVentanaCliente implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        estado.setItems(FXCollections.observableArrayList(Registro.listaPaises));
+        estado.setItems(Registro.listaPaises);
         estado.getSelectionModel().selectFirst();
-        tratamiento.setItems(FXCollections.observableArrayList(Registro.ListaTratamiento));
+        tratamiento.setItems(Registro.ListaTratamiento);
         tratamiento.getSelectionModel().selectFirst();
-        categoria.setItems(FXCollections.observableArrayList(Registro.ListaCategoriaClente));
+        categoria.setItems(Registro.ListaCategoriaCliente);
         categoria.getSelectionModel().selectFirst();
-        nacionalidad.setItems(FXCollections.observableArrayList(Registro.listaPaises));
+        nacionalidad.setItems(Registro.listaPaises);
         nacionalidad.getSelectionModel().selectFirst();
-        razonSocial.setItems(FXCollections.observableArrayList(Registro.ListaRazonSocial));
+        razonSocial.setItems(Registro.ListaRazonSocial);
         razonSocial.getSelectionModel().selectFirst();
     add.setOnAction((event) -> {
         accionAdd();

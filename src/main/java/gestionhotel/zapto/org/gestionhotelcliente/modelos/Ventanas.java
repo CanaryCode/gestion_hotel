@@ -9,8 +9,11 @@ import javafx.collections.ObservableList;
  */
 public class Ventanas {
 //todas de las ventanas de la app
-    public static final String CLIENTE_BUSCADOR="D",LOGIN="F",HUESPED="C",HUESPED_BUSCADOR="DF",
-            RESERVA_CHECKIN="D",CLIENTE="DD",HUESPED_RESERVA="D",PRINCIPAL="DD",QUIENES_SOMOS="DD";
+
+    public static final String RESERVA = "Reserva", CLIENTE_BUSCADOR = "ClienteBuscador", LOGIN = "LogIn",
+            HUESPED = "Huesped", HUESPED_BUSCADOR = "HuespedBuscador", RESERVA_CHECKIN = "ReservaCheckIn",
+            CLIENTE = "Cliente", HUESPED_RESERVA = "HuespedReserva", PRINCIPAL = "Principal",
+            QUIENES_SOMOS = "QuienesSomos",CALCULADORA="Calculadora";
 
     private static ObservableList<VentanaCustom> listaVentanas = FXCollections.observableArrayList();
 
@@ -38,12 +41,12 @@ public class Ventanas {
      * @return lista de ventanas activas
      */
     public static void removeVentana(String nombreVentana) {
-            for (VentanaCustom Vent : listaVentanas) {
-                if (Vent.getMiNombre().equals(nombreVentana)) {
-                    listaVentanas.remove(Vent);
-                    break;
-                }
+        for (VentanaCustom Vent : listaVentanas) {
+            if (Vent.getMiNombre().equals(nombreVentana)) {
+                listaVentanas.remove(Vent);
+                break;
             }
+        }
     }
 
     public static VentanaCustom getVentana(String nombre) {

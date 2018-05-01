@@ -285,7 +285,7 @@
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button id="botonOk" fx:id="botonOk" layoutX="132.0" layoutY="2.0" mnemonicParsing="false" text="Ok" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                  <Button id="botonOk" fx:id="botonOk" disable="true" layoutX="132.0" layoutY="2.0" mnemonicParsing="false" text="Ok" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">

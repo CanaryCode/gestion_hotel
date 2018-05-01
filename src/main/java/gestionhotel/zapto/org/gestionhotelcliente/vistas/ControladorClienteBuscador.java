@@ -3,10 +3,13 @@ package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.RecorredorPaneles;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -42,13 +45,13 @@ public class ControladorClienteBuscador implements Initializable {
     @FXML
     private ComboBox<?> nacionalidad, tratamiento, categoria, razonSocial, estado;
     @FXML
-    private Button borrar, crear, actualizar, buscar;
+    private Button borrar, crear, actualizar, buscar,resetearCampos;
     @FXML
     private TableColumn<?, ?> FtableColumnNumeroReserva, tableColumnCliente,
             tableColumnHabitacion, tableColumnTipoHabitacion, tableColumnFechaPrevistaEntrada,
             tableColumnFechaPrevistaSalida, tableColumnHuesped;
     @FXML
-    AnchorPane panelPersona, panelEmpresa, panelFiltro;
+    AnchorPane panelPrincipal,panelPersona, panelEmpresa, panelFiltro;
 
     @FXML
     private ToggleButton toggleNombre, togglePrimerApellido, toggleSegundoApellido,
@@ -59,67 +62,73 @@ public class ControladorClienteBuscador implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        toggleNombre.setOnAction((e) -> {
+        nacionalidad.setItems(Registro.listaPaises);
+        tratamiento.setItems(Registro.ListaTratamiento);
+        categoria.setItems(Registro.ListaCategoriaCliente);
+        razonSocial.setItems(Registro.ListaRazonSocial);
+        estado.setItems(Registro.listaPaises);
+        
+        toggleNombre.selectedProperty().addListener((e) -> {
             codigoToggleNombre();
         });
-        togglePrimerApellido.setOnAction((e) -> {
+        togglePrimerApellido.selectedProperty().addListener((e) -> {
             codigoTogglePrimerApellido();
         });
-        toggleSegundoApellido.setOnAction((e) -> {
+        toggleSegundoApellido.selectedProperty().addListener((e) -> {
             codigoToggleSegundoApellido();
         });
-        toggleFNacimiento.setOnAction((e) -> {
+        toggleFNacimiento.selectedProperty().addListener((e) -> {
             codigoToggleFNacimiento();
         });
-        toogleCif.setOnAction((e) -> {
+        toogleCif.selectedProperty().addListener((e) -> {
             codigoToggleCif();
         });
-        toggleNombreEmpresa.setOnAction((e) -> {
+        toggleNombreEmpresa.selectedProperty().addListener((e) -> {
             codigoToggleNombreEmpresa();
         });
-        toggleRazonSocial.setOnAction((e) -> {
+        toggleRazonSocial.selectedProperty().addListener((e) -> {
             codigoToggleRazonSocial();
         });
-        toggleNacionalidad.setOnAction((e) -> {
+        toggleNacionalidad.selectedProperty().addListener((e) -> {
             codigoToggleNacionalidad();
         });
-        toggleTratamiento.setOnAction((e) -> {
+        toggleTratamiento.selectedProperty().addListener((e) -> {
             codigoToggleTratamiento();
         });
-        toggleDni.setOnAction((e) -> {
+        toggleDni.selectedProperty().addListener((e) -> {
             codigoToggleDni();
         });
-        toggleEstado.setOnAction((e) -> {
+        toggleEstado.selectedProperty().addListener((e) -> {
             codigoToggleEstado();
         });
-        toggleProvincia.setOnAction((e) -> {
+        toggleProvincia.selectedProperty().addListener((e) -> {
             codigoToggleProvincia();
         });
-        toggleCiudad.setOnAction((e) -> {
+        toggleCiudad.selectedProperty().addListener((e) -> {
             codigoToggleCiudad();
         });
-        toggleCalle.setOnAction((e) -> {
+        toggleCalle.selectedProperty().addListener((e) -> {
             codigoToggleCalle();
         });
-        toggleNumero.setOnAction((e) -> {
+        toggleNumero.selectedProperty().addListener((e) -> {
             codigoToggleNumero();
         });
-        toggleCodigoPostal.setOnAction((e) -> {
+        toggleCodigoPostal.selectedProperty().addListener((e) -> {
             codigoToggleCodigoPostal();
         });
-        toggleTelefonoFijo.setOnAction((e) -> {
+        toggleTelefonoFijo.selectedProperty().addListener((e) -> {
             codigoToggleTelefonoFijo();
         });
-        toggleTelefonoMovil.setOnAction((e) -> {
+        toggleTelefonoMovil.selectedProperty().addListener((e) -> {
             codigoToggleTelefonoMovil();
         });
-        toggleEmail.setOnAction((e) -> {
+        toggleEmail.selectedProperty().addListener((e) -> {
             codigoToggleEmail();
         });
-        toggleCategoria.setOnAction((e) -> {
+        toggleCategoria.selectedProperty().addListener((e) -> {
             codigoToggleCategoria();
         });
-        toggleSexo.setOnAction((e) -> {
+        toggleSexo.selectedProperty().addListener((e) -> {
             codigoToggleSexo();
         });
 
@@ -154,64 +163,77 @@ public class ControladorClienteBuscador implements Initializable {
     private void codigoToggleNombre() {
         if (toggleNombre.isSelected()) {
             nombre.setDisable(false);
+            enciendeToggle();
         } else {
             nombre.setDisable(true);
             nombre.setText("");
+            configuraBotones();
         }
-        activarBotonBuscar(panelFiltro, buscar);
     }
 
     private void codigoTogglePrimerApellido() {
         if (togglePrimerApellido.isSelected()) {
             primerApellido.setDisable(false);
+            enciendeToggle();
         } else {
             primerApellido.setDisable(true);
             primerApellido.setText("");
+            configuraBotones();
         }
     }
 
     private void codigoToggleSegundoApellido() {
         if (toggleSegundoApellido.isSelected()) {
             segundoApellido.setDisable(false);
+            enciendeToggle();
         } else {
             segundoApellido.setDisable(true);
             segundoApellido.setText("");
+            configuraBotones();
         }
     }
 
     private void codigoToggleFNacimiento() {
         if (toggleFNacimiento.isSelected()) {
             fechaNacimiento.setDisable(false);
+            enciendeToggle();
         } else {
             fechaNacimiento.setDisable(true);
             fechaNacimiento.setValue(null);
+            configuraBotones();
         }
     }
 
     private void codigoToggleCif() {
         if (toogleCif.isSelected()) {
             cif.setDisable(false);
+            enciendeToggle();
         } else {
             cif.setDisable(true);
             cif.setText("");
+            configuraBotones();
         }
     }
 
     private void codigoToggleNombreEmpresa() {
         if (toggleNombreEmpresa.isSelected()) {
             nombreEmpresa.setDisable(false);
+            enciendeToggle();
         } else {
             nombreEmpresa.setDisable(true);
             nombreEmpresa.setText("");
+            configuraBotones();
         }
     }
 
     private void codigoToggleRazonSocial() {
         if (toggleRazonSocial.isSelected()) {
             razonSocial.setDisable(false);
+            enciendeToggle();
         } else {
             razonSocial.setDisable(true);
             razonSocial.getSelectionModel().selectFirst();
+            configuraBotones();
         }
     }
 
@@ -219,127 +241,155 @@ public class ControladorClienteBuscador implements Initializable {
         if (toggleSexo.isSelected()) {
             sexoF.setDisable(false);
             sexoM.setDisable(false);
+            enciendeToggle();
         } else {
             sexoF.setDisable(true);
             sexoM.setDisable(true);
             sexoM.setSelected(true);
+            configuraBotones();
         }
     }
 
     private void codigoToggleNacionalidad() {
         if (toggleNacionalidad.isSelected()) {
             nacionalidad.setDisable(false);
+            enciendeToggle();
         } else {
             nacionalidad.setDisable(true);
             nacionalidad.getSelectionModel().selectFirst();
+            configuraBotones();
         }
     }
 
     private void codigoToggleTratamiento() {
         if (toggleTratamiento.isSelected()) {
             tratamiento.setDisable(false);
+            enciendeToggle();
         } else {
             tratamiento.setDisable(true);
             tratamiento.getSelectionModel().selectFirst();
+            configuraBotones();
         }
     }
 
     private void codigoToggleDni() {
         if (toggleDni.isSelected()) {
             dni.setDisable(false);
+            enciendeToggle();
         } else {
             dni.setDisable(true);
             dni.setText("");
+            configuraBotones();
         }
     }
 
     private void codigoToggleEstado() {
         if (toggleEstado.isSelected()) {
             estado.setDisable(false);
+            enciendeToggle();
         } else {
             estado.setDisable(true);
             estado.getSelectionModel().selectFirst();
+            configuraBotones();
         }
     }
 
     private void codigoToggleProvincia() {
         if (toggleProvincia.isSelected()) {
             provincia.setDisable(false);
+            enciendeToggle();
         } else {
             provincia.setDisable(true);
             provincia.setText("");
+            configuraBotones();
         }
     }
 
     private void codigoToggleCiudad() {
         if (toggleCiudad.isSelected()) {
             ciudad.setDisable(false);
+            enciendeToggle();
         } else {
             ciudad.setDisable(true);
             ciudad.setText("");
+            configuraBotones();
         }
     }
 
     private void codigoToggleCalle() {
         if (toggleCalle.isSelected()) {
             calle.setDisable(false);
+            enciendeToggle();
         } else {
             calle.setDisable(true);
             calle.setText("");
+            configuraBotones();
         }
     }
 
     private void codigoToggleNumero() {
         if (toggleNumero.isSelected()) {
             numero.setDisable(false);
+            enciendeToggle();
         } else {
             numero.setDisable(true);
             numero.setText("");
+            configuraBotones();
         }
     }
 
     private void codigoToggleCodigoPostal() {
         if (toggleCodigoPostal.isSelected()) {
             codigoPostal.setDisable(false);
+            enciendeToggle();
         } else {
             codigoPostal.setDisable(true);
             codigoPostal.setText("");
+            configuraBotones();
         }
     }
 
     private void codigoToggleTelefonoFijo() {
         if (toggleTelefonoFijo.isSelected()) {
             telefonoFijo.setDisable(false);
+            enciendeToggle();
         } else {
             telefonoFijo.setDisable(true);
             telefonoFijo.setText("");
+            configuraBotones();
         }
     }
 
     private void codigoToggleTelefonoMovil() {
         if (toggleTelefonoMovil.isSelected()) {
             telefonoMovil.setDisable(false);
+            enciendeToggle();
         } else {
             telefonoMovil.setDisable(true);
-            telefonoMovil.setText("");;
+            telefonoMovil.setText("");
+            configuraBotones();
         }
     }
 
     private void codigoToggleEmail() {
         if (toggleEmail.isSelected()) {
             correoElectronico.setDisable(false);
+            enciendeToggle();
         } else {
             correoElectronico.setDisable(true);
             correoElectronico.setText("");
+            configuraBotones();
         }
     }
 
     private void codigoToggleCategoria() {
         if (toggleCategoria.isSelected()) {
             categoria.setDisable(false);
+            enciendeToggle();
         } else {
             categoria.setDisable(true);
             categoria.getSelectionModel().selectFirst();
+            configuraBotones();
         }
     }
 
@@ -352,39 +402,42 @@ public class ControladorClienteBuscador implements Initializable {
     }
 
     private void codigoActualizar() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaRegistroClientes("ventanaHuespedBuscador", Modality.APPLICATION_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaRegistroClientes(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
             obj.ver();
         }
     }
 
     private void codigoCrear() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaRegistroClientes("ventanaHuespedBuscador", Modality.APPLICATION_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaRegistroClientes(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
             obj.ver();
         }
     }
-
-    private void activarBotonBuscar(Pane pane, Control... control) {
-        //inicializo la variable
-        boolean hayConsulta = false;
-        List<ToggleButton> lista = RecorredorPaneles.recorrePanelesToggle(pane, new ArrayList<>());
-        for (ToggleButton toggleButton : lista) {
-
+    private boolean hayTogglesOn() {
+        List<ToggleButton> listaToggle = RecorredorPaneles.recorrePanelesToggle(panelPrincipal, FXCollections.observableArrayList());
+        boolean hayToogleOn = false;
+        for (ToggleButton toggleButton : listaToggle) {
             if (toggleButton.isSelected()) {
-                hayConsulta = true;
+                hayToogleOn = true;
                 break;
             }
         }
-        if (hayConsulta == true) {
-            for (Control c : control) {
-                c.setDisable(false);
-            }
+        return hayToogleOn;
+    }
+
+    private void configuraBotones() {
+        if (hayTogglesOn()) {
+            resetearCampos.setDisable(false);
+            buscar.setDisable(false);
         } else {
-            for (Control c : control) {
-                c.setDisable(true);
-            }
+            resetearCampos.setDisable(true);
+            buscar.setDisable(true);
         }
     }
+public void enciendeToggle(){
+     buscar.setDisable(false);
+     resetearCampos.setDisable(false);
+}
 
 }

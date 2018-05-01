@@ -1,7 +1,7 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos;
 
-import java.util.Arrays;
-import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -13,7 +13,6 @@ public class Registro {
     /**
      * lista de todos los paises del mundo
      */
-
     private static final String[] arrayPaises = {"desconocido", "España", "Alemania", "Inglaterra", "Francia", "Italia",
         "Austria", "Bèlgica", "Holanda", "Portugal", "Suiza", "Luxemburgo", "Rusia", "Suecia", "Noruega",
         "Finlandia", "Irlanda", "Escocia", "Gales", "Dinarmaca", "Polonia",
@@ -21,12 +20,12 @@ public class Registro {
         "Argelia", "Argentina", "Armenia", "Australia", "Austria", "Azerbaiyán", "Bahamas", "Bangladés",
         "Barbados", "Baréin", "Bélgica", "Belice", "Benín", "Bielorrusia", "Birmania", "Bolivia",
         "Bosnia y Herzegovina", "Botsuana", "Brasil", "Brunéi", "Bulgaria", "Burkina Faso", "Burundi", "Bután",
-         "Cabo Verde", "Camboya", "Camerún", "Canadá", "Catar", "Chad", "Chile", "China", "Chipre",
+        "Cabo Verde", "Camboya", "Camerún", "Canadá", "Catar", "Chad", "Chile", "China", "Chipre",
         "Ciudad del Vaticano", "Colombia", "Comoras", "Corea del Norte", "Corea del Sur", "Costa de Marfil",
         "Costa Rica", "Croacia", "Cuba", "Dinamarca", "Dominica", "Ecuador", "Egipto", "El Salvador",
         "Emiratos Árabes Unidos", "Eritrea", "Eslovaquia", "Eslovenia", "España", "Estados Unidos", "Estonia",
-         "Etiopía", "Filipinas", "Finlandia", "Fiyi", "Francia", "Gabón", "Gambia", "Georgia", "Ghana", "Granada",
-         "Grecia", "Guatemala", "Guyana", "Guinea", "Guinea ecuatorial", "Guinea-Bisáu", "Haití", "Honduras",
+        "Etiopía", "Filipinas", "Finlandia", "Fiyi", "Francia", "Gabón", "Gambia", "Georgia", "Ghana", "Granada",
+        "Grecia", "Guatemala", "Guyana", "Guinea", "Guinea ecuatorial", "Guinea-Bisáu", "Haití", "Honduras",
         "Hungría", "India", "Indonesia", "Irak", "Irán", "Irlanda", "Islandia", "Islas Marshall", "Islas Salomón",
         "Israel", "Italia", "Jamaica", "Japón", "Jordania", "Kazajistán", "Kenia", "Kirguistán", "Kiribati", "Kuwait",
         "Laos", "Lesoto", "Letonia", "Líbano", "Liberia", "Libia", "Liechtenstein", "Lituania", "Luxemburgo",
@@ -42,65 +41,65 @@ public class Registro {
         "Túnez", "Turkmenistán", "Turquía", "Tuvalu", "Ucrania", "Uganda", "Uruguay", "Uzbekistán", "Vanuatu", "Venezuela", "Vietnam",
         "Yemen", "Yibuti", "Zambia", "Zimbabue"};
 
-    public static List listaPaises = Arrays.asList(arrayPaises);
+    public static final ObservableList listaPaises = FXCollections.observableArrayList(arrayPaises);
 
     private static final String[] arrayCategoria = {
         "Normal", "V.I.P", "Especial", "Repetidor"
     };
-    public static List<String> listaCategoriaHuesped = Arrays.asList(arrayCategoria);
+    public static final ObservableList listaCategoriaHuesped = FXCollections.observableArrayList(arrayCategoria);
 
     private static String[] arrayPension = {
         "M.P.", "Completa", "Alo Y Des"
     };
-    public static List<String> ListaPension = Arrays.asList(arrayPension);
+    public static final ObservableList ListaPension = FXCollections.observableArrayList(arrayPension);
 
     private static final String[] arrayHabitacion = {
         "11", "13", "412"
     };
-    public static List<String> ListaHabitacion = Arrays.asList(arrayHabitacion);
+    public static final ObservableList ListaHabitacion = FXCollections.observableArrayList(arrayHabitacion);
     private static final String[] arrayTratamiento = {
-        "ninguno","Sr/Sra", "Dr/Dra", "Ingeniero/a", "Don/Doña", "Ilustrisimo/a", "Excelentisimo/a"
+        "ninguno", "Sr/Sra", "Dr/Dra", "Ingeniero/a", "Don/Doña", "Ilustrisimo/a", "Excelentisimo/a"
     };
-    public static List<String> ListaTratamiento = Arrays.asList(arrayTratamiento);
+    public static final ObservableList ListaTratamiento = FXCollections.observableArrayList(arrayTratamiento);
 
     private static final String[] lenguajes = {
         "Español", "English"
     };
-    public static List<String> ListaLenguajes = Arrays.asList(lenguajes);
-    
+    public static final ObservableList ListaLenguajes = FXCollections.observableArrayList(lenguajes);
+
     private static final String[] razonSocial = {
-        "desconocido","Emp. Individual","S.L", "S.L.N.E", "S.A", "COOP","C.B"
+        "desconocido", "Emp. Individual", "S.L", "S.L.N.E", "S.A", "COOP", "C.B"
     };
-    public static List<String> ListaRazonSocial = Arrays.asList(razonSocial);
-   
+    public static final ObservableList ListaRazonSocial = FXCollections.observableArrayList(razonSocial);
+
     private static final String[] categoriaCliente = {
-        "desconocido","especial","mongolo", "mongolo profundo"
+        "desconocido", "especial", "mongolo", "mongolo profundo"
     };
-    public static List<String> ListaCategoriaClente = Arrays.asList(categoriaCliente);
-    
+    public static final ObservableList ListaCategoriaCliente = FXCollections.observableArrayList(categoriaCliente);
+
     private static final String[] numeroPersonas = {
-        "1","2","3", "4", "5"
+        "1", "2", "3", "4", "5"
     };
-    public static List<String> ListaNumeroPersonas = Arrays.asList(numeroPersonas);
-   
+    public static final ObservableList ListaNumeroPersonas = FXCollections.observableArrayList(numeroPersonas);
+
     private static final String[] tipoHabitacion = {
-        "Individual","Doble","Doble superior", "Suite", "Suite junior"
+        "Individual", "Doble", "Doble superior", "Suite", "Suite junior"
     };
-    public static List<String> ListaTipoHabitacion = Arrays.asList(tipoHabitacion);
-    
+    public static final ObservableList ListaTipoHabitacion = FXCollections.observableArrayList(tipoHabitacion);
+
     private static final String[] tipoCama = {
-        "Individual","Matrimonio","doble separadas"
+        "Individual", "Matrimonio", "doble separadas"
     };
-    public static List<String> ListaTipoCama= Arrays.asList(tipoCama);
-  
+    public static ObservableList ListaTipoCama = FXCollections.observableArrayList(tipoCama);
+
     private static final String[] tipoTarjeta = {
-        "Visa","Mastercard","American Express", "Maestro", "ServiRed"
+        "Visa", "Mastercard", "American Express", "Maestro", "ServiRed"
     };
-    public static List<String> ListaTipoTarjeta= Arrays.asList(tipoTarjeta);
-   
+    public static ObservableList ListaTipoTarjeta = FXCollections.observableArrayList(tipoTarjeta);
+
     private static final String[] agencia = {
-        "Tui","Jahn Raisen","Thomson", "Expedia", "Corte ingles", "Halcon"
+        "desconocida", "directo","Tui", "Jahn Raisen", "Thomson", "Expedia", "Corte ingles", "Halcon"
     };
-    public static List<String> ListaAgencia= Arrays.asList(agencia);
+    public static ObservableList ListaAgencia = FXCollections.observableArrayList(agencia);
 
 }
