@@ -2,25 +2,34 @@ package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.RecorredorPaneles;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.Consultas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.tablas.Huesped;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 
 /**
@@ -53,12 +62,19 @@ public class ControladorHuespedBuscador implements Initializable {
             toggleCalle, toggleNumero, toggleCodigoPostal, toggleDni, togglePasaporte,
             toggleExpPasaporte, toggleTelefonoFijo, toggleTelefonoMovil, toggleEmail, toggleTratamiento,
             toggleCategoría;
+    @FXML
+    private TableView<Huesped> tabla;
 
     @FXML
-    private TableColumn<?, ?> tableColumnNumeroReserva, tableColumnCliente, tableColumnHabitacion, tableColumnTipoHabitacion,
-            tableColumnFechaPrevistaEntrada, tableColumnFechaPrevistaSalida, tableColumnHuesped;
+    private TableColumn tableColumnNumero, tableColumnDni, tableColumnNombre, tableColumnPrimerApellido,
+            tableColumnSegundoApellido, tableColumnFechaNacimiento, tableColumnSexo, tableColumnDiscapacitado,
+            tableColumnCiudad, tableColumnProvincia, tableColumnPais, tableColumnCalle, tableColumnCodigoPostal,
+            tableColumnPasaporte, tableColumnFechaExpedicion, tableColumnEmail, tableColumnTratamiento,
+            tableColumnCategoria;
 
-    ObservableList<Persona> listaHuespedes;
+    private List<Huesped> listaHuespedes = new ArrayList<>();
+    private List<Persona> listaPersonas = new ArrayList<>();
+    private Persona HuespedEnVista;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -122,15 +138,44 @@ public class ControladorHuespedBuscador implements Initializable {
         toggleCategoría.selectedProperty().addListener((e) -> {
             codigoToogleCategoria();
         });
-        
+
        
+
         categoria.setItems(Registro.ListaCategoriaCliente);
         categoria.getSelectionModel().selectFirst();
         tratamiento.setItems(Registro.ListaTratamiento);
         tratamiento.getSelectionModel().selectFirst();
         nacionalidad.setItems(Registro.listaPaises);
         nacionalidad.getSelectionModel().selectFirst();
-        
+
+        listaPersonas = Consultas.realizaSQLQuery(Consultas.TODAS_LAS_PERSONAS, Persona.class);
+        listaHuespedes = Huesped.modeloCheckin(listaPersonas);
+
+        tabla.setItems(FXCollections.observableArrayList(listaHuespedes));
+
+        tableColumnDni.setCellValueFactory(new PropertyValueFactory("dni"));
+        tableColumnNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
+        tableColumnPrimerApellido.setCellValueFactory(new PropertyValueFactory("primerApellido"));
+        tableColumnSegundoApellido.setCellValueFactory(new PropertyValueFactory("SegundoApellido"));
+        tableColumnFechaNacimiento.setCellValueFactory(new PropertyValueFactory("fechaNacimiento"));
+        tableColumnSexo.setCellValueFactory(new PropertyValueFactory("sexo"));
+        tableColumnDiscapacitado.setCellValueFactory(new PropertyValueFactory("discapacitado"));
+        tableColumnCiudad.setCellValueFactory(new PropertyValueFactory("ciudad"));
+        tableColumnProvincia.setCellValueFactory(new PropertyValueFactory("provincia"));
+        tableColumnPais.setCellValueFactory(new PropertyValueFactory("estado"));
+        tableColumnCalle.setCellValueFactory(new PropertyValueFactory("calle"));
+        tableColumnCodigoPostal.setCellValueFactory(new PropertyValueFactory("codigoPostal"));
+        tableColumnPasaporte.setCellValueFactory(new PropertyValueFactory("pasaporte"));
+        tableColumnFechaExpedicion.setCellValueFactory(new PropertyValueFactory("fechaExpPasaporte"));
+        tableColumnEmail.setCellValueFactory(new PropertyValueFactory("email"));
+        tableColumnTratamiento.setCellValueFactory(new PropertyValueFactory("tratamiento"));
+        tableColumnCategoria.setCellValueFactory(new PropertyValueFactory("categoria"));
+        tableColumnNumero.setCellValueFactory(new PropertyValueFactory("numero"));
+
+        tabla.getSelectionModel().selectedIndexProperty().addListener((observable) -> {
+            tablaOnSelectedItem();
+        });
+
         borrar.setOnAction((e) -> {
             codigoBorrar();
 
@@ -154,6 +199,7 @@ public class ControladorHuespedBuscador implements Initializable {
         resetarCampos.setOnAction((e) -> {
             codigoResetearCampos();
         });
+
     }
 
     private void codigoToogleNombre() {
@@ -385,7 +431,9 @@ public class ControladorHuespedBuscador implements Initializable {
     }
 
     private void codigoBorrar() {
-
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "seguro que quiere eliminar a el usuario:",
+                ButtonType.NO, ButtonType.YES);
+        alert.show();
     }
 
     private void codigoActualizar() {
@@ -407,12 +455,7 @@ public class ControladorHuespedBuscador implements Initializable {
     }
 
     private void codigoResetearCampos() {
-        List<ToggleButton> listaToggles = RecorredorPaneles.recorrePanelesToggle(panelPrincipal, FXCollections.observableArrayList());
-        if (listaToggles != null) {
-            for (ToggleButton toggle : listaToggles) {
-                toggle.setSelected(false);
-            }
-        }
+        RecorredorPaneles.reseteaControles(panelPrincipal);
     }
 
     private boolean hayTogglesOn() {
@@ -436,11 +479,29 @@ public class ControladorHuespedBuscador implements Initializable {
             seleccionar.setDisable(true);
         }
     }
-public void enciendeToggle(){
-     seleccionar.setDisable(false);
-     resetarCampos.setDisable(false);
-}
-    public void setObjetos(ObservableList<Persona> listaPersonas) {
-        this.listaHuespedes = listaPersonas;
+
+    public void enciendeToggle() {
+        seleccionar.setDisable(false);
+        resetarCampos.setDisable(false);
     }
+
+    public void tablaOnSelectedItem() {
+        aceptar.setDisable(false);
+        actualizar.setDisable(false);
+        borrar.setDisable(false);
+//        String tipoDocumento, nombre, calle,codigoPostal,cuidad,provincia, estado,
+//                
+//        HuespedEnVista= new Persona(tipoDocumento, documentoNumero, nombre, calle, 
+//                codPostal, ciudad, provincia, estado, Byte.MIN_VALUE, jurNombreComercial,
+//                fisFechaNacimiento, Integer.SIZE, fisTratamiento, Integer.SIZE, fisCargo, 
+//                Byte.MIN_VALUE, Byte.MIN_VALUE, Byte.MIN_VALUE, jurRazonSocial, 
+//                fisPrimerApellido, fisSegundoApellido, fisNacionalidad, categoria, pasaporte,
+//                email, paginaWeb, fisExpPasaporte, fisVencPasaporte, comentario, Byte.MIN_VALUE,
+//                parentescosForCodPariente, parentescosForCodPersona, reservasForCodCliente,
+//                usuarios, reservasForCodEmpleado, reservasForAgencia, 
+//                huespedHabitacions, telefonoPersonasForNumTelefono, 
+//                telefonoPersonasForCodPersona)
+    }
+
+
 }

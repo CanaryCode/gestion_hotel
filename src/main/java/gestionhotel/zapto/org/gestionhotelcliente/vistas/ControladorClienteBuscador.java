@@ -18,6 +18,7 @@ import javafx.scene.control.Control;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
@@ -45,13 +46,15 @@ public class ControladorClienteBuscador implements Initializable {
     @FXML
     private ComboBox<?> nacionalidad, tratamiento, categoria, razonSocial, estado;
     @FXML
-    private Button borrar, crear, actualizar, buscar,resetearCampos;
+    private Button borrar, crear, actualizar, buscar, resetearCampos;
     @FXML
     private TableColumn<?, ?> FtableColumnNumeroReserva, tableColumnCliente,
             tableColumnHabitacion, tableColumnTipoHabitacion, tableColumnFechaPrevistaEntrada,
             tableColumnFechaPrevistaSalida, tableColumnHuesped;
     @FXML
-    AnchorPane panelPrincipal,panelPersona, panelEmpresa, panelFiltro;
+    AnchorPane panelPrincipal, panelPersona, panelEmpresa, panelFiltro;
+    @FXML
+    private TabPane tabPanel;
 
     @FXML
     private ToggleButton toggleNombre, togglePrimerApellido, toggleSegundoApellido,
@@ -67,7 +70,7 @@ public class ControladorClienteBuscador implements Initializable {
         categoria.setItems(Registro.ListaCategoriaCliente);
         razonSocial.setItems(Registro.ListaRazonSocial);
         estado.setItems(Registro.listaPaises);
-        
+
         toggleNombre.selectedProperty().addListener((e) -> {
             codigoToggleNombre();
         });
@@ -131,6 +134,9 @@ public class ControladorClienteBuscador implements Initializable {
         toggleSexo.selectedProperty().addListener((e) -> {
             codigoToggleSexo();
         });
+        tabPanel.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            codigoTabPanel(oldValue);
+        });
 
         borrar.setOnAction((e) -> {
             codigoBorrar();
@@ -153,6 +159,12 @@ public class ControladorClienteBuscador implements Initializable {
         });
         buscar.setOnAction((e) -> {
             codigoSeleccionar();
+            {
+
+            }
+        });
+        resetearCampos.setOnAction((e) -> {
+            codigoresetearCampos();
             {
 
             }
@@ -414,6 +426,7 @@ public class ControladorClienteBuscador implements Initializable {
             obj.ver();
         }
     }
+
     private boolean hayTogglesOn() {
         List<ToggleButton> listaToggle = RecorredorPaneles.recorrePanelesToggle(panelPrincipal, FXCollections.observableArrayList());
         boolean hayToogleOn = false;
@@ -435,9 +448,17 @@ public class ControladorClienteBuscador implements Initializable {
             buscar.setDisable(true);
         }
     }
-public void enciendeToggle(){
-     buscar.setDisable(false);
-     resetearCampos.setDisable(false);
-}
 
+    public void enciendeToggle() {
+        buscar.setDisable(false);
+        resetearCampos.setDisable(false);
+    }
+
+    public void codigoresetearCampos() {
+        RecorredorPaneles.reseteaControles(panelPrincipal);
+    }
+
+    private void codigoTabPanel(Tab viejo) {
+        RecorredorPaneles.reseteaControles((Pane) viejo.getContent());
+    }
 }

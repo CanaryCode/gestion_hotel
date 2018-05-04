@@ -1,9 +1,12 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.RecorredorPaneles;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.tablas.Huesped;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -12,6 +15,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -24,7 +28,7 @@ public class ControladorHuesped implements Initializable {
     TextField nombre, primerApellido, segundoApellido, calle, numero, provincia, ciudad,
             correoElectronico, telefonoMovil, telefonoFijo, codigoPostal, dni;
     @FXML
-    ComboBox  categoria, tratamiento, nacionalidad;
+    ComboBox categoria, tratamiento, nacionalidad;
 
     @FXML
     TextArea comentario;
@@ -36,7 +40,12 @@ public class ControladorHuesped implements Initializable {
     RadioButton sexoM, sexoF, discapacitadoSi, discapacitadoNo;
 
     @FXML
-    Button aceptar;
+    Button aceptar, reseteaCampos;
+    @FXML
+    AnchorPane principal;
+
+    private Huesped huespedEnVista;
+    private boolean accionInsertar = true;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -47,21 +56,31 @@ public class ControladorHuesped implements Initializable {
         nacionalidad.setItems(Registro.listaPaises);
         nacionalidad.getSelectionModel().selectFirst();
         aceptar.setOnAction((event) -> {
-            accionAdd();
+            accionAdd(event);
         });
-  
+        reseteaCampos.setOnAction((event) -> {
+            codigoResetearCampos();
+        });
     }
 
-    private void accionAdd() {
-
+    private void accionAdd(Event e) {
+        //si se esta actualizando la información de un huesped
+        if (!accionInsertar) {
+            //entonces cuando termines, de  hacerlo cierra la ventana.
+            Ventanas.cerrarVentana(Ventanas.HUESPED);
+            //si se está insertando a una persona
+        } else {
+            //entonces resetea todos los campos.
+            codigoResetearCampos();
+        }
     }
 
-    private void accionActualizar() {
-
+    public void setAccionInsertar(boolean accionInsertar) {
+        this.accionInsertar = accionInsertar;
     }
 
-    private void accionBorrar() {
+    public void codigoResetearCampos() {
+        RecorredorPaneles.reseteaControles(principal);
 
     }
-
 }

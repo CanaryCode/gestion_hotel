@@ -23,7 +23,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="900.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorClienteBuscador">
+<AnchorPane id="AnchorPane" fx:id="panelPrincipal" prefHeight="650.0" prefWidth="900.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorClienteBuscador">
    <children>
       <SplitPane dividerPositions="0.6620370370370371" layoutX="-6.0" layoutY="22.0" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -31,7 +31,7 @@
                <children>
                   <VBox prefHeight="471.0" prefWidth="680.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <TabPane prefHeight="157.0" prefWidth="680.0" tabClosingPolicy="UNAVAILABLE">
+                        <TabPane fx:id="tabPanel" prefHeight="157.0" prefWidth="680.0" tabClosingPolicy="UNAVAILABLE">
                            <tabs>
                               <Tab fx:id="tabPersona" text="%tab.persona">
                                  <content>
@@ -510,7 +510,7 @@
                      <children>
                         <ScrollPane prefHeight="116.0" prefWidth="858.0">
                            <content>
-                              <TableView>
+                              <TableView fx:id="tabla">
                                 <columns>
                                   <TableColumn prefWidth="75.0" text="Nombre" />
                                   <TableColumn prefWidth="94.0" text="Primer Apellido" />

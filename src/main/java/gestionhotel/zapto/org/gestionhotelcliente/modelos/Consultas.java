@@ -1,7 +1,6 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos;
 
-import gestionhotel.zapto.org.gestionhotelcliente.controladores.AbrirCerrarConexiones;
-import java.util.ArrayList;
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.Conexiones;
 import java.util.List;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
@@ -13,24 +12,50 @@ import org.hibernate.Transaction;
  */
 public class Consultas {
 
-    public static String pendienteDeCheckIn = "SELECT reserva . * \n"
-            + "FROM persona\n"
-            + "INNER JOIN reserva ON reserva.cod_cliente = persona.cod_persona\n"
-            + "INNER JOIN detalles_reserva ON detalles_reserva.cod_reserva = reserva.cod_reserva\n"
-            + "WHERE detalles_reserva.fecha_entrada_prevista < NOW( ) \n"
-            + "AND reserva.fecha_cancelada IS NULL \n"
-            + "AND detalles_reserva.fecha_entrada IS NULL ";
+    /**
+     * consulta de todos los detalles de reserva.
+     */
+    public static final String TODOS_LOS_DETALLES_RESERVA = "SELECT detalles_reserva.* FROM detalles_reserva";
+    /**
+     * selecciona todas las personas de la base de datos, tanto juridicas como
+     * físcas
+     */
+    public static final String TODAS_LAS_PERSONAS = "SELECT persona.* FROM persona";
 
-    public static <T> List<T> realizaQuery(String query, Class<T> clase) {
-        Session s = AbrirCerrarConexiones.getSession();
-        Transaction tx=s.beginTransaction();
-        SQLQuery q = s.createSQLQuery(Consultas.pendienteDeCheckIn).addEntity(clase);
-        tx.commit();
-        List<T> lista = q.list();
-        if (lista.isEmpty()) {
-            return new ArrayList<T>();
-        } else {
-          
+    /**
+     *
+     * @param <T> tipo de clase de la cual se quiere obtener la lista
+     * @param query Query de SQL en crudo la cual se quiere ejecutar.
+     * @param clase tipo de clase de la cual se quiere obtener la lista
+     * @return lista de la clase sobre la cual se haya hecho la query
+     */
+    public static <T> List<T> realizaSQLQuery(String query, Class<T> clase) {
+        //se crea una nueva lista de la clase que se especifica por parámetro
+        List<T> lista = null;
+        try {
+            //se abre la session.
+            Conexiones.abrir();
+            //se obtiene la session que se ha abierto
+            Session s = Conexiones.getSession();
+            //se comienza la transacción.
+            Transaction tx = s.beginTransaction();
+            //se crea una Query con la consulta pasada por parámetro
+            //y se especifica que sobre de que tipo de dato será
+            SQLQuery q = s.createSQLQuery(query).addEntity(clase);
+            //se ejecuta la consulta
+            tx.commit();
+            //se guarda el resultado de la consulta por parámetro
+            lista = q.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            //si la session está abierta, cierra la session
+            if (Conexiones.getSession().isOpen()) {
+                //se cierra la session
+                Conexiones.getSession().close();
+            }
+            //finalmente, devuelve la lista, ya sea como un objeto null o
+            //una lista con algo dentro.
             return lista;
         }
     }

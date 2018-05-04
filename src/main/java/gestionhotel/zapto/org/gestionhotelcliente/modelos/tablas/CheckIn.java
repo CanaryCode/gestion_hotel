@@ -1,6 +1,7 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.tablas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Reserva;
 import java.util.Date;
 import java.util.List;
@@ -66,29 +67,41 @@ public class CheckIn {
         this.fechaPrevistaEntrada = fechaPrevistaEntrada;
     }
 
-    public static ObservableList<CheckIn> modeloCheckin(List<Reserva> listaPersona) {
+    public static ObservableList<CheckIn> modeloCheckin(List<DetallesReserva> listaDetallesReserva) {
         ObservableList<CheckIn> listaCheckIn = FXCollections.observableArrayList();
-        for (Reserva reserva: listaPersona) {
-            String numeroReserva=reserva.getNumero();
-            String nombre=(reserva.getPersonaByCodCliente().getNombre()!=null)?reserva.getPersonaByCodCliente().getNombre():"";
-            String primerApellido=(reserva.getPersonaByCodCliente().getFisPrimerApellido()!=null)?reserva.getPersonaByCodCliente().getFisPrimerApellido():"";
-            String SegundoApellido=(reserva.getPersonaByCodCliente().getFisSegundoApellido()!=null)?reserva.getPersonaByCodCliente().getFisSegundoApellido():"";
-         
-            String cliente =reserva.getPersonaByCodCliente().getNombre()+" "+
-                    reserva.getPersonaByCodCliente().getFisPrimerApellido()+" "+
-                    reserva.getPersonaByCodCliente().getFisSegundoApellido();
-           int habitacion=0;
-            Date fechaPrevistaEntrada=new Date();;
-            String tipo = "";
-            Set<DetallesReserva> s= reserva.getDetallesReservas();
-            for (DetallesReserva detallesReserva : s) {
-                habitacion=detallesReserva.getHabitacion().getNumero();
-                fechaPrevistaEntrada=detallesReserva.getFechaEntradaPrevista();
-                tipo=detallesReserva.getHabitacion().getTipo();
+        String numeroReserva = "nombre_reserva1";
+        String cliente = "";
+        int habitacion = 0;
+        Date fechaPrevistaEntrada = new Date();
+        String tipo = "";
+
+        for (DetallesReserva detallesReserva : listaDetallesReserva) {
+            Reserva reserva = detallesReserva.getReserva();
+            if (listaDetallesReserva.get(0) != detallesReserva) {
+//                numeroReserva = detallesReserva.getReserva().getNumero();
+//                Persona persona = detallesReserva.getReserva().getPersonaByCodCliente();
+//                if (persona != null) {
+//                    String nombre = "";
+//                    String primerApellido = "";
+//                    String segundoApellido = "";
+//                    if (persona.getNombre() != null) {
+//                        nombre = persona.getNombre();
+//                    }
+//                    if (persona.getFisPrimerApellido() != null) {
+//                        primerApellido = persona.getFisPrimerApellido();
+//                    }
+//                    if (persona.getFisSegundoApellido() != null) {
+//                        segundoApellido = persona.getFisSegundoApellido();
+//                    }
+//                    cliente = nombre + " " + primerApellido + " " + segundoApellido;
+//                }
+//                habitacion = detallesReserva.getHabitacion().getNumero();
+//                fechaPrevistaEntrada = detallesReserva.getFechaEntradaPrevista();
+//                tipo = detallesReserva.getHabitacion().getTipo();
             }
-            CheckIn c = new CheckIn(numeroReserva, cliente, habitacion, tipo, fechaPrevistaEntrada);
-            listaCheckIn.add(c);
         }
+        CheckIn c = new CheckIn(numeroReserva, cliente, habitacion, tipo, fechaPrevistaEntrada);
+        listaCheckIn.add(c);
         return listaCheckIn;
     }
 }

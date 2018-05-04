@@ -12,18 +12,22 @@ import org.hibernate.SessionFactory;
  *
  * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
-public class AbrirCerrarConexiones {
+public class Conexiones {
 
     private static SessionFactory sessionFactory;
     private static Session session;
-
+   
     public static void abrir() {
-        sessionFactory = HibernateUtil.getSessionFactory();
         session = sessionFactory.openSession();
+    }
+    public static void abrirFactory() {
+        sessionFactory = HibernateUtil.getSessionFactory();
     }
 
     public static void cerrar() {
         session.close();
+    }
+    public static void cerrarFactory() {
         sessionFactory.close();
     }
 
@@ -32,7 +36,7 @@ public class AbrirCerrarConexiones {
     }
 
     public static void setSessionFactory(SessionFactory sessionFactory) {
-        AbrirCerrarConexiones.sessionFactory = sessionFactory;
+        Conexiones.sessionFactory = sessionFactory;
     }
 
     public static Session getSession() {
@@ -40,7 +44,7 @@ public class AbrirCerrarConexiones {
     }
 
     public static void setSession(Session session) {
-        AbrirCerrarConexiones.session = session;
+        Conexiones.session = session;
     }
 
 }

@@ -9,14 +9,26 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 /**
+ * Es una clase donde justamos varios objetos interesantes desde el cargador del
+ * fxml,el "Stage" que en este caso es una especialización llamada
+ * "ventanaCustom", la escena de este "stage", el controlador etc.
+ *
+ * este objeto es cargador por "VentanasFactory" y una vez configurado, pasado
+ * hacia el sitio donde se solicite abrir la ventana, en ese momento ya estará
+ * todo configurado para ver abrir la ventana que se hará con el método propio
+ * ver(). Esto permite que si se desea añadir alguna configuración extra antes
+ * de abrir se pueda hacer, por que una vez que se inicie el método ver() ya no
+ * será posible.
  *
  * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
 public class ObjetoVentana {
 
+    /**
+     * mapa de recursos de internacionalización.
+     */
     public static final ResourceBundle resourceBundle = ResourceBundle.getBundle("i18n/mensajes");
     FXMLLoader fXMLLoader;
     VentanaCustom ventana;
@@ -26,6 +38,22 @@ public class ObjetoVentana {
     Modality modalidad;
     Object controlador;
     boolean cargado;
+
+    /**
+     *
+     * @param fXMLLoader cargador del FXML 
+     * @param ventana Ventana que va a ha ser configurada.
+     * @param owner nombre del padre de la ventana que va a ser modificada.
+     * @param scene "Scene" en el que se cargará el "parent" resultante de la 
+     * carga del cargador de fxml.
+     * @param parent objeto donde se cargará la carga del FXML.
+     * @param nombreFXML nombre del FXML sin exteción ni ruta.
+     * @param nombreVentana nombre que va a tener la ventana.
+     * @param titulo titulo que va a tener la vantana cuando se este viendo.
+     * @param modalidad modalidad con que se iniciará la ventana.
+     * @param controlador controlador que se pudiera cargar al FXML
+     * @param cargado propiedad que tendra la ventana.
+     */
 
     public ObjetoVentana(FXMLLoader fXMLLoader, VentanaCustom ventana, String owner, Scene scene, Parent parent, String nombreFXML, String nombreVentana, String titulo, Modality modalidad, Object controlador, boolean cargado) {
         this.fXMLLoader = fXMLLoader;
@@ -58,13 +86,11 @@ public class ObjetoVentana {
     }
 
     /**
-     * Configura los parámetros del "Stage".
+     * Configura todas la propiedas que tiene el objeto. Como por ejemplo el
+     * cargador del FXML que lo inicia y lo carga. Deja al objeto en un estado
+     * listo para arrancar el método ver();
      *
-     * @param ventana ventana que se va a configurar.
-     * @param owner ventana padre de la ventana que se va a configurar.
-     * @param titulo Nombre de la ventana.
-     * @param modalidad Tipo de modalidad (modal,normal).
-     * @return stage ya configurado
+     * @return
      */
     public ObjetoVentana configuraVentana() {
         try {
@@ -88,8 +114,9 @@ public class ObjetoVentana {
         return new ObjetoVentana();
     }
 
-  
-
+    /**
+     * visualiza el "Stage" donde pueda ser redimensionado.
+     */
     public void verReajustable() {
         VentanaCustom vc = Ventanas.getVentana(nombreVentana);
         if (vc == null || !vc.isActiva()) {
@@ -101,6 +128,9 @@ public class ObjetoVentana {
         }
     }
 
+    /**
+     * visualiza el "Stage" donde no pueda ser redimensionado.
+     */
     public void ver() {
         VentanaCustom vc = Ventanas.getVentana(nombreVentana);
         if (vc == null || !vc.isActiva()) {
@@ -113,6 +143,9 @@ public class ObjetoVentana {
         }
     }
 
+    /**
+     * cierra el "stage" y lo saca de la lista de ventanas activas.
+     */
     public void cerrar() {
         this.ventana.setActividad(false);
         this.ventana.close();
