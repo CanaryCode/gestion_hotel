@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="497.0" prefWidth="279.0" styleClass="baseVentanas" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorFXMLLogIn">
+<AnchorPane id="AnchorPane" prefHeight="497.0" prefWidth="300.0" styleClass="baseVentanas" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorFXMLLogIn">
    <children>
       <VBox layoutX="82.0" layoutY="-60.0" prefHeight="446.0" prefWidth="317.0" AnchorPane.bottomAnchor="-20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <children>
@@ -47,7 +47,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Label>
-            <PasswordField fx:id="contraseña">
+            <PasswordField fx:id="password">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
@@ -60,6 +60,14 @@
                   <Insets bottom="10.0" left="50.0" />
                </VBox.margin>
             </ImageView>
+            <Label fx:id="mensaje" prefWidth="5000.0" text="Error en el usuario o la contraseña" textAlignment="CENTER" textFill="WHITE" visible="false">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
             <Button id="botonOk" fx:id="botonEntrar" mnemonicParsing="false" prefHeight="31.0" prefWidth="497.0" style="-fx-content-display: top;" text="%button.ingresar">
                <font>
                   <Font size="15.0" />

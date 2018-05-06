@@ -1,5 +1,6 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.ConfiguradorMensajes;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.ConfiguradorIdioma;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
@@ -29,13 +30,13 @@ public class ControladorFXMLLogIn implements Initializable {
     Button botonEntrar;
 
     @FXML
-    Label MensajeError;
+    Label mensaje;
 
     @FXML
     TextField usuario;
 
     @FXML
-    PasswordField contraseña;
+    PasswordField password;
 
     @FXML
     ComboBox lenguaje;
@@ -53,13 +54,28 @@ public class ControladorFXMLLogIn implements Initializable {
     }
 
     private void logicaBoton() {
-        Locale.setDefault(ConfiguradorIdioma.cambiaIdioma(lenguaje.getSelectionModel().getSelectedItem().toString()));
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaPrincipal();
-        if (obj != null) {
-            obj.ver();
-            Ventanas.getVentana(Ventanas.LOGIN).close();
-            Ventanas.getVentana(Ventanas.LOGIN).setActividad(false);
-            Ventanas.getListaVentanas().remove(0);
+        if (loginValido()) {
+            ConfiguradorMensajes.mensajeExito("Usuario y contraseña validos", mensaje);
+            Locale.setDefault(ConfiguradorIdioma.cambiaIdioma(lenguaje.getSelectionModel().getSelectedItem().toString()));
+            ObjetoVentana obj = VentanasFactory.getObjetoVentanaPrincipal();
+            if (obj != null) {
+                obj.ver();
+                Ventanas.getVentana(Ventanas.LOGIN).close();
+                Ventanas.getVentana(Ventanas.LOGIN).setActividad(false);
+                Ventanas.getListaVentanas().remove(0);
+            }
+        } else {
+            ConfiguradorMensajes.mensajeError("Usuario o contraseña incorrectos", mensaje);
         }
+    }
+
+    private boolean loginValido() {
+        boolean resultado = false;
+        String usuario = this.usuario.getText();
+        String passw = this.password.getText();
+        if (usuario.equals("") && passw.equals("")) {
+            resultado = true;
+        }
+        return resultado;
     }
 }

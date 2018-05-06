@@ -69,13 +69,8 @@ public class ControladorVentanaPrincipal implements Initializable {
         });
 
         botonCalculadora.setOnAction((e) -> {
-            ObjetoVentana obj = VentanasFactory.getObjetoVentanaCalculadora(Ventanas.PRINCIPAL, Modality.NONE, null);
-            if (obj != null) {
-                obj.getVentana().setAlwaysOnTop(true);
-                obj.ver();
-            }
+            codigoAbrirCalculadora();
         });
-
         configuracionReloj();
     }
 
@@ -121,7 +116,6 @@ public class ControladorVentanaPrincipal implements Initializable {
         fechas = new Fechas();
         reloj = new Reloj();
         Thread hilo = new Thread(new Runnable() {
-
             @Override
             public void run() {
                 relojArrancable = reloj.getReloj();
@@ -132,5 +126,13 @@ public class ControladorVentanaPrincipal implements Initializable {
         hilo.run();
         panelReloj.getChildren().add(relojArrancable);
         horaActual.setText(fechas.getTimeActual());
+    }
+
+    private void codigoAbrirCalculadora() {
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaCalculadora(Ventanas.PRINCIPAL, Modality.NONE, null);
+        if (obj != null) {
+            obj.getVentana().setAlwaysOnTop(true);
+            obj.ver();
+        }
     }
 }

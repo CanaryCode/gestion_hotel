@@ -7,7 +7,7 @@ import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.tablas.Huesped;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaHuesped;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,15 +21,13 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 
 /**
@@ -41,7 +39,10 @@ public class ControladorHuespedBuscador implements Initializable {
 
     @FXML
     private TextField nombre, primerApellido, segundoApellido, provincia, ciudad, calle,
-            pasaporte, numero, codigoPostal, dni, telefonoFijo, telefonoMovil, correoElectronico;
+            pasaporte, numero, codigoPostal, dni, telefonoFijo, telefonoMovil, correoElectronico,
+            email, paginaWeb;
+    @FXML
+    private TextArea comentario;
     @FXML
     private AnchorPane panelPrincipal;
 
@@ -52,7 +53,7 @@ public class ControladorHuespedBuscador implements Initializable {
     private RadioButton sexoM, sexoF, discapacitadoNo, discapacitadoSi;
 
     @FXML
-    private ComboBox<?> nacionalidad, tratamiento, categoria;
+    private ComboBox<?> nacionalidad, tratamiento, categoria, estado, cargo;
 
     @FXML
     private Button borrar, crear, actualizar, seleccionar, aceptar, resetarCampos;
@@ -63,16 +64,16 @@ public class ControladorHuespedBuscador implements Initializable {
             toggleExpPasaporte, toggleTelefonoFijo, toggleTelefonoMovil, toggleEmail, toggleTratamiento,
             toggleCategoría;
     @FXML
-    private TableView<Huesped> tabla;
+    private TableView<TablaHuesped> tabla;
 
     @FXML
     private TableColumn tableColumnNumero, tableColumnDni, tableColumnNombre, tableColumnPrimerApellido,
             tableColumnSegundoApellido, tableColumnFechaNacimiento, tableColumnSexo, tableColumnDiscapacitado,
             tableColumnCiudad, tableColumnProvincia, tableColumnPais, tableColumnCalle, tableColumnCodigoPostal,
             tableColumnPasaporte, tableColumnFechaExpedicion, tableColumnEmail, tableColumnTratamiento,
-            tableColumnCategoria;
+            tableColumnCategoria,tableColumnTelefonoFijo,tableColumnTelefonoMovil;
 
-    private List<Huesped> listaHuespedes = new ArrayList<>();
+    private List<TablaHuesped> listaHuespedes = new ArrayList<>();
     private List<Persona> listaPersonas = new ArrayList<>();
     private Persona HuespedEnVista;
 
@@ -139,8 +140,6 @@ public class ControladorHuespedBuscador implements Initializable {
             codigoToogleCategoria();
         });
 
-       
-
         categoria.setItems(Registro.ListaCategoriaCliente);
         categoria.getSelectionModel().selectFirst();
         tratamiento.setItems(Registro.ListaTratamiento);
@@ -149,16 +148,16 @@ public class ControladorHuespedBuscador implements Initializable {
         nacionalidad.getSelectionModel().selectFirst();
 
         listaPersonas = Consultas.realizaSQLQuery(Consultas.TODAS_LAS_PERSONAS, Persona.class);
-        listaHuespedes = Huesped.modeloCheckin(listaPersonas);
+        listaHuespedes = TablaHuesped.getTablaBuscadorHuesped(listaPersonas);
 
         tabla.setItems(FXCollections.observableArrayList(listaHuespedes));
 
-        tableColumnDni.setCellValueFactory(new PropertyValueFactory("dni"));
+        tableColumnDni.setCellValueFactory(new PropertyValueFactory("numeroDocumento"));
         tableColumnNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
         tableColumnPrimerApellido.setCellValueFactory(new PropertyValueFactory("primerApellido"));
         tableColumnSegundoApellido.setCellValueFactory(new PropertyValueFactory("SegundoApellido"));
         tableColumnFechaNacimiento.setCellValueFactory(new PropertyValueFactory("fechaNacimiento"));
-        tableColumnSexo.setCellValueFactory(new PropertyValueFactory("sexo"));
+        tableColumnSexo.setCellValueFactory(new PropertyValueFactory("sexoHombre"));
         tableColumnDiscapacitado.setCellValueFactory(new PropertyValueFactory("discapacitado"));
         tableColumnCiudad.setCellValueFactory(new PropertyValueFactory("ciudad"));
         tableColumnProvincia.setCellValueFactory(new PropertyValueFactory("provincia"));
@@ -166,11 +165,13 @@ public class ControladorHuespedBuscador implements Initializable {
         tableColumnCalle.setCellValueFactory(new PropertyValueFactory("calle"));
         tableColumnCodigoPostal.setCellValueFactory(new PropertyValueFactory("codigoPostal"));
         tableColumnPasaporte.setCellValueFactory(new PropertyValueFactory("pasaporte"));
-        tableColumnFechaExpedicion.setCellValueFactory(new PropertyValueFactory("fechaExpPasaporte"));
+        tableColumnFechaExpedicion.setCellValueFactory(new PropertyValueFactory("expPasaporte"));
         tableColumnEmail.setCellValueFactory(new PropertyValueFactory("email"));
         tableColumnTratamiento.setCellValueFactory(new PropertyValueFactory("tratamiento"));
         tableColumnCategoria.setCellValueFactory(new PropertyValueFactory("categoria"));
         tableColumnNumero.setCellValueFactory(new PropertyValueFactory("numero"));
+//        tableColumnNumero.setCellValueFactory(new PropertyValueFactory("teléfonoFijo"));
+//        tableColumnNumero.setCellValueFactory(new PropertyValueFactory("teléfonoMovil"));
 
         tabla.getSelectionModel().selectedIndexProperty().addListener((observable) -> {
             tablaOnSelectedItem();
@@ -439,6 +440,7 @@ public class ControladorHuespedBuscador implements Initializable {
     private void codigoActualizar() {
         ObjetoVentana obj = VentanasFactory.getObjetoVentanaHuesped(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
+           ((ControladorHuesped)obj.getfXMLLoader().getController()).setHuespedEnVista(HuespedEnVista);
             obj.ver();
         }
     }
@@ -489,19 +491,6 @@ public class ControladorHuespedBuscador implements Initializable {
         aceptar.setDisable(false);
         actualizar.setDisable(false);
         borrar.setDisable(false);
-//        String tipoDocumento, nombre, calle,codigoPostal,cuidad,provincia, estado,
-//                
-//        HuespedEnVista= new Persona(tipoDocumento, documentoNumero, nombre, calle, 
-//                codPostal, ciudad, provincia, estado, Byte.MIN_VALUE, jurNombreComercial,
-//                fisFechaNacimiento, Integer.SIZE, fisTratamiento, Integer.SIZE, fisCargo, 
-//                Byte.MIN_VALUE, Byte.MIN_VALUE, Byte.MIN_VALUE, jurRazonSocial, 
-//                fisPrimerApellido, fisSegundoApellido, fisNacionalidad, categoria, pasaporte,
-//                email, paginaWeb, fisExpPasaporte, fisVencPasaporte, comentario, Byte.MIN_VALUE,
-//                parentescosForCodPariente, parentescosForCodPersona, reservasForCodCliente,
-//                usuarios, reservasForCodEmpleado, reservasForAgencia, 
-//                huespedHabitacions, telefonoPersonasForNumTelefono, 
-//                telefonoPersonasForCodPersona)
+        HuespedEnVista = tabla.getSelectionModel().getSelectedItem().getHuesped();
     }
-
-
 }

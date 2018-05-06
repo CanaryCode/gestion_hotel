@@ -1,5 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos;
-// Generated 24-abr-2018 21:28:21 by Hibernate Tools 4.3.1
+// Generated 06-may-2018 1:59:43 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -43,6 +43,7 @@ public class Persona  implements java.io.Serializable {
      private Date fisVencPasaporte;
      private String comentario;
      private Byte fisDiscapacitado;
+     private String numero;
      private Set parentescosForCodPariente = new HashSet(0);
      private Set parentescosForCodPersona = new HashSet(0);
      private Set reservasForCodCliente = new HashSet(0);
@@ -56,7 +57,11 @@ public class Persona  implements java.io.Serializable {
     public Persona() {
     }
 
-    public Persona(String tipoDocumento, String documentoNumero, String nombre, String calle, String codPostal, String ciudad, String provincia, String estado, Byte esEmpresa, String jurNombreComercial, Date fisFechaNacimiento, Integer fisEdad, String fisTratamiento, Integer fisCodPersona, String fisCargo, Byte esCliente, Byte esEmpleado, Byte fisSexoHombre, String jurRazonSocial, String fisPrimerApellido, String fisSegundoApellido, String fisNacionalidad, String categoria, String pasaporte, String email, String paginaWeb, Date fisExpPasaporte, Date fisVencPasaporte, String comentario, Byte fisDiscapacitado, Set parentescosForCodPariente, Set parentescosForCodPersona, Set reservasForCodCliente, Set usuarios, Set reservasForCodEmpleado, Set reservasForAgencia, Set huespedHabitacions, Set telefonoPersonasForNumTelefono, Set telefonoPersonasForCodPersona) {
+	
+    public Persona(String numero) {
+        this.numero = numero;
+    }
+    public Persona(String tipoDocumento, String documentoNumero, String nombre, String calle, String codPostal, String ciudad, String provincia, String estado, Byte esEmpresa, String jurNombreComercial, Date fisFechaNacimiento, Integer fisEdad, String fisTratamiento, Integer fisCodPersona, String fisCargo, Byte esCliente, Byte esEmpleado, Byte fisSexoHombre, String jurRazonSocial, String fisPrimerApellido, String fisSegundoApellido, String fisNacionalidad, String categoria, String pasaporte, String email, String paginaWeb, Date fisExpPasaporte, Date fisVencPasaporte, String comentario, Byte fisDiscapacitado, String numero, Set parentescosForCodPariente, Set parentescosForCodPersona, Set reservasForCodCliente, Set usuarios, Set reservasForCodEmpleado, Set reservasForAgencia, Set huespedHabitacions, Set telefonoPersonasForNumTelefono, Set telefonoPersonasForCodPersona) {
        this.tipoDocumento = tipoDocumento;
        this.documentoNumero = documentoNumero;
        this.nombre = nombre;
@@ -87,6 +92,7 @@ public class Persona  implements java.io.Serializable {
        this.fisVencPasaporte = fisVencPasaporte;
        this.comentario = comentario;
        this.fisDiscapacitado = fisDiscapacitado;
+       this.numero = numero;
        this.parentescosForCodPariente = parentescosForCodPariente;
        this.parentescosForCodPersona = parentescosForCodPersona;
        this.reservasForCodCliente = reservasForCodCliente;
@@ -314,6 +320,13 @@ public class Persona  implements java.io.Serializable {
     
     public void setFisDiscapacitado(Byte fisDiscapacitado) {
         this.fisDiscapacitado = fisDiscapacitado;
+    }
+    public String getNumero() {
+        return this.numero;
+    }
+    
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
     public Set getParentescosForCodPariente() {
         return this.parentescosForCodPariente;

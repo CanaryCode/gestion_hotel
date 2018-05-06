@@ -6,8 +6,7 @@ import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Consultas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Reserva;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.tablas.CheckIn;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaCheckIn;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
@@ -43,9 +42,9 @@ public class ControladorReservaCheckIn implements Initializable {
             tableColumnFechaPrevistaEntrada;
 
     @FXML
-    private TableView<CheckIn> tabla;
+    private TableView<TablaCheckIn> tabla;
 
-    ObservableList<CheckIn> listaPendientesCheckIn=FXCollections.observableArrayList(), listaFiltro=FXCollections.observableArrayList();
+    ObservableList<TablaCheckIn> listaPendientesCheckIn=FXCollections.observableArrayList(), listaFiltro=FXCollections.observableArrayList();
     List<DetallesReserva> listaReservas=FXCollections.observableArrayList();
     public DetallesReserva detallesReserva;
 
@@ -72,7 +71,7 @@ public class ControladorReservaCheckIn implements Initializable {
         listaReservas = Consultas.realizaSQLQuery(Consultas.TODOS_LOS_DETALLES_RESERVA, DetallesReserva.class);
         
         
-        listaPendientesCheckIn = CheckIn.modeloCheckin(listaReservas);
+        listaPendientesCheckIn = TablaCheckIn.modeloCheckin(listaReservas);
         listaFiltro = listaPendientesCheckIn;
         tabla.setItems(listaFiltro);
         tableColumnCliente.setCellValueFactory(new PropertyValueFactory("cliente"));

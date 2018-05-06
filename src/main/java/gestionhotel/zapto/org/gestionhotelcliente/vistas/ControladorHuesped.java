@@ -3,8 +3,13 @@ package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.RecorredorPaneles;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.tablas.Huesped;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import java.net.URL;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -16,6 +21,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import org.hibernate.criterion.Expression;
 
 /**
  * FXML Controller class
@@ -26,7 +32,7 @@ public class ControladorHuesped implements Initializable {
 
     @FXML
     TextField nombre, primerApellido, segundoApellido, calle, numero, provincia, ciudad,
-            correoElectronico, telefonoMovil, telefonoFijo, codigoPostal, dni;
+            correoElectronico, telefonoMovil, telefonoFijo, codigoPostal, dni, pasaporte;
     @FXML
     ComboBox categoria, tratamiento, nacionalidad;
 
@@ -34,7 +40,7 @@ public class ControladorHuesped implements Initializable {
     TextArea comentario;
 
     @FXML
-    DatePicker fechaNacimiento, ExpedicionPasaporte;
+    DatePicker fechaNacimiento, fechaExpedicion;
 
     @FXML
     RadioButton sexoM, sexoF, discapacitadoSi, discapacitadoNo;
@@ -43,8 +49,6 @@ public class ControladorHuesped implements Initializable {
     Button aceptar, reseteaCampos;
     @FXML
     AnchorPane principal;
-
-    private Huesped huespedEnVista;
     private boolean accionInsertar = true;
 
     @Override
@@ -82,5 +86,51 @@ public class ControladorHuesped implements Initializable {
     public void codigoResetearCampos() {
         RecorredorPaneles.reseteaControles(principal);
 
+    }
+
+    public void setHuespedEnVista(Persona huesped) {
+        nombre.setText(huesped.getNombre());
+        primerApellido.setText(huesped.getFisPrimerApellido());
+        segundoApellido.setText(huesped.getFisSegundoApellido());
+        dni.setText(huesped.getDocumentoNumero());
+        for (Object obj : nacionalidad.getItems()) {
+            if (((String) obj).equals(huesped.getFisNacionalidad())) {
+                nacionalidad.getSelectionModel().select(obj);
+            }
+        }
+        for (Object obj : tratamiento.getItems()) {
+            if (((String) obj).equals(huesped.getFisTratamiento())) {
+                tratamiento.getSelectionModel().select(obj);
+            }
+        }
+        for (Object obj : categoria.getItems()) {
+            if (((String) obj).equals(huesped.getCategoria())) {
+                categoria.getSelectionModel().select(obj);
+            }
+        }
+
+        fechaNacimiento.setValue(new Date(huesped.getFisFechaNacimiento().getTime()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        fechaExpedicion.setValue(new Date(huesped.getFisExpPasaporte().getTime()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        if (huesped.getFisSexoHombre().equals("hombre")) {
+            sexoM.setSelected(true);
+        } else {
+            sexoM.setSelected(true);
+        }
+        if (huesped.getFisDiscapacitado().equals("Discapacitado")) {
+            discapacitadoSi.setSelected(true);
+        } else {
+            discapacitadoNo.setSelected(true);
+        }
+        nacionalidad.getSelectionModel().select(huesped.getFisNacionalidad());
+        tratamiento.getSelectionModel().select(huesped.getFisTratamiento());
+        pasaporte.setText(huesped.getPasaporte());
+        provincia.setText(huesped.getProvincia());
+        codigoPostal.setText(huesped.getCodPostal());
+        correoElectronico.setText(huesped.getEmail());
+        calle.setText(huesped.getCalle());
+        ciudad.setText(huesped.getCiudad());
+        pasaporte.setText(huesped.getPasaporte());
+        comentario.setText(huesped.getComentario());
+        numero.setText(huesped.getNumero());
     }
 }

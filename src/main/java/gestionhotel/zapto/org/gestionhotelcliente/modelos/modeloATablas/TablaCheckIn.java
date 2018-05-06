@@ -1,4 +1,4 @@
-package gestionhotel.zapto.org.gestionhotelcliente.modelos.tablas;
+package gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
@@ -13,13 +13,13 @@ import javafx.collections.ObservableList;
  *
  * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
-public class CheckIn {
+public class TablaCheckIn {
 
     String numeroReserva, cliente, tipo;
     int habitacion;
     Date fechaPrevistaEntrada;
 
-    public CheckIn(String numeroReserva, String cliente, int habitacion, String tipo, Date fechaPrevistaEntrada) {
+    public TablaCheckIn(String numeroReserva, String cliente, int habitacion, String tipo, Date fechaPrevistaEntrada) {
         this.numeroReserva = numeroReserva;
         this.cliente = cliente;
         this.habitacion = habitacion;
@@ -67,9 +67,9 @@ public class CheckIn {
         this.fechaPrevistaEntrada = fechaPrevistaEntrada;
     }
 
-    public static ObservableList<CheckIn> modeloCheckin(List<DetallesReserva> listaDetallesReserva) {
-        ObservableList<CheckIn> listaCheckIn = FXCollections.observableArrayList();
-        String numeroReserva = "nombre_reserva1";
+    public static ObservableList<TablaCheckIn> modeloCheckin(List<DetallesReserva> listaDetallesReserva) {
+        ObservableList<TablaCheckIn> listaCheckIn = FXCollections.observableArrayList();
+            String numeroReserva = "nombre de prueba";
         String cliente = "";
         int habitacion = 0;
         Date fechaPrevistaEntrada = new Date();
@@ -100,7 +100,7 @@ public class CheckIn {
 //                tipo = detallesReserva.getHabitacion().getTipo();
             }
         }
-        CheckIn c = new CheckIn(numeroReserva, cliente, habitacion, tipo, fechaPrevistaEntrada);
+        TablaCheckIn c = new TablaCheckIn(numeroReserva, cliente, habitacion, tipo, fechaPrevistaEntrada);
         listaCheckIn.add(c);
         return listaCheckIn;
     }
