@@ -302,7 +302,7 @@
                <children>
                   <AnchorPane>
                      <children>
-                        <Button id="botonOk" fx:id="add" mnemonicParsing="false" text="%button.crear" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Button id="botonOk" fx:id="aceptar" mnemonicParsing="false" text="%button.crear" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font size="15.0" />
                            </font>

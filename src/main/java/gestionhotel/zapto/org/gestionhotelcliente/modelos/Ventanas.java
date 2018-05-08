@@ -18,6 +18,11 @@ public class Ventanas {
             HUESPED = "Huesped", HUESPED_BUSCADOR = "HuespedBuscador", RESERVA_CHECKIN = "ReservaCheckIn",
             CLIENTE = "Cliente", HUESPED_RESERVA = "HuespedReserva", PRINCIPAL = "Principal",
             QUIENES_SOMOS = "QuienesSomos", CALCULADORA = "Calculadora";
+    
+    /**
+     * modos en los que se puede abrir una ventana se modifica en el controlador de la misma.
+     */
+    public static final int MODO_INSERTAR=1,MODO_ACTUALIZAR=2,MODO_VER=3,MODO_SELECCIONAR=4;
 
     /**
      * lista de ventanas activas

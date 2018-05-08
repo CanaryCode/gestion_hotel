@@ -10,16 +10,23 @@ import javafx.collections.ObservableList;
  *
  * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
-public class TablaHuesped {
+public class TablaCliente {
 
     private String numeroDocumento, nombre, calle, codigoPostal, ciudad, provincia, estado,
-            sexoHombre, nacionalidad, categoria, pasaporte, email, discapacitado, numero, comentario,
-            teléfonoFijo, teléfonoMovil, primerApellido, segundoApellido, tratamiento, paginaWeb;
+            sexoHombre, nacionalidad, categoria, email, numero, comentario,
+            teléfonoFijo, teléfonoMovil, primerApellido, segundoApellido, tratamiento, paginaWeb, esEmpresa,
+            razonSocial, nombreComercial;
 
-    private Date fechaNacimiento, expPasaporte, vencPasaporte;
-
-    public static ObservableList<TablaHuesped> getTablaBuscadorHuesped(List<Persona> listaPersona) {
-        ObservableList<TablaHuesped> listaHuespedes = FXCollections.observableArrayList();
+    /**
+     * con una lista del modelo personas de la base de datos crea una lista del
+     * modelo de tabla para la visualización en dicha tabla.
+     *
+     * @param listaPersona lista de personas normalmente retornada de una
+     * consulta a las base de datos
+     * @return lista del modelo de la tabla
+     */
+    public static ObservableList<TablaCliente> getTablaBuscadorCliente(List<Persona> listaPersona) {
+        ObservableList<TablaCliente> listaClientes = FXCollections.observableArrayList();
 
         for (Persona persona : listaPersona) {
             String numero = persona.getNumero();
@@ -27,69 +34,77 @@ public class TablaHuesped {
             String primerApellido = persona.getFisPrimerApellido();
             String SegundoApellido = persona.getFisSegundoApellido();
             Date fechaNacimiento = persona.getFisFechaNacimiento();
-            Date fechaExpPasaporte = persona.getFisExpPasaporte();
+            String razonSocial = persona.getJurRazonSocial();
+            String nombreComercial = persona.getJurNombreComercial();
             String nacionalidad = persona.getFisNacionalidad();
-            String tratamiento = persona.getFisTratamiento();
             String ciudad = persona.getCiudad();
             String provincia = persona.getProvincia();
             String calle = persona.getCalle();
             String codigoPostal = persona.getCodPostal();
-            String dni = persona.getDocumentoNumero();
+            String numeroDocumento = persona.getDocumentoNumero();
             String estado = persona.getEstado();
-            String pasaporte = persona.getPasaporte();
             String email = persona.getEmail();
             String categoria = persona.getCategoria();
             String comentario = persona.getComentario();
             String telefonoFijo = null;
             String telefonoMovil = null;
-            String sexo = "";
+            String tratamiento = persona.getFisTratamiento();
+            String paginaWeb = persona.getPaginaWeb();
+            String esEmpresa = "";
+            if (persona.getEsEmpresa() != null) {
+                esEmpresa = (persona.getEsEmpresa() == 0) ? "Persona" : "Empresa";
+            }
+                 String sexo = "";
             if (persona.getFisSexoHombre() != null) {
                 sexo = (persona.getFisSexoHombre() == 0) ? "mujer" : "hombre";
             }
-            String discapacitado = "";
-            if (persona.getFisSexoHombre() != null) {
-                discapacitado = (persona.getFisSexoHombre() == 0) ? "Discapacitado" : "No";
-            }
-
-            TablaHuesped huesped = new TablaHuesped(numero, dni, nombre, calle, codigoPostal, ciudad,
-                    provincia, estado, tratamiento, sexo, primerApellido, SegundoApellido,
-                    nacionalidad, categoria, pasaporte, email, discapacitado, fechaExpPasaporte,
-                    fechaExpPasaporte, fechaNacimiento, comentario, telefonoFijo, telefonoMovil);
-            listaHuespedes.add(huesped);
+            TablaCliente cliente = new TablaCliente(numeroDocumento, nombre, calle, codigoPostal, ciudad,
+                    provincia, estado, sexo, nacionalidad, categoria, email, numero, comentario,
+                    telefonoFijo, telefonoMovil, primerApellido, SegundoApellido,
+                    tratamiento, paginaWeb, esEmpresa, razonSocial, nombreComercial, fechaNacimiento);
+            listaClientes.add(cliente);
         }
-        return listaHuespedes;
+        return listaClientes;
     }
 
-    public TablaHuesped() {
+    public TablaCliente(String numeroDocumento, String nombre, String calle, String codigoPostal,
+            String ciudad, String provincia, String estado, String sexoHombre, String nacionalidad,
+            String categoria, String email, String numero, String comentario, String teléfonoFijo,
+            String teléfonoMovil, String primerApellido, String segundoApellido, String tratamiento,
+            String paginaWeb, String esEmpresa, String razonSocial, String nombreComercial,
+            Date fechaNacimiento) {
 
-    }
-
-    public TablaHuesped(String numero, String documentoNumero, String nombre, String calle, String codPostal,
-            String ciudad, String provincia, String estado, String tratamiento, String SexoHombre,
-            String PrimerApellido, String SegundoApellido, String Nacionalidad, String categoria,
-            String pasaporte, String email, String discapacitado, Date expPasaporte, Date vencPasaporte,
-            Date fechaNacimiento, String comentario, String telefonoFijo, String telefonoMovil) {
-        this.numero = numero;
-        this.numeroDocumento = documentoNumero;
+        this.numeroDocumento = numeroDocumento;
         this.nombre = nombre;
         this.calle = calle;
-        this.codigoPostal = codPostal;
+        this.codigoPostal = codigoPostal;
         this.ciudad = ciudad;
         this.provincia = provincia;
         this.estado = estado;
-        this.tratamiento = tratamiento;
-        this.sexoHombre = SexoHombre;
-        this.primerApellido = PrimerApellido;
-        this.segundoApellido = SegundoApellido;
-        this.nacionalidad = Nacionalidad;
+        this.sexoHombre = sexoHombre;
+        this.nacionalidad = nacionalidad;
         this.categoria = categoria;
-        this.pasaporte = pasaporte;
         this.email = email;
-        this.discapacitado = discapacitado;
-        this.expPasaporte = expPasaporte;
-        this.vencPasaporte = vencPasaporte;
-        this.fechaNacimiento = fechaNacimiento;
+        this.numero = numero;
         this.comentario = comentario;
+        this.teléfonoFijo = teléfonoFijo;
+        this.teléfonoMovil = teléfonoMovil;
+        this.primerApellido = primerApellido;
+        this.segundoApellido = segundoApellido;
+        this.tratamiento = tratamiento;
+        this.paginaWeb = paginaWeb;
+        this.esEmpresa = esEmpresa;
+        this.razonSocial = razonSocial;
+        this.nombreComercial = nombreComercial;
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getNombreComercial() {
+        return nombreComercial;
+    }
+
+    public void setNombreComercial(String nombreComercial) {
+        this.nombreComercial = nombreComercial;
     }
 
     public String getNumeroDocumento() {
@@ -172,28 +187,12 @@ public class TablaHuesped {
         this.categoria = categoria;
     }
 
-    public String getPasaporte() {
-        return pasaporte;
-    }
-
-    public void setPasaporte(String pasaporte) {
-        this.pasaporte = pasaporte;
-    }
-
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getDiscapacitado() {
-        return discapacitado;
-    }
-
-    public void setDiscapacitado(String discapacitado) {
-        this.discapacitado = discapacitado;
     }
 
     public String getNumero() {
@@ -260,6 +259,22 @@ public class TablaHuesped {
         this.paginaWeb = paginaWeb;
     }
 
+    public String getEsEmpresa() {
+        return esEmpresa;
+    }
+
+    public void setEsEmpresa(String esEmpresa) {
+        this.esEmpresa = esEmpresa;
+    }
+
+    public String getRazonSocial() {
+        return razonSocial;
+    }
+
+    public void setRazonSocial(String razonSocial) {
+        this.razonSocial = razonSocial;
+    }
+
     public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
@@ -267,21 +282,6 @@ public class TablaHuesped {
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
-
-    public Date getExpPasaporte() {
-        return expPasaporte;
-    }
-
-    public void setExpPasaporte(Date expPasaporte) {
-        this.expPasaporte = expPasaporte;
-    }
-
-    public Date getVencPasaporte() {
-        return vencPasaporte;
-    }
-
-    public void setVencPasaporte(Date vencPasaporte) {
-        this.vencPasaporte = vencPasaporte;
-    }
+    private Date fechaNacimiento;
 
 }

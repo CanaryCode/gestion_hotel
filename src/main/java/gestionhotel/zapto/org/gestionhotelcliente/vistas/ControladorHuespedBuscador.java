@@ -71,7 +71,7 @@ public class ControladorHuespedBuscador implements Initializable {
             tableColumnSegundoApellido, tableColumnFechaNacimiento, tableColumnSexo, tableColumnDiscapacitado,
             tableColumnCiudad, tableColumnProvincia, tableColumnPais, tableColumnCalle, tableColumnCodigoPostal,
             tableColumnPasaporte, tableColumnFechaExpedicion, tableColumnEmail, tableColumnTratamiento,
-            tableColumnCategoria,tableColumnTelefonoFijo,tableColumnTelefonoMovil;
+            tableColumnCategoria, tableColumnTelefonoFijo, tableColumnTelefonoMovil;
 
     private List<TablaHuesped> listaHuespedes = new ArrayList<>();
     private List<Persona> listaPersonas = new ArrayList<>();
@@ -183,7 +183,7 @@ public class ControladorHuespedBuscador implements Initializable {
         });
 
         crear.setOnAction((e) -> {
-            codigoCrear();
+            codigoInsertar();
 
         });
         actualizar.setOnAction((e) -> {
@@ -440,14 +440,18 @@ public class ControladorHuespedBuscador implements Initializable {
     private void codigoActualizar() {
         ObjetoVentana obj = VentanasFactory.getObjetoVentanaHuesped(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
-           ((ControladorHuesped)obj.getfXMLLoader().getController()).setHuespedEnVista(HuespedEnVista);
+            ((ControladorHuesped) obj.getfXMLLoader().getController()).
+                    setHuespedEnVista(HuespedEnVista).
+                    setModoFormulario(Ventanas.MODO_ACTUALIZAR);
             obj.ver();
         }
     }
 
-    private void codigoCrear() {
+    private void codigoInsertar() {
         ObjetoVentana obj = VentanasFactory.getObjetoVentanaHuesped(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
+            ((ControladorHuesped) obj.getfXMLLoader().getController()).
+                    setModoFormulario(Ventanas.MODO_INSERTAR);
             obj.ver();
         }
     }
@@ -491,6 +495,6 @@ public class ControladorHuespedBuscador implements Initializable {
         aceptar.setDisable(false);
         actualizar.setDisable(false);
         borrar.setDisable(false);
-        HuespedEnVista = tabla.getSelectionModel().getSelectedItem().getHuesped();
+        HuespedEnVista = listaPersonas.get(tabla.getSelectionModel().getSelectedIndex());
     }
 }

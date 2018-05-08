@@ -73,7 +73,7 @@ public class Registro {
     public static final ObservableList ListaRazonSocial = FXCollections.observableArrayList(razonSocial);
 
     private static final String[] categoriaCliente = {
-        "desconocido", "especial", "mongolo", "mongolo profundo"
+        "desconocido", "Especial", "Mongolo", "Mongolo profundo"
     };
     public static final ObservableList ListaCategoriaCliente = FXCollections.observableArrayList(categoriaCliente);
 
@@ -88,7 +88,7 @@ public class Registro {
     public static final ObservableList ListaTipoHabitacion = FXCollections.observableArrayList(tipoHabitacion);
 
     private static final String[] tipoCama = {
-        "Individual", "Matrimonio", "doble separadas"
+        "Individual", "Matrimonio", "Doble separadas"
     };
     public static ObservableList ListaTipoCama = FXCollections.observableArrayList(tipoCama);
 

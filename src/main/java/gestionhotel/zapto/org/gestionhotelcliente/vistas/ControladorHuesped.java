@@ -5,10 +5,7 @@ import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import java.net.URL;
-import java.time.Instant;
-import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.Event;
@@ -21,7 +18,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import org.hibernate.criterion.Expression;
 
 /**
  * FXML Controller class
@@ -49,7 +45,7 @@ public class ControladorHuesped implements Initializable {
     Button aceptar, reseteaCampos;
     @FXML
     AnchorPane principal;
-    private boolean accionInsertar = true;
+    private int modoFormulario;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -59,28 +55,34 @@ public class ControladorHuesped implements Initializable {
         categoria.getSelectionModel().selectFirst();
         nacionalidad.setItems(Registro.listaPaises);
         nacionalidad.getSelectionModel().selectFirst();
-        aceptar.setOnAction((event) -> {
-            accionAdd(event);
-        });
         reseteaCampos.setOnAction((event) -> {
             codigoResetearCampos();
         });
     }
 
-    private void accionAdd(Event e) {
-        //si se esta actualizando la información de un huesped
-        if (!accionInsertar) {
-            //entonces cuando termines, de  hacerlo cierra la ventana.
-            Ventanas.cerrarVentana(Ventanas.HUESPED);
-            //si se está insertando a una persona
-        } else {
-            //entonces resetea todos los campos.
-            codigoResetearCampos();
+    private void configurarModo() {
+        if (modoFormulario == Ventanas.MODO_ACTUALIZAR) {
+            aceptar.setOnAction((event) -> {
+                //entonces cuando termines, de  hacerlo cierra la ventana.
+                Ventanas.cerrarVentana(Ventanas.HUESPED);
+                //si se está insertando a una persona
+            });
+            reseteaCampos.setDisable(true);
+
+        } else if (modoFormulario == Ventanas.MODO_INSERTAR) {
+            aceptar.setOnAction((event) -> {
+                //entonces resetea todos los campos.
+                codigoResetearCampos();
+            });
+
         }
+       
     }
 
-    public void setAccionInsertar(boolean accionInsertar) {
-        this.accionInsertar = accionInsertar;
+    public ControladorHuesped setModoFormulario(int modoFormulario) {
+        this.modoFormulario = modoFormulario;
+        configurarModo();
+        return this;
     }
 
     public void codigoResetearCampos() {
@@ -88,49 +90,100 @@ public class ControladorHuesped implements Initializable {
 
     }
 
-    public void setHuespedEnVista(Persona huesped) {
-        nombre.setText(huesped.getNombre());
-        primerApellido.setText(huesped.getFisPrimerApellido());
-        segundoApellido.setText(huesped.getFisSegundoApellido());
-        dni.setText(huesped.getDocumentoNumero());
-        for (Object obj : nacionalidad.getItems()) {
-            if (((String) obj).equals(huesped.getFisNacionalidad())) {
-                nacionalidad.getSelectionModel().select(obj);
+    public ControladorHuesped setHuespedEnVista(Persona huesped) {
+        if (huesped.getNombre() != null) {
+            nombre.setText(huesped.getNombre());
+        }
+
+        if (huesped.getFisPrimerApellido() != null) {
+            primerApellido.setText(huesped.getFisPrimerApellido());
+        }
+
+        if (huesped.getFisSegundoApellido() != null) {
+            segundoApellido.setText(huesped.getFisSegundoApellido());
+        }
+
+        if (huesped.getDocumentoNumero() != null) {
+            dni.setText(huesped.getDocumentoNumero());
+        }
+
+        if (huesped.getProvincia() != null) {
+            provincia.setText(huesped.getProvincia());
+        }
+
+        if (huesped.getCodPostal() != null) {
+            codigoPostal.setText(huesped.getCodPostal());
+        }
+
+        if (huesped.getEmail() != null) {
+            correoElectronico.setText(huesped.getEmail());
+        }
+
+        if (huesped.getCalle() != null) {
+            calle.setText(huesped.getCalle());
+        }
+
+        if (huesped.getCiudad() != null) {
+            ciudad.setText(huesped.getCiudad());
+        }
+
+        if (huesped.getComentario() != null) {
+            comentario.setText(huesped.getComentario());
+        }
+
+        if (huesped.getNumero() != null) {
+            numero.setText(huesped.getNumero());
+        }
+        if (huesped.getPasaporte() != null) {
+            pasaporte.setText(huesped.getPasaporte());
+        }
+        /**
+         * --------------------------------------------------------------
+         */
+        if (huesped.getFisNacionalidad() != null) {
+            for (Object obj : nacionalidad.getItems()) {
+                if (((String) obj).equals(huesped.getFisNacionalidad())) {
+                    nacionalidad.getSelectionModel().select(obj);
+                }
             }
         }
-        for (Object obj : tratamiento.getItems()) {
-            if (((String) obj).equals(huesped.getFisTratamiento())) {
-                tratamiento.getSelectionModel().select(obj);
+        if (huesped.getFisTratamiento() != null) {
+            for (Object obj : tratamiento.getItems()) {
+                if (((String) obj).equals(huesped.getFisTratamiento())) {
+                    tratamiento.getSelectionModel().select(obj);
+                }
             }
         }
-        for (Object obj : categoria.getItems()) {
-            if (((String) obj).equals(huesped.getCategoria())) {
-                categoria.getSelectionModel().select(obj);
+        if (huesped.getCategoria() != null) {
+            for (Object obj : categoria.getItems()) {
+                if (((String) obj).equals(huesped.getCategoria())) {
+                    categoria.getSelectionModel().select(obj);
+                }
+            }
+        }
+        /**
+         * --------------------------------------------------------------
+         */
+        if (huesped.getFisDiscapacitado() != null) {
+            if (huesped.getFisDiscapacitado() == 1) {
+                discapacitadoSi.setSelected(true);
             }
         }
 
-        fechaNacimiento.setValue(new Date(huesped.getFisFechaNacimiento().getTime()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        fechaExpedicion.setValue(new Date(huesped.getFisExpPasaporte().getTime()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        if (huesped.getFisSexoHombre().equals("hombre")) {
-            sexoM.setSelected(true);
-        } else {
-            sexoM.setSelected(true);
+        if (huesped.getFisSexoHombre() != null) {
+            if (huesped.getFisSexoHombre() == 0) {
+                sexoF.setSelected(true);
+            }
         }
-        if (huesped.getFisDiscapacitado().equals("Discapacitado")) {
-            discapacitadoSi.setSelected(true);
-        } else {
-            discapacitadoNo.setSelected(true);
+        /**
+         * -----------------------------------------------------------------
+         */
+        if (huesped.getFisFechaNacimiento() != null) {
+            fechaNacimiento.setValue(new Date(huesped.getFisFechaNacimiento().getTime()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         }
-        nacionalidad.getSelectionModel().select(huesped.getFisNacionalidad());
-        tratamiento.getSelectionModel().select(huesped.getFisTratamiento());
-        pasaporte.setText(huesped.getPasaporte());
-        provincia.setText(huesped.getProvincia());
-        codigoPostal.setText(huesped.getCodPostal());
-        correoElectronico.setText(huesped.getEmail());
-        calle.setText(huesped.getCalle());
-        ciudad.setText(huesped.getCiudad());
-        pasaporte.setText(huesped.getPasaporte());
-        comentario.setText(huesped.getComentario());
-        numero.setText(huesped.getNumero());
+        if (huesped.getFisExpPasaporte() != null) {
+            fechaExpedicion.setValue(new Date(huesped.getFisExpPasaporte().getTime()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        }
+        return this;
     }
 }

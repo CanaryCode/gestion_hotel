@@ -512,15 +512,29 @@
                            <content>
                               <TableView fx:id="tabla">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="Nombre" />
-                                  <TableColumn prefWidth="94.0" text="Primer Apellido" />
-                                    <TableColumn prefWidth="115.0" text="Segundo Apellido" />
-                                    <TableColumn prefWidth="131.0" text="Fecha de nacimiento" />
-                                    <TableColumn prefWidth="99.0" text="Nacionalidad" />
-                                    <TableColumn prefWidth="87.0" text="Código Postal" />
-                                    <TableColumn prefWidth="75.0" text="Número" />
-                                    <TableColumn prefWidth="143.0" text="Calle" />
-                                    <TableColumn prefWidth="109.0" text="Column X" />
+                                    <TableColumn fx:id="tableColumnRazonSocial" prefWidth="75.0" text="Razón social" />
+                                    <TableColumn fx:id="tableColumnTipo" prefWidth="75.0" text="Tipo" />
+                                    <TableColumn fx:id="tableColumnNombreComercial" prefWidth="75.0" text="Nombre comercial" />
+                                    <TableColumn fx:id="tableColumnDocumentoNumero" prefWidth="75.0" text="NumeroDocumento" />
+                                  <TableColumn fx:id="tableColumnNombre" prefWidth="75.0" text="Nombre" />
+                                  <TableColumn fx:id="tableColumnPrimerApellido" prefWidth="94.0" text="Primer Apellido" />
+                                    <TableColumn fx:id="tableColumnSegundoApellido" prefWidth="115.0" text="Segundo Apellido" />
+                                    <TableColumn fx:id="tableColumnFechaNacimiento" prefWidth="131.0" text="Fecha de nacimiento" />
+                                    <TableColumn fx:id="tableColumnNacionalidad" prefWidth="99.0" text="Nacionalidad" />
+                                    <TableColumn fx:id="tableColumnProvincia" prefWidth="109.0" text="Provincia" />
+                                    <TableColumn fx:id="tableColumnCiudad" prefWidth="75.0" text="Ciudad" />
+                                    <TableColumn fx:id="tableColumnCalle" prefWidth="143.0" text="Calle" />
+                                    <TableColumn fx:id="tableColumnNumero" prefWidth="75.0" text="Número" />
+                                    <TableColumn fx:id="tableColumnCodigoPostal" prefWidth="87.0" text="Código Postal" />
+                                    <TableColumn fx:id="tableColumnSexo" prefWidth="75.0" text="Sexo" />
+                                    <TableColumn fx:id="tableColumnNacionalidad" prefWidth="75.0" text="Nacionalidad" />
+                                    <TableColumn fx:id="tableColumnEstado" prefWidth="75.0" text="Estado" />
+                                    <TableColumn fx:id="tableColumnTelefonoFijo" prefWidth="75.0" text="Teléfono fijo" />
+                                    <TableColumn fx:id="tableColumnTelefonoMovil" prefWidth="75.0" text="Teléfono móvil" />
+                                    <TableColumn fx:id="tableColumnEmail" prefWidth="75.0" text="Email" />
+                                    <TableColumn fx:id="tableColumnPaginaWeb" prefWidth="75.0" text="Página web" />
+                                    <TableColumn fx:id="tableColumnCategoria" prefWidth="75.0" text="Categoría" />
+                                    <TableColumn fx:id="tableColumnTratamiento" prefWidth="75.0" text="Tratamiento" />
                                 </columns>
                               </TableView>
                            </content>
@@ -574,7 +588,7 @@
                            <children>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <Button id="botonOk" fx:id="actualizar1" disable="true" mnemonicParsing="false" text="Seleccionar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <Button id="botonOk" fx:id="aceptar" disable="true" mnemonicParsing="false" text="Seleccionar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <font>
                                           <Font size="15.0" />
                                        </font>

@@ -2,9 +2,12 @@ package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.RecorredorPaneles;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.Consultas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaCliente;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,14 +17,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Control;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
@@ -46,11 +50,7 @@ public class ControladorClienteBuscador implements Initializable {
     @FXML
     private ComboBox<?> nacionalidad, tratamiento, categoria, razonSocial, estado;
     @FXML
-    private Button borrar, crear, actualizar, buscar, resetearCampos;
-    @FXML
-    private TableColumn<?, ?> FtableColumnNumeroReserva, tableColumnCliente,
-            tableColumnHabitacion, tableColumnTipoHabitacion, tableColumnFechaPrevistaEntrada,
-            tableColumnFechaPrevistaSalida, tableColumnHuesped;
+    private Button borrar, crear, actualizar, buscar, aceptar,resetearCampos;
     @FXML
     AnchorPane panelPrincipal, panelPersona, panelEmpresa, panelFiltro;
     @FXML
@@ -62,6 +62,22 @@ public class ControladorClienteBuscador implements Initializable {
             toggleNacionalidad, toggleTratamiento, toggleDni, toggleEstado, toggleProvincia,
             toggleCiudad, toggleCalle, toggleNumero, toggleCodigoPostal,
             toggleTelefonoFijo, toggleTelefonoMovil, toggleEmail, toggleCategoria;
+     @FXML
+    private TableView<TablaCliente> tabla;
+    
+    @FXML
+    private TableColumn tableColumnRazonSocial,tableColumnTipo, tableColumnNombreComercial,
+            tableColumnDocumentoNumero,tableColumnNombre,tableColumnPrimerApellido,
+            tableColumnSegundoApellido,tableColumnFechaNacimiento,tableColumnNacionalidad,
+            tableColumnProvincia,tableColumnCiudad,tableColumnCalle,tableColumnNumero,
+            tableColumnCodigoPostal,tableColumnSexo,tableColumnEstado,tableColumnTelefonoFijo,
+            tableColumnTelefonoMovil,tableColumnEmail,tableColumnPaginaWeb,tableColumnCategoria,
+            tableColumnTratamiento;
+    
+    private List<TablaCliente> listaClientes= new ArrayList<>();
+    private List<Persona> listaPersonas = new ArrayList<>();
+    private Persona ClienteEnVista;
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -168,6 +184,39 @@ public class ControladorClienteBuscador implements Initializable {
             {
 
             }
+        });
+
+        
+        listaPersonas = Consultas.realizaSQLQuery(Consultas.TODAS_LAS_PERSONAS, Persona.class);
+        listaClientes = TablaCliente.getTablaBuscadorCliente(listaPersonas);
+
+        tabla.setItems(FXCollections.observableArrayList(listaClientes));
+
+        tableColumnDocumentoNumero.setCellValueFactory(new PropertyValueFactory("numeroDocumento"));
+        tableColumnNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
+        tableColumnPrimerApellido.setCellValueFactory(new PropertyValueFactory("primerApellido"));
+        tableColumnSegundoApellido.setCellValueFactory(new PropertyValueFactory("segundoApellido"));
+        tableColumnFechaNacimiento.setCellValueFactory(new PropertyValueFactory("fechaNacimiento"));
+        tableColumnSexo.setCellValueFactory(new PropertyValueFactory("sexoHombre"));
+        tableColumnCiudad.setCellValueFactory(new PropertyValueFactory("ciudad"));
+        tableColumnProvincia.setCellValueFactory(new PropertyValueFactory("provincia"));
+        tableColumnEstado.setCellValueFactory(new PropertyValueFactory("estado"));
+        tableColumnCalle.setCellValueFactory(new PropertyValueFactory("calle"));
+        tableColumnCodigoPostal.setCellValueFactory(new PropertyValueFactory("codigoPostal"));
+        tableColumnEmail.setCellValueFactory(new PropertyValueFactory("email"));
+        tableColumnTratamiento.setCellValueFactory(new PropertyValueFactory("tratamiento"));
+        tableColumnCategoria.setCellValueFactory(new PropertyValueFactory("categoria"));
+        tableColumnNumero.setCellValueFactory(new PropertyValueFactory("numero"));
+        tableColumnRazonSocial.setCellValueFactory(new PropertyValueFactory("razonSocial"));
+        tableColumnTipo.setCellValueFactory(new PropertyValueFactory("esEmpresa"));
+        tableColumnNombreComercial.setCellValueFactory(new PropertyValueFactory("nombreComercial"));
+        tableColumnTelefonoFijo.setCellValueFactory(new PropertyValueFactory("telefonoFijo"));
+        tableColumnTelefonoMovil.setCellValueFactory(new PropertyValueFactory("telefonoMovil"));
+        tableColumnPaginaWeb.setCellValueFactory(new PropertyValueFactory("paginaWeb"));
+        tableColumnNacionalidad.setCellValueFactory(new PropertyValueFactory("nacionalidad"));
+        
+           tabla.getSelectionModel().selectedIndexProperty().addListener((observable) -> {
+            tablaOnSelectedItem();
         });
 
     }
@@ -416,12 +465,17 @@ public class ControladorClienteBuscador implements Initializable {
     private void codigoActualizar() {
         ObjetoVentana obj = VentanasFactory.getObjetoVentanaRegistroClientes(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
+            ((ControladorVentanaCliente)obj.getfXMLLoader().getController()).
+                    setClienteEnVista(ClienteEnVista).
+                    setModoFormulario(Ventanas.MODO_ACTUALIZAR);
             obj.ver();
         }
     }
 
     private void codigoCrear() {
         ObjetoVentana obj = VentanasFactory.getObjetoVentanaRegistroClientes(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null);
+         ((ControladorVentanaCliente)obj.getfXMLLoader().getController()).
+                    setModoFormulario(Ventanas.MODO_INSERTAR);
         if (obj != null) {
             obj.ver();
         }
@@ -460,5 +514,11 @@ public class ControladorClienteBuscador implements Initializable {
 
     private void codigoTabPanel(Tab viejo) {
         RecorredorPaneles.reseteaControles((Pane) viejo.getContent());
+    }
+      public void tablaOnSelectedItem() {
+        aceptar.setDisable(false);
+        actualizar.setDisable(false);
+        borrar.setDisable(false);
+        ClienteEnVista = listaPersonas.get(tabla.getSelectionModel().getSelectedIndex());
     }
 }
