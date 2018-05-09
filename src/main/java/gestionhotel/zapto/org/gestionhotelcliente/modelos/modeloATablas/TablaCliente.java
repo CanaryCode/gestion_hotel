@@ -27,42 +27,43 @@ public class TablaCliente {
      */
     public static ObservableList<TablaCliente> getTablaBuscadorCliente(List<Persona> listaPersona) {
         ObservableList<TablaCliente> listaClientes = FXCollections.observableArrayList();
-
-        for (Persona persona : listaPersona) {
-            String numero = persona.getNumero();
-            String nombre = persona.getNombre();
-            String primerApellido = persona.getFisPrimerApellido();
-            String SegundoApellido = persona.getFisSegundoApellido();
-            Date fechaNacimiento = persona.getFisFechaNacimiento();
-            String razonSocial = persona.getJurRazonSocial();
-            String nombreComercial = persona.getJurNombreComercial();
-            String nacionalidad = persona.getFisNacionalidad();
-            String ciudad = persona.getCiudad();
-            String provincia = persona.getProvincia();
-            String calle = persona.getCalle();
-            String codigoPostal = persona.getCodPostal();
-            String numeroDocumento = persona.getDocumentoNumero();
-            String estado = persona.getEstado();
-            String email = persona.getEmail();
-            String categoria = persona.getCategoria();
-            String comentario = persona.getComentario();
-            String telefonoFijo = null;
-            String telefonoMovil = null;
-            String tratamiento = persona.getFisTratamiento();
-            String paginaWeb = persona.getPaginaWeb();
-            String esEmpresa = "";
-            if (persona.getEsEmpresa() != null) {
-                esEmpresa = (persona.getEsEmpresa() == 0) ? "Persona" : "Empresa";
+        if (!listaPersona.isEmpty()) {
+            for (Persona persona : listaPersona) {
+                String numero = persona.getNumero();
+                String nombre = persona.getNombre();
+                String primerApellido = persona.getFisPrimerApellido();
+                String SegundoApellido = persona.getFisSegundoApellido();
+                Date fechaNacimiento = persona.getFisFechaNacimiento();
+                String razonSocial = persona.getJurRazonSocial();
+                String nombreComercial = persona.getJurNombreComercial();
+                String nacionalidad = persona.getFisNacionalidad();
+                String ciudad = persona.getCiudad();
+                String provincia = persona.getProvincia();
+                String calle = persona.getCalle();
+                String codigoPostal = persona.getCodPostal();
+                String numeroDocumento = persona.getDocumentoNumero();
+                String estado = persona.getEstado();
+                String email = persona.getEmail();
+                String categoria = persona.getCategoria();
+                String comentario = persona.getComentario();
+                String telefonoFijo = null;
+                String telefonoMovil = null;
+                String tratamiento = persona.getFisTratamiento();
+                String paginaWeb = persona.getPaginaWeb();
+                String esEmpresa = "";
+                if (persona.getEsEmpresa() != null) {
+                    esEmpresa = (persona.getEsEmpresa() == 0) ? "Persona" : "Empresa";
+                }
+                String sexo = "";
+                if (persona.getFisSexoHombre() != null) {
+                    sexo = (persona.getFisSexoHombre() == 0) ? "mujer" : "hombre";
+                }
+                TablaCliente cliente = new TablaCliente(numeroDocumento, nombre, calle, codigoPostal, ciudad,
+                        provincia, estado, sexo, nacionalidad, categoria, email, numero, comentario,
+                        telefonoFijo, telefonoMovil, primerApellido, SegundoApellido,
+                        tratamiento, paginaWeb, esEmpresa, razonSocial, nombreComercial, fechaNacimiento);
+                listaClientes.add(cliente);
             }
-                 String sexo = "";
-            if (persona.getFisSexoHombre() != null) {
-                sexo = (persona.getFisSexoHombre() == 0) ? "mujer" : "hombre";
-            }
-            TablaCliente cliente = new TablaCliente(numeroDocumento, nombre, calle, codigoPostal, ciudad,
-                    provincia, estado, sexo, nacionalidad, categoria, email, numero, comentario,
-                    telefonoFijo, telefonoMovil, primerApellido, SegundoApellido,
-                    tratamiento, paginaWeb, esEmpresa, razonSocial, nombreComercial, fechaNacimiento);
-            listaClientes.add(cliente);
         }
         return listaClientes;
     }

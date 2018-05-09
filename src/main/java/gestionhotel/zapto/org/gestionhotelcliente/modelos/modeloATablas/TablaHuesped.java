@@ -20,42 +20,43 @@ public class TablaHuesped {
 
     public static ObservableList<TablaHuesped> getTablaBuscadorHuesped(List<Persona> listaPersona) {
         ObservableList<TablaHuesped> listaHuespedes = FXCollections.observableArrayList();
+        if (!listaPersona.isEmpty()) {
+            for (Persona persona : listaPersona) {
+                String numero = persona.getNumero();
+                String nombre = persona.getNombre();
+                String primerApellido = persona.getFisPrimerApellido();
+                String SegundoApellido = persona.getFisSegundoApellido();
+                Date fechaNacimiento = persona.getFisFechaNacimiento();
+                Date fechaExpPasaporte = persona.getFisExpPasaporte();
+                String nacionalidad = persona.getFisNacionalidad();
+                String tratamiento = persona.getFisTratamiento();
+                String ciudad = persona.getCiudad();
+                String provincia = persona.getProvincia();
+                String calle = persona.getCalle();
+                String codigoPostal = persona.getCodPostal();
+                String dni = persona.getDocumentoNumero();
+                String estado = persona.getEstado();
+                String pasaporte = persona.getPasaporte();
+                String email = persona.getEmail();
+                String categoria = persona.getCategoria();
+                String comentario = persona.getComentario();
+                String telefonoFijo = null;
+                String telefonoMovil = null;
+                String sexo = "";
+                if (persona.getFisSexoHombre() != null) {
+                    sexo = (persona.getFisSexoHombre() == 0) ? "mujer" : "hombre";
+                }
+                String discapacitado = "";
+                if (persona.getFisSexoHombre() != null) {
+                    discapacitado = (persona.getFisSexoHombre() == 0) ? "Discapacitado" : "No";
+                }
 
-        for (Persona persona : listaPersona) {
-            String numero = persona.getNumero();
-            String nombre = persona.getNombre();
-            String primerApellido = persona.getFisPrimerApellido();
-            String SegundoApellido = persona.getFisSegundoApellido();
-            Date fechaNacimiento = persona.getFisFechaNacimiento();
-            Date fechaExpPasaporte = persona.getFisExpPasaporte();
-            String nacionalidad = persona.getFisNacionalidad();
-            String tratamiento = persona.getFisTratamiento();
-            String ciudad = persona.getCiudad();
-            String provincia = persona.getProvincia();
-            String calle = persona.getCalle();
-            String codigoPostal = persona.getCodPostal();
-            String dni = persona.getDocumentoNumero();
-            String estado = persona.getEstado();
-            String pasaporte = persona.getPasaporte();
-            String email = persona.getEmail();
-            String categoria = persona.getCategoria();
-            String comentario = persona.getComentario();
-            String telefonoFijo = null;
-            String telefonoMovil = null;
-            String sexo = "";
-            if (persona.getFisSexoHombre() != null) {
-                sexo = (persona.getFisSexoHombre() == 0) ? "mujer" : "hombre";
+                TablaHuesped huesped = new TablaHuesped(numero, dni, nombre, calle, codigoPostal, ciudad,
+                        provincia, estado, tratamiento, sexo, primerApellido, SegundoApellido,
+                        nacionalidad, categoria, pasaporte, email, discapacitado, fechaExpPasaporte,
+                        fechaExpPasaporte, fechaNacimiento, comentario, telefonoFijo, telefonoMovil);
+                listaHuespedes.add(huesped);
             }
-            String discapacitado = "";
-            if (persona.getFisSexoHombre() != null) {
-                discapacitado = (persona.getFisSexoHombre() == 0) ? "Discapacitado" : "No";
-            }
-
-            TablaHuesped huesped = new TablaHuesped(numero, dni, nombre, calle, codigoPostal, ciudad,
-                    provincia, estado, tratamiento, sexo, primerApellido, SegundoApellido,
-                    nacionalidad, categoria, pasaporte, email, discapacitado, fechaExpPasaporte,
-                    fechaExpPasaporte, fechaNacimiento, comentario, telefonoFijo, telefonoMovil);
-            listaHuespedes.add(huesped);
         }
         return listaHuespedes;
     }

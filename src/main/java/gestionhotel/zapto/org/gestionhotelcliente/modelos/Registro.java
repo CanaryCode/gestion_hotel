@@ -44,21 +44,21 @@ public class Registro {
     public static final ObservableList listaPaises = FXCollections.observableArrayList(arrayPaises);
 
     private static final String[] arrayCategoria = {
-        "Normal", "V.I.P", "Especial", "Repetidor"
+        "desconocido", "Normal", "V.I.P", "Especial", "Repetidor"
     };
     public static final ObservableList listaCategoriaHuesped = FXCollections.observableArrayList(arrayCategoria);
 
     private static String[] arrayPension = {
-        "M.P.", "Completa", "Alo Y Des"
+        "desconocido", "M.P.", "Completa", "Alo Y Des"
     };
     public static final ObservableList ListaPension = FXCollections.observableArrayList(arrayPension);
 
     private static final String[] arrayHabitacion = {
-        "11", "13", "412"
+        "desconocido", "11", "13", "412"
     };
     public static final ObservableList ListaHabitacion = FXCollections.observableArrayList(arrayHabitacion);
     private static final String[] arrayTratamiento = {
-        "ninguno", "Sr/Sra", "Dr/Dra", "Ingeniero/a", "Don/Doña", "Ilustrisimo/a", "Excelentisimo/a"
+        "desconocido", "Sr/Sra", "Dr/Dra", "Ingeniero/a", "Don/Doña", "Ilustrisimo/a", "Excelentisimo/a"
     };
     public static final ObservableList ListaTratamiento = FXCollections.observableArrayList(arrayTratamiento);
 
@@ -78,28 +78,32 @@ public class Registro {
     public static final ObservableList ListaCategoriaCliente = FXCollections.observableArrayList(categoriaCliente);
 
     private static final String[] numeroPersonas = {
-        "1", "2", "3", "4", "5"
+        "desconocido", "1", "2", "3", "4", "5"
     };
     public static final ObservableList ListaNumeroPersonas = FXCollections.observableArrayList(numeroPersonas);
 
     private static final String[] tipoHabitacion = {
-        "Individual", "Doble", "Doble superior", "Suite", "Suite junior"
+        "desconocido", "Individual", "Doble", "Doble superior", "Suite", "Suite junior"
     };
     public static final ObservableList ListaTipoHabitacion = FXCollections.observableArrayList(tipoHabitacion);
 
     private static final String[] tipoCama = {
-        "Individual", "Matrimonio", "Doble separadas"
+        "desconocido", "Individual", "Matrimonio", "Doble separadas"
     };
     public static ObservableList ListaTipoCama = FXCollections.observableArrayList(tipoCama);
 
     private static final String[] tipoTarjeta = {
-        "Visa", "Mastercard", "American Express", "Maestro", "ServiRed"
+        "desconocido", "Visa", "Mastercard", "American Express", "Maestro", "ServiRed"
     };
     public static ObservableList ListaTipoTarjeta = FXCollections.observableArrayList(tipoTarjeta);
 
     private static final String[] agencia = {
-        "desconocida", "directo","Tui", "Jahn Raisen", "Thomson", "Expedia", "Corte ingles", "Halcon"
+        "desconocido", "directo", "Tui", "Jahn Raisen", "Thomson", "Expedia", "Corte ingles", "Halcon"
     };
     public static ObservableList ListaAgencia = FXCollections.observableArrayList(agencia);
+    private static final String[] tiposTelefono = {
+        "Desconocido", "Móvil", "Casa", "Empresa", "Fax", "Otro"
+    };
+    public static ObservableList ListaTipoTelefono = FXCollections.observableArrayList(tiposTelefono);
 
 }

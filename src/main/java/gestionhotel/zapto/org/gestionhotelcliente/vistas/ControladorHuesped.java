@@ -8,7 +8,6 @@ import java.net.URL;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -28,7 +27,7 @@ public class ControladorHuesped implements Initializable {
 
     @FXML
     TextField nombre, primerApellido, segundoApellido, calle, numero, provincia, ciudad,
-            correoElectronico, telefonoMovil, telefonoFijo, codigoPostal, dni, pasaporte;
+            correoElectronico, paginaWeb, codigoPostal, dni, pasaporte;
     @FXML
     ComboBox categoria, tratamiento, nacionalidad;
 
@@ -46,6 +45,7 @@ public class ControladorHuesped implements Initializable {
     @FXML
     AnchorPane principal;
     private int modoFormulario;
+    private Persona huespedEnVista;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -74,9 +74,11 @@ public class ControladorHuesped implements Initializable {
                 //entonces resetea todos los campos.
                 codigoResetearCampos();
             });
-
+        } else if (modoFormulario == Ventanas.MODO_VER) {
+            deshabilitaEditables();
+            deshabilitaBotones();
         }
-       
+
     }
 
     public ControladorHuesped setModoFormulario(int modoFormulario) {
@@ -91,6 +93,7 @@ public class ControladorHuesped implements Initializable {
     }
 
     public ControladorHuesped setHuespedEnVista(Persona huesped) {
+        huespedEnVista = huesped;
         if (huesped.getNombre() != null) {
             nombre.setText(huesped.getNombre());
         }
@@ -137,6 +140,9 @@ public class ControladorHuesped implements Initializable {
         if (huesped.getPasaporte() != null) {
             pasaporte.setText(huesped.getPasaporte());
         }
+        if (huesped.getPaginaWeb() != null) {
+            paginaWeb.setText(huesped.getPaginaWeb());
+        }
         /**
          * --------------------------------------------------------------
          */
@@ -144,6 +150,7 @@ public class ControladorHuesped implements Initializable {
             for (Object obj : nacionalidad.getItems()) {
                 if (((String) obj).equals(huesped.getFisNacionalidad())) {
                     nacionalidad.getSelectionModel().select(obj);
+                    break;
                 }
             }
         }
@@ -151,6 +158,7 @@ public class ControladorHuesped implements Initializable {
             for (Object obj : tratamiento.getItems()) {
                 if (((String) obj).equals(huesped.getFisTratamiento())) {
                     tratamiento.getSelectionModel().select(obj);
+                    break;
                 }
             }
         }
@@ -158,6 +166,7 @@ public class ControladorHuesped implements Initializable {
             for (Object obj : categoria.getItems()) {
                 if (((String) obj).equals(huesped.getCategoria())) {
                     categoria.getSelectionModel().select(obj);
+                    break;
                 }
             }
         }
@@ -185,5 +194,40 @@ public class ControladorHuesped implements Initializable {
             fechaExpedicion.setValue(new Date(huesped.getFisExpPasaporte().getTime()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         }
         return this;
+    }
+
+    private void deshabilitaEditables() {
+//        nombre.setEditable(false);
+//        primerApellido.setEditable(false);
+//        segundoApellido.setEditable(false);
+//        dni.setEditable(false);
+//        provincia.setEditable(false);
+//        codigoPostal.setEditable(false);
+//        correoElectronico.setEditable(false);
+//        calle.setEditable(false);
+//        ciudad.setEditable(false);
+//        comentario.setEditable(false);
+//        numero.setEditable(false);
+//        pasaporte.setEditable(false);
+//        paginaWeb.setEditable(false);
+//        nacionalidad.setEditable(false);
+//        tratamiento.setEditable(false);
+//        categoria.setEditable(false);
+//        discapacitadoSi.setDisable(false);
+//        discapacitadoNo.setDisable(false);
+//        sexoF.setDisable(false);
+//        sexoM.setDisable(false);
+//        /**
+//         * -----------------------------------------------------------------
+//         */
+//        fechaNacimiento.setEditable(false);
+//        fechaExpedicion.setEditable(false);
+
+        RecorredorPaneles.setEditableFalseControles(principal);
+    }
+
+    private void deshabilitaBotones() {
+        aceptar.setDisable(true);
+        reseteaCampos.setDisable(true);
     }
 }

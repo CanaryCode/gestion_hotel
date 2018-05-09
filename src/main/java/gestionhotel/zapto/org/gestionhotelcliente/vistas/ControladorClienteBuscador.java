@@ -38,11 +38,9 @@ import javafx.stage.Modality;
 public class ControladorClienteBuscador implements Initializable {
 
     @FXML
-    private Tab tabPersona, tabEmpresa;
-    @FXML
     private TextField nombre, primerApellido, segundoApellido, dni, nombreEmpresa,
-            cif, provincia, ciudad, calle, numero, codigoPostal, telefonoFijo, telefonoMovil,
-            correoElectronico;
+            cif, provincia, ciudad, calle, numero, codigoPostal, correoElectronico,
+            paginaWeb;
     @FXML
     private DatePicker fechaNacimiento;
     @FXML
@@ -50,7 +48,7 @@ public class ControladorClienteBuscador implements Initializable {
     @FXML
     private ComboBox<?> nacionalidad, tratamiento, categoria, razonSocial, estado;
     @FXML
-    private Button borrar, crear, actualizar, buscar, aceptar,resetearCampos;
+    private Button borrar, crear, actualizar, buscar, aceptar, resetearCampos, telefono,ver;
     @FXML
     AnchorPane panelPrincipal, panelPersona, panelEmpresa, panelFiltro;
     @FXML
@@ -61,23 +59,21 @@ public class ControladorClienteBuscador implements Initializable {
             toggleFNacimiento, toogleCif, toggleNombreEmpresa, toggleRazonSocial, toggleSexo,
             toggleNacionalidad, toggleTratamiento, toggleDni, toggleEstado, toggleProvincia,
             toggleCiudad, toggleCalle, toggleNumero, toggleCodigoPostal,
-            toggleTelefonoFijo, toggleTelefonoMovil, toggleEmail, toggleCategoria;
-     @FXML
-    private TableView<TablaCliente> tabla;
-    
+            togglePaginaWeb, toggleEmail, toggleCategoria;
     @FXML
-    private TableColumn tableColumnRazonSocial,tableColumnTipo, tableColumnNombreComercial,
-            tableColumnDocumentoNumero,tableColumnNombre,tableColumnPrimerApellido,
-            tableColumnSegundoApellido,tableColumnFechaNacimiento,tableColumnNacionalidad,
-            tableColumnProvincia,tableColumnCiudad,tableColumnCalle,tableColumnNumero,
-            tableColumnCodigoPostal,tableColumnSexo,tableColumnEstado,tableColumnTelefonoFijo,
-            tableColumnTelefonoMovil,tableColumnEmail,tableColumnPaginaWeb,tableColumnCategoria,
+    private TableView<TablaCliente> tabla;
+
+    @FXML
+    private TableColumn tableColumnRazonSocial, tableColumnTipo, tableColumnNombreComercial,
+            tableColumnDocumentoNumero, tableColumnNombre, tableColumnPrimerApellido,
+            tableColumnSegundoApellido, tableColumnFechaNacimiento, tableColumnNacionalidad,
+            tableColumnProvincia, tableColumnCiudad, tableColumnCalle, tableColumnNumero,
+            tableColumnCodigoPostal, tableColumnSexo, tableColumnEstado, tableColumnEmail, tableColumnPaginaWeb, tableColumnCategoria,
             tableColumnTratamiento;
-    
-    private List<TablaCliente> listaClientes= new ArrayList<>();
+
+    private List<TablaCliente> listaClientes = new ArrayList<>();
     private List<Persona> listaPersonas = new ArrayList<>();
     private Persona ClienteEnVista;
-
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -135,12 +131,10 @@ public class ControladorClienteBuscador implements Initializable {
         toggleCodigoPostal.selectedProperty().addListener((e) -> {
             codigoToggleCodigoPostal();
         });
-        toggleTelefonoFijo.selectedProperty().addListener((e) -> {
-            codigoToggleTelefonoFijo();
+        togglePaginaWeb.selectedProperty().addListener((e) -> {
+            codigoTogglePagiaWeb();
         });
-        toggleTelefonoMovil.selectedProperty().addListener((e) -> {
-            codigoToggleTelefonoMovil();
-        });
+
         toggleEmail.selectedProperty().addListener((e) -> {
             codigoToggleEmail();
         });
@@ -156,37 +150,28 @@ public class ControladorClienteBuscador implements Initializable {
 
         borrar.setOnAction((e) -> {
             codigoBorrar();
-            {
-
-            }
         });
 
         crear.setOnAction((e) -> {
             codigoCrear();
-            {
-
-            }
         });
         actualizar.setOnAction((e) -> {
             codigoActualizar();
-            {
-
-            }
         });
         buscar.setOnAction((e) -> {
-            codigoSeleccionar();
-            {
-
-            }
+            codigoSeleccionar(); 
         });
         resetearCampos.setOnAction((e) -> {
             codigoresetearCampos();
-            {
-
-            }
         });
-
-        
+        telefono.setOnAction((e) -> {
+            codigoTelefono();
+            
+        });
+        ver.setOnAction((e) -> {
+            codigoVer();
+            
+        });
         listaPersonas = Consultas.realizaSQLQuery(Consultas.TODAS_LAS_PERSONAS, Persona.class);
         listaClientes = TablaCliente.getTablaBuscadorCliente(listaPersonas);
 
@@ -210,12 +195,10 @@ public class ControladorClienteBuscador implements Initializable {
         tableColumnRazonSocial.setCellValueFactory(new PropertyValueFactory("razonSocial"));
         tableColumnTipo.setCellValueFactory(new PropertyValueFactory("esEmpresa"));
         tableColumnNombreComercial.setCellValueFactory(new PropertyValueFactory("nombreComercial"));
-        tableColumnTelefonoFijo.setCellValueFactory(new PropertyValueFactory("telefonoFijo"));
-        tableColumnTelefonoMovil.setCellValueFactory(new PropertyValueFactory("telefonoMovil"));
         tableColumnPaginaWeb.setCellValueFactory(new PropertyValueFactory("paginaWeb"));
         tableColumnNacionalidad.setCellValueFactory(new PropertyValueFactory("nacionalidad"));
-        
-           tabla.getSelectionModel().selectedIndexProperty().addListener((observable) -> {
+
+        tabla.getSelectionModel().selectedIndexProperty().addListener((observable) -> {
             tablaOnSelectedItem();
         });
 
@@ -410,24 +393,13 @@ public class ControladorClienteBuscador implements Initializable {
         }
     }
 
-    private void codigoToggleTelefonoFijo() {
-        if (toggleTelefonoFijo.isSelected()) {
-            telefonoFijo.setDisable(false);
+    private void codigoTogglePagiaWeb() {
+        if (togglePaginaWeb.isSelected()) {
+            paginaWeb.setDisable(false);
             enciendeToggle();
         } else {
-            telefonoFijo.setDisable(true);
-            telefonoFijo.setText("");
-            configuraBotones();
-        }
-    }
-
-    private void codigoToggleTelefonoMovil() {
-        if (toggleTelefonoMovil.isSelected()) {
-            telefonoMovil.setDisable(false);
-            enciendeToggle();
-        } else {
-            telefonoMovil.setDisable(true);
-            telefonoMovil.setText("");
+            paginaWeb.setDisable(true);
+            paginaWeb.setText("");
             configuraBotones();
         }
     }
@@ -465,7 +437,7 @@ public class ControladorClienteBuscador implements Initializable {
     private void codigoActualizar() {
         ObjetoVentana obj = VentanasFactory.getObjetoVentanaRegistroClientes(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
-            ((ControladorVentanaCliente)obj.getfXMLLoader().getController()).
+            ((ControladorVentanaCliente) obj.getfXMLLoader().getController()).
                     setClienteEnVista(ClienteEnVista).
                     setModoFormulario(Ventanas.MODO_ACTUALIZAR);
             obj.ver();
@@ -474,15 +446,15 @@ public class ControladorClienteBuscador implements Initializable {
 
     private void codigoCrear() {
         ObjetoVentana obj = VentanasFactory.getObjetoVentanaRegistroClientes(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null);
-         ((ControladorVentanaCliente)obj.getfXMLLoader().getController()).
-                    setModoFormulario(Ventanas.MODO_INSERTAR);
+        ((ControladorVentanaCliente) obj.getfXMLLoader().getController()).
+                setModoFormulario(Ventanas.MODO_INSERTAR);
         if (obj != null) {
             obj.ver();
         }
     }
 
     private boolean hayTogglesOn() {
-        List<ToggleButton> listaToggle = RecorredorPaneles.recorrePanelesToggle(panelPrincipal, FXCollections.observableArrayList());
+        List<ToggleButton> listaToggle = RecorredorPaneles.getListaObjetos(panelPrincipal, FXCollections.observableArrayList());
         boolean hayToogleOn = false;
         for (ToggleButton toggleButton : listaToggle) {
             if (toggleButton.isSelected()) {
@@ -515,10 +487,30 @@ public class ControladorClienteBuscador implements Initializable {
     private void codigoTabPanel(Tab viejo) {
         RecorredorPaneles.reseteaControles((Pane) viejo.getContent());
     }
-      public void tablaOnSelectedItem() {
+
+    public void tablaOnSelectedItem() {
         aceptar.setDisable(false);
         actualizar.setDisable(false);
         borrar.setDisable(false);
+        telefono.setDisable(false);
+        ver.setDisable(false);
         ClienteEnVista = listaPersonas.get(tabla.getSelectionModel().getSelectedIndex());
+    }
+    public void codigoTelefono() {
+          ObjetoVentana obj = VentanasFactory.getObjetoVentanaTelefonoBuscador(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null);
+        if (obj != null) {
+//            ((ControladorVentanaCliente) obj.getfXMLLoader().getController()).
+//                    setHuespedEnVista(ClienteEnVista).
+//                    setModoFormulario(Ventanas.MODO_ACTUALIZAR);
+            obj.ver();
+        }
+    }
+    private void codigoVer(){
+      ObjetoVentana obj = VentanasFactory.getObjetoVentanaRegistroClientes(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null);
+        if (obj != null) {
+            ((ControladorVentanaCliente) obj.getfXMLLoader().getController()).setClienteEnVista(ClienteEnVista).
+                    setModoFormulario(Ventanas.MODO_VER);
+            obj.ver();
+        }
     }
 }

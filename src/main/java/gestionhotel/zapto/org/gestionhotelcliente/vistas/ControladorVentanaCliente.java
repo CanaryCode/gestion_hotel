@@ -8,7 +8,6 @@ import java.net.URL;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -31,7 +30,7 @@ public class ControladorVentanaCliente implements Initializable {
 
     @FXML
     private TextField nombre, primerApellido, segundoApellido, calle, numero, provincia, ciudad,
-            correoElectronico, telefonoMovil, telefonoFijo, codigoPostal, cif, nombreEmpresa,
+            correoElectronico, codigoPostal, cif, nombreEmpresa, paginaWeb,
             dni;
 
     @FXML
@@ -59,6 +58,7 @@ public class ControladorVentanaCliente implements Initializable {
     public ControladorVentanaCliente() {
     }
     private int modoFormulario;
+    private Persona clienteEnVista;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -97,6 +97,9 @@ public class ControladorVentanaCliente implements Initializable {
                 codigoResetearCampos();
             });
 
+        } else if (modoFormulario == Ventanas.MODO_VER) {
+            deshabilitaEditables();
+            deshabilitaBotones();
         }
     }
 
@@ -118,92 +121,100 @@ public class ControladorVentanaCliente implements Initializable {
         RecorredorPaneles.reseteaControles((Pane) viejo.getContent());
     }
 
-    public ControladorVentanaCliente setClienteEnVista(Persona huesped) {
-        this.modoFormulario = modoFormulario;
-        if (huesped.getNombre() != null) {
-            if (huesped.getEsEmpresa() == 0) {
-                nombre.setText(huesped.getNombre());
+    public ControladorVentanaCliente setClienteEnVista(Persona cliente) {
+        clienteEnVista = cliente;
+        if (cliente.getNombre() != null) {
+            if (cliente.getEsEmpresa() == 0) {
+                nombre.setText(cliente.getNombre());
             } else {
-                nombreEmpresa.setText(huesped.getNombre());
+                nombreEmpresa.setText(cliente.getNombre());
             }
         }
-        if (huesped.getFisPrimerApellido() != null) {
-            primerApellido.setText(huesped.getFisPrimerApellido());
+        if (cliente.getFisPrimerApellido() != null) {
+            primerApellido.setText(cliente.getFisPrimerApellido());
         }
-        if (huesped.getFisSegundoApellido() != null) {
-            segundoApellido.setText(huesped.getFisSegundoApellido());
+        if (cliente.getFisSegundoApellido() != null) {
+            segundoApellido.setText(cliente.getFisSegundoApellido());
         }
-        if (huesped.getDocumentoNumero() != null) {
-            if (huesped.getEsEmpresa() == 0) {
-                dni.setText(huesped.getDocumentoNumero());
+        if (cliente.getDocumentoNumero() != null) {
+            if (cliente.getEsEmpresa() == 0) {
+                dni.setText(cliente.getDocumentoNumero());
             } else {
-                cif.setText(huesped.getDocumentoNumero());
+                cif.setText(cliente.getDocumentoNumero());
             }
         }
-        if (huesped.getProvincia() != null) {
-            provincia.setText(huesped.getProvincia());
+        if (cliente.getProvincia() != null) {
+            provincia.setText(cliente.getProvincia());
         }
-        if (huesped.getCodPostal() != null) {
-            codigoPostal.setText(huesped.getCodPostal());
+        if (cliente.getCodPostal() != null) {
+            codigoPostal.setText(cliente.getCodPostal());
         }
-        if (huesped.getEmail() != null) {
-            correoElectronico.setText(huesped.getEmail());
+        if (cliente.getEmail() != null) {
+            correoElectronico.setText(cliente.getEmail());
         }
-        if (huesped.getCalle() != null) {
-            calle.setText(huesped.getCalle());
+        if (cliente.getCalle() != null) {
+            calle.setText(cliente.getCalle());
         }
-        if (huesped.getCiudad() != null) {
-            ciudad.setText(huesped.getCiudad());
+        if (cliente.getCiudad() != null) {
+            ciudad.setText(cliente.getCiudad());
         }
-        if (huesped.getComentario() != null) {
-            comentario.setText(huesped.getComentario());
+        if (cliente.getComentario() != null) {
+            comentario.setText(cliente.getComentario());
         }
-        if (huesped.getNumero() != null) {
-            numero.setText(huesped.getNumero());
+        if (cliente.getNumero() != null) {
+            numero.setText(cliente.getNumero());
+        }
+        if (cliente.getPaginaWeb() != null) {
+            paginaWeb.setText(cliente.getPaginaWeb());
         }
         /**
          * --------------------------------------------------------
          */
-        if (huesped.getFisNacionalidad() != null) {
+        if (cliente.getFisNacionalidad() != null) {
             for (Object obj : nacionalidad.getItems()) {
-                if (((String) obj).equals(huesped.getFisNacionalidad())) {
+                if (((String) obj).equals(cliente.getFisNacionalidad())) {
                     nacionalidad.getSelectionModel().select(obj);
+                    break;
                 }
             }
         }
-        if (huesped.getFisNacionalidad() != null) {
+        if (cliente.getFisNacionalidad() != null) {
             for (Object obj : estado.getItems()) {
-                if (((String) obj).equals(huesped.getFisNacionalidad())) {
+                if (((String) obj).equals(cliente.getFisNacionalidad())) {
                     estado.getSelectionModel().select(obj);
+                    break;
                 }
             }
         }
-        if (huesped.getFisTratamiento() != null) {
+        if (cliente.getFisTratamiento() != null) {
             for (Object obj : tratamiento.getItems()) {
-                if (((String) obj).equals(huesped.getFisTratamiento())) {
+                if (((String) obj).equals(cliente.getFisTratamiento())) {
                     tratamiento.getSelectionModel().select(obj);
+                    break;
                 }
             }
         }
-        if (huesped.getCategoria() != null) {
+        if (cliente.getCategoria() != null) {
             for (Object obj : categoria.getItems()) {
-                if (((String) obj).equals(huesped.getCategoria())) {
+                if (((String) obj).equals(cliente.getCategoria())) {
                     categoria.getSelectionModel().select(obj);
+                    break;
                 }
             }
         }
-        if (huesped.getJurRazonSocial() != null) {
+        if (cliente.getJurRazonSocial() != null) {
             for (Object obj : razonSocial.getItems()) {
-                if (((String) obj).equals(huesped.getFisNacionalidad())) {
+                if (((String) obj).equals(cliente.getFisNacionalidad())) {
                     razonSocial.getSelectionModel().select(obj);
+                    break;
                 }
             }
         }
         /**
          * ----------------------------------------------------------------------------
          */
-        if (huesped.getEsEmpresa() != null) {
-            if (huesped.getEsEmpresa() == 0) {
+        if (cliente.getEsEmpresa() != null) {
+            if (cliente.getEsEmpresa() == 0) {
                 tabPanel.getSelectionModel().select(tabPersona);
                 tabEmpresa.setDisable(true);
             } else {
@@ -211,15 +222,43 @@ public class ControladorVentanaCliente implements Initializable {
                 tabPersona.setDisable(true);
             }
         }
-        if (huesped.getFisSexoHombre() != null) {
-            if (huesped.getFisSexoHombre() == 0) {
+        if (cliente.getFisSexoHombre() != null) {
+            if (cliente.getFisSexoHombre() == 0) {
                 sexoF.setSelected(true);
             }
         }
-        if (huesped.getFisFechaNacimiento() != null) {
-            fechaNacimiento.setValue(new Date(huesped.getFisFechaNacimiento().getTime()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        if (cliente.getFisFechaNacimiento() != null) {
+            fechaNacimiento.setValue(new Date(cliente.getFisFechaNacimiento().getTime()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         }
         return this;
     }
 
+    private void deshabilitaEditables() {
+//        nombre.setEditable(false);
+//        primerApellido.setEditable(false);
+//        segundoApellido.setEditable(false);
+//        dni.setEditable(false);
+//        provincia.setEditable(false);
+//        codigoPostal.setEditable(false);
+//        correoElectronico.setEditable(false);
+//        calle.setEditable(false);
+//        ciudad.setEditable(false);
+//        comentario.setEditable(false);
+//        numero.setEditable(false);
+//        paginaWeb.setEditable(false);
+//        nacionalidad.setEditable(false);
+//        estado.setEditable(false);
+//        tratamiento.setEditable(false);
+//        categoria.setEditable(false);
+//        razonSocial.setEditable(false);
+//        sexoF.setDisable(false);
+//        sexoM.setDisable(false);
+//        fechaNacimiento.setEditable(false);
+        RecorredorPaneles.setEditableFalseControles(principal);
+    }
+
+    private void deshabilitaBotones() {
+        aceptar.setDisable(true);
+        reseteaCampos.setDisable(true);
+    }
 }

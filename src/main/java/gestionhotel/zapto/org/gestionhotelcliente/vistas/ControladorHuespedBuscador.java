@@ -23,7 +23,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -39,10 +38,7 @@ public class ControladorHuespedBuscador implements Initializable {
 
     @FXML
     private TextField nombre, primerApellido, segundoApellido, provincia, ciudad, calle,
-            pasaporte, numero, codigoPostal, dni, telefonoFijo, telefonoMovil, correoElectronico,
-            email, paginaWeb;
-    @FXML
-    private TextArea comentario;
+            pasaporte, numero, codigoPostal, dni, correoElectronico, paginaWeb;
     @FXML
     private AnchorPane panelPrincipal;
 
@@ -53,15 +49,15 @@ public class ControladorHuespedBuscador implements Initializable {
     private RadioButton sexoM, sexoF, discapacitadoNo, discapacitadoSi;
 
     @FXML
-    private ComboBox<?> nacionalidad, tratamiento, categoria, estado, cargo;
+    private ComboBox<?> nacionalidad, tratamiento, categoria;
 
     @FXML
-    private Button borrar, crear, actualizar, seleccionar, aceptar, resetarCampos;
+    private Button borrar, crear, actualizar, seleccionar, aceptar, resetarCampos, telefono, ver;
     @FXML
     private ToggleButton toggleNombre, togglePrimerApellido, toggleSegundoApellido, toggleFnacimiento,
             toggleSexo, toggleDiscapacitado, toggleNacionalidad, toggleProvincia, toggleCiudad,
             toggleCalle, toggleNumero, toggleCodigoPostal, toggleDni, togglePasaporte,
-            toggleExpPasaporte, toggleTelefonoFijo, toggleTelefonoMovil, toggleEmail, toggleTratamiento,
+            toggleExpPasaporte, togglePaginaWeb, toggleEmail, toggleTratamiento,
             toggleCategoría;
     @FXML
     private TableView<TablaHuesped> tabla;
@@ -71,7 +67,7 @@ public class ControladorHuespedBuscador implements Initializable {
             tableColumnSegundoApellido, tableColumnFechaNacimiento, tableColumnSexo, tableColumnDiscapacitado,
             tableColumnCiudad, tableColumnProvincia, tableColumnPais, tableColumnCalle, tableColumnCodigoPostal,
             tableColumnPasaporte, tableColumnFechaExpedicion, tableColumnEmail, tableColumnTratamiento,
-            tableColumnCategoria, tableColumnTelefonoFijo, tableColumnTelefonoMovil;
+            tableColumnCategoria;
 
     private List<TablaHuesped> listaHuespedes = new ArrayList<>();
     private List<Persona> listaPersonas = new ArrayList<>();
@@ -124,11 +120,8 @@ public class ControladorHuespedBuscador implements Initializable {
         toggleExpPasaporte.selectedProperty().addListener((e) -> {
             codigoToogleExpPasaporte();
         });
-        toggleTelefonoFijo.selectedProperty().addListener((e) -> {
-            codigoToogleTelefonoFijo();
-        });
-        toggleTelefonoMovil.selectedProperty().addListener((e) -> {
-            codigoToogleTelefonoMovil();
+        togglePaginaWeb.selectedProperty().addListener((e) -> {
+            codigoTooglePaginaWeb();
         });
         toggleEmail.selectedProperty().addListener((e) -> {
             codigoToogleEmail();
@@ -170,8 +163,6 @@ public class ControladorHuespedBuscador implements Initializable {
         tableColumnTratamiento.setCellValueFactory(new PropertyValueFactory("tratamiento"));
         tableColumnCategoria.setCellValueFactory(new PropertyValueFactory("categoria"));
         tableColumnNumero.setCellValueFactory(new PropertyValueFactory("numero"));
-//        tableColumnNumero.setCellValueFactory(new PropertyValueFactory("teléfonoFijo"));
-//        tableColumnNumero.setCellValueFactory(new PropertyValueFactory("teléfonoMovil"));
 
         tabla.getSelectionModel().selectedIndexProperty().addListener((observable) -> {
             tablaOnSelectedItem();
@@ -199,6 +190,12 @@ public class ControladorHuespedBuscador implements Initializable {
         });
         resetarCampos.setOnAction((e) -> {
             codigoResetearCampos();
+        });
+        telefono.setOnAction((e) -> {
+            codigoTelefono();
+        });
+        ver.setOnAction((e) -> {
+            codigoVer();
         });
 
     }
@@ -372,24 +369,13 @@ public class ControladorHuespedBuscador implements Initializable {
         }
     }
 
-    private void codigoToogleTelefonoFijo() {
-        if (toggleTelefonoFijo.isSelected()) {
-            telefonoFijo.setDisable(false);
+    private void codigoTooglePaginaWeb() {
+        if (togglePaginaWeb.isSelected()) {
+            paginaWeb.setDisable(false);
             enciendeToggle();
         } else {
-            telefonoFijo.setDisable(true);
-            telefonoFijo.setText("");
-            configuraBotones();
-        }
-    }
-
-    private void codigoToogleTelefonoMovil() {
-        if (toggleTelefonoMovil.isSelected()) {
-            telefonoMovil.setDisable(false);
-            enciendeToggle();
-        } else {
-            telefonoMovil.setDisable(true);
-            telefonoMovil.setText("");
+            paginaWeb.setDisable(true);
+            paginaWeb.setText("");
             configuraBotones();
         }
     }
@@ -440,8 +426,7 @@ public class ControladorHuespedBuscador implements Initializable {
     private void codigoActualizar() {
         ObjetoVentana obj = VentanasFactory.getObjetoVentanaHuesped(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
-            ((ControladorHuesped) obj.getfXMLLoader().getController()).
-                    setHuespedEnVista(HuespedEnVista).
+            ((ControladorHuesped) obj.getfXMLLoader().getController()).setHuespedEnVista(HuespedEnVista).
                     setModoFormulario(Ventanas.MODO_ACTUALIZAR);
             obj.ver();
         }
@@ -465,7 +450,7 @@ public class ControladorHuespedBuscador implements Initializable {
     }
 
     private boolean hayTogglesOn() {
-        List<ToggleButton> listaToggle = RecorredorPaneles.recorrePanelesToggle(panelPrincipal, FXCollections.observableArrayList());
+        List<ToggleButton> listaToggle = RecorredorPaneles.getListaObjetos(panelPrincipal, FXCollections.observableArrayList());
         boolean hayToogleOn = false;
         for (ToggleButton toggleButton : listaToggle) {
             if (toggleButton.isSelected()) {
@@ -495,6 +480,28 @@ public class ControladorHuespedBuscador implements Initializable {
         aceptar.setDisable(false);
         actualizar.setDisable(false);
         borrar.setDisable(false);
+        telefono.setDisable(false);
+        ver.setDisable(false);
         HuespedEnVista = listaPersonas.get(tabla.getSelectionModel().getSelectedIndex());
     }
+
+    public void codigoTelefono() {
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaTelefonoBuscador(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null);
+        if (obj != null) {
+//            ((ControladorVentanaCliente) obj.getfXMLLoader().getController()).
+//                    setHuespedEnVista(ClienteEnVista).
+//                    setModoFormulario(Ventanas.MODO_ACTUALIZAR);
+            obj.ver();
+        }
+    }
+
+    private void codigoVer() {
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaHuesped(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null);
+        if (obj != null) {
+            ((ControladorHuesped) obj.getfXMLLoader().getController()).setHuespedEnVista(HuespedEnVista).
+                    setModoFormulario(Ventanas.MODO_VER);
+            obj.ver();
+        }
+    }
+    
 }

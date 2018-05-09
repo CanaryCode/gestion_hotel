@@ -180,4 +180,32 @@ public class VentanasFactory {
                 owner, ObjetoVentana.resourceBundle.getString("windows.HuespedReserva"), modalidad, controlador);
         return obj;
     }
+    /**
+     * abre la ventana "Telefono buscador". Se apoya en las clases privadas para
+     * configurarla.
+     *
+     * @param owner ventana padre.
+     * @param modalidad modalidad de esta ventana (modal,normal, etc).
+     * @param controlador controlador del fxml.
+     * @return ventana preconfigurada lista para abrir.
+     */
+    public static ObjetoVentana getObjetoVentanaTelefonoBuscador(String owner, Modality modalidad, Object controlador) {
+        ObjetoVentana obj = ObjetoVentanaBuilder.crear("FXMLTelefonoBuscador", Ventanas.TELEFONO_BUSCADOR,
+                owner,"Buscador de teléfonos", modalidad, controlador);
+        return obj;
+    }
+    /**
+     * abre la ventana "Telefono buscador". Se apoya en las clases privadas para
+     * configurarla.
+     *
+     * @param owner ventana padre.
+     * @param modalidad modalidad de esta ventana (modal,normal, etc).
+     * @param controlador controlador del fxml.
+     * @return ventana preconfigurada lista para abrir.
+     */
+    public static ObjetoVentana getObjetoVentanaTelefono(String owner, Modality modalidad, Object controlador) {
+        ObjetoVentana obj = ObjetoVentanaBuilder.crear("FXMLVentanaTelefono", Ventanas.TELEFONO,
+                owner,"Teléfonos", modalidad, controlador);
+        return obj;
+    }
 }

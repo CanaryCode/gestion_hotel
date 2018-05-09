@@ -21,7 +21,7 @@ import javafx.scene.layout.Pane;
 public class RecorredorPaneles {
 /**
  * Sirve para recorrer un panel raiz y que se vaya metiendo dentro de todos los
- * paneles anidados y cuando detecte que hay un ToggleButton lo añada a la lista
+ * paneles anidados y cuando detecte que hay un T lo añada a la lista
  * que posteriormete devolverá.
  * 
  * @param pane panel raiz desde el cual se empieza a inspeccionar
@@ -29,7 +29,7 @@ public class RecorredorPaneles {
  * la recursividad en las anidaciones posteriores.
  * @return 
  */
-    public static List<ToggleButton> recorrePanelesToggle(Pane pane, List<ToggleButton> lista) {
+    public static <T>List<T> getListaObjetos(Pane pane, List<T> lista) {
         //recorre todos hijos del panel principal
         pane.getChildren().forEach(new Consumer<Node>() {
             @Override
@@ -39,11 +39,11 @@ public class RecorredorPaneles {
                     //haz recursividad y como segundo parámetro te paso la lista
                     //por parámetro que se introdujo en la primera invocación.
                     //es ahí donde vas a ir acumulando.
-                    recorrePanelesToggle((Pane) object, lista);
+                    getListaObjetos((Pane) object, lista);
                     //si lo que me encuentro es un ToogleButton que no es un RadioButton
                 } else if (object instanceof ToggleButton && object instanceof RadioButton == false) {
                     //añadelo a lista.
-                    lista.add((ToggleButton) object);
+                    lista.add((T) object);
                     //si lo que me encuentro es un SplitPane
                 } else if (object instanceof SplitPane) {
                     //utiliza el método de dar lista de hijos inmodificables para 
@@ -52,7 +52,7 @@ public class RecorredorPaneles {
                     //recorre la lista de todos sus nodos y si un nodo es instancia de Pane utiliza la recursividad
                     //acumulando en la lista pasada por parámetro en la primera invocación.
                     listaNodos.stream().filter((nodo) -> (nodo instanceof Pane)).forEachOrdered((nodo) -> {
-                        recorrePanelesToggle((Pane) nodo, lista);
+                        getListaObjetos((Pane) nodo, lista);
                     });
                     //si es una instancia de TabPane
                 } else if (object instanceof TabPane) {
@@ -63,7 +63,7 @@ public class RecorredorPaneles {
                     //utiliza la recursividad acumulando en la lista pasada por parámetro en la primera
                     //invocación
                     listaTabs.stream().map((tab) -> tab.getContent()).filter((nodo) -> (nodo instanceof Pane)).forEachOrdered((nodo) -> {
-                        recorrePanelesToggle((Pane) nodo, lista);
+                        getListaObjetos((Pane) nodo, lista);
                     });
                 }
             }
@@ -126,6 +126,59 @@ public class RecorredorPaneles {
                 } else if (object instanceof ToggleButton) {
                     //haz que se deseleccione.
                     ((ToggleButton) object).setSelected(false);
+                }
+            }
+        });
+    }
+    public static void setEditableFalseControles(Pane pane) {
+        //obten todos nodos del panel padre y por cada uno:
+        pane.getChildren().forEach(new Consumer<Node>() {
+            @Override
+            public void accept(Node object) {
+                //si es instancia de pane
+                if (object instanceof Pane) {
+                    //utiliza recursividad.
+                    reseteaControles((Pane) object);
+                    //si es instancia de SplitPane
+                } else if (object instanceof SplitPane) {
+                    //utiliza el método getItems() para obstener una lista de todos
+                    //los nodos que tiene dentro.
+                    ObservableList<Node> listaNodos = ((SplitPane) object).getItems();
+                    //por cada nodo mira si es instacia de Pane y en el caso de ser
+                    //así utiliza la recursividad.
+                    listaNodos.stream().filter((nodo) -> (nodo instanceof Pane)).forEachOrdered((nodo) -> {
+                        reseteaControles((Pane) nodo);
+                    });
+                    //si es instancia de TabPane u
+                } else if (object instanceof TabPane) {
+                    //utiliza el método getTabs() para obtener las pestañas de las que está compuesta.
+                    ObservableList<Tab> listaTabs = ((TabPane) object).getTabs();
+                    //por cada pestaña utiliza el método getContent() para obtener los nodos
+                    //y si son instancia de Pane, utiliza la recursividad.
+                    listaTabs.stream().map((tab) -> tab.getContent()).filter((nodo) -> (nodo instanceof Pane)).forEachOrdered((nodo) -> {
+                        reseteaControles((Pane) nodo);
+                    });
+                    //si el objeto es un InputContol
+                } else if (object instanceof TextInputControl) {
+                    //borra lo que haya escrito en el
+                    ((TextInputControl) object).setEditable(false);
+                    //si es un ComboBox
+                } else if (object instanceof ComboBox) {
+                    //haz que se seleccione el primer articulo de la lista.
+                    ((ComboBox) object).setEditable(false);
+                    //si es un DatePicker
+                } else if (object instanceof DatePicker) {
+                    //haz que no haya nada seleccionado.
+                    ((DatePicker) object).setEditable(false);
+                    ((DatePicker) object).setDisable(false);
+                    //si es un radioButton
+                } else if (object instanceof RadioButton) {
+                    //obten el TogggleGroup y haz que se marque el primero.
+                    ((RadioButton) object).setDisable(false);
+                    //si es un ToggleButton
+                } else if (object instanceof ToggleButton) {
+                    //haz que se deseleccione.
+                    ((ToggleButton) object).setDisable(false);
                 }
             }
         });

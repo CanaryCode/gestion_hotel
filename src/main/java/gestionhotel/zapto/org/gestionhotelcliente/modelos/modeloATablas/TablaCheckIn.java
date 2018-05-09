@@ -69,15 +69,16 @@ public class TablaCheckIn {
 
     public static ObservableList<TablaCheckIn> modeloCheckin(List<DetallesReserva> listaDetallesReserva) {
         ObservableList<TablaCheckIn> listaCheckIn = FXCollections.observableArrayList();
+        if (!listaDetallesReserva.isEmpty()) {
             String numeroReserva = "nombre de prueba";
-        String cliente = "";
-        int habitacion = 0;
-        Date fechaPrevistaEntrada = new Date();
-        String tipo = "";
+            String cliente = "";
+            int habitacion = 0;
+            Date fechaPrevistaEntrada = new Date();
+            String tipo = "";
 
-        for (DetallesReserva detallesReserva : listaDetallesReserva) {
-            Reserva reserva = detallesReserva.getReserva();
-            if (listaDetallesReserva.get(0) != detallesReserva) {
+            for (DetallesReserva detallesReserva : listaDetallesReserva) {
+                Reserva reserva = detallesReserva.getReserva();
+                if (listaDetallesReserva.get(0) != detallesReserva) {
 //                numeroReserva = detallesReserva.getReserva().getNumero();
 //                Persona persona = detallesReserva.getReserva().getPersonaByCodCliente();
 //                if (persona != null) {
@@ -98,10 +99,11 @@ public class TablaCheckIn {
 //                habitacion = detallesReserva.getHabitacion().getNumero();
 //                fechaPrevistaEntrada = detallesReserva.getFechaEntradaPrevista();
 //                tipo = detallesReserva.getHabitacion().getTipo();
+                }
             }
+            TablaCheckIn c = new TablaCheckIn(numeroReserva, cliente, habitacion, tipo, fechaPrevistaEntrada);
+            listaCheckIn.add(c);
         }
-        TablaCheckIn c = new TablaCheckIn(numeroReserva, cliente, habitacion, tipo, fechaPrevistaEntrada);
-        listaCheckIn.add(c);
         return listaCheckIn;
     }
 }

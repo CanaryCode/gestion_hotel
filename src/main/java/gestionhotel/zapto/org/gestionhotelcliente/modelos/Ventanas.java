@@ -17,7 +17,8 @@ public class Ventanas {
     public static final String RESERVA = "Reserva", CLIENTE_BUSCADOR = "ClienteBuscador", LOGIN = "LogIn",
             HUESPED = "Huesped", HUESPED_BUSCADOR = "HuespedBuscador", RESERVA_CHECKIN = "ReservaCheckIn",
             CLIENTE = "Cliente", HUESPED_RESERVA = "HuespedReserva", PRINCIPAL = "Principal",
-            QUIENES_SOMOS = "QuienesSomos", CALCULADORA = "Calculadora";
+            QUIENES_SOMOS = "QuienesSomos", CALCULADORA = "Calculadora",TELEFONO_BUSCADOR="telefonoBuscador",
+            TELEFONO="Telefono";
     
     /**
      * modos en los que se puede abrir una ventana se modifica en el controlador de la misma.

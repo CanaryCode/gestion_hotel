@@ -299,6 +299,46 @@
     -fx-graphic:url(../imagenes/cancel24.png);
     -fx-cursor:hand;
 }
+#botonTelefono{
+    -fx-graphic:url(../imagenes/telefono24.png);
+    -fx-background-color: #3366ff;
+    -fx-alignment:BOTTOM_CENTER;
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+    -fx-border-color: #ffffff;
+    -fx-border-radius: 10;
+    -fx-cursor:hand;
+    -fx-font-size: 8pt;
+}
+#botonTelefono:hover{
+    -fx-graphic:url(../imagenes/telefono32.png);
+    -fx-background-color: #329fe6;
+    -fx-cursor:hand;
+}
+#botonTelefono:pressed{
+    -fx-graphic:url(../imagenes/telefono24.png);
+    -fx-cursor:hand;
+}
+#botonVer{
+    -fx-graphic:url(../imagenes/ver24.png);
+    -fx-background-color: #3366ff;
+    -fx-alignment:BOTTOM_CENTER;
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+    -fx-border-color: #ffffff;
+    -fx-border-radius: 10;
+    -fx-cursor:hand;
+    -fx-font-size: 8pt;
+}
+#botonVer:hover{
+    -fx-graphic:url(../imagenes/ver32.png);
+    -fx-background-color: #329fe6;
+    -fx-cursor:hand;
+}
+#botonVer:pressed{
+    -fx-graphic:url(../imagenes/ver24.png);
+    -fx-cursor:hand;
+}
 #botonActualizar{
     -fx-graphic:url(../imagenes/actualizar24.png);
     -fx-background-color: #3366ff;
