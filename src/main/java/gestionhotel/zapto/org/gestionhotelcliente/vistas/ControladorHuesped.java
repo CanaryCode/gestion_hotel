@@ -223,7 +223,7 @@ public class ControladorHuesped implements Initializable {
 //        fechaNacimiento.setEditable(false);
 //        fechaExpedicion.setEditable(false);
 
-        RecorredorPaneles.setEditableFalseControles(principal);
+        RecorredorPaneles.setOnlyReadsInputs(principal);
     }
 
     private void deshabilitaBotones() {

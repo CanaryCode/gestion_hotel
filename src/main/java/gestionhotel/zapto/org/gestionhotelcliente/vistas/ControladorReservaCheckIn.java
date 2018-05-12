@@ -3,10 +3,10 @@ package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.ActivadorDeControles;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.Consultas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaCheckIn;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
@@ -39,7 +39,7 @@ public class ControladorReservaCheckIn implements Initializable {
 
     @FXML
     private TableColumn tableColumnNumeroReserva, tableColumnCliente, tableColumnHabitacion, tableColumnTipoHabitacion,
-            tableColumnFechaPrevistaEntrada;
+            tableColumnFechaPrevistaEntrada, tableColumnFechaPrevistaSalida;
 
     @FXML
     private TableView<TablaCheckIn> tabla;
@@ -68,17 +68,19 @@ public class ControladorReservaCheckIn implements Initializable {
         
         activaBotonesBuscarYResetea();
         
-        listaReservas = Consultas.realizaSQLQuery(Consultas.TODOS_LOS_DETALLES_RESERVA, DetallesReserva.class);
+        listaReservas = PruebasModelo.getListaDeAlojamientos();
         
         
         listaPendientesCheckIn = TablaCheckIn.modeloCheckin(listaReservas);
         listaFiltro = listaPendientesCheckIn;
         tabla.setItems(listaFiltro);
+        
         tableColumnCliente.setCellValueFactory(new PropertyValueFactory("cliente"));
         tableColumnFechaPrevistaEntrada.setCellValueFactory(new PropertyValueFactory("fechaPrevistaEntrada"));
         tableColumnHabitacion.setCellValueFactory(new PropertyValueFactory("habitacion"));
         tableColumnNumeroReserva.setCellValueFactory(new PropertyValueFactory("numeroReserva"));
         tableColumnTipoHabitacion.setCellValueFactory(new PropertyValueFactory("tipo"));
+        tableColumnFechaPrevistaSalida.setCellValueFactory(new PropertyValueFactory("fechaPrevistaSalida"));
 
         tabla.getSelectionModel().selectedItemProperty().addListener((observable) -> {
             seleccionaReservaEnVista();
@@ -89,7 +91,7 @@ public class ControladorReservaCheckIn implements Initializable {
 
     private void seleccionaReservaEnVista() {
         for (DetallesReserva dr : listaReservas) {
-            if (dr.getNombreReserva().equals(tabla.getSelectionModel().getSelectedItem().getNumeroReserva())) {
+            if (dr.getReserva().getNumero().equals(tabla.getSelectionModel().getSelectedItem().getNumeroReserva())) {
                 detallesReserva = dr;
             }
         }

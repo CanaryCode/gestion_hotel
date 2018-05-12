@@ -2,17 +2,18 @@ package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.RecorredorPaneles;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.Consultas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaHuesped;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -69,9 +70,12 @@ public class ControladorHuespedBuscador implements Initializable {
             tableColumnPasaporte, tableColumnFechaExpedicion, tableColumnEmail, tableColumnTratamiento,
             tableColumnCategoria;
 
-    private List<TablaHuesped> listaHuespedes = new ArrayList<>();
+    private List<TablaHuesped> listaTablaHuespedes = new ArrayList<>();
     private List<Persona> listaPersonas = new ArrayList<>();
-    private Persona HuespedEnVista;
+    private Persona huespedEnVista;
+    private ObservableList<Persona> listaAddHuesped;
+    private ObservableList<TablaHuesped> listaAddTablaHuesped;
+    int modoVentana;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -140,10 +144,10 @@ public class ControladorHuespedBuscador implements Initializable {
         nacionalidad.setItems(Registro.listaPaises);
         nacionalidad.getSelectionModel().selectFirst();
 
-        listaPersonas = Consultas.realizaSQLQuery(Consultas.TODAS_LAS_PERSONAS, Persona.class);
-        listaHuespedes = TablaHuesped.getTablaBuscadorHuesped(listaPersonas);
+        listaPersonas = PruebasModelo.getListaDeHuespedes();
+        listaTablaHuespedes=  TablaHuesped.getTablaBuscadorHuesped(listaPersonas);
 
-        tabla.setItems(FXCollections.observableArrayList(listaHuespedes));
+        tabla.setItems(FXCollections.observableArrayList(listaTablaHuespedes));
 
         tableColumnDni.setCellValueFactory(new PropertyValueFactory("numeroDocumento"));
         tableColumnNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
@@ -426,7 +430,7 @@ public class ControladorHuespedBuscador implements Initializable {
     private void codigoActualizar() {
         ObjetoVentana obj = VentanasFactory.getObjetoVentanaHuesped(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
-            ((ControladorHuesped) obj.getfXMLLoader().getController()).setHuespedEnVista(HuespedEnVista).
+            ((ControladorHuesped) obj.getfXMLLoader().getController()).setHuespedEnVista(huespedEnVista).
                     setModoFormulario(Ventanas.MODO_ACTUALIZAR);
             obj.ver();
         }
@@ -442,7 +446,14 @@ public class ControladorHuespedBuscador implements Initializable {
     }
 
     private void codigoAceptar() {
-
+        if (modoVentana == Ventanas.MODO_SELECCIONAR) {
+            listaAddHuesped.add(huespedEnVista);
+            ObservableList<TablaHuesped>tablaProvicional=TablaHuesped.getTablaBuscadorHuesped(listaAddHuesped);
+            TablaHuesped huespedProvicional=tablaProvicional.get(tablaProvicional.size()-1);
+            listaAddTablaHuesped.add(huespedProvicional);
+            Ventanas.cerrarVentana(Ventanas.HUESPED_BUSCADOR);
+            
+        }
     }
 
     private void codigoResetearCampos() {
@@ -482,7 +493,7 @@ public class ControladorHuespedBuscador implements Initializable {
         borrar.setDisable(false);
         telefono.setDisable(false);
         ver.setDisable(false);
-        HuespedEnVista = listaPersonas.get(tabla.getSelectionModel().getSelectedIndex());
+        huespedEnVista = listaPersonas.get(tabla.getSelectionModel().getSelectedIndex());
     }
 
     public void codigoTelefono() {
@@ -498,10 +509,21 @@ public class ControladorHuespedBuscador implements Initializable {
     private void codigoVer() {
         ObjetoVentana obj = VentanasFactory.getObjetoVentanaHuesped(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
-            ((ControladorHuesped) obj.getfXMLLoader().getController()).setHuespedEnVista(HuespedEnVista).
+            ((ControladorHuesped) obj.getfXMLLoader().getController()).setHuespedEnVista(huespedEnVista).
                     setModoFormulario(Ventanas.MODO_VER);
             obj.ver();
         }
     }
-    
+
+    public ControladorHuespedBuscador setListaHuesped(ObservableList<Persona> listaHuesped,ObservableList<TablaHuesped> listaTablaHuesped) {
+        this.listaAddHuesped = listaHuesped;
+        this.listaAddTablaHuesped=listaTablaHuesped;
+        return this;
+    }
+
+    public ControladorHuespedBuscador setModoVentana(int modoVentana) {
+        this.modoVentana = modoVentana;
+        return this;
+    }
+
 }

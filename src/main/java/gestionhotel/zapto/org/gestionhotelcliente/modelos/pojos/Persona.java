@@ -1,5 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos;
-// Generated 06-may-2018 1:59:43 by Hibernate Tools 4.3.1
+// Generated 12-may-2018 8:07:49 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -51,8 +51,7 @@ public class Persona  implements java.io.Serializable {
      private Set reservasForCodEmpleado = new HashSet(0);
      private Set reservasForAgencia = new HashSet(0);
      private Set huespedHabitacions = new HashSet(0);
-     private Set telefonoPersonasForNumTelefono = new HashSet(0);
-     private Set telefonoPersonasForCodPersona = new HashSet(0);
+     private Set telefonoPersonas = new HashSet(0);
 
     public Persona() {
     }
@@ -61,7 +60,7 @@ public class Persona  implements java.io.Serializable {
     public Persona(String numero) {
         this.numero = numero;
     }
-    public Persona(String tipoDocumento, String documentoNumero, String nombre, String calle, String codPostal, String ciudad, String provincia, String estado, Byte esEmpresa, String jurNombreComercial, Date fisFechaNacimiento, Integer fisEdad, String fisTratamiento, Integer fisCodPersona, String fisCargo, Byte esCliente, Byte esEmpleado, Byte fisSexoHombre, String jurRazonSocial, String fisPrimerApellido, String fisSegundoApellido, String fisNacionalidad, String categoria, String pasaporte, String email, String paginaWeb, Date fisExpPasaporte, Date fisVencPasaporte, String comentario, Byte fisDiscapacitado, String numero, Set parentescosForCodPariente, Set parentescosForCodPersona, Set reservasForCodCliente, Set usuarios, Set reservasForCodEmpleado, Set reservasForAgencia, Set huespedHabitacions, Set telefonoPersonasForNumTelefono, Set telefonoPersonasForCodPersona) {
+    public Persona(String tipoDocumento, String documentoNumero, String nombre, String calle, String codPostal, String ciudad, String provincia, String estado, Byte esEmpresa, String jurNombreComercial, Date fisFechaNacimiento, Integer fisEdad, String fisTratamiento, Integer fisCodPersona, String fisCargo, Byte esCliente, Byte esEmpleado, Byte fisSexoHombre, String jurRazonSocial, String fisPrimerApellido, String fisSegundoApellido, String fisNacionalidad, String categoria, String pasaporte, String email, String paginaWeb, Date fisExpPasaporte, Date fisVencPasaporte, String comentario, Byte fisDiscapacitado, String numero, Set parentescosForCodPariente, Set parentescosForCodPersona, Set reservasForCodCliente, Set usuarios, Set reservasForCodEmpleado, Set reservasForAgencia, Set huespedHabitacions, Set telefonoPersonas) {
        this.tipoDocumento = tipoDocumento;
        this.documentoNumero = documentoNumero;
        this.nombre = nombre;
@@ -100,8 +99,7 @@ public class Persona  implements java.io.Serializable {
        this.reservasForCodEmpleado = reservasForCodEmpleado;
        this.reservasForAgencia = reservasForAgencia;
        this.huespedHabitacions = huespedHabitacions;
-       this.telefonoPersonasForNumTelefono = telefonoPersonasForNumTelefono;
-       this.telefonoPersonasForCodPersona = telefonoPersonasForCodPersona;
+       this.telefonoPersonas = telefonoPersonas;
     }
    
     public Integer getCodPersona() {
@@ -377,19 +375,12 @@ public class Persona  implements java.io.Serializable {
     public void setHuespedHabitacions(Set huespedHabitacions) {
         this.huespedHabitacions = huespedHabitacions;
     }
-    public Set getTelefonoPersonasForNumTelefono() {
-        return this.telefonoPersonasForNumTelefono;
+    public Set getTelefonoPersonas() {
+        return this.telefonoPersonas;
     }
     
-    public void setTelefonoPersonasForNumTelefono(Set telefonoPersonasForNumTelefono) {
-        this.telefonoPersonasForNumTelefono = telefonoPersonasForNumTelefono;
-    }
-    public Set getTelefonoPersonasForCodPersona() {
-        return this.telefonoPersonasForCodPersona;
-    }
-    
-    public void setTelefonoPersonasForCodPersona(Set telefonoPersonasForCodPersona) {
-        this.telefonoPersonasForCodPersona = telefonoPersonasForCodPersona;
+    public void setTelefonoPersonas(Set telefonoPersonas) {
+        this.telefonoPersonas = telefonoPersonas;
     }
 
 

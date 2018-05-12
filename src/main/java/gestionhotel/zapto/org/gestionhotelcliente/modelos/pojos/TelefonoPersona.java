@@ -1,5 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos;
-// Generated 06-may-2018 1:59:43 by Hibernate Tools 4.3.1
+// Generated 12-may-2018 8:07:49 by Hibernate Tools 4.3.1
 
 
 
@@ -10,23 +10,20 @@ public class TelefonoPersona  implements java.io.Serializable {
 
 
      private TelefonoPersonaId id;
-     private Persona personaByNumTelefono;
-     private Persona personaByCodPersona;
+     private Persona persona;
      private String descripcion;
 
     public TelefonoPersona() {
     }
 
 	
-    public TelefonoPersona(TelefonoPersonaId id, Persona personaByNumTelefono, Persona personaByCodPersona) {
+    public TelefonoPersona(TelefonoPersonaId id, Persona persona) {
         this.id = id;
-        this.personaByNumTelefono = personaByNumTelefono;
-        this.personaByCodPersona = personaByCodPersona;
+        this.persona = persona;
     }
-    public TelefonoPersona(TelefonoPersonaId id, Persona personaByNumTelefono, Persona personaByCodPersona, String descripcion) {
+    public TelefonoPersona(TelefonoPersonaId id, Persona persona, String descripcion) {
        this.id = id;
-       this.personaByNumTelefono = personaByNumTelefono;
-       this.personaByCodPersona = personaByCodPersona;
+       this.persona = persona;
        this.descripcion = descripcion;
     }
    
@@ -37,19 +34,12 @@ public class TelefonoPersona  implements java.io.Serializable {
     public void setId(TelefonoPersonaId id) {
         this.id = id;
     }
-    public Persona getPersonaByNumTelefono() {
-        return this.personaByNumTelefono;
+    public Persona getPersona() {
+        return this.persona;
     }
     
-    public void setPersonaByNumTelefono(Persona personaByNumTelefono) {
-        this.personaByNumTelefono = personaByNumTelefono;
-    }
-    public Persona getPersonaByCodPersona() {
-        return this.personaByCodPersona;
-    }
-    
-    public void setPersonaByCodPersona(Persona personaByCodPersona) {
-        this.personaByCodPersona = personaByCodPersona;
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
     public String getDescripcion() {
         return this.descripcion;

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 06-may-2018 1:59:44 by Hibernate Tools 4.3.1 -->
+<!-- Generated 12-may-2018 8:07:49 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona" table="persona" catalog="gestionhotel" optimistic-lock="version">
         <id name="codPersona" type="java.lang.Integer">
@@ -143,13 +143,7 @@
             </key>
             <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.HuespedHabitacion" />
         </set>
-        <set name="telefonoPersonasForNumTelefono" table="telefono_persona" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="num_telefono" not-null="true" />
-            </key>
-            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersona" />
-        </set>
-        <set name="telefonoPersonasForCodPersona" table="telefono_persona" inverse="true" lazy="true" fetch="select">
+        <set name="telefonoPersonas" table="telefono_persona" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="cod_persona" not-null="true" />
             </key>

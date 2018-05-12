@@ -1,5 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos;
-// Generated 06-may-2018 1:59:43 by Hibernate Tools 4.3.1
+// Generated 12-may-2018 8:07:49 by Hibernate Tools 4.3.1
 
 
 
@@ -10,12 +10,12 @@ public class TelefonoPersonaId  implements java.io.Serializable {
 
 
      private int codPersona;
-     private int numTelefono;
+     private String numTelefono;
 
     public TelefonoPersonaId() {
     }
 
-    public TelefonoPersonaId(int codPersona, int numTelefono) {
+    public TelefonoPersonaId(int codPersona, String numTelefono) {
        this.codPersona = codPersona;
        this.numTelefono = numTelefono;
     }
@@ -27,11 +27,11 @@ public class TelefonoPersonaId  implements java.io.Serializable {
     public void setCodPersona(int codPersona) {
         this.codPersona = codPersona;
     }
-    public int getNumTelefono() {
+    public String getNumTelefono() {
         return this.numTelefono;
     }
     
-    public void setNumTelefono(int numTelefono) {
+    public void setNumTelefono(String numTelefono) {
         this.numTelefono = numTelefono;
     }
 
@@ -43,14 +43,14 @@ public class TelefonoPersonaId  implements java.io.Serializable {
 		 TelefonoPersonaId castOther = ( TelefonoPersonaId ) other; 
          
 		 return (this.getCodPersona()==castOther.getCodPersona())
- && (this.getNumTelefono()==castOther.getNumTelefono());
+ && ( (this.getNumTelefono()==castOther.getNumTelefono()) || ( this.getNumTelefono()!=null && castOther.getNumTelefono()!=null && this.getNumTelefono().equals(castOther.getNumTelefono()) ) );
    }
    
    public int hashCode() {
          int result = 17;
          
          result = 37 * result + this.getCodPersona();
-         result = 37 * result + this.getNumTelefono();
+         result = 37 * result + ( getNumTelefono() == null ? 0 : this.getNumTelefono().hashCode() );
          return result;
    }   
 

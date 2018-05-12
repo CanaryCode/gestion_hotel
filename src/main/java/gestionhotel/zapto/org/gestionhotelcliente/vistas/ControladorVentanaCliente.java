@@ -254,7 +254,7 @@ public class ControladorVentanaCliente implements Initializable {
 //        sexoF.setDisable(false);
 //        sexoM.setDisable(false);
 //        fechaNacimiento.setEditable(false);
-        RecorredorPaneles.setEditableFalseControles(principal);
+        RecorredorPaneles.setOnlyReadsInputs(principal);
     }
 
     private void deshabilitaBotones() {

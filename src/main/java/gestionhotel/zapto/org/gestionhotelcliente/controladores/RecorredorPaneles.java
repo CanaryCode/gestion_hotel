@@ -19,17 +19,18 @@ import javafx.scene.layout.Pane;
  * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
 public class RecorredorPaneles {
-/**
- * Sirve para recorrer un panel raiz y que se vaya metiendo dentro de todos los
- * paneles anidados y cuando detecte que hay un T lo añada a la lista
- * que posteriormete devolverá.
- * 
- * @param pane panel raiz desde el cual se empieza a inspeccionar
- * @param lista una lista que preferiblemente sea nueva se utiliza para que funcione
- * la recursividad en las anidaciones posteriores.
- * @return 
- */
-    public static <T>List<T> getListaObjetos(Pane pane, List<T> lista) {
+
+    /**
+     * Sirve para recorrer un panel raiz y que se vaya metiendo dentro de todos
+     * los paneles anidados y cuando detecte que hay un T lo añada a la lista
+     * que posteriormete devolverá.
+     *
+     * @param pane panel raiz desde el cual se empieza a inspeccionar
+     * @param lista una lista que preferiblemente sea nueva se utiliza para que
+     * funcione la recursividad en las anidaciones posteriores.
+     * @return
+     */
+    public static <T> List<T> getListaObjetos(Pane pane, List<T> lista) {
         //recorre todos hijos del panel principal
         pane.getChildren().forEach(new Consumer<Node>() {
             @Override
@@ -71,11 +72,12 @@ public class RecorredorPaneles {
         //devuelve la lista donde se fue acumulando todo.
         return lista;
     }
+
     /**
-     * Se utiliza para recorrer todos los controles de un Panel pasado por parámetro
-     * y sus correspondientes subniveles anidados hasta recorrer todos los controles
-     * que hay dentro y restaurar los valores iniciales.
-     * 
+     * Se utiliza para recorrer todos los controles de un Panel pasado por
+     * parámetro y sus correspondientes subniveles anidados hasta recorrer todos
+     * los controles que hay dentro y restaurar los valores iniciales.
+     *
      * @param pane Panel raiz desde donde se quiere empezar a inspeccionar
      */
     public static void reseteaControles(Pane pane) {
@@ -130,7 +132,8 @@ public class RecorredorPaneles {
             }
         });
     }
-    public static void setEditableFalseControles(Pane pane) {
+
+    public static void setOnlyReadsInputs(Pane pane) {
         //obten todos nodos del panel padre y por cada uno:
         pane.getChildren().forEach(new Consumer<Node>() {
             @Override
@@ -138,7 +141,7 @@ public class RecorredorPaneles {
                 //si es instancia de pane
                 if (object instanceof Pane) {
                     //utiliza recursividad.
-                    reseteaControles((Pane) object);
+                    setOnlyReadsInputs((Pane) object);
                     //si es instancia de SplitPane
                 } else if (object instanceof SplitPane) {
                     //utiliza el método getItems() para obstener una lista de todos
@@ -147,7 +150,7 @@ public class RecorredorPaneles {
                     //por cada nodo mira si es instacia de Pane y en el caso de ser
                     //así utiliza la recursividad.
                     listaNodos.stream().filter((nodo) -> (nodo instanceof Pane)).forEachOrdered((nodo) -> {
-                        reseteaControles((Pane) nodo);
+                        setOnlyReadsInputs((Pane) nodo);
                     });
                     //si es instancia de TabPane u
                 } else if (object instanceof TabPane) {
@@ -156,7 +159,7 @@ public class RecorredorPaneles {
                     //por cada pestaña utiliza el método getContent() para obtener los nodos
                     //y si son instancia de Pane, utiliza la recursividad.
                     listaTabs.stream().map((tab) -> tab.getContent()).filter((nodo) -> (nodo instanceof Pane)).forEachOrdered((nodo) -> {
-                        reseteaControles((Pane) nodo);
+                        setOnlyReadsInputs((Pane) nodo);
                     });
                     //si el objeto es un InputContol
                 } else if (object instanceof TextInputControl) {
@@ -165,20 +168,23 @@ public class RecorredorPaneles {
                     //si es un ComboBox
                 } else if (object instanceof ComboBox) {
                     //haz que se seleccione el primer articulo de la lista.
-                    ((ComboBox) object).setEditable(false);
+                    ((ComboBox) object).setDisable(true);
+                    ((ComboBox) object).setStyle("-fx-opacity: 1.0;");
                     //si es un DatePicker
                 } else if (object instanceof DatePicker) {
                     //haz que no haya nada seleccionado.
-                    ((DatePicker) object).setEditable(false);
-                    ((DatePicker) object).setDisable(false);
+                    ((DatePicker) object).setDisable(true);
+                    ((DatePicker) object).setStyle("-fx-opacity: 1.0;");
                     //si es un radioButton
                 } else if (object instanceof RadioButton) {
                     //obten el TogggleGroup y haz que se marque el primero.
-                    ((RadioButton) object).setDisable(false);
+                    ((RadioButton) object).setDisable(true);
+                    ((RadioButton) object).setStyle("-fx-opacity: 1.0;");
                     //si es un ToggleButton
                 } else if (object instanceof ToggleButton) {
                     //haz que se deseleccione.
-                    ((ToggleButton) object).setDisable(false);
+                    ((ToggleButton) object).setDisable(true);
+                    ((ToggleButton) object).setStyle("-fx-opacity: 1.0;");
                 }
             }
         });

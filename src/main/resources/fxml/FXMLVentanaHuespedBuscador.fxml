@@ -549,8 +549,6 @@
                                                       <TableColumn fx:id="tableColumnCodigoPostal" prefWidth="75.0" text="Còdigo postal" />
                                                       <TableColumn fx:id="tableColumnPasaporte" prefWidth="75.0" text="Pasaporte" />
                                                       <TableColumn fx:id="tableColumnFechaExpedicion" prefWidth="75.0" text="Fecha Exp." />
-                                                      <TableColumn fx:id="tableColumnTelefonoFijo" prefWidth="75.0" text="Teléfono FIjo" />
-                                                      <TableColumn fx:id="tableColumnTelefonoMovil" prefWidth="75.0" text="Teléfono móvil" />
                                                       <TableColumn fx:id="tableColumnEmail" prefWidth="75.0" text="Correo Electrónico" />
                                                       <TableColumn fx:id="tableColumnTratamiento" prefWidth="75.0" text="Tratamiento" />
                                                       <TableColumn fx:id="tableColumnCategoria" prefWidth="75.0" text="Categoría" />
@@ -565,11 +563,11 @@
                                     </ScrollPane>
                                     <GridPane>
                                       <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
                                       </columnConstraints>
                                       <rowConstraints>
-                                        <RowConstraints vgrow="SOMETIMES" />
-                                        <RowConstraints vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
                                           <AnchorPane GridPane.rowIndex="1">

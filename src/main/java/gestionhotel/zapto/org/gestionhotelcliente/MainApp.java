@@ -14,7 +14,6 @@ public class MainApp extends Application {
         ObjetoVentana obj=VentanasFactory.getObjetoVentanaLogIn();
           if (obj != null) {
                 obj.ver();
-                Conexiones.abrirFactory();
           }
     }
 

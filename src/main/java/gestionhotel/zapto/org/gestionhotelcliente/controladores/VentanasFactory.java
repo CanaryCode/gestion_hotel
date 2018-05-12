@@ -38,10 +38,6 @@ public class VentanasFactory {
     public static ObjetoVentana getObjetoVentanaPrincipal() {
         ObjetoVentana obj = ObjetoVentanaBuilder.crear("FXMLVentanaPrincipal", Ventanas.PRINCIPAL,
                 null, ObjetoVentana.resourceBundle.getString("windows.principal"), Modality.NONE, null);
-        obj.getVentana().setOnCloseRequest((event) -> {
-            obj.cerrar();
-            Conexiones.cerrarFactory();
-        });
         return obj;
 
     }

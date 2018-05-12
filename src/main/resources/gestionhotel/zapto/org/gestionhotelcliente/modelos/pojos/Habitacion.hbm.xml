@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 06-may-2018 1:59:44 by Hibernate Tools 4.3.1 -->
+<!-- Generated 12-may-2018 8:07:49 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Habitacion" table="habitacion" catalog="gestionhotel" optimistic-lock="version">
         <id name="numero" type="int">

@@ -1,5 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos;
-// Generated 06-may-2018 1:59:43 by Hibernate Tools 4.3.1
+// Generated 12-may-2018 8:07:49 by Hibernate Tools 4.3.1
 
 
 
