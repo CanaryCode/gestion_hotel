@@ -175,30 +175,23 @@ public class ControladorVentanaHuespedReserva implements Initializable {
      *
      */
     private void accionAdd1() {
-        if (listaHuespededResponsable.size() == maxResponsables) {
-Alert alert= new Alert(Alert.AlertType.ERROR, "Solo se permite: "+maxResponsables+" huesped/es"
-                  + " responsable/s.", ButtonType.CLOSE);
-        } else {
-            ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
-            if (obj != null) {
-                ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).setModoVentana(Ventanas.MODO_SELECCIONAR).setListaHuesped(listaHuespededResponsable, listaTablaHuespedResponsable);
-                obj.ver();
-            }
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
+        if (obj != null) {
+            ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).setModoVentana(Ventanas.MODO_SELECCIONAR).setListaHuesped(listaHuespededResponsable, listaTablaHuespedResponsable);
+            obj.ver();
         }
+
     }
 
     private void accionAdd2() {
-        if (listaHuespedes.size() == MaxHuespedes) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Solo se permite: " + MaxHuespedes + " huesped/es"
-                    + " ordinario/s.", ButtonType.CLOSE);
-        } else {
-            ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
-            if (obj != null) {
-                ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
-                        setModoVentana(Ventanas.MODO_SELECCIONAR).setListaHuesped(listaHuespedes, listaTablaHuespedes);
-                obj.ver();
-            }
+
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
+        if (obj != null) {
+            ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
+                    setModoVentana(Ventanas.MODO_SELECCIONAR).setListaHuesped(listaHuespedes, listaTablaHuespedes);
+            obj.ver();
         }
+
     }
 
     private void accionBorrar1() {
@@ -230,9 +223,10 @@ Alert alert= new Alert(Alert.AlertType.ERROR, "Solo se permite: "+maxResponsable
     }
 
     private void codigoListaHuespedResponsable() {
-        if (listaHuespededResponsable.size() > maxResponsables) {
-            listaHuespededResponsable.remove(listaHuespededResponsable.size() - 1);
-            listaTablaHuespedResponsable.remove(listaTablaHuespedResponsable.size() - 1);
+        if (listaHuespededResponsable.size() == maxResponsables) {
+            botonAdd1.setDisable(true);
+            botonAdd2.setDisable(false);
+
         }
         if (!listaHuespededResponsable.isEmpty()) {
             botonOk.setDisable(false);
@@ -250,9 +244,8 @@ Alert alert= new Alert(Alert.AlertType.ERROR, "Solo se permite: "+maxResponsable
     }
 
     private void codigoListaHuespedes() {
-        if (listaHuespedes.size() > MaxHuespedes) {
-            listaHuespedes.remove(listaHuespedes.size() - 1);
-            listaTablaHuespedes.remove(listaTablaHuespedes.size() - 1);
+        if (listaHuespedes.size() == MaxHuespedes) {
+            botonAdd2.setDisable(true);
         }
         if (listaHuespedes.isEmpty()) {
             botonBorrar1.setDisable(false);
