@@ -15,9 +15,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -226,7 +224,8 @@ public class ControladorVentanaHuespedReserva implements Initializable {
         if (listaHuespededResponsable.size() == maxResponsables) {
             botonAdd1.setDisable(true);
             botonAdd2.setDisable(false);
-
+        } else if (listaHuespededResponsable.size() < maxResponsables) {
+            botonAdd1.setDisable(false);
         }
         if (!listaHuespededResponsable.isEmpty()) {
             botonOk.setDisable(false);
@@ -246,6 +245,8 @@ public class ControladorVentanaHuespedReserva implements Initializable {
     private void codigoListaHuespedes() {
         if (listaHuespedes.size() == MaxHuespedes) {
             botonAdd2.setDisable(true);
+        } else if (listaHuespedes.size() < MaxHuespedes) {
+            botonAdd2.setDisable(false);
         }
         if (listaHuespedes.isEmpty()) {
             botonBorrar1.setDisable(false);
@@ -255,6 +256,13 @@ public class ControladorVentanaHuespedReserva implements Initializable {
             botonBorrar1.setDisable(true);
             botonBorrar2.setDisable(false);
         }
+    }
+
+    public ControladorVentanaHuespedReserva setNumeroHuespedes(int numeroResponsables, int numeroNormales) {
+        this.maxResponsables = numeroResponsables;
+        this.MaxHuespedes = numeroNormales;
+
+        return this;
     }
 
 }
