@@ -8,6 +8,7 @@ import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaCheckIn;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -35,7 +36,7 @@ public class ControladorReservaCheckIn implements Initializable {
     private TextField cliente, reserva;
 
     @FXML
-    private Button buscar, resetearCampos, checkIn, addReserva, noShow;
+    private Button resetearCampos, checkIn, addReserva, noShow;
 
     @FXML
     private TableColumn tableColumnNumeroReserva, tableColumnCliente, tableColumnHabitacion, tableColumnTipoHabitacion,
@@ -43,18 +44,14 @@ public class ControladorReservaCheckIn implements Initializable {
 
     @FXML
     private TableView<TablaCheckIn> tabla;
-
-    ObservableList<TablaCheckIn> listaPendientesCheckIn=FXCollections.observableArrayList(), listaFiltro=FXCollections.observableArrayList();
-    List<DetallesReserva> listaReservas=FXCollections.observableArrayList();
-    public DetallesReserva detallesReserva;
+    ObservableList<TablaCheckIn> listaPendientesCheckIn = FXCollections.observableArrayList(), listaFiltro;
+    List<DetallesReserva> listaReservas = FXCollections.observableArrayList();
+    public DetallesReserva detallesReservaEnVista;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        buscar.setOnAction((event) -> {
-            accionBuscar();
-        });
         resetearCampos.setOnAction((event) -> {
-            accionCampos();
+            accionReseteaCampos();
         });
         checkIn.setOnAction((event) -> {
             accionCheckIn();
@@ -65,16 +62,15 @@ public class ControladorReservaCheckIn implements Initializable {
         noShow.setOnAction((event) -> {
             accionNoshow();
         });
-        
+
         activaBotonesBuscarYResetea();
-        
+
         listaReservas = PruebasModelo.getListaDeAlojamientos();
-        
-        
+
         listaPendientesCheckIn = TablaCheckIn.modeloCheckin(listaReservas);
-        listaFiltro = listaPendientesCheckIn;
+        listaFiltro = FXCollections.observableArrayList(listaPendientesCheckIn);
         tabla.setItems(listaFiltro);
-        
+
         tableColumnCliente.setCellValueFactory(new PropertyValueFactory("cliente"));
         tableColumnFechaPrevistaEntrada.setCellValueFactory(new PropertyValueFactory("fechaPrevistaEntrada"));
         tableColumnHabitacion.setCellValueFactory(new PropertyValueFactory("habitacion"));
@@ -83,35 +79,38 @@ public class ControladorReservaCheckIn implements Initializable {
         tableColumnFechaPrevistaSalida.setCellValueFactory(new PropertyValueFactory("fechaPrevistaSalida"));
 
         tabla.getSelectionModel().selectedItemProperty().addListener((observable) -> {
-            seleccionaReservaEnVista();
-            noShow.setDisable(false);
-            checkIn.setDisable(false);
+            codigoSeleccionTabla();
+        });
+        cliente.textProperty().addListener((observable, oldValue, newValue) -> {
+            accionFiltroCliente(newValue);
+        });
+        reserva.textProperty().addListener((observable, oldValue, newValue) -> {
+            accionFiltroReserva(newValue);
         });
     }
 
     private void seleccionaReservaEnVista() {
-        for (DetallesReserva dr : listaReservas) {
-            if (dr.getReserva().getNumero().equals(tabla.getSelectionModel().getSelectedItem().getNumeroReserva())) {
-                detallesReserva = dr;
+        if (tabla.getSelectionModel().getSelectedItem() != null) {
+            for (DetallesReserva dr : listaReservas) {
+                if (dr.getReserva().getNumero().equals(tabla.getSelectionModel().getSelectedItem().getNumeroReserva())) {
+                    detallesReservaEnVista = dr;
+                    this.checkIn.setDisable(true);
+                }
             }
         }
     }
 
-    private void accionBuscar() {
-
-    }
-
-    private void accionCampos() {
+    private void accionReseteaCampos() {
         reserva.setText("");
         cliente.setText("");
 
     }
 
     private void accionCheckIn() {
-        if (detallesReserva != null) {
+        if (detallesReservaEnVista != null) {
             ObjetoVentana obj = VentanasFactory.getObjetoVentanaHuespedReserva(Ventanas.RESERVA_CHECKIN, Modality.WINDOW_MODAL, null);
             if (obj != null) {
-                ((ControladorVentanaHuespedReserva) obj.getfXMLLoader().getController()).setReserva(detallesReserva);
+                ((ControladorVentanaHuespedReserva) obj.getfXMLLoader().getController()).setReserva(detallesReservaEnVista);
                 obj.ver();
             }
         }
@@ -126,17 +125,50 @@ public class ControladorReservaCheckIn implements Initializable {
 
     private void accionNoshow() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Seguro que quiere marcar como: \"NO-SHOW\"."
-//                + "\n\na la reserva: " + detallesReserva.getReserva().getNumero()
-//                + "\n\npertenciente al cliente: " + detallesReserva.getReserva().getPersonaByCodCliente().getNombre() + " "
-//                + detallesReserva.getReserva().getPersonaByCodCliente().getFisPrimerApellido() + " "
-//                + detallesReserva.getReserva().getPersonaByCodCliente().getFisPrimerApellido()
-                , ButtonType.YES, ButtonType.NO);
+                + "\n\na la reserva: " + detallesReservaEnVista.getReserva().getNumero()
+                + "\n\npertenciente al cliente: " + detallesReservaEnVista.getReserva().getPersonaByCodCliente().getNombre() + " "
+                + detallesReservaEnVista.getReserva().getPersonaByCodCliente().getFisPrimerApellido() + " "
+                + detallesReservaEnVista.getReserva().getPersonaByCodCliente().getFisPrimerApellido(),
+                ButtonType.YES, ButtonType.NO);
         alert.show();
     }
 
     private void activaBotonesBuscarYResetea() {
         List ticList = Arrays.asList(new TextInputControl[]{
             reserva, cliente});
-        ActivadorDeControles.addActivador(ticList, resetearCampos, buscar);
+        ActivadorDeControles.addActivador(ticList, resetearCampos);
+    }
+
+    private void accionFiltroReserva(String newValue) {
+        listaFiltro = FXCollections.observableArrayList();
+        tabla.getSelectionModel().select(null);
+        checkIn.setDisable(true);
+        noShow.setDisable(true);
+        for (TablaCheckIn row : listaPendientesCheckIn) {
+            if (row.getNumeroReserva().contains(newValue) && row.getCliente().contains(cliente.getText())) {
+                listaFiltro.add(row);
+            }
+        }
+        tabla.setItems(listaFiltro);
+    }
+
+    private void accionFiltroCliente(String newValue) {
+        listaFiltro = FXCollections.observableArrayList();
+        tabla.getSelectionModel().select(null);
+        detallesReservaEnVista = null;
+        checkIn.setDisable(true);
+        noShow.setDisable(true);
+        for (TablaCheckIn row : listaPendientesCheckIn) {
+            if (row.getCliente().contains(newValue) && row.getNumeroReserva().contains(reserva.getText())) {
+                listaFiltro.add(row);
+            }
+        }
+        tabla.setItems(listaFiltro);
+    }
+
+    private void codigoSeleccionTabla() {
+        seleccionaReservaEnVista();
+        noShow.setDisable(false);
+        checkIn.setDisable(false);
     }
 }

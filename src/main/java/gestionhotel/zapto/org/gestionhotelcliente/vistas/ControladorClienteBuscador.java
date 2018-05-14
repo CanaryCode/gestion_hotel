@@ -8,6 +8,7 @@ import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaCliente;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -172,7 +173,7 @@ public class ControladorClienteBuscador implements Initializable {
             codigoVer();
             
         });
-        listaPersonas = Consultas.realizaSQLQuery(Consultas.TODAS_LAS_PERSONAS, Persona.class);
+        listaPersonas = PruebasModelo.getListaDeClientes();
         listaClientes = TablaCliente.getTablaBuscadorCliente(listaPersonas);
 
         tabla.setItems(FXCollections.observableArrayList(listaClientes));

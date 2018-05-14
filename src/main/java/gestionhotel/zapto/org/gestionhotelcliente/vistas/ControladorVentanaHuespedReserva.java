@@ -66,6 +66,7 @@ public class ControladorVentanaHuespedReserva implements Initializable {
     private ObservableList<TablaCliente> listaTablaCliente = FXCollections.observableArrayList();
     private ObservableList<TablaHuesped> listaTablaHuespedResponsable = FXCollections.observableArrayList();
     private ObservableList<TablaHuesped> listaTablaHuespedes = FXCollections.observableArrayList();
+    private ObservableList<Persona> listaTodosLosHuespedes=FXCollections.observableArrayList();;
     int maxResponsables = 1, MaxHuespedes = 2;
 
     @Override
@@ -173,9 +174,12 @@ public class ControladorVentanaHuespedReserva implements Initializable {
      *
      */
     private void accionAdd1() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.HUESPED_RESERVA,
+                Modality.APPLICATION_MODAL, null);
         if (obj != null) {
-            ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).setModoVentana(Ventanas.MODO_SELECCIONAR).setListaHuesped(listaHuespededResponsable, listaTablaHuespedResponsable);
+            ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
+                    setModoVentana(Ventanas.MODO_SELECCIONAR).
+                    setListaHuesped(listaHuespededResponsable, listaTablaHuespedResponsable,listaTodosLosHuespedes);
             obj.ver();
         }
 
@@ -183,10 +187,10 @@ public class ControladorVentanaHuespedReserva implements Initializable {
 
     private void accionAdd2() {
 
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL,null);
         if (obj != null) {
             ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
-                    setModoVentana(Ventanas.MODO_SELECCIONAR).setListaHuesped(listaHuespedes, listaTablaHuespedes);
+                    setModoVentana(Ventanas.MODO_SELECCIONAR).setListaHuesped(listaHuespedes, listaTablaHuespedes,listaTodosLosHuespedes);
             obj.ver();
         }
 
@@ -195,12 +199,14 @@ public class ControladorVentanaHuespedReserva implements Initializable {
     private void accionBorrar1() {
         listaHuespededResponsable.remove(listaHuespededResponsable.size() - 1);
         listaTablaHuespedResponsable.remove(listaTablaHuespedResponsable.size() - 1);
+        listaTodosLosHuespedes.remove(listaTodosLosHuespedes.size()-1);
 
     }
 
     private void accionBorrar2() {
         listaHuespedes.remove(listaHuespedes.size() - 1);
         listaTablaHuespedes.remove(listaTablaHuespedes.size() - 1);
+        listaTodosLosHuespedes.remove(listaTodosLosHuespedes.size()-1);
     }
 
     private void accionOK() {
@@ -208,8 +214,11 @@ public class ControladorVentanaHuespedReserva implements Initializable {
     }
 
     private void codigoReseteaCampos() {
-        RecorredorPaneles.reseteaControles(principal);
-        listaHuespedes.removeAll(listaHuespedes);
+        listaHuespedes.clear();
+        listaHuespededResponsable.clear();
+        listaTodosLosHuespedes.clear();
+        listaTablaHuespedResponsable.clear();
+        listaTablaHuespedes.clear();
     }
 
     public ControladorVentanaHuespedReserva setReserva(DetallesReserva detalleReserva) {

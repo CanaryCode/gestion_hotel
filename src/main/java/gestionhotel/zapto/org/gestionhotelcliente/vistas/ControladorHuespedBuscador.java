@@ -73,7 +73,7 @@ public class ControladorHuespedBuscador implements Initializable {
     private List<TablaHuesped> listaTablaHuespedes = new ArrayList<>();
     private List<Persona> listaPersonas = new ArrayList<>();
     private Persona huespedEnVista;
-    private ObservableList<Persona> listaAddHuesped;
+    private ObservableList<Persona> listaAddHuesped, listaTodosLosHuespedes;
     private ObservableList<TablaHuesped> listaAddTablaHuesped;
     int modoVentana;
 
@@ -145,7 +145,7 @@ public class ControladorHuespedBuscador implements Initializable {
         nacionalidad.getSelectionModel().selectFirst();
 
         listaPersonas = PruebasModelo.getListaDeHuespedes();
-        listaTablaHuespedes=  TablaHuesped.getTablaBuscadorHuesped(listaPersonas);
+        listaTablaHuespedes = TablaHuesped.getTablaBuscadorHuesped(listaPersonas);
 
         tabla.setItems(FXCollections.observableArrayList(listaTablaHuespedes));
 
@@ -447,12 +447,27 @@ public class ControladorHuespedBuscador implements Initializable {
 
     private void codigoAceptar() {
         if (modoVentana == Ventanas.MODO_SELECCIONAR) {
-            listaAddHuesped.add(huespedEnVista);
-            ObservableList<TablaHuesped>tablaProvicional=TablaHuesped.getTablaBuscadorHuesped(listaAddHuesped);
-            TablaHuesped huespedProvicional=tablaProvicional.get(tablaProvicional.size()-1);
-            listaAddTablaHuesped.add(huespedProvicional);
-            Ventanas.cerrarVentana(Ventanas.HUESPED_BUSCADOR);
-            
+            boolean estaEscogido = false;
+            if (!listaTodosLosHuespedes.isEmpty()) {
+                for (Persona p : listaTodosLosHuespedes) {
+                    if (p.getCodPersona().equals(huespedEnVista.getCodPersona())) {
+                        estaEscogido = true;
+                        break;
+                    }
+                }
+            }
+            if (estaEscogido == false) {
+                listaAddHuesped.add(huespedEnVista);
+                ObservableList<TablaHuesped> tablaProvicional = TablaHuesped.getTablaBuscadorHuesped(listaAddHuesped);
+                TablaHuesped huespedProvicional = tablaProvicional.get(tablaProvicional.size() - 1);
+                listaAddTablaHuesped.add(huespedProvicional);
+                listaTodosLosHuespedes.add(huespedEnVista);
+                Ventanas.cerrarVentana(Ventanas.HUESPED_BUSCADOR);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Este huesped ya ha sido escogido "
+                        + "debe de seleccionar a otro o salir de de este menú ", ButtonType.CLOSE);
+                alert.show();
+            }
         }
     }
 
@@ -515,9 +530,10 @@ public class ControladorHuespedBuscador implements Initializable {
         }
     }
 
-    public ControladorHuespedBuscador setListaHuesped(ObservableList<Persona> listaHuesped,ObservableList<TablaHuesped> listaTablaHuesped) {
+    public ControladorHuespedBuscador setListaHuesped(ObservableList<Persona> listaHuesped, ObservableList<TablaHuesped> listaTablaHuesped, ObservableList<Persona> listaTodosLosHuespedes) {
         this.listaAddHuesped = listaHuesped;
-        this.listaAddTablaHuesped=listaTablaHuesped;
+        this.listaAddTablaHuesped = listaTablaHuesped;
+        this.listaTodosLosHuespedes = listaTodosLosHuespedes;
         return this;
     }
 
