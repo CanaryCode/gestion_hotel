@@ -39,26 +39,26 @@ public class Registro {
         "Seychelles", "Sierra Leona", "Singapur", "Siria", "Somalia", "Sri Lanka", "Suazilandia", "Sudán", "Sudán del Sur",
         "Suecia", "Suiza", "Surinam", "Tailandia", "Tanzania", "Tayikistán", "Timor Oriental", "Togo", "Tonga", "Trinidad y Tobago",
         "Túnez", "Turkmenistán", "Turquía", "Tuvalu", "Ucrania", "Uganda", "Uruguay", "Uzbekistán", "Vanuatu", "Venezuela", "Vietnam",
-        "Yemen", "Yibuti", "Zambia", "Zimbabue"};
+        "Yemen", "Yibuti", "Zambia", "Zimbabue", "Otro"};
 
     public static final ObservableList listaPaises = FXCollections.observableArrayList(arrayPaises);
 
     private static final String[] arrayCategoria = {
-        "desconocido", "Normal", "V.I.P", "Especial", "Repetidor"
+        "desconocido", "Normal", "V.I.P", "Especial", "Repetidor", "Otro"
     };
     public static final ObservableList listaCategoriaHuesped = FXCollections.observableArrayList(arrayCategoria);
 
     private static String[] arrayPension = {
-        "desconocido", "M.P.", "Completa", "Alo Y Des"
+        "desconocido", "M.P.", "Completa", "Alo Y Des", "Otro"
     };
     public static final ObservableList ListaPension = FXCollections.observableArrayList(arrayPension);
 
     private static final String[] arrayHabitacion = {
-        "desconocido", "11", "13", "412"
+        "desconocido", "11", "13", "412", "Otro"
     };
     public static final ObservableList ListaHabitacion = FXCollections.observableArrayList(arrayHabitacion);
     private static final String[] arrayTratamiento = {
-        "desconocido", "Sr/Sra", "Dr/Dra", "Ingeniero/a", "Don/Doña", "Ilustrisimo/a", "Excelentisimo/a"
+        "desconocido", "Sr/Sra", "Dr/Dra", "Ingeniero/a", "Don/Doña", "Ilustrisimo/a", "Excelentisimo/a", "Otro"
     };
     public static final ObservableList ListaTratamiento = FXCollections.observableArrayList(arrayTratamiento);
 
@@ -68,12 +68,12 @@ public class Registro {
     public static final ObservableList ListaLenguajes = FXCollections.observableArrayList(lenguajes);
 
     private static final String[] razonSocial = {
-        "desconocido", "Emp. Individual", "S.L", "S.L.N.E", "S.A", "COOP", "C.B"
+        "desconocido", "Emp. Individual", "S.L", "S.L.N.E", "S.A", "COOP", "C.B", "Otro"
     };
     public static final ObservableList ListaRazonSocial = FXCollections.observableArrayList(razonSocial);
 
     private static final String[] categoriaCliente = {
-        "desconocido", "Especial", "Mongolo", "Mongolo profundo"
+        "desconocido", "Especial", "Mongolo", "Mongolo profundo", "Otro"
     };
     public static final ObservableList ListaCategoriaCliente = FXCollections.observableArrayList(categoriaCliente);
 
@@ -83,27 +83,39 @@ public class Registro {
     public static final ObservableList ListaNumeroPersonas = FXCollections.observableArrayList(numeroPersonas);
 
     private static final String[] tipoHabitacion = {
-        "desconocido", "Individual", "Doble", "Doble superior", "Suite", "Suite junior"
+        "desconocido", "Individual", "Doble", "Doble superior", "Suite", "Suite junior", "Otro"
     };
     public static final ObservableList ListaTipoHabitacion = FXCollections.observableArrayList(tipoHabitacion);
 
     private static final String[] tipoCama = {
-        "desconocido", "Individual", "Matrimonio", "Doble separadas"
+        "desconocido", "Individual", "Matrimonio", "Doble separadas", "Otro"
     };
     public static ObservableList ListaTipoCama = FXCollections.observableArrayList(tipoCama);
 
     private static final String[] tipoTarjeta = {
-        "desconocido", "Visa", "Mastercard", "American Express", "Maestro", "ServiRed"
+        "desconocido", "Visa", "Mastercard", "American Express", "Maestro", "ServiRed", "Otro"
     };
     public static ObservableList ListaTipoTarjeta = FXCollections.observableArrayList(tipoTarjeta);
 
     private static final String[] agencia = {
-        "desconocido", "directo", "Tui", "Jahn Raisen", "Thomson", "Expedia", "Corte ingles", "Halcon"
+        "desconocido", "directo", "Tui", "Jahn Raisen", "Thomson", "Expedia", "Corte ingles", "Halcon", "Otro"
     };
     public static ObservableList ListaAgencia = FXCollections.observableArrayList(agencia);
     private static final String[] tiposTelefono = {
         "Desconocido", "Móvil", "Casa", "Empresa", "Fax", "Otro"
     };
     public static ObservableList ListaTipoTelefono = FXCollections.observableArrayList(tiposTelefono);
+    private static final String[] vistas = {
+        "Desconocido", "Mar", "Montaña", "Piscina", "Calle", "Otro"
+    };
+    public static ObservableList ListaVistas = FXCollections.observableArrayList(vistas);
+    private static final String[] turnoRestaurante= {
+        "Desconocido", "Primero", "Segundo", "Tercero", "Otro"
+    };
+    public static ObservableList ListaTurnoRestaurante = FXCollections.observableArrayList(turnoRestaurante);
+    private static final String[] tiposRestaurante = {
+        "Desconocido", "Principal", "Tradicional", "Mexicano", "Tailandés", "Otro"
+    };
+    public static ObservableList ListaTipoRestaurante = FXCollections.observableArrayList(tiposRestaurante);
 
 }

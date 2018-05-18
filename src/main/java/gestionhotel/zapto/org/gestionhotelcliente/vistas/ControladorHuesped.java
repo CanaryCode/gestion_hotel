@@ -64,7 +64,7 @@ public class ControladorHuesped implements Initializable {
         if (modoFormulario == Ventanas.MODO_ACTUALIZAR) {
             aceptar.setOnAction((event) -> {
                 //entonces cuando termines, de  hacerlo cierra la ventana.
-                Ventanas.cerrarVentana(Ventanas.HUESPED);
+                Ventanas.cerrarVentana(Ventanas.HUESPED_FORMULARIO);
                 //si se está insertando a una persona
             });
             reseteaCampos.setDisable(true);

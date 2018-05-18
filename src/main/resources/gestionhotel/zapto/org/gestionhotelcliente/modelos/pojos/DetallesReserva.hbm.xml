@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 12-may-2018 8:07:49 by Hibernate Tools 4.3.1 -->
+<!-- Generated 18-may-2018 17:14:23 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva" table="detalles_reserva" catalog="gestionhotel" optimistic-lock="version">
         <id name="idDetallesReserva" type="java.lang.Integer">
@@ -37,6 +37,39 @@
         </property>
         <property name="tipoCama" type="string">
             <column name="tipo_cama" length="40" />
+        </property>
+        <property name="numeroAdultos" type="java.lang.Integer">
+            <column name="numero_adultos" />
+        </property>
+        <property name="numeroChild" type="java.lang.Integer">
+            <column name="numero_child" />
+        </property>
+        <property name="numeroBebes" type="java.lang.Integer">
+            <column name="numero_bebes" />
+        </property>
+        <property name="preferenciaHabitacion" type="string">
+            <column name="preferencia_habitacion" length="40" />
+        </property>
+        <property name="preferenciaTipoHabitacion" type="string">
+            <column name="preferencia_tipo_habitacion" length="40" />
+        </property>
+        <property name="preferenciaVistas" type="string">
+            <column name="preferencia_vistas" length="40" />
+        </property>
+        <property name="preferenciaTipoCama" type="string">
+            <column name="preferencia_tipo_cama" length="40" />
+        </property>
+        <property name="preferenciaTipoRestaurante" type="string">
+            <column name="preferencia_tipo_restaurante" length="40" />
+        </property>
+        <property name="preferenciaTurnoRestaurante" type="string">
+            <column name="preferencia_turno_restaurante" />
+        </property>
+        <property name="cuna" type="java.lang.Byte">
+            <column name="cuna" />
+        </property>
+        <property name="camaExtra" type="java.lang.Byte">
+            <column name="cama_extra" />
         </property>
         <set name="estadoHabitacions" table="estado_habitacion" inverse="true" lazy="true" fetch="select">
             <key>

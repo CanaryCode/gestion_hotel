@@ -1,5 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos;
-// Generated 12-may-2018 8:07:49 by Hibernate Tools 4.3.1
+// Generated 18-may-2018 17:14:22 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -23,13 +23,24 @@ public class DetallesReserva  implements java.io.Serializable {
      private Date fechaSalida;
      private String pension;
      private String tipoCama;
+     private Integer numeroAdultos;
+     private Integer numeroChild;
+     private Integer numeroBebes;
+     private String preferenciaHabitacion;
+     private String preferenciaTipoHabitacion;
+     private String preferenciaVistas;
+     private String preferenciaTipoCama;
+     private String preferenciaTipoRestaurante;
+     private String preferenciaTurnoRestaurante;
+     private Byte cuna;
+     private Byte camaExtra;
      private Set estadoHabitacions = new HashSet(0);
      private Set huespedHabitacions = new HashSet(0);
 
     public DetallesReserva() {
     }
 
-    public DetallesReserva(Habitacion habitacion, Reserva reserva, String nombreReserva, Integer cantidadHuespedes, Date fechaEntradaPrevista, Date fechaSalidaPrevista, Date fechaEntrada, Date fechaSalida, String pension, String tipoCama, Set estadoHabitacions, Set huespedHabitacions) {
+    public DetallesReserva(Habitacion habitacion, Reserva reserva, String nombreReserva, Integer cantidadHuespedes, Date fechaEntradaPrevista, Date fechaSalidaPrevista, Date fechaEntrada, Date fechaSalida, String pension, String tipoCama, Integer numeroAdultos, Integer numeroChild, Integer numeroBebes, String preferenciaHabitacion, String preferenciaTipoHabitacion, String preferenciaVistas, String preferenciaTipoCama, String preferenciaTipoRestaurante, String preferenciaTurnoRestaurante, Byte cuna, Byte camaExtra, Set estadoHabitacions, Set huespedHabitacions) {
        this.habitacion = habitacion;
        this.reserva = reserva;
        this.nombreReserva = nombreReserva;
@@ -40,6 +51,17 @@ public class DetallesReserva  implements java.io.Serializable {
        this.fechaSalida = fechaSalida;
        this.pension = pension;
        this.tipoCama = tipoCama;
+       this.numeroAdultos = numeroAdultos;
+       this.numeroChild = numeroChild;
+       this.numeroBebes = numeroBebes;
+       this.preferenciaHabitacion = preferenciaHabitacion;
+       this.preferenciaTipoHabitacion = preferenciaTipoHabitacion;
+       this.preferenciaVistas = preferenciaVistas;
+       this.preferenciaTipoCama = preferenciaTipoCama;
+       this.preferenciaTipoRestaurante = preferenciaTipoRestaurante;
+       this.preferenciaTurnoRestaurante = preferenciaTurnoRestaurante;
+       this.cuna = cuna;
+       this.camaExtra = camaExtra;
        this.estadoHabitacions = estadoHabitacions;
        this.huespedHabitacions = huespedHabitacions;
     }
@@ -120,6 +142,83 @@ public class DetallesReserva  implements java.io.Serializable {
     
     public void setTipoCama(String tipoCama) {
         this.tipoCama = tipoCama;
+    }
+    public Integer getNumeroAdultos() {
+        return this.numeroAdultos;
+    }
+    
+    public void setNumeroAdultos(Integer numeroAdultos) {
+        this.numeroAdultos = numeroAdultos;
+    }
+    public Integer getNumeroChild() {
+        return this.numeroChild;
+    }
+    
+    public void setNumeroChild(Integer numeroChild) {
+        this.numeroChild = numeroChild;
+    }
+    public Integer getNumeroBebes() {
+        return this.numeroBebes;
+    }
+    
+    public void setNumeroBebes(Integer numeroBebes) {
+        this.numeroBebes = numeroBebes;
+    }
+    public String getPreferenciaHabitacion() {
+        return this.preferenciaHabitacion;
+    }
+    
+    public void setPreferenciaHabitacion(String preferenciaHabitacion) {
+        this.preferenciaHabitacion = preferenciaHabitacion;
+    }
+    public String getPreferenciaTipoHabitacion() {
+        return this.preferenciaTipoHabitacion;
+    }
+    
+    public void setPreferenciaTipoHabitacion(String preferenciaTipoHabitacion) {
+        this.preferenciaTipoHabitacion = preferenciaTipoHabitacion;
+    }
+    public String getPreferenciaVistas() {
+        return this.preferenciaVistas;
+    }
+    
+    public void setPreferenciaVistas(String preferenciaVistas) {
+        this.preferenciaVistas = preferenciaVistas;
+    }
+    public String getPreferenciaTipoCama() {
+        return this.preferenciaTipoCama;
+    }
+    
+    public void setPreferenciaTipoCama(String preferenciaTipoCama) {
+        this.preferenciaTipoCama = preferenciaTipoCama;
+    }
+    public String getPreferenciaTipoRestaurante() {
+        return this.preferenciaTipoRestaurante;
+    }
+    
+    public void setPreferenciaTipoRestaurante(String preferenciaTipoRestaurante) {
+        this.preferenciaTipoRestaurante = preferenciaTipoRestaurante;
+    }
+    public String getPreferenciaTurnoRestaurante() {
+        return this.preferenciaTurnoRestaurante;
+    }
+    
+    public void setPreferenciaTurnoRestaurante(String preferenciaTurnoRestaurante) {
+        this.preferenciaTurnoRestaurante = preferenciaTurnoRestaurante;
+    }
+    public Byte getCuna() {
+        return this.cuna;
+    }
+    
+    public void setCuna(Byte cuna) {
+        this.cuna = cuna;
+    }
+    public Byte getCamaExtra() {
+        return this.camaExtra;
+    }
+    
+    public void setCamaExtra(Byte camaExtra) {
+        this.camaExtra = camaExtra;
     }
     public Set getEstadoHabitacions() {
         return this.estadoHabitacions;

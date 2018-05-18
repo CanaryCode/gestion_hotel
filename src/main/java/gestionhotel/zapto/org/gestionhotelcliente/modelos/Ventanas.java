@@ -14,11 +14,13 @@ public class Ventanas {
     /**
      * todas de las ventanas de la app
      */
-    public static final String RESERVA = "Reserva", CLIENTE_BUSCADOR = "ClienteBuscador", LOGIN = "LogIn",
-            HUESPED = "Huesped", HUESPED_BUSCADOR = "HuespedBuscador", RESERVA_CHECKIN = "ReservaCheckIn",
-            CLIENTE = "Cliente", HUESPED_RESERVA = "HuespedReserva", PRINCIPAL = "Principal",
+    public static final String RESERVA_FORMULARIO = "Reservaformulario", CLIENTE_BUSCADOR = "ClienteBuscador", LOGIN = "LogIn",
+            HUESPED_FORMULARIO = "HuespedFormulario", HUESPED_BUSCADOR = "HuespedBuscador", PREVISION=  "Prevision",
+            CLIENTE_FORMULARIO = "ClienteFormulario", HUESPED_RESERVA = "HuespedReserva", PRINCIPAL = "Principal",
             QUIENES_SOMOS = "QuienesSomos", CALCULADORA = "Calculadora",TELEFONO_BUSCADOR="telefonoBuscador",
-            TELEFONO="Telefono";
+            TELEFONO_FORMULARIO="TelefonoFormulario",RESERVA_HABITACION="ReservaHabitacion",CHECK_IN="CheckIn",
+            ALOJAMIENTO_FORMULARIO="Alojamiento",HABITACION_FORMULARIO="HabitacionFormulario",
+            HABITACION_BUSCADOR="HabitacionBuscador";
     
     /**
      * modos en los que se puede abrir una ventana se modifica en el controlador de la misma.

@@ -6,9 +6,7 @@
 package gestionhotel.zapto.org.gestionhotelcliente.controladores;
 
 import java.util.List;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.TextInputControl;
 

@@ -28,6 +28,18 @@ public class PruebasModelo {
         alojamiento1.setFechaSalidaPrevista(new Date(118, 07, 11));
         alojamiento1.setReserva(getListaReservas().get(0));
         alojamiento1.setHabitacion(getListaHabitaciones().get(0));
+        
+        alojamiento1.setCuna(Byte.parseByte("0"));
+        alojamiento1.setCamaExtra(Byte.parseByte("0"));
+        alojamiento1.setNumeroAdultos(2);
+        alojamiento1.setNumeroBebes(2);
+        alojamiento1.setNumeroChild(3);
+        alojamiento1.setPreferenciaHabitacion("1");
+        alojamiento1.setPreferenciaTurnoRestaurante("Primero");
+        alojamiento1.setPreferenciaTipoCama("Doble");
+        alojamiento1.setPreferenciaTipoHabitacion("Suite");
+        alojamiento1.setPreferenciaTipoRestaurante("Mexicano");
+        alojamiento1.setPreferenciaVistas("Mar");
 
         DetallesReserva alojamiento2 = new DetallesReserva();
         alojamiento2.setIdDetallesReserva(2);
@@ -38,6 +50,18 @@ public class PruebasModelo {
         alojamiento2.setFechaSalidaPrevista(new Date(118, 12, 11));
         alojamiento2.setReserva(getListaReservas().get(1));
         alojamiento2.setHabitacion(getListaHabitaciones().get(3));
+        
+        alojamiento2.setCuna(Byte.parseByte("0"));
+        alojamiento2.setCamaExtra(Byte.parseByte("0"));
+        alojamiento2.setNumeroAdultos(2);
+        alojamiento2.setNumeroBebes(2);
+        alojamiento2.setNumeroChild(3);
+        alojamiento2.setPreferenciaHabitacion("1");
+        alojamiento2.setPreferenciaTurnoRestaurante("Segundo");
+        alojamiento2.setPreferenciaTipoCama("Doble");
+        alojamiento2.setPreferenciaTipoHabitacion("Suite");
+        alojamiento2.setPreferenciaTipoRestaurante("Mexicano");
+        alojamiento2.setPreferenciaVistas("Mar");
 
         DetallesReserva alojamiento3 = new DetallesReserva();
         alojamiento3.setIdDetallesReserva(3);
@@ -48,6 +72,18 @@ public class PruebasModelo {
         alojamiento3.setFechaSalidaPrevista(new Date(118, 06, 11));
         alojamiento3.setReserva(getListaReservas().get(2));
         alojamiento3.setHabitacion(getListaHabitaciones().get(3));
+        
+        alojamiento3.setCuna(Byte.parseByte("0"));
+        alojamiento3.setCamaExtra(Byte.parseByte("0"));
+        alojamiento3.setNumeroAdultos(2);
+        alojamiento3.setNumeroBebes(2);
+        alojamiento3.setNumeroChild(3);
+        alojamiento3.setPreferenciaHabitacion("1");
+        alojamiento3.setPreferenciaTurnoRestaurante("Primero");
+        alojamiento3.setPreferenciaTipoCama("Doble");
+        alojamiento3.setPreferenciaTipoHabitacion("Suite");
+        alojamiento3.setPreferenciaTipoRestaurante("Mexicano");
+        alojamiento3.setPreferenciaVistas("Mar");
 
         DetallesReserva alojamiento4 = new DetallesReserva();
         alojamiento4.setIdDetallesReserva(4);
@@ -58,6 +94,18 @@ public class PruebasModelo {
         alojamiento4.setFechaSalidaPrevista(new Date(118, 07, 11));
         alojamiento4.setReserva(getListaReservas().get(3));
         alojamiento4.setHabitacion(getListaHabitaciones().get(2));
+        
+        alojamiento4.setCuna(Byte.parseByte("0"));
+        alojamiento4.setCamaExtra(Byte.parseByte("0"));
+        alojamiento4.setNumeroAdultos(2);
+        alojamiento4.setNumeroBebes(2);
+        alojamiento4.setNumeroChild(3);
+        alojamiento4.setPreferenciaHabitacion("1");
+        alojamiento4.setPreferenciaTurnoRestaurante("Segundo");
+        alojamiento4.setPreferenciaTipoCama("Doble");
+        alojamiento4.setPreferenciaTipoHabitacion("Suite");
+        alojamiento4.setPreferenciaTipoRestaurante("Mexicano");
+        alojamiento4.setPreferenciaVistas("Mar");
 
         listaAlojamientos.add(alojamiento1);
         listaAlojamientos.add(alojamiento2);
@@ -131,7 +179,7 @@ public class PruebasModelo {
         persona1.setFisSegundoApellido("Dinero");
         persona1.setFisFechaNacimiento(new Date(55, 05, 04));
         persona1.setFisSexoHombre(Byte.parseByte("1"));
-        persona1.setFisDiscapacitado(Byte.MIN_VALUE);
+        persona1.setFisDiscapacitado(Byte.parseByte("0"));
         persona1.setFisNacionalidad("España");
         persona1.setProvincia("Madrid");
         persona1.setCiudad("Madrid");
@@ -144,7 +192,7 @@ public class PruebasModelo {
         persona1.setEmail("soyrico@gmail.com");
         persona1.setFisTratamiento("Sr/Sra");
         persona1.setComentario("Una persona rica");
-        persona1.setEsEmpresa(Byte.MIN_VALUE);
+        persona1.setEsEmpresa(Byte.parseByte("0"));
 
         Persona persona2 = new Persona();
         persona2.setCodPersona(6);
@@ -153,7 +201,7 @@ public class PruebasModelo {
         persona2.setFisSegundoApellido("Flipao");
         persona2.setFisFechaNacimiento(new Date(34, 8, 07));
         persona2.setFisSexoHombre(Byte.parseByte("1"));
-        persona2.setFisDiscapacitado(Byte.MIN_VALUE);
+        persona2.setFisDiscapacitado(Byte.parseByte("0"));
         persona2.setFisNacionalidad("España");
         persona2.setProvincia("Barcelona");
         persona2.setCiudad("Tabarnia");
@@ -220,7 +268,7 @@ public class PruebasModelo {
         persona1.setFisSegundoApellido("Delgado");
         persona1.setFisFechaNacimiento(new Date(85, 12, 25));
         persona1.setFisSexoHombre(Byte.parseByte("1"));
-        persona1.setFisDiscapacitado(Byte.MIN_VALUE);
+        persona1.setFisDiscapacitado(Byte.parseByte("0"));
         persona1.setFisNacionalidad("España");
         persona1.setProvincia("Santa cruz de Tenerife");
         persona1.setCiudad("Icod de los vinos");
@@ -236,7 +284,7 @@ public class PruebasModelo {
         persona1.setFisTratamiento("Sr/Sra");
         persona1.setEstado("España");
         persona1.setComentario("Una persona especial");
-        persona1.setEsEmpresa(Byte.MIN_VALUE);
+        persona1.setEsEmpresa(Byte.parseByte("0"));
 
         Persona persona2 = new Persona();
         persona2.setCodPersona(2);
@@ -245,7 +293,7 @@ public class PruebasModelo {
         persona2.setFisSegundoApellido("Castellano");
         persona2.setFisFechaNacimiento(new Date(79, 04, 12));
         persona2.setFisSexoHombre(Byte.parseByte("0"));
-        persona2.setFisDiscapacitado(Byte.MIN_VALUE);
+        persona2.setFisDiscapacitado(Byte.parseByte("0"));
         persona2.setFisNacionalidad("Marruecos");
         persona2.setProvincia("Rabat");
         persona2.setCiudad("Ala es grande");
@@ -261,7 +309,7 @@ public class PruebasModelo {
         persona2.setFisTratamiento("Sr/Sra");
         persona2.setEstado("España");
         persona2.setComentario("Una persona gay");
-        persona2.setEsEmpresa(Byte.MIN_VALUE);
+        persona2.setEsEmpresa(Byte.parseByte("0"));
 
         Persona persona3 = new Persona();
         persona3.setCodPersona(3);
@@ -270,7 +318,7 @@ public class PruebasModelo {
         persona3.setFisSegundoApellido("Seca");
         persona3.setFisFechaNacimiento(new Date(40, 03, 03));
         persona3.setFisSexoHombre(Byte.parseByte("0"));
-        persona3.setFisDiscapacitado(Byte.MIN_VALUE);
+        persona3.setFisDiscapacitado(Byte.parseByte("0"));
         persona3.setFisNacionalidad("Marruecos");
         persona3.setProvincia("ala akbar");
         persona3.setCiudad("bomba");
@@ -286,7 +334,7 @@ public class PruebasModelo {
         persona3.setFisTratamiento("Sr/Sra");
         persona3.setEstado("España");
         persona3.setComentario("Una persona con diversidad funcional");
-        persona3.setEsEmpresa(Byte.MIN_VALUE);
+        persona3.setEsEmpresa(Byte.parseByte("0"));
 
         Persona persona4 = new Persona();
         persona4.setCodPersona(4);
@@ -295,7 +343,7 @@ public class PruebasModelo {
         persona4.setFisSegundoApellido("n´jalmo");
         persona4.setFisFechaNacimiento(new Date(59, 12, 22));
         persona4.setFisSexoHombre(Byte.parseByte("1"));
-        persona4.setFisDiscapacitado(Byte.MIN_VALUE);
+        persona4.setFisDiscapacitado(Byte.parseByte("0"));
         persona4.setFisNacionalidad("Camerùn");
         persona4.setProvincia("Hambre");
         persona4.setCiudad("guerra");
@@ -311,7 +359,7 @@ public class PruebasModelo {
         persona4.setFisTratamiento("Sr/Sra");
         persona4.setEstado("España");
         persona4.setComentario("Una persona especial");
-        persona4.setEsEmpresa(Byte.MIN_VALUE);
+        persona4.setEsEmpresa(Byte.parseByte("0"));
 
         listaHuespedes.add(persona1);
         listaHuespedes.add(persona2);
@@ -336,13 +384,13 @@ public class PruebasModelo {
         hab2.setNumero(2);
 
         Habitacion hab3 = new Habitacion();
-        hab3.setCamaExtra(Byte.MIN_VALUE);
+        hab3.setCamaExtra(Byte.parseByte("0"));
         hab3.setDescripcion("vista mar");
         hab3.setTipo("Suite");
         hab3.setNumero(3);
 
         Habitacion hab4 = new Habitacion();
-        hab4.setCamaExtra(Byte.MIN_VALUE);
+        hab4.setCamaExtra(Byte.parseByte("0"));
         hab4.setDescripcion("vista montaña");
         hab4.setTipo("Suite");
         hab4.setNumero(4);

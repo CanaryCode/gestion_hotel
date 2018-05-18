@@ -24,7 +24,7 @@ import javafx.scene.control.TextField;
  *
  * @author Antonio Jesús Pérez Delgaado
  */
-public class ControladorFXMLLogIn implements Initializable {
+public class ControladorLogIn implements Initializable {
 
     @FXML
     Button botonEntrar;
@@ -41,7 +41,7 @@ public class ControladorFXMLLogIn implements Initializable {
     @FXML
     ComboBox lenguaje;
 
-    public ControladorFXMLLogIn() {
+    public ControladorLogIn() {
     }
 
     @Override
@@ -59,6 +59,11 @@ public class ControladorFXMLLogIn implements Initializable {
             Locale.setDefault(ConfiguradorIdioma.cambiaIdioma(lenguaje.getSelectionModel().getSelectedItem().toString()));
             ObjetoVentana obj = VentanasFactory.getObjetoVentanaPrincipal();
             if (obj != null) {
+                 obj.getVentana().focusedProperty().addListener((observable) -> {
+                if(!obj.getVentana().isFocused()){
+                    obj.getVentana().setOpacity(1);
+                }
+            });
                 obj.ver();
                 Ventanas.getVentana(Ventanas.LOGIN).close();
                 Ventanas.getVentana(Ventanas.LOGIN).setActividad(false);

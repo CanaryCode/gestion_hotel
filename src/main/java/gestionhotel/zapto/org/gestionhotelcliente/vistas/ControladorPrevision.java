@@ -5,7 +5,7 @@ import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaCheckIn;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaPrevision;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo;
 import java.net.URL;
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ import javafx.stage.Modality;
  *
  * @author Antonio Jesús Pérez Delgado
  */
-public class ControladorReservaCheckIn implements Initializable {
+public class ControladorPrevision implements Initializable {
 
     @FXML
     private TextField cliente, reserva;
@@ -43,8 +43,8 @@ public class ControladorReservaCheckIn implements Initializable {
             tableColumnFechaPrevistaEntrada, tableColumnFechaPrevistaSalida;
 
     @FXML
-    private TableView<TablaCheckIn> tabla;
-    ObservableList<TablaCheckIn> listaPendientesCheckIn = FXCollections.observableArrayList(), listaFiltro;
+    private TableView<TablaPrevision> tabla;
+    ObservableList<TablaPrevision> listaPendientesCheckIn = FXCollections.observableArrayList(), listaFiltro;
     List<DetallesReserva> listaReservas = FXCollections.observableArrayList();
     public DetallesReserva detallesReservaEnVista;
 
@@ -67,7 +67,7 @@ public class ControladorReservaCheckIn implements Initializable {
 
         listaReservas = PruebasModelo.getListaDeAlojamientos();
 
-        listaPendientesCheckIn = TablaCheckIn.modeloCheckin(listaReservas);
+        listaPendientesCheckIn = TablaPrevision.modeloCheckin(listaReservas);
         listaFiltro = FXCollections.observableArrayList(listaPendientesCheckIn);
         tabla.setItems(listaFiltro);
 
@@ -108,16 +108,16 @@ public class ControladorReservaCheckIn implements Initializable {
 
     private void accionCheckIn() {
         if (detallesReservaEnVista != null) {
-            ObjetoVentana obj = VentanasFactory.getObjetoVentanaHuespedReserva(Ventanas.RESERVA_CHECKIN, Modality.WINDOW_MODAL, null);
+            ObjetoVentana obj = VentanasFactory.getObjetoVentanaCheckin(Ventanas.PREVISION, Modality.WINDOW_MODAL, null);
             if (obj != null) {
-                ((ControladorVentanaHuespedReserva) obj.getfXMLLoader().getController()).setReserva(detallesReservaEnVista);
+                ((ControladorCheckIn) obj.getfXMLLoader().getController()).setReserva(detallesReservaEnVista);
                 obj.ver();
             }
         }
     }
 
     private void accionReserva() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaAddReserva(Ventanas.RESERVA_CHECKIN, Modality.APPLICATION_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaReservaFormulario(Ventanas.PREVISION, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
             obj.ver();
         }
@@ -144,7 +144,7 @@ public class ControladorReservaCheckIn implements Initializable {
         tabla.getSelectionModel().select(null);
         checkIn.setDisable(true);
         noShow.setDisable(true);
-        for (TablaCheckIn row : listaPendientesCheckIn) {
+        for (TablaPrevision row : listaPendientesCheckIn) {
             if (row.getNumeroReserva().contains(newValue) && row.getCliente().contains(cliente.getText())) {
                 listaFiltro.add(row);
             }
@@ -158,7 +158,7 @@ public class ControladorReservaCheckIn implements Initializable {
         detallesReservaEnVista = null;
         checkIn.setDisable(true);
         noShow.setDisable(true);
-        for (TablaCheckIn row : listaPendientesCheckIn) {
+        for (TablaPrevision row : listaPendientesCheckIn) {
             if (row.getCliente().contains(newValue) && row.getNumeroReserva().contains(reserva.getText())) {
                 listaFiltro.add(row);
             }

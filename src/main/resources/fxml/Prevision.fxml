@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.3471933471933472" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" styleClass="ventanaReserva" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorReservaCheckIn">
+<SplitPane dividerPositions="0.3471933471933472" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" styleClass="ventanaReserva" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorPrevision">
   <items>
     <AnchorPane styleClass="baseVentanas" stylesheets="@../styles/estilos.css">
          <children>

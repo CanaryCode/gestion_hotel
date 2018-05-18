@@ -1,6 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
-import gestionhotel.zapto.org.gestionhotelcliente.controladores.RecorredorPaneles;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
@@ -27,7 +26,7 @@ import javafx.stage.Modality;
  *
  * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
-public class ControladorVentanaHuespedReserva implements Initializable {
+public class ControladorHuespedReserva implements Initializable {
 
     @FXML
     private Button botonAdd1, botonAdd2, botonOk,
@@ -37,8 +36,6 @@ public class ControladorVentanaHuespedReserva implements Initializable {
     public AnchorPane principal;
     @FXML
     public TableView<TablaHuesped> tablaResponsable, tablaOtros;
-    @FXML
-    public TableView<TablaCliente> tablaCliente;
     @FXML
     public TableColumn tableColumnNumero, tableColumnDni, tableColumnNombre, tableColumnPrimerApellido,
             tableColumnSegundoApellido, tableColumnFechaNacimiento, tableColumnSexo, tableColumnDiscapacitado,
@@ -50,24 +47,15 @@ public class ControladorVentanaHuespedReserva implements Initializable {
             tableColumnSegundoApellido1, tableColumnFechaNacimiento1, tableColumnSexo1, tableColumnDiscapacitado1,
             tableColumnCiudad1, tableColumnProvincia1, tableColumnPais1, tableColumnCalle1, tableColumnCodigoPostal1,
             tableColumnPasaporte1, tableColumnFechaExpedicion1, tableColumnEmail1, tableColumnTratamiento1,
-            tableColumnCategoria1,
-            //-------------------------------------------------------------------------------------------
-            tableColumnRazonSocialCliente, tableColumnTipoCliente, tableColumnNombreComercialCliente,
-            tableColumnDocumentoNumeroCliente, tableColumnNombreCliente, tableColumnPrimerApellidoCliente,
-            tableColumnSegundoApellidoCliente, tableColumnFechaNacimientoCliente, tableColumnNacionalidadCliente,
-            tableColumnProvinciaCliente, tableColumnCiudadCliente, tableColumnCalleCliente, tableColumnNumeroCliente,
-            tableColumnCodigoPostalCliente, tableColumnSexoCliente, tableColumnEstadoCliente, tableColumnEmailCliente,
-            tableColumnPaginaWebCliente, tableColumnCategoriaCliente, tableColumnTratamientoCliente;
+            tableColumnCategoria1;
+    //-------------------------------------------------------------------------------------------
 
-    private DetallesReserva detalleReserva;
-    private ObservableList<Persona> listaHuespedes = FXCollections.observableArrayList();
-    private ObservableList<Persona> listaHuespededResponsable = FXCollections.observableArrayList();
-    private ObservableList<Persona> listaCliente = FXCollections.observableArrayList();
-    private ObservableList<TablaCliente> listaTablaCliente = FXCollections.observableArrayList();
-    private ObservableList<TablaHuesped> listaTablaHuespedResponsable = FXCollections.observableArrayList();
-    private ObservableList<TablaHuesped> listaTablaHuespedes = FXCollections.observableArrayList();
-    private ObservableList<Persona> listaTodosLosHuespedes=FXCollections.observableArrayList();;
-    int maxResponsables = 1, MaxHuespedes = 2;
+    private ObservableList<Persona> listaHuespedes;
+    private ObservableList<Persona> listaHuespededResponsable;
+    private ObservableList<TablaHuesped> listaTablaHuespedResponsable;
+    private ObservableList<TablaHuesped> listaTablaHuespedes;
+    private ObservableList<Persona> listaTodosLosHuespedes;
+    private int maxResponsables = 1, MaxHuespedes = 2;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -91,23 +79,6 @@ public class ControladorVentanaHuespedReserva implements Initializable {
 
         reseteaCampos.setOnAction((event) -> {
             codigoReseteaCampos();
-        });
-
-        tablaCliente.setItems(listaTablaCliente);
-        tablaResponsable.setItems(listaTablaHuespedResponsable);
-        tablaOtros.setItems(listaTablaHuespedes);
-
-        listaHuespededResponsable.addListener(new ListChangeListener<Persona>() {
-            @Override
-            public void onChanged(ListChangeListener.Change<? extends Persona> c) {
-                codigoListaHuespedResponsable();
-            }
-        });
-        listaHuespedes.addListener(new ListChangeListener<Persona>() {
-            @Override
-            public void onChanged(ListChangeListener.Change<? extends Persona> c) {
-                codigoListaHuespedes();
-            }
         });
 
         tableColumnDni1.setCellValueFactory(new PropertyValueFactory("numeroDocumento"));
@@ -148,26 +119,7 @@ public class ControladorVentanaHuespedReserva implements Initializable {
         tableColumnCategoria.setCellValueFactory(new PropertyValueFactory("categoria"));
         tableColumnNumero.setCellValueFactory(new PropertyValueFactory("numero"));
         //------------------------------------------------------------------------------------------
-        tableColumnDocumentoNumeroCliente.setCellValueFactory(new PropertyValueFactory("numeroDocumento"));
-        tableColumnNombreCliente.setCellValueFactory(new PropertyValueFactory("nombre"));
-        tableColumnPrimerApellidoCliente.setCellValueFactory(new PropertyValueFactory("primerApellido"));
-        tableColumnSegundoApellidoCliente.setCellValueFactory(new PropertyValueFactory("segundoApellido"));
-        tableColumnFechaNacimientoCliente.setCellValueFactory(new PropertyValueFactory("fechaNacimiento"));
-        tableColumnSexoCliente.setCellValueFactory(new PropertyValueFactory("sexoHombre"));
-        tableColumnCiudadCliente.setCellValueFactory(new PropertyValueFactory("ciudad"));
-        tableColumnProvinciaCliente.setCellValueFactory(new PropertyValueFactory("provincia"));
-        tableColumnEstadoCliente.setCellValueFactory(new PropertyValueFactory("estado"));
-        tableColumnCalleCliente.setCellValueFactory(new PropertyValueFactory("calle"));
-        tableColumnCodigoPostalCliente.setCellValueFactory(new PropertyValueFactory("codigoPostal"));
-        tableColumnEmailCliente.setCellValueFactory(new PropertyValueFactory("email"));
-        tableColumnTratamientoCliente.setCellValueFactory(new PropertyValueFactory("tratamiento"));
-        tableColumnCategoriaCliente.setCellValueFactory(new PropertyValueFactory("categoria"));
-        tableColumnNumeroCliente.setCellValueFactory(new PropertyValueFactory("numero"));
-        tableColumnRazonSocialCliente.setCellValueFactory(new PropertyValueFactory("razonSocial"));
-        tableColumnTipoCliente.setCellValueFactory(new PropertyValueFactory("esEmpresa"));
-        tableColumnNombreComercialCliente.setCellValueFactory(new PropertyValueFactory("nombreComercial"));
-        tableColumnPaginaWebCliente.setCellValueFactory(new PropertyValueFactory("paginaWeb"));
-        tableColumnNacionalidadCliente.setCellValueFactory(new PropertyValueFactory("nacionalidad"));
+
     }
 
     /**
@@ -179,7 +131,7 @@ public class ControladorVentanaHuespedReserva implements Initializable {
         if (obj != null) {
             ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
                     setModoVentana(Ventanas.MODO_SELECCIONAR).
-                    setListaHuesped(listaHuespededResponsable, listaTablaHuespedResponsable,listaTodosLosHuespedes);
+                    setListaHuesped(listaHuespededResponsable, listaTablaHuespedResponsable, listaTodosLosHuespedes);
             obj.ver();
         }
 
@@ -187,10 +139,10 @@ public class ControladorVentanaHuespedReserva implements Initializable {
 
     private void accionAdd2() {
 
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL,null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
             ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
-                    setModoVentana(Ventanas.MODO_SELECCIONAR).setListaHuesped(listaHuespedes, listaTablaHuespedes,listaTodosLosHuespedes);
+                    setModoVentana(Ventanas.MODO_SELECCIONAR).setListaHuesped(listaHuespedes, listaTablaHuespedes, listaTodosLosHuespedes);
             obj.ver();
         }
 
@@ -199,18 +151,18 @@ public class ControladorVentanaHuespedReserva implements Initializable {
     private void accionBorrar1() {
         listaHuespededResponsable.remove(listaHuespededResponsable.size() - 1);
         listaTablaHuespedResponsable.remove(listaTablaHuespedResponsable.size() - 1);
-        listaTodosLosHuespedes.remove(listaTodosLosHuespedes.size()-1);
+        listaTodosLosHuespedes.remove(listaTodosLosHuespedes.size() - 1);
 
     }
 
     private void accionBorrar2() {
         listaHuespedes.remove(listaHuespedes.size() - 1);
         listaTablaHuespedes.remove(listaTablaHuespedes.size() - 1);
-        listaTodosLosHuespedes.remove(listaTodosLosHuespedes.size()-1);
+        listaTodosLosHuespedes.remove(listaTodosLosHuespedes.size() - 1);
     }
 
     private void accionOK() {
-
+         Ventanas.cerrarVentana(Ventanas.HUESPED_RESERVA);
     }
 
     private void codigoReseteaCampos() {
@@ -219,14 +171,6 @@ public class ControladorVentanaHuespedReserva implements Initializable {
         listaTodosLosHuespedes.clear();
         listaTablaHuespedResponsable.clear();
         listaTablaHuespedes.clear();
-    }
-
-    public ControladorVentanaHuespedReserva setReserva(DetallesReserva detalleReserva) {
-        this.detalleReserva = detalleReserva;
-        listaCliente.add(detalleReserva.getReserva().getPersonaByCodCliente());
-        listaTablaCliente.addAll(TablaCliente.getTablaBuscadorCliente(listaCliente));
-        tablaCliente.setItems(listaTablaCliente);
-        return this;
     }
 
     private void codigoListaHuespedResponsable() {
@@ -267,9 +211,35 @@ public class ControladorVentanaHuespedReserva implements Initializable {
         }
     }
 
-    public ControladorVentanaHuespedReserva setNumeroHuespedes(int numeroResponsables, int numeroNormales) {
+    public ControladorHuespedReserva setNumeroHuespedes(int numeroResponsables, int numeroNormales) {
         this.maxResponsables = numeroResponsables;
         this.MaxHuespedes = numeroNormales;
+
+        return this;
+    }
+
+    public ControladorHuespedReserva setListas(ObservableList<Persona> listaHuespedes,
+            ObservableList<Persona> listaHuespededResponsable, ObservableList<TablaHuesped> listaTablaHuespedResponsable,
+            ObservableList<TablaHuesped> listaTablaHuespedes, ObservableList<Persona> listaTodosLosHuespedes) {
+        this.listaHuespedes = listaHuespedes;
+        this.listaHuespededResponsable = listaHuespededResponsable;
+        this.listaTablaHuespedResponsable = listaTablaHuespedResponsable;
+        this.listaTablaHuespedes = listaTablaHuespedes;
+        this.listaTodosLosHuespedes = listaTodosLosHuespedes;
+        tablaResponsable.setItems(listaTablaHuespedResponsable);
+        tablaOtros.setItems(listaTablaHuespedes);
+        listaHuespededResponsable.addListener(new ListChangeListener<Persona>() {
+            @Override
+            public void onChanged(ListChangeListener.Change<? extends Persona> c) {
+                codigoListaHuespedResponsable();
+            }
+        });
+        listaHuespedes.addListener(new ListChangeListener<Persona>() {
+            @Override
+            public void onChanged(ListChangeListener.Change<? extends Persona> c) {
+                codigoListaHuespedes();
+            }
+        });
 
         return this;
     }

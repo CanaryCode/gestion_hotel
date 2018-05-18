@@ -20,7 +20,7 @@ public class VentanasFactory {
      * @return ventana preconfigurada lista para ver
      */
     public static ObjetoVentana getObjetoVentanaLogIn() {
-        ObjetoVentana obj = ObjetoVentanaBuilder.crear("FXMLVentanaLogIn", Ventanas.LOGIN, null,
+        ObjetoVentana obj = ObjetoVentanaBuilder.crear("LogIn", Ventanas.LOGIN, null,
                 ObjetoVentana.resourceBundle.getString("windows.logIn"), Modality.NONE, null);
         obj.getVentana().setOnCloseRequest((event) -> {
             obj.cerrar();
@@ -36,7 +36,7 @@ public class VentanasFactory {
      * @return ventana preconfigurada lista para ver
      */
     public static ObjetoVentana getObjetoVentanaPrincipal() {
-        ObjetoVentana obj = ObjetoVentanaBuilder.crear("FXMLVentanaPrincipal", Ventanas.PRINCIPAL,
+        ObjetoVentana obj = ObjetoVentanaBuilder.crear("Principal", Ventanas.PRINCIPAL,
                 null, ObjetoVentana.resourceBundle.getString("windows.principal"), Modality.NONE, null);
         return obj;
 
@@ -51,8 +51,8 @@ public class VentanasFactory {
      * @param controlador controlador del fxml.
      * @return ventana preconfigurada lista para ver
      */
-    public static ObjetoVentana getObjetoVentanaHuesped(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentanaBuilder.crear("FXMLVentanaHuesped", Ventanas.HUESPED,
+    public static ObjetoVentana getObjetoVentanaHuespedFormulario(String owner, Modality modalidad, Object controlador) {
+        ObjetoVentana obj = ObjetoVentanaBuilder.crear("HuespedFormulario", Ventanas.HUESPED_FORMULARIO,
                 owner, ObjetoVentana.resourceBundle.getString("windows.huesped"), modalidad, controlador);
         return obj;
     }
@@ -66,9 +66,9 @@ public class VentanasFactory {
      * @param controlador controlador del fxml.
      * @return ventana preconfigurada lista para abrir
      */
-    public static ObjetoVentana getObjetoVentanaReservaCheckIn(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentanaBuilder.crear("FXMLVentanaReservaCheckIn", Ventanas.RESERVA_CHECKIN,
-                owner, ObjetoVentana.resourceBundle.getString("windows.checkIn"), modalidad, controlador);
+    public static ObjetoVentana getObjetoVentanaPrevision(String owner, Modality modalidad, Object controlador) {
+        ObjetoVentana obj = ObjetoVentanaBuilder.crear("Prevision", Ventanas.PREVISION,
+                owner,"Prevision", modalidad, controlador);
         return obj;
     }
 
@@ -82,7 +82,7 @@ public class VentanasFactory {
      * @return ventana preconfigurada lista para abrir
      */
     public static ObjetoVentana getObjetoVentanaQuienesSomos(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentanaBuilder.crear("FXMLVentanaQuienesSomos", Ventanas.QUIENES_SOMOS,
+        ObjetoVentana obj = ObjetoVentanaBuilder.crear("QuienesSomos", Ventanas.QUIENES_SOMOS,
                 owner, ObjetoVentana.resourceBundle.getString("windows.quienesSomos"), modalidad, controlador);
         return obj;
     }
@@ -96,8 +96,8 @@ public class VentanasFactory {
      * @param controlador controlador del fxml.
      * @return ventana preconfigurada lista para abrir.
      */
-    public static ObjetoVentana getObjetoVentanaRegistroClientes(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentanaBuilder.crear("FXMLVentanaCliente", Ventanas.CLIENTE,
+    public static ObjetoVentana getObjetoVentanaClienteFormulario(String owner, Modality modalidad, Object controlador) {
+        ObjetoVentana obj = ObjetoVentanaBuilder.crear("ClienteFormulario", Ventanas.CLIENTE_FORMULARIO,
                 owner, ObjetoVentana.resourceBundle.getString("windows.cliente"), modalidad, controlador);
         return obj;
     }
@@ -111,8 +111,8 @@ public class VentanasFactory {
      * @param controlador controlador del fxml.
      * @return ventana preconfigurada lista para abrir.
      */
-    public static ObjetoVentana getObjetoVentanaAddReserva(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentanaBuilder.crear("FXMLVentanaReserva", Ventanas.RESERVA,
+    public static ObjetoVentana getObjetoVentanaReservaFormulario(String owner, Modality modalidad, Object controlador) {
+        ObjetoVentana obj = ObjetoVentanaBuilder.crear("Reserva", Ventanas.RESERVA_FORMULARIO,
                 owner, ObjetoVentana.resourceBundle.getString("windows.addReserva"), modalidad, controlador);
         return obj;
     }
@@ -127,7 +127,7 @@ public class VentanasFactory {
      * @return ventana preconfigurada lista para abrir.
      */
     public static ObjetoVentana getObjetoVentanaBuscarHuesped(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentanaBuilder.crear("FXMLVentanaHuespedBuscador", Ventanas.HUESPED_BUSCADOR,
+        ObjetoVentana obj = ObjetoVentanaBuilder.crear("HuespedBuscador", Ventanas.HUESPED_BUSCADOR,
                 owner, ObjetoVentana.resourceBundle.getString("windows.huespedBuscador"), modalidad, controlador);
         return obj;
     }
@@ -142,7 +142,7 @@ public class VentanasFactory {
      * @return ventana preconfigurada lista para abrir.
      */
     public static ObjetoVentana getObjetoVentanaBuscarCliente(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentanaBuilder.crear("FXMLVentanaClienteBuscador", Ventanas.CLIENTE_BUSCADOR,
+        ObjetoVentana obj = ObjetoVentanaBuilder.crear("ClienteBuscador", Ventanas.CLIENTE_BUSCADOR,
                 owner, ObjetoVentana.resourceBundle.getString("windows.clienteBuscador"), modalidad, controlador);
         return obj;
     }
@@ -157,7 +157,7 @@ public class VentanasFactory {
      * @return ventana preconfigurada lista para abrir.
      */
     public static ObjetoVentana getObjetoVentanaCalculadora(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentanaBuilder.crear("FXMLCalculadora", Ventanas.CALCULADORA,
+        ObjetoVentana obj = ObjetoVentanaBuilder.crear("Calculadora", Ventanas.CALCULADORA,
                 owner, ObjetoVentana.resourceBundle.getString("windows.calculadora"), modalidad, controlador);
         return obj;
     }
@@ -172,7 +172,7 @@ public class VentanasFactory {
      * @return ventana preconfigurada lista para abrir.
      */
     public static ObjetoVentana getObjetoVentanaHuespedReserva(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentanaBuilder.crear("FXMLVentanaHuespedReserva", Ventanas.HUESPED_RESERVA,
+        ObjetoVentana obj = ObjetoVentanaBuilder.crear("HuespedReserva", Ventanas.HUESPED_RESERVA,
                 owner, ObjetoVentana.resourceBundle.getString("windows.HuespedReserva"), modalidad, controlador);
         return obj;
     }
@@ -186,7 +186,7 @@ public class VentanasFactory {
      * @return ventana preconfigurada lista para abrir.
      */
     public static ObjetoVentana getObjetoVentanaTelefonoBuscador(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentanaBuilder.crear("FXMLTelefonoBuscador", Ventanas.TELEFONO_BUSCADOR,
+        ObjetoVentana obj = ObjetoVentanaBuilder.crear("TelefonoBuscador", Ventanas.TELEFONO_BUSCADOR,
                 owner,"Buscador de teléfonos", modalidad, controlador);
         return obj;
     }
@@ -199,9 +199,79 @@ public class VentanasFactory {
      * @param controlador controlador del fxml.
      * @return ventana preconfigurada lista para abrir.
      */
-    public static ObjetoVentana getObjetoVentanaTelefono(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentanaBuilder.crear("FXMLVentanaTelefono", Ventanas.TELEFONO,
+    public static ObjetoVentana getObjetoVentanaTelefonoFormulario(String owner, Modality modalidad, Object controlador) {
+        ObjetoVentana obj = ObjetoVentanaBuilder.crear("TelefonoFormulario", Ventanas.TELEFONO_FORMULARIO,
                 owner,"Teléfonos", modalidad, controlador);
+        return obj;
+    }
+    /**
+     * abre la ventana "Telefono buscador". Se apoya en las clases privadas para
+     * configurarla.
+     *
+     * @param owner ventana padre.
+     * @param modalidad modalidad de esta ventana (modal,normal, etc).
+     * @param controlador controlador del fxml.
+     * @return ventana preconfigurada lista para abrir.
+     */
+    public static ObjetoVentana getObjetoVentanaReservaHabitacion(String owner, Modality modalidad, Object controlador) {
+        ObjetoVentana obj = ObjetoVentanaBuilder.crear("ReservaHabitacion", Ventanas.RESERVA_HABITACION,
+                owner,"Reserva - Habitacion", modalidad, controlador);
+        return obj;
+    }
+    /**
+     * abre la ventana "Telefono buscador". Se apoya en las clases privadas para
+     * configurarla.
+     *
+     * @param owner ventana padre.
+     * @param modalidad modalidad de esta ventana (modal,normal, etc).
+     * @param controlador controlador del fxml.
+     * @return ventana preconfigurada lista para abrir.
+     */
+    public static ObjetoVentana getObjetoVentanaCheckin(String owner, Modality modalidad, Object controlador) {
+        ObjetoVentana obj = ObjetoVentanaBuilder.crear("CheckIn", Ventanas.CHECK_IN,
+                owner,"Check-In", modalidad, controlador);
+        return obj;
+    }
+    /**
+     * abre la ventana "Telefono buscador". Se apoya en las clases privadas para
+     * configurarla.
+     *
+     * @param owner ventana padre.
+     * @param modalidad modalidad de esta ventana (modal,normal, etc).
+     * @param controlador controlador del fxml.
+     * @return ventana preconfigurada lista para abrir.
+     */
+    public static ObjetoVentana getObjetoVentanaAlojamiento(String owner, Modality modalidad, Object controlador) {
+        ObjetoVentana obj = ObjetoVentanaBuilder.crear("AlojamientoFormulario", Ventanas.ALOJAMIENTO_FORMULARIO,
+                owner,"Alojamiento", modalidad, controlador);
+        return obj;
+    }
+    /**
+     * abre la ventana "Telefono buscador". Se apoya en las clases privadas para
+     * configurarla.
+     *
+     * @param owner ventana padre.
+     * @param modalidad modalidad de esta ventana (modal,normal, etc).
+     * @param controlador controlador del fxml.
+     * @return ventana preconfigurada lista para abrir.
+     */
+    public static ObjetoVentana getObjetoVentanaHabitacionFormulario(String owner, Modality modalidad, Object controlador) {
+        ObjetoVentana obj = ObjetoVentanaBuilder.crear("HabitacionFormulario", Ventanas.HABITACION_FORMULARIO,
+                owner,"Formulario habitación", modalidad, controlador);
+        return obj;
+    }
+    /**
+     * abre la ventana "Telefono buscador". Se apoya en las clases privadas para
+     * configurarla.
+     *
+     * @param owner ventana padre.
+     * @param modalidad modalidad de esta ventana (modal,normal, etc).
+     * @param controlador controlador del fxml.
+     * @return ventana preconfigurada lista para abrir.
+     */
+    public static ObjetoVentana getObjetoVentanaHabitacionBuscador(String owner, Modality modalidad, Object controlador) {
+        ObjetoVentana obj = ObjetoVentanaBuilder.crear("HabitacionBuscador", Ventanas.HABITACION_BUSCADOR,
+                owner,"Buscador Habitación", modalidad, controlador);
         return obj;
     }
 }

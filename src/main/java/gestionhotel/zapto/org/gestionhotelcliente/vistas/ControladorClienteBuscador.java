@@ -79,10 +79,15 @@ public class ControladorClienteBuscador implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         nacionalidad.setItems(Registro.listaPaises);
+        nacionalidad.getSelectionModel().selectFirst();
         tratamiento.setItems(Registro.ListaTratamiento);
+        tratamiento.getSelectionModel().selectFirst();
         categoria.setItems(Registro.ListaCategoriaCliente);
+        categoria.getSelectionModel().selectFirst();
         razonSocial.setItems(Registro.ListaRazonSocial);
+        razonSocial.getSelectionModel().selectFirst();
         estado.setItems(Registro.listaPaises);
+        estado.getSelectionModel().selectFirst();
 
         toggleNombre.selectedProperty().addListener((e) -> {
             codigoToggleNombre();
@@ -436,9 +441,9 @@ public class ControladorClienteBuscador implements Initializable {
     }
 
     private void codigoActualizar() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaRegistroClientes(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
-            ((ControladorVentanaCliente) obj.getfXMLLoader().getController()).
+            ((ControladorClienteFormulario) obj.getfXMLLoader().getController()).
                     setClienteEnVista(ClienteEnVista).
                     setModoFormulario(Ventanas.MODO_ACTUALIZAR);
             obj.ver();
@@ -446,8 +451,8 @@ public class ControladorClienteBuscador implements Initializable {
     }
 
     private void codigoCrear() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaRegistroClientes(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null);
-        ((ControladorVentanaCliente) obj.getfXMLLoader().getController()).
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null);
+        ((ControladorClienteFormulario) obj.getfXMLLoader().getController()).
                 setModoFormulario(Ventanas.MODO_INSERTAR);
         if (obj != null) {
             obj.ver();
@@ -507,9 +512,9 @@ public class ControladorClienteBuscador implements Initializable {
         }
     }
     private void codigoVer(){
-      ObjetoVentana obj = VentanasFactory.getObjetoVentanaRegistroClientes(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null);
+      ObjetoVentana obj = VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
-            ((ControladorVentanaCliente) obj.getfXMLLoader().getController()).setClienteEnVista(ClienteEnVista).
+            ((ControladorClienteFormulario) obj.getfXMLLoader().getController()).setClienteEnVista(ClienteEnVista).
                     setModoFormulario(Ventanas.MODO_VER);
             obj.ver();
         }

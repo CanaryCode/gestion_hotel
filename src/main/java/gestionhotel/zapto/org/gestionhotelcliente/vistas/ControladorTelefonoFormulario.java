@@ -16,7 +16,7 @@ import javafx.scene.control.TextField;
  *
  * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
-public class ControladorVentanaTelefono implements Initializable {
+public class ControladorTelefonoFormulario implements Initializable {
 
     @FXML
     private TextField numero, nombre;
@@ -67,7 +67,7 @@ public class ControladorVentanaTelefono implements Initializable {
 
     }
 
-    public ControladorVentanaTelefono setModoFormulario(int modo) {
+    public ControladorTelefonoFormulario setModoFormulario(int modo) {
         this.modoVentana = modo;
         return this;
     }

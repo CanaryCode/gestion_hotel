@@ -1,5 +1,6 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos;
 
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.LanzadorDeError;
 import java.io.IOException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -41,10 +42,10 @@ public class ObjetoVentana {
 
     /**
      *
-     * @param fXMLLoader cargador del FXML 
+     * @param fXMLLoader cargador del FXML
      * @param ventana Ventana que va a ha ser configurada.
      * @param owner nombre del padre de la ventana que va a ser modificada.
-     * @param scene "Scene" en el que se cargará el "parent" resultante de la 
+     * @param scene "Scene" en el que se cargará el "parent" resultante de la
      * carga del cargador de fxml.
      * @param parent objeto donde se cargará la carga del FXML.
      * @param nombreFXML nombre del FXML sin exteción ni ruta.
@@ -54,7 +55,6 @@ public class ObjetoVentana {
      * @param controlador controlador que se pudiera cargar al FXML
      * @param cargado propiedad que tendra la ventana.
      */
-
     public ObjetoVentana(FXMLLoader fXMLLoader, VentanaCustom ventana, String owner, Scene scene, Parent parent, String nombreFXML, String nombreVentana, String titulo, Modality modalidad, Object controlador, boolean cargado) {
         this.fXMLLoader = fXMLLoader;
         this.ventana = ventana;
@@ -104,11 +104,19 @@ public class ObjetoVentana {
             ventana.setOnCloseRequest(Event -> {
                 cerrar();
             });
+            ventana.focusedProperty().addListener((observable) -> {
+                    if (ventana.isFocused()) {
+                        ventana.setOpacity(1);
+                    } else {
+                        ventana.setOpacity(0.5);
+                    }
+            });
             parent = getfXMLLoader().load();
             ventana.initModality(modalidad);
             VentanaCustom ventanaOwner = Ventanas.getVentana(ownerName);
             ventana.initOwner(ventanaOwner);
-        } catch (IOException ex) {
+        } catch (Exception ex) {
+            LanzadorDeError.lanzarErrorUsuario(ex.getMessage());
             Logger.getLogger(ObjetoVentana.class.getName()).log(Level.SEVERE, null, ex);
         }
         return new ObjetoVentana();

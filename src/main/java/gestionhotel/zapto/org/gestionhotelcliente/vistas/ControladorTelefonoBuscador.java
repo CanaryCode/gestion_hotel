@@ -127,9 +127,9 @@ public class ControladorTelefonoBuscador implements Initializable {
     }
 
     private void codigoCrear() {
-              ObjetoVentana obj = VentanasFactory.getObjetoVentanaTelefono(Ventanas.TELEFONO_BUSCADOR, Modality.APPLICATION_MODAL, null);
+              ObjetoVentana obj = VentanasFactory.getObjetoVentanaTelefonoFormulario(Ventanas.TELEFONO_BUSCADOR, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
-            ((ControladorVentanaTelefono) obj.getfXMLLoader().getController()).
+            ((ControladorTelefonoFormulario) obj.getfXMLLoader().getController()).
                     setModoFormulario(Ventanas.MODO_INSERTAR);
             obj.ver();
         }

@@ -23,7 +23,7 @@ import javafx.stage.Modality;
  *
  * @author Antonio Jesús Pérez Delgado
  */
-public class ControladorVentanaPrincipal implements Initializable {
+public class ControladorPrincipal implements Initializable {
 
     @FXML
     private MenuItem kardex, reserva, quienesSomos, registroClientes, addReservas,
@@ -75,17 +75,17 @@ public class ControladorVentanaPrincipal implements Initializable {
     }
 
     private void codigoMenuAddReservas() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaAddReserva(Ventanas.PRINCIPAL, Modality.WINDOW_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaReservaFormulario(Ventanas.PRINCIPAL, Modality.WINDOW_MODAL, null);
         obj.ver();
     }
 
     private void codigoMenuKardex() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaRegistroClientes(Ventanas.PRINCIPAL, Modality.WINDOW_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.PRINCIPAL, Modality.WINDOW_MODAL, null);
         obj.ver();
     }
 
     private void codigoMenuReserva() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaReservaCheckIn(Ventanas.PRINCIPAL, Modality.WINDOW_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaPrevision(Ventanas.PRINCIPAL, Modality.WINDOW_MODAL, null);
         obj.ver();
     }
 
@@ -95,7 +95,7 @@ public class ControladorVentanaPrincipal implements Initializable {
     }
 
     private void codigoMenuRegistroClientes() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaRegistroClientes(Ventanas.PRINCIPAL, Modality.WINDOW_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.PRINCIPAL, Modality.WINDOW_MODAL, null);
         obj.ver();
     }
 
@@ -133,6 +133,11 @@ public class ControladorVentanaPrincipal implements Initializable {
         if (obj != null) {
             obj.getVentana().setAlwaysOnTop(true);
             obj.ver();
+            obj.getVentana().focusedProperty().addListener((observable) -> {
+                if(!obj.getVentana().isFocused()){
+                    obj.getVentana().setOpacity(1);
+                }
+            });
         }
     }
 }

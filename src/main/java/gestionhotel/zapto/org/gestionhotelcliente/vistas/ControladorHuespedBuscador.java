@@ -428,7 +428,7 @@ public class ControladorHuespedBuscador implements Initializable {
     }
 
     private void codigoActualizar() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaHuesped(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaHuespedFormulario(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
             ((ControladorHuesped) obj.getfXMLLoader().getController()).setHuespedEnVista(huespedEnVista).
                     setModoFormulario(Ventanas.MODO_ACTUALIZAR);
@@ -437,7 +437,7 @@ public class ControladorHuespedBuscador implements Initializable {
     }
 
     private void codigoInsertar() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaHuesped(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaHuespedFormulario(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
             ((ControladorHuesped) obj.getfXMLLoader().getController()).
                     setModoFormulario(Ventanas.MODO_INSERTAR);
@@ -522,7 +522,7 @@ public class ControladorHuespedBuscador implements Initializable {
     }
 
     private void codigoVer() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaHuesped(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaHuespedFormulario(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
             ((ControladorHuesped) obj.getfXMLLoader().getController()).setHuespedEnVista(huespedEnVista).
                     setModoFormulario(Ventanas.MODO_VER);

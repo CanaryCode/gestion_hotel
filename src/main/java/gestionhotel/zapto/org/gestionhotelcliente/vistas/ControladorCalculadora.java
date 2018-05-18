@@ -15,7 +15,7 @@ import javafx.scene.control.TextArea;
  *
  * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
-public class FXMLCalculadora implements Initializable {
+public class ControladorCalculadora implements Initializable {
 
     @FXML
     private Button uno, dos, tres, cuatro, cinco, seis, siete, ocho, nueve, cero,

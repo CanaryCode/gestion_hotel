@@ -12,13 +12,13 @@ import javafx.collections.ObservableList;
  *
  * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
-public class TablaCheckIn {
+public class TablaPrevision {
 
     String numeroReserva, cliente, tipo;
     int habitacion;
     LocalDate fechaPrevistaEntrada, fechaPrevistaSalida;
 
-    public TablaCheckIn(String numeroReserva, String cliente, int habitacion, String tipo, LocalDate fechaPrevistaEntrada, LocalDate fechaPrevistaSalida) {
+    public TablaPrevision(String numeroReserva, String cliente, int habitacion, String tipo, LocalDate fechaPrevistaEntrada, LocalDate fechaPrevistaSalida) {
         this.numeroReserva = numeroReserva;
         this.cliente = cliente;
         this.habitacion = habitacion;
@@ -75,8 +75,8 @@ public class TablaCheckIn {
         this.fechaPrevistaSalida = fechaPrevistaSalida;
     }
 
-    public static ObservableList<TablaCheckIn> modeloCheckin(List<DetallesReserva> listaDetallesReserva) {
-        ObservableList<TablaCheckIn> listaCheckIn = FXCollections.observableArrayList();
+    public static ObservableList<TablaPrevision> modeloCheckin(List<DetallesReserva> listaDetallesReserva) {
+        ObservableList<TablaPrevision> listaCheckIn = FXCollections.observableArrayList();
         if (!listaDetallesReserva.isEmpty()) {
             for (DetallesReserva detallesReserva : listaDetallesReserva) {
                 String numeroReserva = "";
@@ -106,7 +106,7 @@ public class TablaCheckIn {
                 fechaPrevistaEntrada = detallesReserva.getFechaEntradaPrevista().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 fechaPrevistaSalida = detallesReserva.getFechaSalidaPrevista().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 tipo = detallesReserva.getHabitacion().getTipo();
-                TablaCheckIn c = new TablaCheckIn(numeroReserva, cliente, habitacion, tipo, fechaPrevistaEntrada, fechaPrevistaSalida);
+                TablaPrevision c = new TablaPrevision(numeroReserva, cliente, habitacion, tipo, fechaPrevistaEntrada, fechaPrevistaSalida);
                 listaCheckIn.add(c);
             }
         }

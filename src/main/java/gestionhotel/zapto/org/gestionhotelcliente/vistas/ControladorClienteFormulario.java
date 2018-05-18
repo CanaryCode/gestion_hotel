@@ -26,7 +26,7 @@ import javafx.scene.layout.Pane;
  *
  * @author Antonio Jesús Pérez Delgado
  */
-public class ControladorVentanaCliente implements Initializable {
+public class ControladorClienteFormulario implements Initializable {
 
     @FXML
     private TextField nombre, primerApellido, segundoApellido, calle, numero, provincia, ciudad,
@@ -55,7 +55,7 @@ public class ControladorVentanaCliente implements Initializable {
     @FXML
     private Tab tabPersona, tabEmpresa;
 
-    public ControladorVentanaCliente() {
+    public ControladorClienteFormulario() {
     }
     private int modoFormulario;
     private Persona clienteEnVista;
@@ -86,7 +86,7 @@ public class ControladorVentanaCliente implements Initializable {
         if (modoFormulario == Ventanas.MODO_ACTUALIZAR) {
             aceptar.setOnAction((event) -> {
                 //entonces cuando termines, de  hacerlo cierra la ventana.
-                Ventanas.cerrarVentana(Ventanas.CLIENTE);
+                Ventanas.cerrarVentana(Ventanas.CLIENTE_FORMULARIO);
                 //si se está insertando a una persona
             });
             reseteaCampos.setDisable(true);
@@ -107,7 +107,7 @@ public class ControladorVentanaCliente implements Initializable {
         RecorredorPaneles.reseteaControles(principal);
     }
 
-    public ControladorVentanaCliente setModoFormulario(int modoFormulario) {
+    public ControladorClienteFormulario setModoFormulario(int modoFormulario) {
         this.modoFormulario = modoFormulario;
         configurarModo();
         return this;
@@ -121,7 +121,7 @@ public class ControladorVentanaCliente implements Initializable {
         RecorredorPaneles.reseteaControles((Pane) viejo.getContent());
     }
 
-    public ControladorVentanaCliente setClienteEnVista(Persona cliente) {
+    public ControladorClienteFormulario setClienteEnVista(Persona cliente) {
         clienteEnVista = cliente;
         if (cliente.getNombre() != null) {
             if (cliente.getEsEmpresa() == 0) {
