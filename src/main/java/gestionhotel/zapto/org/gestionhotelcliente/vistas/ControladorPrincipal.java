@@ -75,38 +75,39 @@ public class ControladorPrincipal implements Initializable {
     }
 
     private void codigoMenuAddReservas() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaReservaFormulario(Ventanas.PRINCIPAL, Modality.WINDOW_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaReservaFormulario(Ventanas.PRINCIPAL, Modality.NONE, null);
         obj.ver();
     }
 
     private void codigoMenuKardex() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.PRINCIPAL, Modality.WINDOW_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.PRINCIPAL, Modality.NONE, null);
         obj.ver();
     }
 
     private void codigoMenuReserva() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaPrevision(Ventanas.PRINCIPAL, Modality.WINDOW_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaPrevision(Ventanas.PRINCIPAL, Modality.NONE, null);
         obj.ver();
     }
 
     private void codigoMenuQuienesSomos() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaQuienesSomos(Ventanas.PRINCIPAL, Modality.WINDOW_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaQuienesSomos(Ventanas.PRINCIPAL, Modality.NONE, null);
         obj.ver();
+        ((ControladorQuienesSomos)obj.getfXMLLoader().getController()).reproduceVideo();
     }
 
     private void codigoMenuRegistroClientes() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.PRINCIPAL, Modality.WINDOW_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.PRINCIPAL, Modality.NONE, null);
         obj.ver();
     }
 
     private void codigoMenuBuscadorHuesped() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.PRINCIPAL, Modality.WINDOW_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.PRINCIPAL, Modality.NONE, null);
         obj.ver();
 
     }
 
     private void codigoMenuBuscadorCliente() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarCliente(Ventanas.PRINCIPAL, Modality.WINDOW_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarCliente(Ventanas.PRINCIPAL, Modality.NONE, null);
         obj.ver();
 
     }
@@ -130,14 +131,8 @@ public class ControladorPrincipal implements Initializable {
 
     private void codigoAbrirCalculadora() {
         ObjetoVentana obj = VentanasFactory.getObjetoVentanaCalculadora(Ventanas.PRINCIPAL, Modality.NONE, null);
-        if (obj != null) {
-            obj.getVentana().setAlwaysOnTop(true);
+        if (obj != null&&Ventanas.getVentana(obj.getNombreVentana())==null) {
             obj.ver();
-            obj.getVentana().focusedProperty().addListener((observable) -> {
-                if(!obj.getVentana().isFocused()){
-                    obj.getVentana().setOpacity(1);
-                }
-            });
         }
     }
 }

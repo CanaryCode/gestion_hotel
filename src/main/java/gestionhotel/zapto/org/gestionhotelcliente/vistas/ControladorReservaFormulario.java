@@ -4,9 +4,11 @@ import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaAlojamiento;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaCliente;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
+import static gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo.getListaDeAlojamientos;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -39,9 +41,11 @@ public class ControladorReservaFormulario implements Initializable {
     private Button confirmar, buscarCliente, buscarAgencia, alojamientos;
 
     @FXML
-    private TextField  numeroTarjeta;
+    private TextField numeroTarjeta;
     @FXML
-    private TableView tablaAgencia, tablaCliente;
+    private TableView<TablaCliente> tablaAgencia, tablaCliente;
+    @FXML
+    private TableView<TablaAlojamiento> tablaAlojamiento;
 
     @FXML
     private TableColumn tableColumnRazonSocialCliente, tableColumnTipoCliente,
@@ -60,13 +64,20 @@ public class ControladorReservaFormulario implements Initializable {
             tableColumnNacionalidadAgencia, tableColumnProvinciaAgencia, tableColumnCiudadAgencia,
             tableColumnCalleAgencia, tableColumnNumeroAgencia, tableColumnCodigoPostalAgencia,
             tableColumnSexoAgencia, tableColumnEstadoAgencia, tableColumnEmailAgencia,
-            tableColumnPaginaWebAgencia, tableColumnCategoriaAgencia, tableColumnTratamientoAgencia;
+            tableColumnPaginaWebAgencia, tableColumnCategoriaAgencia, tableColumnTratamientoAgencia,
+            //-------------------------------------------------------------------------------------------------
+            tableColumnFechaInicio, tableColumnFechaFin, tableColumnNumeroAdultos, tableColumnNumeroChild,
+            tableColumnNumeroBebes, tableColumnPension, tableColumnCamaExtra, tableColumnCuna,
+            tableColumnPrefTipoHabitacion, tableColumnPrefHabitacion, tableColumnPrefTipoCama,
+            tableColumnPrefVistas, tableColumnPrefRestaurante, tableColumnPrefTipoRestaurante;
 
     private ObservableList<Persona> listaCliente = FXCollections.observableArrayList();
     private ObservableList<TablaCliente> listaTablaCliente = FXCollections.observableArrayList();
     private ObservableList<Persona> listaAgencia = FXCollections.observableArrayList();
     private ObservableList<TablaCliente> listaTablaAgencia = FXCollections.observableArrayList();
     private ObservableList<DetallesReserva> listaDetalleReserva = FXCollections.observableArrayList();
+    private ObservableList<DetallesReserva> listaDetalleReservaInternos = FXCollections.observableArrayList();
+    private ObservableList<TablaAlojamiento> listaTablaAlojamientos = FXCollections.observableArrayList();
 
     private DetallesReserva detalleReserva;
 
@@ -130,7 +141,21 @@ public class ControladorReservaFormulario implements Initializable {
         tableColumnNombreComercialAgencia.setCellValueFactory(new PropertyValueFactory("nombreComercial"));
         tableColumnPaginaWebAgencia.setCellValueFactory(new PropertyValueFactory("paginaWeb"));
         tableColumnNacionalidadAgencia.setCellValueFactory(new PropertyValueFactory("nacionalidad"));
-
+        //-------------------------------------------------------------------------------------------
+        tableColumnFechaInicio.setCellValueFactory(new PropertyValueFactory("fechaInicio"));
+        tableColumnFechaFin.setCellValueFactory(new PropertyValueFactory("fechaFin"));
+        tableColumnNumeroAdultos.setCellValueFactory(new PropertyValueFactory("NumeroAdultos"));
+        tableColumnNumeroChild.setCellValueFactory(new PropertyValueFactory("NumeroChild"));
+        tableColumnNumeroBebes.setCellValueFactory(new PropertyValueFactory("NumeroBebes"));
+        tableColumnPension.setCellValueFactory(new PropertyValueFactory("Pension"));
+        tableColumnCamaExtra.setCellValueFactory(new PropertyValueFactory("CamaExtra"));
+        tableColumnCuna.setCellValueFactory(new PropertyValueFactory("cuna"));
+        tableColumnPrefTipoHabitacion.setCellValueFactory(new PropertyValueFactory("PrefTipoHabitacion"));
+        tableColumnPrefHabitacion.setCellValueFactory(new PropertyValueFactory("PrefHabitacion"));
+        tableColumnPrefTipoCama.setCellValueFactory(new PropertyValueFactory("PrefTipoCama"));
+        tableColumnPrefVistas.setCellValueFactory(new PropertyValueFactory("PrefVistas"));
+        tableColumnPrefRestaurante.setCellValueFactory(new PropertyValueFactory("PrefTurnoRestaurante"));
+        tableColumnPrefTipoRestaurante.setCellValueFactory(new PropertyValueFactory("PrefTipoRestaurante"));
     }
 
     private void codigoConfirmar() {
@@ -169,16 +194,24 @@ public class ControladorReservaFormulario implements Initializable {
         listaTablaAgencia.addAll(TablaCliente.getTablaBuscadorCliente(listaAgencia));
         tablaAgencia.setItems(listaTablaAgencia);
         //---------------------------------------------------
+            for (DetallesReserva dr : getListaDeAlojamientos()) {
+            if(detalleReserva.getReserva().getCodReserva().equals(dr.getReserva().getCodReserva()))
+                listaDetalleReservaInternos.add(dr);
+        }
+        listaTablaAlojamientos.addAll(TablaAlojamiento.getListaTablaAlojamiento(listaDetalleReservaInternos));
+        tablaAlojamiento.setItems(listaTablaAlojamientos);
+        //---------------------------------------------------
         listaDetalleReserva.add(detalleReserva);
         //----------------------------------------------------
-      
+        
+
         if (detalleReserva.getReserva().getTipoTarjetaCredito() != null) {
             tipoTarjeta.getSelectionModel().select(detalleReserva.getReserva().getTipoTarjetaCredito());
         }
         if (detalleReserva.getReserva().getNumeroTarjetaCredito() != null) {
             numeroTarjeta.setText(detalleReserva.getReserva().getNumeroTarjetaCredito());
         }
-        if (detalleReserva.getReserva().getComentario()!= null) {
+        if (detalleReserva.getReserva().getComentario() != null) {
             comentario.setText(detalleReserva.getReserva().getComentario());
         }
         return this;

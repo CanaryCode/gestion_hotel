@@ -458,10 +458,8 @@ public class ControladorHuespedBuscador implements Initializable {
             }
             if (estaEscogido == false) {
                 listaAddHuesped.add(huespedEnVista);
-                ObservableList<TablaHuesped> tablaProvicional = TablaHuesped.getTablaBuscadorHuesped(listaAddHuesped);
-                TablaHuesped huespedProvicional = tablaProvicional.get(tablaProvicional.size() - 1);
-                listaAddTablaHuesped.add(huespedProvicional);
-                listaTodosLosHuespedes.add(huespedEnVista);
+                listaAddTablaHuesped.clear();
+                listaAddTablaHuesped.addAll(TablaHuesped.getTablaBuscadorHuesped(listaAddHuesped));
                 Ventanas.cerrarVentana(Ventanas.HUESPED_BUSCADOR);
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Este huesped ya ha sido escogido "
@@ -514,9 +512,6 @@ public class ControladorHuespedBuscador implements Initializable {
     public void codigoTelefono() {
         ObjetoVentana obj = VentanasFactory.getObjetoVentanaTelefonoBuscador(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
-//            ((ControladorVentanaCliente) obj.getfXMLLoader().getController()).
-//                    setHuespedEnVista(ClienteEnVista).
-//                    setModoFormulario(Ventanas.MODO_ACTUALIZAR);
             obj.ver();
         }
     }

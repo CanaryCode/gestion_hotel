@@ -21,11 +21,7 @@ public class VentanasFactory {
      */
     public static ObjetoVentana getObjetoVentanaLogIn() {
         ObjetoVentana obj = ObjetoVentanaBuilder.crear("LogIn", Ventanas.LOGIN, null,
-                ObjetoVentana.resourceBundle.getString("windows.logIn"), Modality.NONE, null);
-        obj.getVentana().setOnCloseRequest((event) -> {
-            obj.cerrar();
-            Conexiones.cerrarFactory();
-        });
+                ObjetoVentana.resourceBundle.getString("windows.logIn"), Modality.NONE, null,Ventanas.NO_DESVANECIBLE);
         return obj;
     }
 
@@ -37,7 +33,7 @@ public class VentanasFactory {
      */
     public static ObjetoVentana getObjetoVentanaPrincipal() {
         ObjetoVentana obj = ObjetoVentanaBuilder.crear("Principal", Ventanas.PRINCIPAL,
-                null, ObjetoVentana.resourceBundle.getString("windows.principal"), Modality.NONE, null);
+                null, ObjetoVentana.resourceBundle.getString("windows.principal"), Modality.NONE, null,Ventanas.NO_DESVANECIBLE);
         return obj;
 
     }
@@ -53,7 +49,7 @@ public class VentanasFactory {
      */
     public static ObjetoVentana getObjetoVentanaHuespedFormulario(String owner, Modality modalidad, Object controlador) {
         ObjetoVentana obj = ObjetoVentanaBuilder.crear("HuespedFormulario", Ventanas.HUESPED_FORMULARIO,
-                owner, ObjetoVentana.resourceBundle.getString("windows.huesped"), modalidad, controlador);
+                owner, ObjetoVentana.resourceBundle.getString("windows.huesped"), modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
 
@@ -68,7 +64,7 @@ public class VentanasFactory {
      */
     public static ObjetoVentana getObjetoVentanaPrevision(String owner, Modality modalidad, Object controlador) {
         ObjetoVentana obj = ObjetoVentanaBuilder.crear("Prevision", Ventanas.PREVISION,
-                owner,"Prevision", modalidad, controlador);
+                owner,"Prevision", modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
 
@@ -83,7 +79,7 @@ public class VentanasFactory {
      */
     public static ObjetoVentana getObjetoVentanaQuienesSomos(String owner, Modality modalidad, Object controlador) {
         ObjetoVentana obj = ObjetoVentanaBuilder.crear("QuienesSomos", Ventanas.QUIENES_SOMOS,
-                owner, ObjetoVentana.resourceBundle.getString("windows.quienesSomos"), modalidad, controlador);
+                owner, ObjetoVentana.resourceBundle.getString("windows.quienesSomos"), modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
 
@@ -98,7 +94,7 @@ public class VentanasFactory {
      */
     public static ObjetoVentana getObjetoVentanaClienteFormulario(String owner, Modality modalidad, Object controlador) {
         ObjetoVentana obj = ObjetoVentanaBuilder.crear("ClienteFormulario", Ventanas.CLIENTE_FORMULARIO,
-                owner, ObjetoVentana.resourceBundle.getString("windows.cliente"), modalidad, controlador);
+                owner, ObjetoVentana.resourceBundle.getString("windows.cliente"), modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
 
@@ -112,8 +108,8 @@ public class VentanasFactory {
      * @return ventana preconfigurada lista para abrir.
      */
     public static ObjetoVentana getObjetoVentanaReservaFormulario(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentanaBuilder.crear("Reserva", Ventanas.RESERVA_FORMULARIO,
-                owner, ObjetoVentana.resourceBundle.getString("windows.addReserva"), modalidad, controlador);
+        ObjetoVentana obj = ObjetoVentanaBuilder.crear("ReservaFormulario", Ventanas.RESERVA_FORMULARIO,
+                owner, ObjetoVentana.resourceBundle.getString("windows.addReserva"), modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
 
@@ -128,7 +124,7 @@ public class VentanasFactory {
      */
     public static ObjetoVentana getObjetoVentanaBuscarHuesped(String owner, Modality modalidad, Object controlador) {
         ObjetoVentana obj = ObjetoVentanaBuilder.crear("HuespedBuscador", Ventanas.HUESPED_BUSCADOR,
-                owner, ObjetoVentana.resourceBundle.getString("windows.huespedBuscador"), modalidad, controlador);
+                owner, ObjetoVentana.resourceBundle.getString("windows.huespedBuscador"), modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
 
@@ -143,7 +139,7 @@ public class VentanasFactory {
      */
     public static ObjetoVentana getObjetoVentanaBuscarCliente(String owner, Modality modalidad, Object controlador) {
         ObjetoVentana obj = ObjetoVentanaBuilder.crear("ClienteBuscador", Ventanas.CLIENTE_BUSCADOR,
-                owner, ObjetoVentana.resourceBundle.getString("windows.clienteBuscador"), modalidad, controlador);
+                owner, ObjetoVentana.resourceBundle.getString("windows.clienteBuscador"), modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
 
@@ -158,7 +154,7 @@ public class VentanasFactory {
      */
     public static ObjetoVentana getObjetoVentanaCalculadora(String owner, Modality modalidad, Object controlador) {
         ObjetoVentana obj = ObjetoVentanaBuilder.crear("Calculadora", Ventanas.CALCULADORA,
-                owner, ObjetoVentana.resourceBundle.getString("windows.calculadora"), modalidad, controlador);
+                owner, ObjetoVentana.resourceBundle.getString("windows.calculadora"), modalidad, controlador,Ventanas.NO_DESVANECIBLE);
         return obj;
     }
 
@@ -173,7 +169,7 @@ public class VentanasFactory {
      */
     public static ObjetoVentana getObjetoVentanaHuespedReserva(String owner, Modality modalidad, Object controlador) {
         ObjetoVentana obj = ObjetoVentanaBuilder.crear("HuespedReserva", Ventanas.HUESPED_RESERVA,
-                owner, ObjetoVentana.resourceBundle.getString("windows.HuespedReserva"), modalidad, controlador);
+                owner, ObjetoVentana.resourceBundle.getString("windows.HuespedReserva"), modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
     /**
@@ -187,7 +183,7 @@ public class VentanasFactory {
      */
     public static ObjetoVentana getObjetoVentanaTelefonoBuscador(String owner, Modality modalidad, Object controlador) {
         ObjetoVentana obj = ObjetoVentanaBuilder.crear("TelefonoBuscador", Ventanas.TELEFONO_BUSCADOR,
-                owner,"Buscador de teléfonos", modalidad, controlador);
+                owner,"Buscador de teléfonos", modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
     /**
@@ -201,7 +197,7 @@ public class VentanasFactory {
      */
     public static ObjetoVentana getObjetoVentanaTelefonoFormulario(String owner, Modality modalidad, Object controlador) {
         ObjetoVentana obj = ObjetoVentanaBuilder.crear("TelefonoFormulario", Ventanas.TELEFONO_FORMULARIO,
-                owner,"Teléfonos", modalidad, controlador);
+                owner,"Teléfonos", modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
     /**
@@ -215,7 +211,7 @@ public class VentanasFactory {
      */
     public static ObjetoVentana getObjetoVentanaReservaHabitacion(String owner, Modality modalidad, Object controlador) {
         ObjetoVentana obj = ObjetoVentanaBuilder.crear("ReservaHabitacion", Ventanas.RESERVA_HABITACION,
-                owner,"Reserva - Habitacion", modalidad, controlador);
+                owner,"Reserva - Habitacion", modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
     /**
@@ -229,7 +225,7 @@ public class VentanasFactory {
      */
     public static ObjetoVentana getObjetoVentanaCheckin(String owner, Modality modalidad, Object controlador) {
         ObjetoVentana obj = ObjetoVentanaBuilder.crear("CheckIn", Ventanas.CHECK_IN,
-                owner,"Check-In", modalidad, controlador);
+                owner,"Check-In", modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
     /**
@@ -243,7 +239,7 @@ public class VentanasFactory {
      */
     public static ObjetoVentana getObjetoVentanaAlojamiento(String owner, Modality modalidad, Object controlador) {
         ObjetoVentana obj = ObjetoVentanaBuilder.crear("AlojamientoFormulario", Ventanas.ALOJAMIENTO_FORMULARIO,
-                owner,"Alojamiento", modalidad, controlador);
+                owner,"Alojamiento", modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
     /**
@@ -257,7 +253,7 @@ public class VentanasFactory {
      */
     public static ObjetoVentana getObjetoVentanaHabitacionFormulario(String owner, Modality modalidad, Object controlador) {
         ObjetoVentana obj = ObjetoVentanaBuilder.crear("HabitacionFormulario", Ventanas.HABITACION_FORMULARIO,
-                owner,"Formulario habitación", modalidad, controlador);
+                owner,"Formulario habitación", modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
     /**
@@ -271,7 +267,7 @@ public class VentanasFactory {
      */
     public static ObjetoVentana getObjetoVentanaHabitacionBuscador(String owner, Modality modalidad, Object controlador) {
         ObjetoVentana obj = ObjetoVentanaBuilder.crear("HabitacionBuscador", Ventanas.HABITACION_BUSCADOR,
-                owner,"Buscador Habitación", modalidad, controlador);
+                owner,"Buscador Habitación", modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
 }

@@ -14,8 +14,8 @@ public class TablaHuesped {
 
     private String numeroDocumento, nombre, calle, codigoPostal, ciudad, provincia, estado,
             sexoHombre, nacionalidad, categoria, pasaporte, email, discapacitado, numero, comentario,
-            teléfonoFijo, teléfonoMovil, primerApellido, segundoApellido, tratamiento, paginaWeb;
-
+            primerApellido, segundoApellido, tratamiento, paginaWeb;
+   private int codigoPersona;
     private Date fechaNacimiento, expPasaporte, vencPasaporte;
 
     public static ObservableList<TablaHuesped> getTablaBuscadorHuesped(List<Persona> listaPersona) {
@@ -40,9 +40,8 @@ public class TablaHuesped {
                 String email = persona.getEmail();
                 String categoria = persona.getCategoria();
                 String comentario = persona.getComentario();
-                String telefonoFijo = null;
-                String telefonoMovil = null;
                 String sexo = "";
+                int codigoPersona=persona.getCodPersona();
                 if (persona.getFisSexoHombre() != null) {
                     sexo = (persona.getFisSexoHombre() == 0) ? "mujer" : "hombre";
                 }
@@ -54,7 +53,7 @@ public class TablaHuesped {
                 TablaHuesped huesped = new TablaHuesped(numero, dni, nombre, calle, codigoPostal, ciudad,
                         provincia, estado, tratamiento, sexo, primerApellido, SegundoApellido,
                         nacionalidad, categoria, pasaporte, email, discapacitado, fechaExpPasaporte,
-                        fechaExpPasaporte, fechaNacimiento, comentario, telefonoFijo, telefonoMovil);
+                        fechaExpPasaporte, fechaNacimiento, comentario,codigoPersona);
                 listaHuespedes.add(huesped);
             }
         }
@@ -69,7 +68,7 @@ public class TablaHuesped {
             String ciudad, String provincia, String estado, String tratamiento, String SexoHombre,
             String PrimerApellido, String SegundoApellido, String Nacionalidad, String categoria,
             String pasaporte, String email, String discapacitado, Date expPasaporte, Date vencPasaporte,
-            Date fechaNacimiento, String comentario, String telefonoFijo, String telefonoMovil) {
+            Date fechaNacimiento, String comentario,Integer codigoPersona) {
         this.numero = numero;
         this.numeroDocumento = documentoNumero;
         this.nombre = nombre;
@@ -95,6 +94,13 @@ public class TablaHuesped {
 
     public String getNumeroDocumento() {
         return numeroDocumento;
+    }
+
+    public int getCodigoPersona() {
+        return codigoPersona;
+    }
+    public void setCodigoPersona(int codigoPersona) {
+        this.codigoPersona = codigoPersona;
     }
 
     public void setNumeroDocumento(String numeroDocumento) {
@@ -213,22 +219,7 @@ public class TablaHuesped {
         this.comentario = comentario;
     }
 
-    public String getTeléfonoFijo() {
-        return teléfonoFijo;
-    }
-
-    public void setTeléfonoFijo(String teléfonoFijo) {
-        this.teléfonoFijo = teléfonoFijo;
-    }
-
-    public String getTeléfonoMovil() {
-        return teléfonoMovil;
-    }
-
-    public void setTeléfonoMovil(String teléfonoMovil) {
-        this.teléfonoMovil = teléfonoMovil;
-    }
-
+   
     public String getPrimerApellido() {
         return primerApellido;
     }

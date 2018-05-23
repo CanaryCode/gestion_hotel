@@ -123,7 +123,7 @@ public class ControladorClienteFormulario implements Initializable {
 
     public ControladorClienteFormulario setClienteEnVista(Persona cliente) {
         clienteEnVista = cliente;
-        if (cliente.getNombre() != null) {
+        if (cliente.getNombre() != null&&cliente.getEsEmpresa()!=null) {
             if (cliente.getEsEmpresa() == 0) {
                 nombre.setText(cliente.getNombre());
             } else {
@@ -136,7 +136,7 @@ public class ControladorClienteFormulario implements Initializable {
         if (cliente.getFisSegundoApellido() != null) {
             segundoApellido.setText(cliente.getFisSegundoApellido());
         }
-        if (cliente.getDocumentoNumero() != null) {
+        if (cliente.getDocumentoNumero() != null&&cliente.getEsEmpresa()!=null) {
             if (cliente.getEsEmpresa() == 0) {
                 dni.setText(cliente.getDocumentoNumero());
             } else {
@@ -178,9 +178,9 @@ public class ControladorClienteFormulario implements Initializable {
                 }
             }
         }
-        if (cliente.getFisNacionalidad() != null) {
+        if (cliente.getEstado() != null) {
             for (Object obj : estado.getItems()) {
-                if (((String) obj).equals(cliente.getFisNacionalidad())) {
+                if (((String) obj).equals(cliente.getEstado())) {
                     estado.getSelectionModel().select(obj);
                     break;
                 }

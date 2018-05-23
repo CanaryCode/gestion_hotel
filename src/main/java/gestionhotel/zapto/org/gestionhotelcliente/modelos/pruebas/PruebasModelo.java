@@ -24,11 +24,11 @@ public class PruebasModelo {
         alojamiento1.setTipoCama("Doble");
         alojamiento1.setPension("Alo y Des");
         alojamiento1.setNombreReserva("nombre1");
-        alojamiento1.setFechaEntradaPrevista(new Date(118, 05, 11));
-        alojamiento1.setFechaSalidaPrevista(new Date(118, 07, 11));
+        alojamiento1.setFechaEntradaPrevista(new Date(116, 05, 11));
+        alojamiento1.setFechaSalidaPrevista(new Date(135, 07, 11));
         alojamiento1.setReserva(getListaReservas().get(0));
         alojamiento1.setHabitacion(getListaHabitaciones().get(0));
-        
+
         alojamiento1.setCuna(Byte.parseByte("0"));
         alojamiento1.setCamaExtra(Byte.parseByte("0"));
         alojamiento1.setNumeroAdultos(2);
@@ -46,11 +46,11 @@ public class PruebasModelo {
         alojamiento2.setTipoCama("Individual");
         alojamiento2.setPension("Completa");
         alojamiento2.setNombreReserva("nombre2");
-        alojamiento2.setFechaEntradaPrevista(new Date(118, 04, 11));
-        alojamiento2.setFechaSalidaPrevista(new Date(118, 12, 11));
+        alojamiento2.setFechaEntradaPrevista(new Date(105, 04, 11));
+        alojamiento2.setFechaSalidaPrevista(new Date(145, 12, 11));
         alojamiento2.setReserva(getListaReservas().get(1));
         alojamiento2.setHabitacion(getListaHabitaciones().get(3));
-        
+
         alojamiento2.setCuna(Byte.parseByte("0"));
         alojamiento2.setCamaExtra(Byte.parseByte("0"));
         alojamiento2.setNumeroAdultos(2);
@@ -69,10 +69,10 @@ public class PruebasModelo {
         alojamiento3.setPension("Alo y Des");
         alojamiento3.setNombreReserva("nombre3");
         alojamiento3.setFechaEntradaPrevista(new Date(118, 05, 10));
-        alojamiento3.setFechaSalidaPrevista(new Date(118, 06, 11));
+        alojamiento3.setFechaSalidaPrevista(new Date(119, 06, 11));
         alojamiento3.setReserva(getListaReservas().get(2));
         alojamiento3.setHabitacion(getListaHabitaciones().get(3));
-        
+
         alojamiento3.setCuna(Byte.parseByte("0"));
         alojamiento3.setCamaExtra(Byte.parseByte("0"));
         alojamiento3.setNumeroAdultos(2);
@@ -88,24 +88,24 @@ public class PruebasModelo {
         DetallesReserva alojamiento4 = new DetallesReserva();
         alojamiento4.setIdDetallesReserva(4);
         alojamiento4.setTipoCama("Doble");
-        alojamiento4.setPension("Alo y Des");
+        alojamiento4.setPension("M.P");
         alojamiento4.setNombreReserva("nombre4");
-        alojamiento4.setFechaEntradaPrevista(new Date(118, 06, 11));
-        alojamiento4.setFechaSalidaPrevista(new Date(118, 07, 11));
+        alojamiento4.setFechaEntradaPrevista(new Date(114, 06, 11));
+        alojamiento4.setFechaSalidaPrevista(new Date(120, 07, 11));
         alojamiento4.setReserva(getListaReservas().get(3));
         alojamiento4.setHabitacion(getListaHabitaciones().get(2));
-        
+
         alojamiento4.setCuna(Byte.parseByte("0"));
         alojamiento4.setCamaExtra(Byte.parseByte("0"));
-        alojamiento4.setNumeroAdultos(2);
-        alojamiento4.setNumeroBebes(2);
-        alojamiento4.setNumeroChild(3);
-        alojamiento4.setPreferenciaHabitacion("1");
+        alojamiento4.setNumeroAdultos(3);
+        alojamiento4.setNumeroBebes(0);
+        alojamiento4.setNumeroChild(1);
+        alojamiento4.setPreferenciaHabitacion("143");
         alojamiento4.setPreferenciaTurnoRestaurante("Segundo");
-        alojamiento4.setPreferenciaTipoCama("Doble");
+        alojamiento4.setPreferenciaTipoCama("Individual");
         alojamiento4.setPreferenciaTipoHabitacion("Suite");
-        alojamiento4.setPreferenciaTipoRestaurante("Mexicano");
-        alojamiento4.setPreferenciaVistas("Mar");
+        alojamiento4.setPreferenciaTipoRestaurante("Tailandes");
+        alojamiento4.setPreferenciaVistas("Piscina");
 
         listaAlojamientos.add(alojamiento1);
         listaAlojamientos.add(alojamiento2);
@@ -216,10 +216,13 @@ public class PruebasModelo {
         persona2.setComentario("Una persona especial");
         persona2.setEsCliente(Byte.parseByte("1"));
         persona2.setEstado("España");
+        persona2.setEsEmpresa(Byte.parseByte("0"));
 
         Persona persona3 = new Persona();
         persona3.setCodPersona(7);
         persona3.setNombre("Acs");
+        persona3.setJurNombreComercial("Acs internacional");
+        persona3.setJurRazonSocial("S.A");
         persona3.setProvincia("Madrid");
         persona3.setCiudad("Madrid");
         persona3.setCalle("Gran via");
@@ -237,6 +240,8 @@ public class PruebasModelo {
         Persona persona4 = new Persona();
         persona4.setCodPersona(8);
         persona4.setNombre("Iberdrola");
+        persona4.setJurRazonSocial("S.A");
+        persona4.setJurNombreComercial("Iberdrola Spain");
         persona4.setProvincia("Barcelona");
         persona4.setCiudad("Barcelona");
         persona4.setCalle("Las ramblas");
@@ -416,19 +421,19 @@ public class PruebasModelo {
         TelefonoPersona telefono3 = new TelefonoPersona();
         telefono3.setId(new TelefonoPersonaId(2, "922452235"));
         telefono3.setDescripcion("una descripcion cualquiera");
-        
+
         TelefonoPersona telefono4 = new TelefonoPersona();
         telefono3.setId(new TelefonoPersonaId(3, "922543267"));
         telefono3.setDescripcion("una descripcion a secas");
-        
+
         TelefonoPersona telefono5 = new TelefonoPersona();
         telefono3.setId(new TelefonoPersonaId(4, "922543267"));
         telefono3.setDescripcion("una descripcion a secas");
-        
+
         TelefonoPersona telefono6 = new TelefonoPersona();
         telefono3.setId(new TelefonoPersonaId(5, "63363232325"));
         telefono3.setDescripcion("una descripcion");
-        
+
         TelefonoPersona telefono7 = new TelefonoPersona();
         telefono3.setId(new TelefonoPersonaId(4, "92436879"));
         telefono3.setDescripcion("describiendo");

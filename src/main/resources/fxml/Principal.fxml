@@ -6,7 +6,12 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,11 +23,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="526.0" prefWidth="1021.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorPrincipal">
+<AnchorPane id="AnchorPane" prefHeight="526.0" prefWidth="1021.0" styleClass="baseVentanaPrincipal" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorPrincipal">
    <children>
       <BorderPane prefHeight="526.0" prefWidth="1021.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <AnchorPane prefHeight="371.0" prefWidth="655.0" styleClass="ventanaPrincipal" BorderPane.alignment="CENTER" />
+            <AnchorPane prefHeight="371.0" prefWidth="655.0" styleClass="baseLogo" BorderPane.alignment="CENTER" />
          </center>
          <top>
             <AnchorPane prefHeight="83.0" prefWidth="1021.0" BorderPane.alignment="CENTER">
@@ -36,6 +41,28 @@
                            <VBox.margin>
                               <Insets bottom="10.0" top="20.0" />
                            </VBox.margin>
+                           <effect>
+                              <Glow level="1.0">
+                                 <input>
+                                    <DropShadow blurType="ONE_PASS_BOX" height="46.9475" radius="23.159374999999997" spread="0.26" width="47.69">
+                                       <input>
+                                          <Glow>
+                                             <input>
+                                                <Lighting diffuseConstant="1.84" specularConstant="0.86" specularExponent="2.79" surfaceScale="7.78">
+                                                   <bumpInput>
+                                                      <Shadow />
+                                                   </bumpInput>
+                                                   <light>
+                                                      <Light.Distant azimuth="346.4" elevation="78.49" />
+                                                   </light>
+                                                </Lighting>
+                                             </input>
+                                          </Glow>
+                                       </input>
+                                    </DropShadow>
+                                 </input>
+                              </Glow>
+                           </effect>
                         </Label>
                         <GridPane prefHeight="126.0" prefWidth="1021.0">
                           <columnConstraints>
@@ -57,15 +84,15 @@
                                  </children></AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                                  <children>
-                                    <Button id="botonAdd" layoutX="123.0" layoutY="2.0" mnemonicParsing="false" style="-fx-content-display: top;" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
+                                    <Button id="botonChat" layoutX="123.0" layoutY="2.0" mnemonicParsing="false" style="-fx-content-display: top;" text="Chat" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
                                  </children></AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
                                  <children>
-                                    <Button id="botonAdd" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" style="-fx-content-display: top;" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
+                                    <Button id="botonParte" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" style="-fx-content-display: top;" text="Parte" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
                                  </children></AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3">
                                  <children>
-                                    <Button id="botonAdd" layoutX="81.0" layoutY="2.0" mnemonicParsing="false" style="-fx-content-display: top;" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
+                                    <Button id="botonCalendario" layoutX="81.0" layoutY="2.0" mnemonicParsing="false" style="-fx-content-display: top;" text="Tareas programadas" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
                            </children>

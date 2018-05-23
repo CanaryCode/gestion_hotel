@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 public class VentanaCustom extends Stage{
 private String nombre, nombrePadre;
 private boolean actividad;
+private int modoDesvanecimiento;
 
 /**
  * devuelve este tipo de objeto que no es que un "Stage" con las propiedades
@@ -74,5 +75,13 @@ private boolean actividad;
 
     public void setNombrePadre(String nombrePadre) {
         this.nombrePadre = nombrePadre;
+    }
+
+    public int getModoDesvanecimiento() {
+        return modoDesvanecimiento;
+    }
+
+    public void setModoDesvanecimiento(int modoDesvanecimiento) {
+        this.modoDesvanecimiento = modoDesvanecimiento;
     }
 }

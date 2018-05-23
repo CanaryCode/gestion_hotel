@@ -1,6 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorQuienesSomos" />
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="baseVideo" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorQuienesSomos">
+   <children>
+      <StackPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Group>
+               <children>
+                  <MediaView fx:id="visualizadorVideo" fitHeight="200.0" fitWidth="200.0" />
+               </children>
+            </Group>
+         </children>
+      </StackPane>
+      <StackPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane stylesheets="@../styles/estilos.css">
+               <children>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <top>
+                        <AnchorPane BorderPane.alignment="CENTER">
+                           <children>
+                              <Label fx:id="titulo" style="-fx-alignment: bottom-center;" text=" Enigma Software S.L.N.E" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font size="40.0" />
+                                 </font>
+                                 <effect>
+                                    <Glow level="1.0">
+                                       <input>
+                                          <DropShadow height="239.829296875" radius="119.56232421875" width="240.42">
+                                             <input>
+                                                <Reflection bottomOpacity="0.17" fraction="0.71" topOffset="-10.0" topOpacity="0.11" />
+                                             </input>
+                                          </DropShadow>
+                                       </input>
+                                    </Glow>
+                                 </effect>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </top>
+                     <left>
+                        <AnchorPane BorderPane.alignment="CENTER" />
+                     </left>
+                     <center>
+                        <AnchorPane BorderPane.alignment="CENTER" />
+                     </center>
+                     <right>
+                        <AnchorPane BorderPane.alignment="CENTER" />
+                     </right>
+                     <bottom>
+                        <AnchorPane BorderPane.alignment="CENTER">
+                           <children>
+                              <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Label styleClass="etiquetaTituloPie" text="E-mail:" />
+                                    <Hyperlink fx:id="enlaceEmail" text="atencionalcliente@enigmasoftware.com">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Hyperlink>
+                                 </children>
+                              </HBox>
+                              <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Label styleClass="etiquetaTituloPie" text="Web:" />
+                                    <Hyperlink fx:id="enlaceWeb" text="http://www.enigmasoftware.com">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Hyperlink>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                     </bottom>
+                  </BorderPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

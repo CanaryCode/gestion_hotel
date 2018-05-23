@@ -3,15 +3,31 @@
     Author     : Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
 */
 .baseVentanas{
-    -fx-background-image: url(../imagenes/gridFondo.png);
+    -fx-background-image: url(../imagenes/FondoVentanaPrincipal.jpg);
     -fx-background-size: cover;
 }
+.baseVentanaPrincipal{
+    -fx-background-image: url(../imagenes/FondoVentanaPrincipal.jpg);
+    -fx-background-size: stretch;
+}
 .mainFxmlClass{
-    -fx-background-image: url(../imagenes/gridFondo.png);
+    -fx-background-image: url(../imagenes/FondoVentanaPrincipal.jpg);
     -fx-background-size: cover;
 }
 .baseCalculadora{
     -fx-background-image: url(../imagenes/fondoCalculadora.jpg);
+    -fx-background-size: stretch;
+}
+.baseVideo{
+    -fx-background-image: url(../imagenes/fondoVideo.jpg);
+    -fx-background-size: stretch;
+}
+.baseLogin{
+    -fx-background-image: url(../imagenes/FondoLogin.jpg);
+    -fx-background-size: stretch;
+}
+.baseLogo{
+    -fx-background-image: url(../imagenes/FondoVentanaPrincipal.png);
     -fx-background-size: stretch;
 }
 
@@ -91,7 +107,8 @@
 .etiquetaTitulo{
     -fx-background-color: #329fe6;
     -fx-font-size: 7pt;
-    -fx-text-fill: white;
+    -fx-text-fill: yellow;
+    -fx-font-weight: bold;
     -fx-opacity: 0.9;
     -fx-alignment: center;
 }
@@ -152,6 +169,20 @@
 }
 
 /*------------------PANE------------------------------------------------------*/
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #3366ff;
+    -fx-background-radius: 5em;
+}
+.increment-button, .decrement-button {
+    -fx-background-color: #ffff99;
+    -fx-text-fill: #3366ff;
+}
+.scroll-bar:horizontal,
+.scroll-bar:vertical {
+    -fx-background-color: #7493f8;
+}
+
 /*------------------TABLE------------------------------------------------------*/
 .table-view .column-header .label {
     -fx-text-fill: black;
@@ -161,7 +192,7 @@
 }
 .table-view .column-header {
     -fx-border-color: #3366ff;
-    -fx-background-color:white;
+    -fx-background-color: #ffff99;
     -fx-cursor: hand;
 }
 /*------------------VENTANAS------------------------------------------------------*/
@@ -267,6 +298,7 @@
     -fx-opacity: 0.9;
     -fx-border-color: #ffffff;
     -fx-border-radius: 10;
+    -fx-background-radius: 10;
     -fx-cursor:hand;
     -fx-font-size: 8pt;
 }
@@ -287,6 +319,7 @@
     -fx-opacity: 0.9;
     -fx-border-color: #ffffff;
     -fx-border-radius: 10;
+    -fx-background-radius: 10;
     -fx-cursor:hand;
     -fx-font-size: 8pt;
 }
@@ -307,6 +340,7 @@
     -fx-opacity: 0.9;
     -fx-border-color: #ffffff;
     -fx-border-radius: 10;
+    -fx-background-radius: 10;
     -fx-cursor:hand;
     -fx-font-size: 8pt;
 }
@@ -327,6 +361,7 @@
     -fx-opacity: 0.9;
     -fx-border-color: #ffffff;
     -fx-border-radius: 10;
+    -fx-background-radius: 10;
     -fx-cursor:hand;
     -fx-font-size: 8pt;
 }
@@ -342,11 +377,13 @@
 #botonActualizar{
     -fx-graphic:url(../imagenes/actualizar24.png);
     -fx-background-color: #3366ff;
+    -fx-background-radius: 10;
     -fx-alignment:BOTTOM_CENTER;
     -fx-text-fill: white;
     -fx-opacity: 0.9;
     -fx-border-color: #ffffff;
     -fx-border-radius: 10;
+    -fx-background-radius: 10;
     -fx-cursor:hand;
     -fx-font-size: 8pt;
 }
@@ -359,6 +396,27 @@
     -fx-graphic:url(../imagenes/actualizar24.png);
     -fx-cursor:hand;
 }
+#botonLimpiar{
+    -fx-graphic:url(../imagenes/limpiar24.png);
+    -fx-background-color: orangered;
+    -fx-alignment:BOTTOM_CENTER;
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+    -fx-border-color: #ffffff;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-cursor:hand;
+    -fx-font-size: 8pt;
+}
+#botonLimpiar:hover{
+    -fx-graphic:url(../imagenes/limpiar32.png);
+    -fx-background-color: orange;
+    -fx-cursor:hand;
+}
+#botonLimpiar:pressed{
+    -fx-graphic:url(../imagenes/limpiar24.png);
+    -fx-cursor:hand;
+}
 #botonBorrar{
     -fx-graphic:url(../imagenes/borrar24.png);
     -fx-background-color: #3366ff;
@@ -367,6 +425,7 @@
     -fx-opacity: 0.9;
     -fx-border-color: #ffffff;
     -fx-border-radius: 10;
+    -fx-background-radius: 10;
     -fx-cursor:hand;
     -fx-font-size: 8pt;
 }
@@ -388,6 +447,7 @@
     -fx-opacity: 0.9;
     -fx-border-color: #ffffff;
     -fx-border-radius: 10;
+    -fx-background-radius: 10;
     -fx-cursor:hand;
     -fx-font-size: 8pt;
 }
@@ -408,6 +468,7 @@
     -fx-opacity: 0.9;
     -fx-border-color: #ffffff;
     -fx-border-radius: 10;
+    -fx-background-radius: 10;
     -fx-cursor:hand;
     -fx-font-size: 8pt;
 }
@@ -428,6 +489,7 @@
     -fx-opacity: 0.9;
     -fx-border-color: #ffffff;
     -fx-border-radius: 10;
+    -fx-background-radius: 10;
     -fx-cursor:hand;
     -fx-font-size: 8pt;
 }
@@ -438,6 +500,69 @@
 }
 #botonCalculadora:pressed{
     -fx-graphic:url(../imagenes/calculadora32.png);
+    -fx-cursor:hand;
+}
+#botonChat{
+    -fx-graphic:url(../imagenes/chat32.png);
+    -fx-background-color: #3366ff;
+    -fx-alignment:BOTTOM_CENTER;
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+    -fx-border-color: #ffffff;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-cursor:hand;
+    -fx-font-size: 8pt;
+}
+#botonChat:hover{
+    -fx-graphic:url(../imagenes/chat64.png);
+    -fx-background-color: #329fe6;
+    -fx-cursor:hand;
+}
+#botonChat:pressed{
+    -fx-graphic:url(../imagenes/chat32.png);
+    -fx-cursor:hand;
+}
+#botonParte{
+    -fx-graphic:url(../imagenes/parte32.png);
+    -fx-background-color: #3366ff;
+    -fx-alignment:BOTTOM_CENTER;
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+    -fx-border-color: #ffffff;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-cursor:hand;
+    -fx-font-size: 8pt;
+}
+#botonParte:hover{
+    -fx-graphic:url(../imagenes/parte64.png);
+    -fx-background-color: #329fe6;
+    -fx-cursor:hand;
+}
+#botonParte:pressed{
+    -fx-graphic:url(../imagenes/parte32.png);
+    -fx-cursor:hand;
+}
+#botonCalendario{
+    -fx-graphic:url(../imagenes/calendario32.png);
+    -fx-background-color: #3366ff;
+    -fx-alignment:BOTTOM_CENTER;
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+    -fx-border-color: #ffffff;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-cursor:hand;
+    -fx-font-size: 8pt;
+}
+#botonCalendario:hover{
+    -fx-graphic:url(../imagenes/calendario64.png);
+    -fx-background-color: #329fe6;
+    -fx-cursor:hand;
+}
+#botonCalendario:pressed{
+    -fx-graphic:url(../imagenes/calendario32.png);
     -fx-cursor:hand;
 }
 /*--------------------------MENUS-------------------------------------------*/

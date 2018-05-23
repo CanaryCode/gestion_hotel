@@ -3,18 +3,17 @@ package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaCliente;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaHuesped;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -29,48 +28,71 @@ import javafx.stage.Modality;
 public class ControladorHuespedReserva implements Initializable {
 
     @FXML
-    private Button botonAdd1, botonAdd2, botonOk,
-            botonBorrar1, botonBorrar2, reseteaCampos;
+    private Button botonAddResponsable, botonBorrarResponsable, botonAddOtros, botonBorrarOtros,
+            botonAddChild, botonBorrarChild, botonAddBebes, botonBorrarBebes,
+            botonOk, reseteaCampos;
 
     @FXML
-    public AnchorPane principal;
+    private AnchorPane principal;
     @FXML
-    public TableView<TablaHuesped> tablaResponsable, tablaOtros;
+    private TableView<TablaHuesped> tablaResponsable, tablaOtros, tablaChild, tablaBebes;
     @FXML
-    public TableColumn tableColumnNumero, tableColumnDni, tableColumnNombre, tableColumnPrimerApellido,
-            tableColumnSegundoApellido, tableColumnFechaNacimiento, tableColumnSexo, tableColumnDiscapacitado,
-            tableColumnCiudad, tableColumnProvincia, tableColumnPais, tableColumnCalle, tableColumnCodigoPostal,
-            tableColumnPasaporte, tableColumnFechaExpedicion, tableColumnEmail, tableColumnTratamiento,
-            tableColumnCategoria,
+    private TableColumn tableColumnNumeroResponsable, tableColumnDniResponsable, tableColumnNombreResponsable,
+            tableColumnPrimerApellidoResponsable, tableColumnSegundoApellidoResponsable, tableColumnFechaNacimientoResponsable,
+            tableColumnSexoResponsable, tableColumnDiscapacitadoResponsable, tableColumnCiudadResponsable, tableColumnProvinciaResponsable,
+            tableColumnPaisResponsable, tableColumnCalleResponsable, tableColumnCodigoPostalResponsable,
+            tableColumnPasaporteResponsable, tableColumnFechaExpedicionResponsable, tableColumnEmailResponsable,
+            tableColumnTratamientoResponsable, tableColumnCategoriaResponsable,
             //------------------------------------------------------------------------------------------
-            tableColumnNumero1, tableColumnDni1, tableColumnNombre1, tableColumnPrimerApellido1,
-            tableColumnSegundoApellido1, tableColumnFechaNacimiento1, tableColumnSexo1, tableColumnDiscapacitado1,
-            tableColumnCiudad1, tableColumnProvincia1, tableColumnPais1, tableColumnCalle1, tableColumnCodigoPostal1,
-            tableColumnPasaporte1, tableColumnFechaExpedicion1, tableColumnEmail1, tableColumnTratamiento1,
-            tableColumnCategoria1;
+            tableColumnNumeroOtros, tableColumnDniOtros, tableColumnNombreOtros, tableColumnPrimerApellidoOtros,
+            tableColumnSegundoApellidoOtros, tableColumnFechaNacimientoOtros, tableColumnSexoOtros, tableColumnDiscapacitadoOtros,
+            tableColumnCiudadOtros, tableColumnProvinciaOtros, tableColumnPaisOtros, tableColumnCalleOtros, tableColumnCodigoPostalOtros,
+            tableColumnPasaporteOtros, tableColumnFechaExpedicionOtros, tableColumnEmailOtros, tableColumnTratamientoOtros,
+            tableColumnCategoriaOtros,
+            //-------------------------------------------------------------------------------------------
+            tableColumnNumeroChild, tableColumnDniChild, tableColumnNombreChild, tableColumnPrimerApellidoChild,
+            tableColumnSegundoApellidoChild, tableColumnFechaNacimientoChild, tableColumnSexoChild, tableColumnDiscapacitadoChild,
+            tableColumnCiudadChild, tableColumnProvinciaChild, tableColumnPaisChild, tableColumnCalleChild, tableColumnCodigoPostalChild,
+            tableColumnPasaporteChild, tableColumnFechaExpedicionChild, tableColumnEmailChild, tableColumnTratamientoChild,
+            tableColumnCategoriaChild,
+            //-------------------------------------------------------------------------------------------
+            tableColumnNumeroBebes, tableColumnDniBebes, tableColumnNombreBebes, tableColumnPrimerApellidoBebes,
+            tableColumnSegundoApellidoBebes, tableColumnFechaNacimientoBebes, tableColumnSexoBebes, tableColumnDiscapacitadoBebes,
+            tableColumnCiudadBebes, tableColumnProvinciaBebes, tableColumnPaisBebes, tableColumnCalleBebes, tableColumnCodigoPostalBebes,
+            tableColumnPasaporteBebes, tableColumnFechaExpedicionBebes, tableColumnEmailBebes, tableColumnTratamientoBebes,
+            tableColumnCategoriaBebes;
     //-------------------------------------------------------------------------------------------
 
-    private ObservableList<Persona> listaHuespedes;
-    private ObservableList<Persona> listaHuespededResponsable;
-    private ObservableList<TablaHuesped> listaTablaHuespedResponsable;
-    private ObservableList<TablaHuesped> listaTablaHuespedes;
-    private ObservableList<Persona> listaTodosLosHuespedes;
-    private int maxResponsables = 1, MaxHuespedes = 2;
+    private ObservableList<Persona> listaHuespededResponsable, listaHuespedOtros, listaHuespedChild, listaHuespedBebes, listaTodosLosHuespedes;
+    private ObservableList<TablaHuesped> listaTablaHuespedResponsable, listaTablaHuespedOtros, listaTablaHuespedChild, listaTablaHuespedBebes, listaTablaTodosLosHuespedes;
+    private int maxHuespedResponsables = 1, maxHuespedOtros = 2, maxHuespedChild = 2, maxHuespedBebes;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        botonAdd1.setOnAction((e) -> {
-            accionAdd1();
+        botonAddResponsable.setOnAction((e) -> {
+            accionAddResponsable();
         });
-        botonAdd2.setOnAction((e) -> {
-            accionAdd2();
+        botonAddOtros.setOnAction((e) -> {
+            accionAddOtros();
         });
 
-        botonBorrar1.setOnAction((e) -> {
-            accionBorrar1();
+        botonBorrarResponsable.setOnAction((e) -> {
+            accionBorrarResponsable();
         });
-        botonBorrar2.setOnAction((e) -> {
-            accionBorrar2();
+        botonBorrarOtros.setOnAction((e) -> {
+            accionBorrarOtros();
+        });
+        botonAddChild.setOnAction((e) -> {
+            accionAddChild();
+        });
+        botonBorrarChild.setOnAction((e) -> {
+            accionBorrarChild();
+        });
+        botonAddBebes.setOnAction((e) -> {
+            accionAddBebes();
+        });
+        botonBorrarBebes.setOnAction((e) -> {
+            accionBorrarBebes();
         });
 
         botonOk.setOnAction((e) -> {
@@ -80,52 +102,101 @@ public class ControladorHuespedReserva implements Initializable {
         reseteaCampos.setOnAction((event) -> {
             codigoReseteaCampos();
         });
+        tablaResponsable.getSelectionModel().selectedItemProperty().addListener((observable) -> {
+            codigoAccionarBotonesBorrar(tablaResponsable, botonBorrarResponsable);
 
-        tableColumnDni1.setCellValueFactory(new PropertyValueFactory("numeroDocumento"));
-        tableColumnNombre1.setCellValueFactory(new PropertyValueFactory("nombre"));
-        tableColumnPrimerApellido1.setCellValueFactory(new PropertyValueFactory("primerApellido"));
-        tableColumnSegundoApellido1.setCellValueFactory(new PropertyValueFactory("SegundoApellido"));
-        tableColumnFechaNacimiento1.setCellValueFactory(new PropertyValueFactory("fechaNacimiento"));
-        tableColumnSexo1.setCellValueFactory(new PropertyValueFactory("sexoHombre"));
-        tableColumnDiscapacitado1.setCellValueFactory(new PropertyValueFactory("discapacitado"));
-        tableColumnCiudad1.setCellValueFactory(new PropertyValueFactory("ciudad"));
-        tableColumnProvincia1.setCellValueFactory(new PropertyValueFactory("provincia"));
-        tableColumnPais1.setCellValueFactory(new PropertyValueFactory("estado"));
-        tableColumnCalle1.setCellValueFactory(new PropertyValueFactory("calle"));
-        tableColumnCodigoPostal1.setCellValueFactory(new PropertyValueFactory("codigoPostal"));
-        tableColumnPasaporte1.setCellValueFactory(new PropertyValueFactory("pasaporte"));
-        tableColumnFechaExpedicion1.setCellValueFactory(new PropertyValueFactory("expPasaporte"));
-        tableColumnEmail1.setCellValueFactory(new PropertyValueFactory("email"));
-        tableColumnTratamiento1.setCellValueFactory(new PropertyValueFactory("tratamiento"));
-        tableColumnCategoria1.setCellValueFactory(new PropertyValueFactory("categoria"));
-        tableColumnNumero1.setCellValueFactory(new PropertyValueFactory("numero"));
+        });
+        tablaOtros.getSelectionModel().selectedItemProperty().addListener((observable) -> {
+            codigoAccionarBotonesBorrar(tablaOtros, botonBorrarOtros);
+        });
+        tablaChild.getSelectionModel().selectedItemProperty().addListener((observable) -> {
+            codigoAccionarBotonesBorrar(tablaChild, botonBorrarChild);
+        });
+        tablaBebes.getSelectionModel().selectedItemProperty().addListener((observable) -> {
+            codigoAccionarBotonesBorrar(tablaBebes, botonBorrarBebes);
+        });
+        tableColumnDniOtros.setCellValueFactory(new PropertyValueFactory("numeroDocumento"));
+        tableColumnNombreOtros.setCellValueFactory(new PropertyValueFactory("nombre"));
+        tableColumnPrimerApellidoOtros.setCellValueFactory(new PropertyValueFactory("primerApellido"));
+        tableColumnSegundoApellidoOtros.setCellValueFactory(new PropertyValueFactory("SegundoApellido"));
+        tableColumnFechaNacimientoOtros.setCellValueFactory(new PropertyValueFactory("fechaNacimiento"));
+        tableColumnSexoOtros.setCellValueFactory(new PropertyValueFactory("sexoHombre"));
+        tableColumnDiscapacitadoOtros.setCellValueFactory(new PropertyValueFactory("discapacitado"));
+        tableColumnCiudadOtros.setCellValueFactory(new PropertyValueFactory("ciudad"));
+        tableColumnProvinciaOtros.setCellValueFactory(new PropertyValueFactory("provincia"));
+        tableColumnPaisOtros.setCellValueFactory(new PropertyValueFactory("estado"));
+        tableColumnCalleOtros.setCellValueFactory(new PropertyValueFactory("calle"));
+        tableColumnCodigoPostalOtros.setCellValueFactory(new PropertyValueFactory("codigoPostal"));
+        tableColumnPasaporteOtros.setCellValueFactory(new PropertyValueFactory("pasaporte"));
+        tableColumnFechaExpedicionOtros.setCellValueFactory(new PropertyValueFactory("expPasaporte"));
+        tableColumnEmailOtros.setCellValueFactory(new PropertyValueFactory("email"));
+        tableColumnTratamientoOtros.setCellValueFactory(new PropertyValueFactory("tratamiento"));
+        tableColumnCategoriaOtros.setCellValueFactory(new PropertyValueFactory("categoria"));
+        tableColumnNumeroOtros.setCellValueFactory(new PropertyValueFactory("numero"));
         //------------------------------------------------------------------------------------------
-        tableColumnDni.setCellValueFactory(new PropertyValueFactory("numeroDocumento"));
-        tableColumnNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
-        tableColumnPrimerApellido.setCellValueFactory(new PropertyValueFactory("primerApellido"));
-        tableColumnSegundoApellido.setCellValueFactory(new PropertyValueFactory("SegundoApellido"));
-        tableColumnFechaNacimiento.setCellValueFactory(new PropertyValueFactory("fechaNacimiento"));
-        tableColumnSexo.setCellValueFactory(new PropertyValueFactory("sexoHombre"));
-        tableColumnDiscapacitado.setCellValueFactory(new PropertyValueFactory("discapacitado"));
-        tableColumnCiudad.setCellValueFactory(new PropertyValueFactory("ciudad"));
-        tableColumnProvincia.setCellValueFactory(new PropertyValueFactory("provincia"));
-        tableColumnPais.setCellValueFactory(new PropertyValueFactory("estado"));
-        tableColumnCalle.setCellValueFactory(new PropertyValueFactory("calle"));
-        tableColumnCodigoPostal.setCellValueFactory(new PropertyValueFactory("codigoPostal"));
-        tableColumnPasaporte.setCellValueFactory(new PropertyValueFactory("pasaporte"));
-        tableColumnFechaExpedicion.setCellValueFactory(new PropertyValueFactory("expPasaporte"));
-        tableColumnEmail.setCellValueFactory(new PropertyValueFactory("email"));
-        tableColumnTratamiento.setCellValueFactory(new PropertyValueFactory("tratamiento"));
-        tableColumnCategoria.setCellValueFactory(new PropertyValueFactory("categoria"));
-        tableColumnNumero.setCellValueFactory(new PropertyValueFactory("numero"));
+        tableColumnDniResponsable.setCellValueFactory(new PropertyValueFactory("numeroDocumento"));
+        tableColumnNombreResponsable.setCellValueFactory(new PropertyValueFactory("nombre"));
+        tableColumnPrimerApellidoResponsable.setCellValueFactory(new PropertyValueFactory("primerApellido"));
+        tableColumnSegundoApellidoResponsable.setCellValueFactory(new PropertyValueFactory("SegundoApellido"));
+        tableColumnFechaNacimientoResponsable.setCellValueFactory(new PropertyValueFactory("fechaNacimiento"));
+        tableColumnSexoResponsable.setCellValueFactory(new PropertyValueFactory("sexoHombre"));
+        tableColumnDiscapacitadoResponsable.setCellValueFactory(new PropertyValueFactory("discapacitado"));
+        tableColumnCiudadResponsable.setCellValueFactory(new PropertyValueFactory("ciudad"));
+        tableColumnProvinciaResponsable.setCellValueFactory(new PropertyValueFactory("provincia"));
+        tableColumnPaisResponsable.setCellValueFactory(new PropertyValueFactory("estado"));
+        tableColumnCalleResponsable.setCellValueFactory(new PropertyValueFactory("calle"));
+        tableColumnCodigoPostalResponsable.setCellValueFactory(new PropertyValueFactory("codigoPostal"));
+        tableColumnPasaporteResponsable.setCellValueFactory(new PropertyValueFactory("pasaporte"));
+        tableColumnFechaExpedicionResponsable.setCellValueFactory(new PropertyValueFactory("expPasaporte"));
+        tableColumnEmailResponsable.setCellValueFactory(new PropertyValueFactory("email"));
+        tableColumnTratamientoResponsable.setCellValueFactory(new PropertyValueFactory("tratamiento"));
+        tableColumnCategoriaResponsable.setCellValueFactory(new PropertyValueFactory("categoria"));
+        tableColumnNumeroResponsable.setCellValueFactory(new PropertyValueFactory("numero"));
         //------------------------------------------------------------------------------------------
-
+        tableColumnDniChild.setCellValueFactory(new PropertyValueFactory("numeroDocumento"));
+        tableColumnNombreChild.setCellValueFactory(new PropertyValueFactory("nombre"));
+        tableColumnPrimerApellidoChild.setCellValueFactory(new PropertyValueFactory("primerApellido"));
+        tableColumnSegundoApellidoChild.setCellValueFactory(new PropertyValueFactory("SegundoApellido"));
+        tableColumnFechaNacimientoChild.setCellValueFactory(new PropertyValueFactory("fechaNacimiento"));
+        tableColumnSexoChild.setCellValueFactory(new PropertyValueFactory("sexoHombre"));
+        tableColumnDiscapacitadoChild.setCellValueFactory(new PropertyValueFactory("discapacitado"));
+        tableColumnCiudadChild.setCellValueFactory(new PropertyValueFactory("ciudad"));
+        tableColumnProvinciaChild.setCellValueFactory(new PropertyValueFactory("provincia"));
+        tableColumnPaisChild.setCellValueFactory(new PropertyValueFactory("estado"));
+        tableColumnCalleChild.setCellValueFactory(new PropertyValueFactory("calle"));
+        tableColumnCodigoPostalChild.setCellValueFactory(new PropertyValueFactory("codigoPostal"));
+        tableColumnPasaporteChild.setCellValueFactory(new PropertyValueFactory("pasaporte"));
+        tableColumnFechaExpedicionChild.setCellValueFactory(new PropertyValueFactory("expPasaporte"));
+        tableColumnEmailChild.setCellValueFactory(new PropertyValueFactory("email"));
+        tableColumnTratamientoChild.setCellValueFactory(new PropertyValueFactory("tratamiento"));
+        tableColumnCategoriaChild.setCellValueFactory(new PropertyValueFactory("categoria"));
+        tableColumnNumeroChild.setCellValueFactory(new PropertyValueFactory("numero"));
+        //------------------------------------------------------------------------------------------
+        tableColumnDniBebes.setCellValueFactory(new PropertyValueFactory("numeroDocumento"));
+        tableColumnNombreBebes.setCellValueFactory(new PropertyValueFactory("nombre"));
+        tableColumnPrimerApellidoBebes.setCellValueFactory(new PropertyValueFactory("primerApellido"));
+        tableColumnSegundoApellidoBebes.setCellValueFactory(new PropertyValueFactory("SegundoApellido"));
+        tableColumnFechaNacimientoBebes.setCellValueFactory(new PropertyValueFactory("fechaNacimiento"));
+        tableColumnSexoBebes.setCellValueFactory(new PropertyValueFactory("sexoHombre"));
+        tableColumnDiscapacitadoBebes.setCellValueFactory(new PropertyValueFactory("discapacitado"));
+        tableColumnCiudadBebes.setCellValueFactory(new PropertyValueFactory("ciudad"));
+        tableColumnProvinciaBebes.setCellValueFactory(new PropertyValueFactory("provincia"));
+        tableColumnPaisBebes.setCellValueFactory(new PropertyValueFactory("estado"));
+        tableColumnCalleBebes.setCellValueFactory(new PropertyValueFactory("calle"));
+        tableColumnCodigoPostalBebes.setCellValueFactory(new PropertyValueFactory("codigoPostal"));
+        tableColumnPasaporteBebes.setCellValueFactory(new PropertyValueFactory("pasaporte"));
+        tableColumnFechaExpedicionBebes.setCellValueFactory(new PropertyValueFactory("expPasaporte"));
+        tableColumnEmailBebes.setCellValueFactory(new PropertyValueFactory("email"));
+        tableColumnTratamientoBebes.setCellValueFactory(new PropertyValueFactory("tratamiento"));
+        tableColumnCategoriaBebes.setCellValueFactory(new PropertyValueFactory("categoria"));
+        tableColumnNumeroBebes.setCellValueFactory(new PropertyValueFactory("numero"));
+        //------------------------------------------------------------------------------------------
     }
 
     /**
      *
      */
-    private void accionAdd1() {
+    private void accionAddResponsable() {
         ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.HUESPED_RESERVA,
                 Modality.APPLICATION_MODAL, null);
         if (obj != null) {
@@ -137,111 +208,244 @@ public class ControladorHuespedReserva implements Initializable {
 
     }
 
-    private void accionAdd2() {
+    private void accionAddOtros() {
 
         ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
             ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
-                    setModoVentana(Ventanas.MODO_SELECCIONAR).setListaHuesped(listaHuespedes, listaTablaHuespedes, listaTodosLosHuespedes);
+                    setModoVentana(Ventanas.MODO_SELECCIONAR).setListaHuesped(listaHuespedOtros, listaTablaHuespedOtros, listaTodosLosHuespedes);
             obj.ver();
         }
 
     }
 
-    private void accionBorrar1() {
-        listaHuespededResponsable.remove(listaHuespededResponsable.size() - 1);
-        listaTablaHuespedResponsable.remove(listaTablaHuespedResponsable.size() - 1);
-        listaTodosLosHuespedes.remove(listaTodosLosHuespedes.size() - 1);
+    private void accionBorrarResponsable() {
+        logicaBorrar(listaHuespededResponsable, tablaResponsable);
 
     }
 
-    private void accionBorrar2() {
-        listaHuespedes.remove(listaHuespedes.size() - 1);
-        listaTablaHuespedes.remove(listaTablaHuespedes.size() - 1);
-        listaTodosLosHuespedes.remove(listaTodosLosHuespedes.size() - 1);
+    private void accionBorrarOtros() {
+        logicaBorrar(listaHuespedOtros, tablaOtros);
+    }
+
+    private void accionAddChild() {
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
+        if (obj != null) {
+            ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
+                    setModoVentana(Ventanas.MODO_SELECCIONAR).setListaHuesped(listaHuespedChild, listaTablaHuespedChild, listaTodosLosHuespedes);
+            obj.ver();
+        }
+    }
+
+    private void accionBorrarChild() {
+        logicaBorrar(listaHuespedChild, tablaChild);
+
+    }
+
+    private void accionAddBebes() {
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
+        if (obj != null) {
+            ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
+                    setModoVentana(Ventanas.MODO_SELECCIONAR).setListaHuesped(listaHuespedBebes, listaTablaHuespedBebes, listaTodosLosHuespedes);
+            obj.ver();
+        }
+    }
+
+    private void accionBorrarBebes() {
+        logicaBorrar(listaHuespedBebes, tablaBebes);
     }
 
     private void accionOK() {
-         Ventanas.cerrarVentana(Ventanas.HUESPED_RESERVA);
+        Ventanas.cerrarVentana(Ventanas.HUESPED_RESERVA);
     }
 
     private void codigoReseteaCampos() {
-        listaHuespedes.clear();
+        listaHuespedOtros.clear();
         listaHuespededResponsable.clear();
+        listaHuespedChild.clear();
+        listaHuespedBebes.clear();
         listaTodosLosHuespedes.clear();
         listaTablaHuespedResponsable.clear();
-        listaTablaHuespedes.clear();
+        listaTablaHuespedOtros.clear();
+        listaTablaHuespedChild.clear();
+        listaTablaHuespedBebes.clear();
     }
 
-    private void codigoListaHuespedResponsable() {
-        if (listaHuespededResponsable.size() == maxResponsables) {
-            botonAdd1.setDisable(true);
-            botonAdd2.setDisable(false);
-        } else if (listaHuespededResponsable.size() < maxResponsables) {
-            botonAdd1.setDisable(false);
-        }
-        if (!listaHuespededResponsable.isEmpty()) {
-            botonOk.setDisable(false);
-            reseteaCampos.setDisable(false);
-            botonBorrar1.setDisable(false);
-            botonAdd2.setDisable(false);
-            botonAdd1.setDisable(true);
+    private void codigoAccionarBotonesBorrar(TableView tabla, Button boton) {
+        if (tabla.getSelectionModel().getSelectedItem() != null) {
+            boton.setDisable(false);
         } else {
-            botonAdd1.setDisable(false);
-            botonBorrar1.setDisable(true);
-            botonOk.setDisable(true);
-            reseteaCampos.setDisable(true);
-            botonAdd2.setDisable(true);
+            boton.setDisable(true);
         }
     }
 
-    private void codigoListaHuespedes() {
-        if (listaHuespedes.size() == MaxHuespedes) {
-            botonAdd2.setDisable(true);
-        } else if (listaHuespedes.size() < MaxHuespedes) {
-            botonAdd2.setDisable(false);
+    public ControladorHuespedReserva setNumeroHuespedes(int numeroResponsables, int numeroOtros,
+            int numeroChild, int numeroBebes) {
+        this.maxHuespedResponsables = numeroResponsables;
+        this.maxHuespedOtros = numeroOtros;
+        this.maxHuespedChild = numeroChild;
+        this.maxHuespedBebes = numeroBebes;
+        if (maxHuespedBebes > 0) {
+            botonBorrarBebes.setDisable(false);
         }
-        if (listaHuespedes.isEmpty()) {
-            botonBorrar1.setDisable(false);
-            botonAdd2.setDisable(false);
-            botonBorrar2.setDisable(true);
-        } else {
-            botonBorrar1.setDisable(true);
-            botonBorrar2.setDisable(false);
+        if (maxHuespedResponsables > 0) {
+            botonAddResponsable.setDisable(false);
         }
-    }
-
-    public ControladorHuespedReserva setNumeroHuespedes(int numeroResponsables, int numeroNormales) {
-        this.maxResponsables = numeroResponsables;
-        this.MaxHuespedes = numeroNormales;
+        if (maxHuespedChild > 0) {
+            botonAddChild.setDisable(false);
+        }
+        if (maxHuespedOtros > 0) {
+            botonAddOtros.setDisable(false);
+        }
 
         return this;
     }
 
-    public ControladorHuespedReserva setListas(ObservableList<Persona> listaHuespedes,
-            ObservableList<Persona> listaHuespededResponsable, ObservableList<TablaHuesped> listaTablaHuespedResponsable,
-            ObservableList<TablaHuesped> listaTablaHuespedes, ObservableList<Persona> listaTodosLosHuespedes) {
-        this.listaHuespedes = listaHuespedes;
-        this.listaHuespededResponsable = listaHuespededResponsable;
-        this.listaTablaHuespedResponsable = listaTablaHuespedResponsable;
-        this.listaTablaHuespedes = listaTablaHuespedes;
+    public ControladorHuespedReserva setListas(ObservableList<Persona> listaHuespedeOtros,
+            ObservableList<Persona> listaHuespedResponsable, ObservableList<Persona> listaHuespedChild,
+            ObservableList<Persona> listaHuespedBebes, ObservableList<Persona> listaTodosLosHuespedes, ObservableList<TablaHuesped> listaTablaHuespedResponsable,
+            ObservableList<TablaHuesped> listaTablaHuespedOtros, ObservableList<TablaHuesped> listaTablaHuespedChild,
+            ObservableList<TablaHuesped> listaTablaHuespedBebes, ObservableList<TablaHuesped> listaTablaTodosLosHuespedes) {
+
+        this.listaHuespedOtros = listaHuespedeOtros;
+        this.listaHuespededResponsable = listaHuespedResponsable;
+        this.listaHuespedChild = listaHuespedChild;
+        this.listaHuespedBebes = listaHuespedBebes;
         this.listaTodosLosHuespedes = listaTodosLosHuespedes;
+        this.listaTablaHuespedResponsable = listaTablaHuespedResponsable;
+        this.listaTablaHuespedOtros = listaTablaHuespedOtros;
+        this.listaTablaHuespedChild = listaTablaHuespedChild;
+        this.listaTablaHuespedBebes = listaTablaHuespedBebes;
+        this.listaTablaTodosLosHuespedes = listaTablaTodosLosHuespedes;
+        //-------------------------------------------------
         tablaResponsable.setItems(listaTablaHuespedResponsable);
-        tablaOtros.setItems(listaTablaHuespedes);
+        tablaOtros.setItems(listaTablaHuespedOtros);
+        tablaChild.setItems(listaTablaHuespedChild);
+        tablaBebes.setItems(listaTablaHuespedBebes);
+        //-----------------------------------------------------------
+        this.listaHuespedChild.addListener(new ListChangeListener<Persona>() {
+            @Override
+            public void onChanged(ListChangeListener.Change<? extends Persona> cambio) {
+                cambioListas(cambio, listaHuespedChild, listaTablaHuespedChild);
+                enciendoAdds(listaHuespedChild, maxHuespedChild, botonAddChild);
+            }
+        });
+        this.listaHuespedBebes.addListener(new ListChangeListener<Persona>() {
+            @Override
+            public void onChanged(ListChangeListener.Change<? extends Persona> cambio) {
+                cambioListas(cambio, listaHuespedBebes, listaTablaHuespedBebes);
+                enciendoAdds(listaHuespedBebes, maxHuespedBebes, botonAddBebes);
+            }
+        });
+        listaHuespedOtros.addListener(new ListChangeListener<Persona>() {
+            @Override
+            public void onChanged(ListChangeListener.Change<? extends Persona> cambio) {
+                cambioListas(cambio, listaHuespedOtros, listaTablaHuespedOtros);
+                enciendoAdds(listaHuespedOtros, maxHuespedOtros, botonAddOtros);
+            }
+        });
         listaHuespededResponsable.addListener(new ListChangeListener<Persona>() {
             @Override
-            public void onChanged(ListChangeListener.Change<? extends Persona> c) {
-                codigoListaHuespedResponsable();
+            public void onChanged(ListChangeListener.Change<? extends Persona> cambio) {
+                cambioListas(cambio, listaHuespededResponsable, listaTablaHuespedResponsable);
+                enciendoAdds(listaHuespedResponsable, maxHuespedResponsables, botonAddResponsable);
             }
         });
-        listaHuespedes.addListener(new ListChangeListener<Persona>() {
+        listaTodosLosHuespedes.addListener(new ListChangeListener<Persona>() {
             @Override
-            public void onChanged(ListChangeListener.Change<? extends Persona> c) {
-                codigoListaHuespedes();
+            public void onChanged(ListChangeListener.Change<? extends Persona> cambio) {
+                if (listaTodosLosHuespedes.isEmpty()) {
+                    reseteaCampos.setDisable(true);
+                    botonOk.setDisable(true);
+                } else {
+                    reseteaCampos.setDisable(false);
+                    botonOk.setDisable(false);
+                }
             }
         });
-
+        //----------------------------------------------------------------------------------------
+        if (listaHuespededResponsable.isEmpty()) {
+            botonBorrarResponsable.setDisable(true);
+            reseteaCampos.setDisable(true);
+            botonOk.setDisable(true);
+        } else {
+            botonBorrarResponsable.setDisable(false);
+            reseteaCampos.setDisable(false);
+            botonOk.setDisable(false);
+        }
+        if (listaHuespedOtros.isEmpty()) {
+            botonBorrarOtros.setDisable(true);
+        } else {
+            botonBorrarOtros.setDisable(false);
+        }
+        if (listaHuespedChild.isEmpty()) {
+            botonBorrarChild.setDisable(true);
+        } else {
+            botonBorrarChild.setDisable(false);
+        }
+        if (listaHuespedBebes.isEmpty()) {
+            botonBorrarBebes.setDisable(true);
+        } else {
+            botonBorrarBebes.setDisable(false);
+        }
         return this;
     }
 
+    private void cambioListas(ListChangeListener.Change<? extends Persona> cambio, ObservableList<Persona> listaHuesped, ObservableList<TablaHuesped> listaTabla) {
+        while (cambio.next()) {
+            for (Persona p : cambio.getRemoved()) {
+                listaTodosLosHuespedes.remove(p);
+                listaTablaTodosLosHuespedes.clear();
+                listaTablaTodosLosHuespedes.addAll(TablaHuesped.getTablaBuscadorHuesped(listaTodosLosHuespedes));
+                listaTabla.clear();
+                listaTabla.addAll(TablaHuesped.getTablaBuscadorHuesped(listaHuesped));
+            }
+            for (Persona p : cambio.getAddedSubList()) {
+                listaTodosLosHuespedes.add(p);
+                listaTablaTodosLosHuespedes.clear();
+                listaTablaTodosLosHuespedes.addAll(TablaHuesped.getTablaBuscadorHuesped(listaTodosLosHuespedes));
+                listaTabla.clear();
+                listaTabla.addAll(TablaHuesped.getTablaBuscadorHuesped(listaHuesped));
+            }
+        }
+    }
+
+    private void logicaBorrar(ObservableList<Persona> listaHuesped, TableView<TablaHuesped> tabla) {
+        for (Persona p : listaHuesped) {
+            TablaHuesped th = tabla.getSelectionModel().getSelectedItem();
+            if (th != null) {
+                listaHuesped.remove(tabla.getSelectionModel().getSelectedIndex());
+            }
+        }
+    }
+
+    private void enciendoAdds(ObservableList<Persona> lista, int max, Button boton) {
+        if (lista.size() < max) {
+            boton.setDisable(false);
+        } else {
+            boton.setDisable(true);
+        }
+    }
+
+    public void configuraVentana() {
+        Ventanas.getVentana(Ventanas.HUESPED_RESERVA).setOnCloseRequest((event) -> {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Si sale de esta ventana se perderán toda la selección."
+                    + "\n ¿Está de acuerdo con salir?", ButtonType.YES, ButtonType.NO);
+            alert.showAndWait();
+            if (alert.getResult() == ButtonType.YES) {
+                borrarListas();
+                Ventanas.cerrarVentana(Ventanas.HUESPED_RESERVA);
+            }else{
+                event.consume();
+            }
+        });
+    }
+
+    private void borrarListas() {
+        listaHuespedBebes.clear();
+        listaHuespedChild.clear();
+        listaHuespedOtros.clear();
+        listaHuespededResponsable.clear();
+        listaTodosLosHuespedes.clear();
+    }
 }

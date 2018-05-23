@@ -1,13 +1,15 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.LanzadorDeError;
-import java.io.IOException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 
@@ -38,6 +40,7 @@ public class ObjetoVentana {
     String nombreFXML, nombreVentana, titulo, ownerName;
     Modality modalidad;
     Object controlador;
+    int modoDesvanecimiento;
     boolean cargado;
 
     /**
@@ -55,18 +58,25 @@ public class ObjetoVentana {
      * @param controlador controlador que se pudiera cargar al FXML
      * @param cargado propiedad que tendra la ventana.
      */
-    public ObjetoVentana(FXMLLoader fXMLLoader, VentanaCustom ventana, String owner, Scene scene, Parent parent, String nombreFXML, String nombreVentana, String titulo, Modality modalidad, Object controlador, boolean cargado) {
+    public ObjetoVentana(FXMLLoader fXMLLoader, VentanaCustom ventana, String nombreFXML, String nombreVentana, String titulo, String ownerName, Modality modalidad, Object controlador, int modoDesvanecimiento, boolean cargado) {
         this.fXMLLoader = fXMLLoader;
         this.ventana = ventana;
-        this.ownerName = owner;
-        this.scene = scene;
-        this.parent = parent;
         this.nombreFXML = nombreFXML;
         this.nombreVentana = nombreVentana;
         this.titulo = titulo;
+        this.ownerName = ownerName;
         this.modalidad = modalidad;
         this.controlador = controlador;
+        this.modoDesvanecimiento = modoDesvanecimiento;
         this.cargado = cargado;
+    }
+
+    public int getModoDesvanecimiento() {
+        return modoDesvanecimiento;
+    }
+
+    public void setModoDesvanecimiento(int modoDesvanecimiento) {
+        this.modoDesvanecimiento = modoDesvanecimiento;
     }
 
     public boolean isCargado() {
@@ -97,6 +107,7 @@ public class ObjetoVentana {
             ventana.setTitle(titulo);
             ventana.getIcons().add(new Image("/imagenes/hotel.png"));
             ventana.setMiNombre(nombreVentana);
+            ventana.setModoDesvanecimiento(modoDesvanecimiento);
             fXMLLoader = new FXMLLoader(getClass().getResource("/fxml/" + nombreFXML + ".fxml"), resourceBundle);
             if (controlador != null) {
                 fXMLLoader.setController(controlador);
@@ -105,11 +116,14 @@ public class ObjetoVentana {
                 cerrar();
             });
             ventana.focusedProperty().addListener((observable) -> {
+                if (ownerName != null) {
                     if (ventana.isFocused()) {
                         ventana.setOpacity(1);
-                    } else {
-                        ventana.setOpacity(0.5);
+                        if (Ventanas.getVentana(ownerName).getModoDesvanecimiento() == Ventanas.DESVANECIBLE) {
+                            Ventanas.getVentana(ownerName).setOpacity(0.5);
+                        }
                     }
+                }
             });
             parent = getfXMLLoader().load();
             ventana.initModality(modalidad);
@@ -133,6 +147,21 @@ public class ObjetoVentana {
             ventana.show();
             ventana.setActividad(true);
             Ventanas.addVentana(ventana);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "La ventana: " + titulo + "\n"
+                    + "Está en uso, para abrir esta ventana tiene que cerrar la ventana en uso,\n"
+                    + "Si cierra la ventana podrían perderse los cambios realizados.\n"
+                    + "¿quiere cerrarla y abrirla de nuevo?", ButtonType.YES, ButtonType.NO);
+            Optional<ButtonType> btn = alert.showAndWait();
+            if (btn.get() == ButtonType.YES) {
+                Ventanas.cerrarVentana(ventana.getNombre());
+                scene = new Scene(parent);
+                ventana.setScene(scene);
+                ventana.show();
+                ventana.setActividad(true);
+                Ventanas.addVentana(ventana);
+            }
+
         }
     }
 
@@ -141,13 +170,27 @@ public class ObjetoVentana {
      */
     public void ver() {
         VentanaCustom vc = Ventanas.getVentana(nombreVentana);
-        if (vc == null || !vc.isActiva()) {
+        if (vc == null) {
             scene = new Scene(parent);
             ventana.setScene(scene);
             ventana.show();
             ventana.setActividad(true);
             ventana.setResizable(false);
             Ventanas.addVentana(ventana);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "La ventana: " + titulo + "\n"
+                    + "Está en uso, para abrir esta ventana tiene que cerrar la ventana en uso,\n"
+                    + "Si cierra la ventana podrían perderse los cambios realizados.\n"
+                    + "¿quiere cerrarla y abrirla de nuevo?", ButtonType.YES, ButtonType.NO);
+            Optional<ButtonType> btn = alert.showAndWait();
+            if (btn.get() == ButtonType.YES) {
+                Ventanas.cerrarVentana(ventana.getNombre());
+                scene = new Scene(parent);
+                ventana.setScene(scene);
+                ventana.show();
+                ventana.setActividad(true);
+                Ventanas.addVentana(ventana);
+            }
         }
     }
 

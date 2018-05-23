@@ -9,6 +9,9 @@ import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +21,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -30,7 +38,11 @@ public class ControladorLogIn implements Initializable {
     Button botonEntrar;
 
     @FXML
-    Label mensaje;
+    Label mensajeError, bienvenidos;
+    @FXML
+    ImageView candado;
+    @FXML
+    MediaView visualizadorVideo;
 
     @FXML
     TextField usuario;
@@ -40,6 +52,7 @@ public class ControladorLogIn implements Initializable {
 
     @FXML
     ComboBox lenguaje;
+    boolean validado=false;
 
     public ControladorLogIn() {
     }
@@ -54,23 +67,23 @@ public class ControladorLogIn implements Initializable {
     }
 
     private void logicaBoton() {
-        if (loginValido()) {
-            ConfiguradorMensajes.mensajeExito("Usuario y contraseña validos", mensaje);
+        if (loginValido()&&!validado) {
+            validado=true;
+            ConfiguradorMensajes.mensajeExito("Usuario y contraseña validos", mensajeError);
+            desvaneceCandado();
+            evaneceMensaje();
+            reproduceVideo();
             Locale.setDefault(ConfiguradorIdioma.cambiaIdioma(lenguaje.getSelectionModel().getSelectedItem().toString()));
             ObjetoVentana obj = VentanasFactory.getObjetoVentanaPrincipal();
             if (obj != null) {
-                 obj.getVentana().focusedProperty().addListener((observable) -> {
-                if(!obj.getVentana().isFocused()){
-                    obj.getVentana().setOpacity(1);
-                }
-            });
-                obj.ver();
-                Ventanas.getVentana(Ventanas.LOGIN).close();
-                Ventanas.getVentana(Ventanas.LOGIN).setActividad(false);
-                Ventanas.getListaVentanas().remove(0);
+                Timeline t = new Timeline(new KeyFrame(Duration.seconds(8), (event) -> {
+                    obj.verReajustable();
+                    Ventanas.cerrarVentana(Ventanas.LOGIN);
+                }));
+                t.play();
+            } else {
+                ConfiguradorMensajes.mensajeError("Usuario o contraseña incorrectos", mensajeError);
             }
-        } else {
-            ConfiguradorMensajes.mensajeError("Usuario o contraseña incorrectos", mensaje);
         }
     }
 
@@ -82,5 +95,33 @@ public class ControladorLogIn implements Initializable {
             resultado = true;
         }
         return resultado;
+    }
+
+    private void desvaneceCandado() {
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(3), candado);
+        fadeTransition.setFromValue(1.0);
+        fadeTransition.setToValue(0.0);
+        fadeTransition.setCycleCount(1);
+        fadeTransition.play();
+    }
+
+    private void evaneceMensaje() {
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(3), bienvenidos);
+        fadeTransition.setToValue(1.0);
+        fadeTransition.setFromValue(0.0);
+        fadeTransition.setCycleCount(1);
+        bienvenidos.setVisible(true);
+        fadeTransition.play();
+    }
+        public void reproduceVideo() {
+       
+            Media m = new Media(getClass().getResource("/video/videoLogin.mp4").toExternalForm());
+            MediaPlayer player = new MediaPlayer(m);
+            visualizadorVideo.setMediaPlayer(player);
+            visualizadorVideo.setFitWidth(300);
+            visualizadorVideo.setFitHeight(560);
+            player.setCycleCount(MediaPlayer.INDEFINITE);
+            player.setAutoPlay(true);
+        
     }
 }

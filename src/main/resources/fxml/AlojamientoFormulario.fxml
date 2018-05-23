@@ -16,9 +16,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="377.0" prefWidth="700.0" styleClass="mainFxmlClass" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorAlojamientoFormulario">
+<AnchorPane id="AnchorPane" prefHeight="426.0" prefWidth="700.0" styleClass="mainFxmlClass" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorAlojamientoFormulario">
    <children>
-      <VBox prefHeight="455.0" prefWidth="680.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+      <VBox prefHeight="455.0" prefWidth="680.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
             <AnchorPane>
                <children>
@@ -234,9 +234,10 @@
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints minHeight="20.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="20.0" prefHeight="40.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <AnchorPane>
+                  <AnchorPane GridPane.rowIndex="1">
                      <children>
                         <Button id="botonOk" fx:id="confirmar" disable="true" layoutX="60.0" layoutY="-3.0" mnemonicParsing="false" text="%button.crear" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
@@ -244,6 +245,14 @@
                            </font>
                         </Button>
                      </children>
+                  </AnchorPane>
+                  <AnchorPane>
+                     <children>
+                        <Button id="botonLimpiar" fx:id="reseteaCampos" layoutX="130.0" layoutY="-4.0" mnemonicParsing="false" text="Resetear campos" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets bottom="10.0" />
+                     </GridPane.margin>
                   </AnchorPane>
                </children>
             </GridPane>

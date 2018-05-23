@@ -2,7 +2,6 @@ package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.RecorredorPaneles;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.Consultas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
@@ -441,7 +440,7 @@ public class ControladorClienteBuscador implements Initializable {
     }
 
     private void codigoActualizar() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
             ((ControladorClienteFormulario) obj.getfXMLLoader().getController()).
                     setClienteEnVista(ClienteEnVista).
@@ -451,7 +450,7 @@ public class ControladorClienteBuscador implements Initializable {
     }
 
     private void codigoCrear() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null);
         ((ControladorClienteFormulario) obj.getfXMLLoader().getController()).
                 setModoFormulario(Ventanas.MODO_INSERTAR);
         if (obj != null) {
@@ -505,9 +504,6 @@ public class ControladorClienteBuscador implements Initializable {
     public void codigoTelefono() {
           ObjetoVentana obj = VentanasFactory.getObjetoVentanaTelefonoBuscador(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
-//            ((ControladorVentanaCliente) obj.getfXMLLoader().getController()).
-//                    setHuespedEnVista(ClienteEnVista).
-//                    setModoFormulario(Ventanas.MODO_ACTUALIZAR);
             obj.ver();
         }
     }
