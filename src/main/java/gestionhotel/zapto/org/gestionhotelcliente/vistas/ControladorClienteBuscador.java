@@ -1,25 +1,24 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
-import gestionhotel.zapto.org.gestionhotelcliente.controladores.RecorredorPaneles;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBuscador;
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.BuscadorInterface;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaCliente;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -27,7 +26,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 
 /**
@@ -35,7 +33,7 @@ import javafx.stage.Modality;
  *
  * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
-public class ControladorClienteBuscador implements Initializable {
+public class ControladorClienteBuscador implements Initializable, BuscadorInterface {
 
     @FXML
     private TextField nombre, primerApellido, segundoApellido, dni, nombreEmpresa,
@@ -48,7 +46,7 @@ public class ControladorClienteBuscador implements Initializable {
     @FXML
     private ComboBox<?> nacionalidad, tratamiento, categoria, razonSocial, estado;
     @FXML
-    private Button borrar, crear, actualizar, buscar, aceptar, resetearCampos, telefono,ver;
+    private Button borrar, crear, actualizar, buscar, seleccionar, resetearCampos, telefono, ver;
     @FXML
     AnchorPane panelPrincipal, panelPersona, panelEmpresa, panelFiltro;
     @FXML
@@ -56,7 +54,7 @@ public class ControladorClienteBuscador implements Initializable {
 
     @FXML
     private ToggleButton toggleNombre, togglePrimerApellido, toggleSegundoApellido,
-            toggleFNacimiento, toogleCif, toggleNombreEmpresa, toggleRazonSocial, toggleSexo,
+            toggleFNacimiento, toggleCif, toggleNombreEmpresa, toggleRazonSocial, toggleSexo,
             toggleNacionalidad, toggleTratamiento, toggleDni, toggleEstado, toggleProvincia,
             toggleCiudad, toggleCalle, toggleNumero, toggleCodigoPostal,
             togglePaginaWeb, toggleEmail, toggleCategoria;
@@ -71,117 +69,125 @@ public class ControladorClienteBuscador implements Initializable {
             tableColumnCodigoPostal, tableColumnSexo, tableColumnEstado, tableColumnEmail, tableColumnPaginaWeb, tableColumnCategoria,
             tableColumnTratamiento;
 
-    private List<TablaCliente> listaClientes = new ArrayList<>();
-    private List<Persona> listaPersonas = new ArrayList<>();
+    private ObservableList<TablaCliente> listaClientes = FXCollections.observableArrayList();
+    private ObservableList<Persona> listaPersonas = FXCollections.observableArrayList();
+    private ObservableList<Persona> listaFiltro = FXCollections.observableArrayList();
     private Persona ClienteEnVista;
+
+    private ObservableList<Node> nodosApagables;
+
+    private int modo;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        nacionalidad.setItems(Registro.listaPaises);
-        nacionalidad.getSelectionModel().selectFirst();
-        tratamiento.setItems(Registro.ListaTratamiento);
-        tratamiento.getSelectionModel().selectFirst();
-        categoria.setItems(Registro.ListaCategoriaCliente);
-        categoria.getSelectionModel().selectFirst();
-        razonSocial.setItems(Registro.ListaRazonSocial);
-        razonSocial.getSelectionModel().selectFirst();
-        estado.setItems(Registro.listaPaises);
-        estado.getSelectionModel().selectFirst();
+        UtilBuscador.iniciaComboBox(nacionalidad, Registro.listaPaises);
+        UtilBuscador.iniciaComboBox(tratamiento, Registro.ListaTratamiento);
+        UtilBuscador.iniciaComboBox(categoria, Registro.ListaCategoriaCliente);
+        UtilBuscador.iniciaComboBox(razonSocial, Registro.ListaRazonSocial);
+        UtilBuscador.iniciaComboBox(estado, Registro.listaPaises);
 
         toggleNombre.selectedProperty().addListener((e) -> {
-            codigoToggleNombre();
+            UtilBuscador.apagaToggle(toggleNombre, nombre, panelPrincipal, nodosApagables);
         });
         togglePrimerApellido.selectedProperty().addListener((e) -> {
-            codigoTogglePrimerApellido();
+            UtilBuscador.apagaToggle(togglePrimerApellido, primerApellido, panelPrincipal, nodosApagables);
         });
         toggleSegundoApellido.selectedProperty().addListener((e) -> {
-            codigoToggleSegundoApellido();
+            UtilBuscador.apagaToggle(toggleSegundoApellido, segundoApellido, panelPrincipal, nodosApagables);
         });
         toggleFNacimiento.selectedProperty().addListener((e) -> {
-            codigoToggleFNacimiento();
+            UtilBuscador.apagaToggle(toggleFNacimiento, fechaNacimiento, panelPrincipal, nodosApagables);
         });
-        toogleCif.selectedProperty().addListener((e) -> {
-            codigoToggleCif();
+        toggleCif.selectedProperty().addListener((e) -> {
+            UtilBuscador.apagaToggle(toggleCif, cif, panelPrincipal, nodosApagables);
+
         });
         toggleNombreEmpresa.selectedProperty().addListener((e) -> {
-            codigoToggleNombreEmpresa();
+             UtilBuscador.apagaToggle(toggleNombreEmpresa, nombreEmpresa, panelPrincipal, nodosApagables);
         });
         toggleRazonSocial.selectedProperty().addListener((e) -> {
-            codigoToggleRazonSocial();
+             UtilBuscador.apagaToggle(toggleRazonSocial, razonSocial, panelPrincipal, nodosApagables);
         });
         toggleNacionalidad.selectedProperty().addListener((e) -> {
-            codigoToggleNacionalidad();
+             UtilBuscador.apagaToggle(toggleNacionalidad, nacionalidad, panelPrincipal, nodosApagables);
         });
         toggleTratamiento.selectedProperty().addListener((e) -> {
-            codigoToggleTratamiento();
+             UtilBuscador.apagaToggle(toggleTratamiento, tratamiento, panelPrincipal, nodosApagables);
         });
         toggleDni.selectedProperty().addListener((e) -> {
-            codigoToggleDni();
+             UtilBuscador.apagaToggle(toggleDni, dni, panelPrincipal, nodosApagables);
         });
         toggleEstado.selectedProperty().addListener((e) -> {
-            codigoToggleEstado();
+             UtilBuscador.apagaToggle(toggleEstado, estado, panelPrincipal, nodosApagables);
         });
         toggleProvincia.selectedProperty().addListener((e) -> {
-            codigoToggleProvincia();
+             UtilBuscador.apagaToggle(toggleProvincia, provincia, panelPrincipal, nodosApagables);
         });
         toggleCiudad.selectedProperty().addListener((e) -> {
-            codigoToggleCiudad();
+             UtilBuscador.apagaToggle(toggleCiudad, ciudad, panelPrincipal, nodosApagables);
         });
         toggleCalle.selectedProperty().addListener((e) -> {
-            codigoToggleCalle();
+             UtilBuscador.apagaToggle(toggleCalle, calle, panelPrincipal, nodosApagables);
         });
         toggleNumero.selectedProperty().addListener((e) -> {
-            codigoToggleNumero();
+             UtilBuscador.apagaToggle(toggleNumero, numero, panelPrincipal, nodosApagables);
         });
         toggleCodigoPostal.selectedProperty().addListener((e) -> {
-            codigoToggleCodigoPostal();
+             UtilBuscador.apagaToggle(toggleCodigoPostal, codigoPostal, panelPrincipal, nodosApagables);
         });
         togglePaginaWeb.selectedProperty().addListener((e) -> {
-            codigoTogglePagiaWeb();
+             UtilBuscador.apagaToggle(togglePaginaWeb, paginaWeb, panelPrincipal, nodosApagables);
         });
 
         toggleEmail.selectedProperty().addListener((e) -> {
-            codigoToggleEmail();
+             UtilBuscador.apagaToggle(toggleEmail, correoElectronico, panelPrincipal, nodosApagables);
         });
         toggleCategoria.selectedProperty().addListener((e) -> {
-            codigoToggleCategoria();
+             UtilBuscador.apagaToggle(toggleCategoria, categoria, panelPrincipal, nodosApagables);
         });
         toggleSexo.selectedProperty().addListener((e) -> {
-            codigoToggleSexo();
+             UtilBuscador.apagaToggle(toggleSexo, sexoM, panelPrincipal, nodosApagables);
         });
+        //-------------------------------------------------------------------------------------------
         tabPanel.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            codigoTabPanel(oldValue);
+            UtilBuscador.CambiaTab(oldValue);
         });
 
         borrar.setOnAction((e) -> {
-            codigoBorrar();
+            UtilBuscador.accionBorrar();
         });
 
         crear.setOnAction((e) -> {
-            codigoCrear();
+            UtilBuscador.accionCrear(VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null));
         });
         actualizar.setOnAction((e) -> {
-            codigoActualizar();
+            UtilBuscador.accionActualizar(VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null), ClienteEnVista);
         });
         buscar.setOnAction((e) -> {
-            codigoSeleccionar(); 
+            //--------------------------
+        });
+        buscar.setOnAction((e) -> {
+            UtilBuscador.accionSeleccionar(listaPersonas, ClienteEnVista, Ventanas.CLIENTE_BUSCADOR);
         });
         resetearCampos.setOnAction((e) -> {
-            codigoresetearCampos();
+            UtilBuscador.ResetearCampos(panelPrincipal);
         });
         telefono.setOnAction((e) -> {
-            codigoTelefono();
-            
+            UtilBuscador.abrirTelefono();
+
         });
         ver.setOnAction((e) -> {
-            codigoVer();
-            
+            UtilBuscador.accionVer(VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null), ClienteEnVista);
+
         });
         listaPersonas = PruebasModelo.getListaDeClientes();
         listaClientes = TablaCliente.getTablaBuscadorCliente(listaPersonas);
-
+        //---------------------------------------------------------------------
         tabla.setItems(FXCollections.observableArrayList(listaClientes));
-
+        tabla.getSelectionModel().selectedItemProperty().addListener((observable) -> {
+        ClienteEnVista =UtilBuscador.accionOnSelectedTable( listaPersonas, tabla, seleccionar,
+                    actualizar, telefono, ver);
+        });
         tableColumnDocumentoNumero.setCellValueFactory(new PropertyValueFactory("numeroDocumento"));
         tableColumnNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
         tableColumnPrimerApellido.setCellValueFactory(new PropertyValueFactory("primerApellido"));
@@ -202,317 +208,26 @@ public class ControladorClienteBuscador implements Initializable {
         tableColumnNombreComercial.setCellValueFactory(new PropertyValueFactory("nombreComercial"));
         tableColumnPaginaWeb.setCellValueFactory(new PropertyValueFactory("paginaWeb"));
         tableColumnNacionalidad.setCellValueFactory(new PropertyValueFactory("nacionalidad"));
+        //----------------------------------------------------------------------------------------
 
-        tabla.getSelectionModel().selectedIndexProperty().addListener((observable) -> {
-            tablaOnSelectedItem();
-        });
-
+        nodosApagables = FXCollections.observableArrayList(resetearCampos, buscar);
     }
 
-    private void codigoToggleNombre() {
-        if (toggleNombre.isSelected()) {
-            nombre.setDisable(false);
-            enciendeToggle();
-        } else {
-            nombre.setDisable(true);
-            nombre.setText("");
-            configuraBotones();
-        }
+    @Override
+    public ControladorClienteBuscador setModo(int modo) {
+        this.modo = modo;
+        return this;
     }
 
-    private void codigoTogglePrimerApellido() {
-        if (togglePrimerApellido.isSelected()) {
-            primerApellido.setDisable(false);
-            enciendeToggle();
-        } else {
-            primerApellido.setDisable(true);
-            primerApellido.setText("");
-            configuraBotones();
-        }
+    @Override
+    public <T> ControladorClienteBuscador setLista(ObservableList<T> ListaObjeto) {
+        this.listaPersonas = (ObservableList<Persona>) ListaObjeto;
+        return this;
     }
 
-    private void codigoToggleSegundoApellido() {
-        if (toggleSegundoApellido.isSelected()) {
-            segundoApellido.setDisable(false);
-            enciendeToggle();
-        } else {
-            segundoApellido.setDisable(true);
-            segundoApellido.setText("");
-            configuraBotones();
-        }
-    }
-
-    private void codigoToggleFNacimiento() {
-        if (toggleFNacimiento.isSelected()) {
-            fechaNacimiento.setDisable(false);
-            enciendeToggle();
-        } else {
-            fechaNacimiento.setDisable(true);
-            fechaNacimiento.setValue(null);
-            configuraBotones();
-        }
-    }
-
-    private void codigoToggleCif() {
-        if (toogleCif.isSelected()) {
-            cif.setDisable(false);
-            enciendeToggle();
-        } else {
-            cif.setDisable(true);
-            cif.setText("");
-            configuraBotones();
-        }
-    }
-
-    private void codigoToggleNombreEmpresa() {
-        if (toggleNombreEmpresa.isSelected()) {
-            nombreEmpresa.setDisable(false);
-            enciendeToggle();
-        } else {
-            nombreEmpresa.setDisable(true);
-            nombreEmpresa.setText("");
-            configuraBotones();
-        }
-    }
-
-    private void codigoToggleRazonSocial() {
-        if (toggleRazonSocial.isSelected()) {
-            razonSocial.setDisable(false);
-            enciendeToggle();
-        } else {
-            razonSocial.setDisable(true);
-            razonSocial.getSelectionModel().selectFirst();
-            configuraBotones();
-        }
-    }
-
-    private void codigoToggleSexo() {
-        if (toggleSexo.isSelected()) {
-            sexoF.setDisable(false);
-            sexoM.setDisable(false);
-            enciendeToggle();
-        } else {
-            sexoF.setDisable(true);
-            sexoM.setDisable(true);
-            sexoM.setSelected(true);
-            configuraBotones();
-        }
-    }
-
-    private void codigoToggleNacionalidad() {
-        if (toggleNacionalidad.isSelected()) {
-            nacionalidad.setDisable(false);
-            enciendeToggle();
-        } else {
-            nacionalidad.setDisable(true);
-            nacionalidad.getSelectionModel().selectFirst();
-            configuraBotones();
-        }
-    }
-
-    private void codigoToggleTratamiento() {
-        if (toggleTratamiento.isSelected()) {
-            tratamiento.setDisable(false);
-            enciendeToggle();
-        } else {
-            tratamiento.setDisable(true);
-            tratamiento.getSelectionModel().selectFirst();
-            configuraBotones();
-        }
-    }
-
-    private void codigoToggleDni() {
-        if (toggleDni.isSelected()) {
-            dni.setDisable(false);
-            enciendeToggle();
-        } else {
-            dni.setDisable(true);
-            dni.setText("");
-            configuraBotones();
-        }
-    }
-
-    private void codigoToggleEstado() {
-        if (toggleEstado.isSelected()) {
-            estado.setDisable(false);
-            enciendeToggle();
-        } else {
-            estado.setDisable(true);
-            estado.getSelectionModel().selectFirst();
-            configuraBotones();
-        }
-    }
-
-    private void codigoToggleProvincia() {
-        if (toggleProvincia.isSelected()) {
-            provincia.setDisable(false);
-            enciendeToggle();
-        } else {
-            provincia.setDisable(true);
-            provincia.setText("");
-            configuraBotones();
-        }
-    }
-
-    private void codigoToggleCiudad() {
-        if (toggleCiudad.isSelected()) {
-            ciudad.setDisable(false);
-            enciendeToggle();
-        } else {
-            ciudad.setDisable(true);
-            ciudad.setText("");
-            configuraBotones();
-        }
-    }
-
-    private void codigoToggleCalle() {
-        if (toggleCalle.isSelected()) {
-            calle.setDisable(false);
-            enciendeToggle();
-        } else {
-            calle.setDisable(true);
-            calle.setText("");
-            configuraBotones();
-        }
-    }
-
-    private void codigoToggleNumero() {
-        if (toggleNumero.isSelected()) {
-            numero.setDisable(false);
-            enciendeToggle();
-        } else {
-            numero.setDisable(true);
-            numero.setText("");
-            configuraBotones();
-        }
-    }
-
-    private void codigoToggleCodigoPostal() {
-        if (toggleCodigoPostal.isSelected()) {
-            codigoPostal.setDisable(false);
-            enciendeToggle();
-        } else {
-            codigoPostal.setDisable(true);
-            codigoPostal.setText("");
-            configuraBotones();
-        }
-    }
-
-    private void codigoTogglePagiaWeb() {
-        if (togglePaginaWeb.isSelected()) {
-            paginaWeb.setDisable(false);
-            enciendeToggle();
-        } else {
-            paginaWeb.setDisable(true);
-            paginaWeb.setText("");
-            configuraBotones();
-        }
-    }
-
-    private void codigoToggleEmail() {
-        if (toggleEmail.isSelected()) {
-            correoElectronico.setDisable(false);
-            enciendeToggle();
-        } else {
-            correoElectronico.setDisable(true);
-            correoElectronico.setText("");
-            configuraBotones();
-        }
-    }
-
-    private void codigoToggleCategoria() {
-        if (toggleCategoria.isSelected()) {
-            categoria.setDisable(false);
-            enciendeToggle();
-        } else {
-            categoria.setDisable(true);
-            categoria.getSelectionModel().selectFirst();
-            configuraBotones();
-        }
-    }
-
-    private void codigoSeleccionar() {
-
-    }
-
-    private void codigoBorrar() {
-
-    }
-
-    private void codigoActualizar() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null);
-        if (obj != null) {
-            ((ControladorClienteFormulario) obj.getfXMLLoader().getController()).
-                    setClienteEnVista(ClienteEnVista).
-                    setModoFormulario(Ventanas.MODO_ACTUALIZAR);
-            obj.ver();
-        }
-    }
-
-    private void codigoCrear() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null);
-        ((ControladorClienteFormulario) obj.getfXMLLoader().getController()).
-                setModoFormulario(Ventanas.MODO_INSERTAR);
-        if (obj != null) {
-            obj.ver();
-        }
-    }
-
-    private boolean hayTogglesOn() {
-        List<ToggleButton> listaToggle = RecorredorPaneles.getListaObjetos(panelPrincipal, FXCollections.observableArrayList());
-        boolean hayToogleOn = false;
-        for (ToggleButton toggleButton : listaToggle) {
-            if (toggleButton.isSelected()) {
-                hayToogleOn = true;
-                break;
-            }
-        }
-        return hayToogleOn;
-    }
-
-    private void configuraBotones() {
-        if (hayTogglesOn()) {
-            resetearCampos.setDisable(false);
-            buscar.setDisable(false);
-        } else {
-            resetearCampos.setDisable(true);
-            buscar.setDisable(true);
-        }
-    }
-
-    public void enciendeToggle() {
-        buscar.setDisable(false);
-        resetearCampos.setDisable(false);
-    }
-
-    public void codigoresetearCampos() {
-        RecorredorPaneles.reseteaControles(panelPrincipal);
-    }
-
-    private void codigoTabPanel(Tab viejo) {
-        RecorredorPaneles.reseteaControles((Pane) viejo.getContent());
-    }
-
-    public void tablaOnSelectedItem() {
-        aceptar.setDisable(false);
-        actualizar.setDisable(false);
-        borrar.setDisable(false);
-        telefono.setDisable(false);
-        ver.setDisable(false);
-        ClienteEnVista = listaPersonas.get(tabla.getSelectionModel().getSelectedIndex());
-    }
-    public void codigoTelefono() {
-          ObjetoVentana obj = VentanasFactory.getObjetoVentanaTelefonoBuscador(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null);
-        if (obj != null) {
-            obj.ver();
-        }
-    }
-    private void codigoVer(){
-      ObjetoVentana obj = VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null);
-        if (obj != null) {
-            ((ControladorClienteFormulario) obj.getfXMLLoader().getController()).setClienteEnVista(ClienteEnVista).
-                    setModoFormulario(Ventanas.MODO_VER);
-            obj.ver();
-        }
+    @Override
+    public <T> ControladorClienteBuscador setFiltro(ObservableList<T> ListaObjeto) {
+        this.listaFiltro = (ObservableList<Persona>) ListaObjeto;
+        return this;
     }
 }

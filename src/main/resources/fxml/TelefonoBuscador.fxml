@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="principal" prefHeight="348.0" prefWidth="600.0" styleClass="mainFxmlClass" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorTelefonoBuscador">
+<AnchorPane id="AnchorPane" fx:id="principal" prefHeight="375.0" prefWidth="641.0" styleClass="mainFxmlClass" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorTelefonoBuscador">
    <children>
       <SplitPane dividerPositions="0.3872832369942196" layoutX="10.0" layoutY="10.0" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
@@ -31,58 +31,70 @@
                            </VBox.margin>
                         </Label>
                         <AnchorPane>
-                           <children>
-                              <GridPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <TextField fx:id="numero" disable="true" styleClass="texfieldNormal" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                       <GridPane.margin>
-                                          <Insets right="10.0" />
-                                       </GridPane.margin>
-                                    </TextField>
-                                    <TextField fx:id="nombre" disable="true" styleClass="texfieldNormal" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                       <GridPane.margin>
-                                          <Insets right="10.0" />
-                                       </GridPane.margin>
-                                    </TextField>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
-                                       <children>
-                                          <ToggleButton fx:id="toggleNumero" mnemonicParsing="false" styleClass="toogleButtonOn">
-                                             <HBox.margin>
-                                                <Insets right="10.0" />
-                                             </HBox.margin>
-                                          </ToggleButton>
-                                          <Label text="Numero" textFill="WHITE" />
-                                       </children>
-                                    </HBox>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                       <children>
-                                          <ToggleButton fx:id="toggleNombre" mnemonicParsing="false" styleClass="toogleButtonOn">
-                                             <HBox.margin>
-                                                <Insets right="10.0" />
-                                             </HBox.margin>
-                                          </ToggleButton>
-                                          <Label text="Nombre" textFill="WHITE" />
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </GridPane>
-                           </children>
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
+                           <children>
+                              <GridPane prefHeight="30.0" prefWidth="679.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <TextField fx:id="numero" disable="true" styleClass="texfieldNormal" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                    <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                       <children>
+                                          <ToggleButton fx:id="toggleNumero" mnemonicParsing="false" styleClass="toogleButtonOn">
+                                             <HBox.margin>
+                                                <Insets right="10.0" />
+                                             </HBox.margin>
+                                          </ToggleButton>
+                                          <Label text="Numero:" textFill="WHITE" />
+                                       </children>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" />
+                                       </GridPane.margin>
+                                    </HBox>
+                                    <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+                                       <children>
+                                          <ToggleButton fx:id="toggleNombre" mnemonicParsing="false" styleClass="toogleButtonOn">
+                                             <HBox.margin>
+                                                <Insets right="10.0" />
+                                             </HBox.margin>
+                                          </ToggleButton>
+                                          <Label text="Nombre:" textFill="WHITE" />
+                                       </children>
+                                    </HBox>
+                                    <HBox GridPane.columnIndex="4" GridPane.rowIndex="2">
+                                       <children>
+                                          <ToggleButton fx:id="toggleTipo" mnemonicParsing="false" styleClass="toogleButtonOn">
+                                             <HBox.margin>
+                                                <Insets right="10.0" />
+                                             </HBox.margin>
+                                          </ToggleButton>
+                                          <Label text="Tipo:" textFill="WHITE" />
+                                       </children>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" />
+                                       </GridPane.margin>
+                                    </HBox>
+                                    <TextField fx:id="tipo" disable="true" styleClass="texfieldNormal" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                                    <TextField fx:id="nombre" disable="true" styleClass="texfieldNormal" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                 </children>
+                              </GridPane>
+                           </children>
                         </AnchorPane>
                         <AnchorPane>
                            <children>
@@ -121,7 +133,7 @@
                                                 </AnchorPane>
                                                 <AnchorPane>
                                                    <children>
-                                                      <Button id="botonLimpiar" fx:id="resetarCampos" disable="true" layoutX="259.0" layoutY="-10.0" mnemonicParsing="false" text="Resetear campos" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                      <Button id="botonLimpiar" fx:id="resetearCampos" disable="true" layoutX="259.0" layoutY="-10.0" mnemonicParsing="false" text="Resetear campos" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
@@ -159,11 +171,11 @@
                                  <content>
                                     <AnchorPane prefHeight="400.0" prefWidth="769.0">
                                        <children>
-                                          <TableView fx:id="tabla" layoutY="43.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <TableView fx:id="tabla" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <columns>
                                                 <TableColumn fx:id="tableColumnNombre" maxWidth="324.0" minWidth="-1.0" prefWidth="199.0" text="Nombre" />
                                                 <TableColumn fx:id="tableColumnNumero" maxWidth="232.0" minWidth="-1.0" prefWidth="208.0" text="Numero Telefono" />
-                                                <TableColumn fx:id="tableColumnTipo" maxWidth="345.0" minWidth="-1.0" prefWidth="159.0" text="Tipo" />
+                                                <TableColumn fx:id="tableColumnTipo" maxWidth="345.0" minWidth="-1.0" prefWidth="211.0" text="Tipo" />
                                              </columns>
                                           </TableView>
                                        </children>

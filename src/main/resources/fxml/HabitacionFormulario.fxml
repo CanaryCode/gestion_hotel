@@ -5,7 +5,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -42,21 +41,21 @@
                      </rowConstraints>
                      <children>
                         <Label styleClass="etiquetaNormal" text="Número habitación" textFill="WHITE" />
-                        <Label fx:id="tipoHabitacion" styleClass="etiquetaNormal" text="Tipo Habitacion" textFill="WHITE" GridPane.columnIndex="2">
+                        <Label styleClass="etiquetaNormal" text="Tipo Habitacion" textFill="WHITE" GridPane.columnIndex="2">
                            <GridPane.margin>
                               <Insets left="10.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label fx:id="vistas" styleClass="etiquetaNormal" text="Vistas" textFill="WHITE" GridPane.rowIndex="1" />
-                        <Label fx:id="tipoCama" styleClass="etiquetaNormal" text="Tipo cama" textFill="WHITE" GridPane.columnIndex="4">
+                        <Label styleClass="etiquetaNormal" text="Vistas" textFill="WHITE" GridPane.rowIndex="1" />
+                        <Label styleClass="etiquetaNormal" text="Tipo cama" textFill="WHITE" GridPane.columnIndex="4">
                            <GridPane.margin>
                               <Insets left="10.0" />
                            </GridPane.margin>
                         </Label>
                         <ComboBox fx:id="tipoHabitacion" prefWidth="5000.0" GridPane.columnIndex="3" />
                         <ComboBox fx:id="vistas" prefWidth="5000.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="numeroHabitacion" styleClass="texfieldNormal" GridPane.columnIndex="1" />
                         <ComboBox fx:id="tipoCama" prefWidth="5000.0" GridPane.columnIndex="5" />
+                        <ComboBox fx:id="numeroHabitacion" prefWidth="5000.0" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
                </children>

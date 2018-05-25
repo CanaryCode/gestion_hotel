@@ -5,13 +5,19 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.ScaleTransition;
+import javafx.animation.Timeline;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
+import javafx.util.Duration;
 
 /**
  * Es una clase donde justamos varios objetos interesantes desde el cargador del
@@ -113,6 +119,7 @@ public class ObjetoVentana {
                 fXMLLoader.setController(controlador);
             }
             ventana.setOnCloseRequest(Event -> {
+                Event.consume();
                 cerrar();
             });
             ventana.focusedProperty().addListener((observable) -> {
@@ -145,6 +152,7 @@ public class ObjetoVentana {
             scene = new Scene(parent);
             ventana.setScene(scene);
             ventana.show();
+            efectoAbrirVentana();
             ventana.setActividad(true);
             Ventanas.addVentana(ventana);
         } else {
@@ -158,6 +166,7 @@ public class ObjetoVentana {
                 scene = new Scene(parent);
                 ventana.setScene(scene);
                 ventana.show();
+                efectoAbrirVentana();
                 ventana.setActividad(true);
                 Ventanas.addVentana(ventana);
             }
@@ -174,6 +183,7 @@ public class ObjetoVentana {
             scene = new Scene(parent);
             ventana.setScene(scene);
             ventana.show();
+            efectoAbrirVentana();
             ventana.setActividad(true);
             ventana.setResizable(false);
             Ventanas.addVentana(ventana);
@@ -188,6 +198,9 @@ public class ObjetoVentana {
                 scene = new Scene(parent);
                 ventana.setScene(scene);
                 ventana.show();
+                efectoAbrirVentana();
+                ventana.setActividad(true);
+                Ventanas.addVentana(ventana);
                 ventana.setActividad(true);
                 Ventanas.addVentana(ventana);
             }
@@ -199,8 +212,47 @@ public class ObjetoVentana {
      */
     public void cerrar() {
         this.ventana.setActividad(false);
-        this.ventana.close();
-        Ventanas.removeVentana(nombreVentana);
+        efectoCerrarVentana();
+        Timeline tL = new Timeline(new KeyFrame(Duration.seconds(0.2), (event) -> {
+            parent.setDisable(true);
+            this.ventana.close();
+            Ventanas.removeVentana(nombreVentana);
+        }));
+        tL.play();
+    }
+
+    private void efectoAbrirVentana() {
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), parent);
+        fadeTransition.setFromValue(0.0);
+        fadeTransition.setToValue(1.0);
+        fadeTransition.setCycleCount(1);
+        //------------------------------------------------------------------------------------
+        ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(0.5), parent);
+        scaleTransition.setFromX(0);
+        scaleTransition.setFromY(0);
+        scaleTransition.setToX(1);
+        scaleTransition.setToY(1);
+        scaleTransition.setCycleCount(1);
+        //---------------------------------------------------------------------------------------------
+        scaleTransition.play();
+        fadeTransition.play();
+    }
+
+    private void efectoCerrarVentana() {
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.3), parent);
+        fadeTransition.setFromValue(1.0);
+        fadeTransition.setToValue(0.0);
+        fadeTransition.setCycleCount(1);
+        //------------------------------------------------------------------------------------
+        ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(0.2), parent);
+        scaleTransition.setFromX(1);
+        scaleTransition.setFromY(1);
+        scaleTransition.setToX(0);
+        scaleTransition.setToY(0);
+        scaleTransition.setCycleCount(1);
+        //---------------------------------------------------------------------------------------------
+        scaleTransition.play();
+        fadeTransition.play();
     }
 
     public String getNombreFXML() {

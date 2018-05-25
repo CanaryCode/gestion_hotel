@@ -251,7 +251,7 @@
                                                       </HBox>
                                                       <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="4">
                                                          <children>
-                                                            <ToggleButton fx:id="toogleCif" mnemonicParsing="false" styleClass="toogleButtonOn">
+                                                            <ToggleButton fx:id="toggleCif" mnemonicParsing="false" styleClass="toogleButtonOn">
                                                                <HBox.margin>
                                                                   <Insets right="10.0" />
                                                                </HBox.margin>
@@ -605,7 +605,7 @@
                            <children>
                               <AnchorPane>
                                  <children>
-                                    <Button id="botonOk" fx:id="aceptar" disable="true" mnemonicParsing="false" text="Seleccionar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <Button id="botonOk" fx:id="seleccionar" disable="true" mnemonicParsing="false" text="Seleccionar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <font>
                                           <Font size="15.0" />
                                        </font>

@@ -109,7 +109,7 @@ public class Registro {
         "Desconocido", "Mar", "Montaña", "Piscina", "Calle", "Otro"
     };
     public static ObservableList ListaVistas = FXCollections.observableArrayList(vistas);
-    private static final String[] turnoRestaurante= {
+    private static final String[] turnoRestaurante = {
         "Desconocido", "Primero", "Segundo", "Tercero", "Otro"
     };
     public static ObservableList ListaTurnoRestaurante = FXCollections.observableArrayList(turnoRestaurante);
@@ -117,5 +117,8 @@ public class Registro {
         "Desconocido", "Principal", "Tradicional", "Mexicano", "Tailandés", "Otro"
     };
     public static ObservableList ListaTipoRestaurante = FXCollections.observableArrayList(tiposRestaurante);
-
+    private static final String[] numeroHabitacion = {
+        "1", "2", "3", "4", "5", "6"
+    };
+    public static ObservableList ListaNumeroHabitacion= FXCollections.observableArrayList(numeroHabitacion);
 }

@@ -5,9 +5,9 @@ import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaTelefono;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Habitacion;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersona;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -30,49 +30,41 @@ import javafx.stage.Modality;
  */
 public class ControladorTelefonoBuscador implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
     @FXML
-    private AnchorPane principal;
+    private AnchorPane principal, panelFiltro;
 
     @FXML
-    private TextField numero, nombre;
+    private TextField numero, nombre, tipo;
 
     @FXML
-    private ToggleButton toggleNumero, toggleNombre;
+    private ToggleButton toggleNumero, toggleNombre, toggleTipo;
 
     @FXML
-    private Button seleccionar, resetarCampos, crear, actualizar, borrar, aceptar;
+    private Button seleccionar, resetearCampos, crear, actualizar, borrar, aceptar;
 
     @FXML
     private TableView<TablaTelefono> tabla;
 
     @FXML
-    private TableColumn<?, ?> tableColumnNombre, tableColumnNumero, tableColumnTipo;
-
-    private List<TablaTelefono> listaTablaTelefono = new ArrayList<>();
-    private List<TelefonoPersona> listaTelefonoPersonaEnVista = new ArrayList<>();
-
+    private TableColumn tableColumnNombre, tableColumnNumero, tableColumnTipo;
+    private ObservableList<TelefonoPersona> listaTelefono = FXCollections.observableArrayList();
+    private ObservableList<TablaTelefono> listaTablaTelefono = FXCollections.observableArrayList();
+    private TelefonoPersona telefonoEnVista;
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        toggleNumero.setOnAction((event) -> {
-            codigoToggleNumero();
+        tabla.setItems(listaTablaTelefono);
+        tabla.getSelectionModel().selectedItemProperty().addListener((observable) -> {
+            tablaOnSelectedItem();
         });
-        toggleNombre.setOnAction((event) -> {
-            codigoToggleNombre();
-        });
-      toggleNombre.selectedProperty().addListener((e) -> {
-         codigoToggleNombre();
-        });
-      toggleNumero.selectedProperty().addListener((e) -> {
-         codigoToggleNumero();
-        });
+        //---------------------------------------------------------------------
         seleccionar.setOnAction((event) -> {
             codigoSeleccionar();
         });
-        resetarCampos.setOnAction((event) -> {
-            codigoResetarCampos();
+        resetearCampos.setOnAction((event) -> {
+            codigoResetearCampos();
         });
         crear.setOnAction((event) -> {
             codigoCrear();
@@ -86,23 +78,54 @@ public class ControladorTelefonoBuscador implements Initializable {
         aceptar.setOnAction((event) -> {
             codigoAceptar();
         });
-//        listaTelefonoPersona = Consultas.realizaSQLQuery(Consultas.TODAS_LAS_PERSONAS, TelefonoPersona.class);
-//        listaTablaTelefono= TablaTelefono.getTablaTelefono(listaTelefonoPersona);
-
-        tabla.setItems(FXCollections.observableArrayList(listaTablaTelefono));
-        tableColumnNumero.setCellValueFactory(new PropertyValueFactory("numero"));
-        tableColumnNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
-        tableColumnTipo.setCellValueFactory(new PropertyValueFactory("tipo"));
-
+        toggleNumero.selectedProperty().addListener((e) -> {
+            codigoToggleNumero();
+        });
+        toggleNombre.selectedProperty().addListener((e) -> {
+            codigoToggleNombre();
+        });
+        toggleTipo.selectedProperty().addListener((e) -> {
+            codigoToggleTipo();
+        });
+        //----------------------------------------------------
+        tableColumnNombre.setCellValueFactory(
+                new PropertyValueFactory("nombre"));
+        tableColumnNumero.setCellValueFactory(
+                new PropertyValueFactory("numero"));
+        tableColumnTipo.setCellValueFactory(
+                new PropertyValueFactory("tipo"));
     }
 
-    private void codigoToggleNumero() {
-        if (toggleNumero.isSelected()) {
-            numero.setDisable(false);
+    private void codigoAceptar() {
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaTelefonoFormulario(Ventanas.TELEFONO_BUSCADOR, Modality.APPLICATION_MODAL, null);
+        if (obj != null) {
+            obj.ver();
+        }
+    }
+    private void codigoActualizar() {
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaTelefonoFormulario(Ventanas.TELEFONO_BUSCADOR, Modality.APPLICATION_MODAL, null);
+        if (obj != null) {
+            obj.ver();
+        }
+    }
+    public ControladorTelefonoBuscador setModo(int modo) {
+
+        return this;
+    }
+
+    public ControladorTelefonoBuscador setLista(ObservableList<TelefonoPersona> listaTelefono) {
+        this.listaTelefono = listaTelefono;
+        this.listaTablaTelefono = TablaTelefono.getTablaTelefono(listaTelefono);
+        tabla.setItems(listaTablaTelefono);
+        return this;
+    }
+
+    private void codigoToggleTipo() {
+        if (toggleTipo.isSelected()) {
+            tipo.setDisable(false);
             enciendeToggle();
         } else {
-            numero.setDisable(true);
-            numero.setText("");
+            tipo.setDisable(true);
             configuraBotones();
         }
     }
@@ -113,51 +136,31 @@ public class ControladorTelefonoBuscador implements Initializable {
             enciendeToggle();
         } else {
             nombre.setDisable(true);
-            nombre.setText("");
             configuraBotones();
         }
     }
 
-    private void codigoSeleccionar() {
-
-    }
-
-    private void codigoResetarCampos() {
-        RecorredorPaneles.reseteaControles(principal);
-    }
-
-    private void codigoCrear() {
-              ObjetoVentana obj = VentanasFactory.getObjetoVentanaTelefonoFormulario(Ventanas.TELEFONO_BUSCADOR, Modality.APPLICATION_MODAL, null);
-        if (obj != null) {
-            ((ControladorTelefonoFormulario) obj.getfXMLLoader().getController()).
-                    setModoFormulario(Ventanas.MODO_INSERTAR);
-            obj.ver();
+    private void codigoToggleNumero() {
+        if (toggleNumero.isSelected()) {
+            numero.setDisable(false);
+            enciendeToggle();
+        } else {
+            tipo.setDisable(true);
+            configuraBotones();
         }
-    }
-
-    private void codigoActualizar() {
-
-    }
-
-    private void codigoBorrar() {
-
-    }
-
-    private void codigoAceptar() {
-
     }
 
     public void enciendeToggle() {
         seleccionar.setDisable(false);
-        resetarCampos.setDisable(false);
+        resetearCampos.setDisable(false);
     }
 
     private void configuraBotones() {
         if (hayTogglesOn()) {
-            resetarCampos.setDisable(false);
+            resetearCampos.setDisable(false);
             seleccionar.setDisable(false);
         } else {
-            resetarCampos.setDisable(true);
+            resetearCampos.setDisable(true);
             seleccionar.setDisable(true);
         }
     }
@@ -173,8 +176,26 @@ public class ControladorTelefonoBuscador implements Initializable {
         }
         return hayToogleOn;
     }
-public ControladorTelefonoBuscador setLisTalefonoEnVista(ObservableList<TelefonoPersona> listaTelefonos){
-    listaTelefonoPersonaEnVista=listaTelefonos;
-    return this;
-}
+
+    private void codigoSeleccionar() {
+
+    }
+
+    private void codigoResetearCampos() {
+        RecorredorPaneles.reseteaControles(principal);
+    }
+
+    private void codigoCrear() {
+    }
+
+    private void codigoBorrar() {
+
+    }
+    public void tablaOnSelectedItem() {
+        aceptar.setDisable(false);
+        actualizar.setDisable(false);
+        borrar.setDisable(false);
+        telefonoEnVista = listaTelefono.get(tabla.getSelectionModel().getSelectedIndex());
+    }
+
 }

@@ -1,6 +1,7 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.RecorredorPaneles;
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.FormularioInterface;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
@@ -26,7 +27,7 @@ import javafx.scene.layout.Pane;
  *
  * @author Antonio Jesús Pérez Delgado
  */
-public class ControladorClienteFormulario implements Initializable {
+public class ControladorClienteFormulario implements Initializable, FormularioInterface {
 
     @FXML
     private TextField nombre, primerApellido, segundoApellido, calle, numero, provincia, ciudad,
@@ -107,12 +108,6 @@ public class ControladorClienteFormulario implements Initializable {
         RecorredorPaneles.reseteaControles(principal);
     }
 
-    public ControladorClienteFormulario setModoFormulario(int modoFormulario) {
-        this.modoFormulario = modoFormulario;
-        configurarModo();
-        return this;
-    }
-
     private void codigoReseteaCampos() {
         RecorredorPaneles.reseteaControles(principal);
     }
@@ -121,90 +116,100 @@ public class ControladorClienteFormulario implements Initializable {
         RecorredorPaneles.reseteaControles((Pane) viejo.getContent());
     }
 
-    public ControladorClienteFormulario setClienteEnVista(Persona cliente) {
-        clienteEnVista = cliente;
-        if (cliente.getNombre() != null&&cliente.getEsEmpresa()!=null) {
-            if (cliente.getEsEmpresa() == 0) {
-                nombre.setText(cliente.getNombre());
+    private void deshabilitaEditables() {
+        RecorredorPaneles.setOnlyReadsInputs(principal);
+    }
+
+    private void deshabilitaBotones() {
+        aceptar.setDisable(true);
+        reseteaCampos.setDisable(true);
+    }
+
+    @Override
+    public ControladorClienteFormulario setObjetoEnVista(Object objetoEnVista) {
+         clienteEnVista=(Persona) objetoEnVista;
+        if (clienteEnVista.getNombre() != null && clienteEnVista.getEsEmpresa() != null) {
+            if (clienteEnVista.getEsEmpresa() == 0) {
+                nombre.setText(clienteEnVista.getNombre());
             } else {
-                nombreEmpresa.setText(cliente.getNombre());
+                nombreEmpresa.setText(clienteEnVista.getNombre());
             }
         }
-        if (cliente.getFisPrimerApellido() != null) {
-            primerApellido.setText(cliente.getFisPrimerApellido());
+        if (clienteEnVista.getFisPrimerApellido() != null) {
+            primerApellido.setText(clienteEnVista.getFisPrimerApellido());
         }
-        if (cliente.getFisSegundoApellido() != null) {
-            segundoApellido.setText(cliente.getFisSegundoApellido());
+        if (clienteEnVista.getFisSegundoApellido() != null) {
+            segundoApellido.setText(clienteEnVista.getFisSegundoApellido());
         }
-        if (cliente.getDocumentoNumero() != null&&cliente.getEsEmpresa()!=null) {
-            if (cliente.getEsEmpresa() == 0) {
-                dni.setText(cliente.getDocumentoNumero());
+        if (clienteEnVista.getDocumentoNumero() != null && clienteEnVista.getEsEmpresa() != null) {
+            if (clienteEnVista.getEsEmpresa() == 0) {
+                dni.setText(clienteEnVista.getDocumentoNumero());
             } else {
-                cif.setText(cliente.getDocumentoNumero());
+                cif.setText(clienteEnVista.getDocumentoNumero());
             }
         }
-        if (cliente.getProvincia() != null) {
-            provincia.setText(cliente.getProvincia());
+        if (clienteEnVista.getProvincia() != null) {
+            provincia.setText(clienteEnVista.getProvincia());
         }
-        if (cliente.getCodPostal() != null) {
-            codigoPostal.setText(cliente.getCodPostal());
+        if (clienteEnVista.getCodPostal() != null) {
+            codigoPostal.setText(clienteEnVista.getCodPostal());
         }
-        if (cliente.getEmail() != null) {
-            correoElectronico.setText(cliente.getEmail());
+        if (clienteEnVista.getEmail() != null) {
+            correoElectronico.setText(clienteEnVista.getEmail());
         }
-        if (cliente.getCalle() != null) {
-            calle.setText(cliente.getCalle());
+        if (clienteEnVista.getCalle() != null) {
+            calle.setText(clienteEnVista.getCalle());
         }
-        if (cliente.getCiudad() != null) {
-            ciudad.setText(cliente.getCiudad());
+        if (clienteEnVista.getCiudad() != null) {
+            ciudad.setText(clienteEnVista.getCiudad());
         }
-        if (cliente.getComentario() != null) {
-            comentario.setText(cliente.getComentario());
+        if (clienteEnVista.getComentario() != null) {
+            comentario.setText(clienteEnVista.getComentario());
         }
-        if (cliente.getNumero() != null) {
-            numero.setText(cliente.getNumero());
+        if (clienteEnVista.getNumero() != null) {
+            numero.setText(clienteEnVista.getNumero());
         }
-        if (cliente.getPaginaWeb() != null) {
-            paginaWeb.setText(cliente.getPaginaWeb());
+        if (clienteEnVista.getPaginaWeb() != null) {
+            paginaWeb.setText(clienteEnVista.getPaginaWeb());
         }
         /**
          * --------------------------------------------------------
          */
-        if (cliente.getFisNacionalidad() != null) {
+        if (clienteEnVista.getFisNacionalidad() != null) {
             for (Object obj : nacionalidad.getItems()) {
-                if (((String) obj).equals(cliente.getFisNacionalidad())) {
+                if (((String) obj).equals(clienteEnVista.getFisNacionalidad())) {
                     nacionalidad.getSelectionModel().select(obj);
                     break;
                 }
             }
         }
-        if (cliente.getEstado() != null) {
+        if (clienteEnVista.getEstado() != null) {
             for (Object obj : estado.getItems()) {
-                if (((String) obj).equals(cliente.getEstado())) {
+                if (((String) obj).equals(clienteEnVista.getEstado())) {
                     estado.getSelectionModel().select(obj);
                     break;
                 }
             }
         }
-        if (cliente.getFisTratamiento() != null) {
+        if (clienteEnVista.getFisTratamiento() != null) {
             for (Object obj : tratamiento.getItems()) {
-                if (((String) obj).equals(cliente.getFisTratamiento())) {
+                if (((String) obj).equals(clienteEnVista.getFisTratamiento())) {
                     tratamiento.getSelectionModel().select(obj);
                     break;
                 }
             }
         }
-        if (cliente.getCategoria() != null) {
+        if (clienteEnVista.getCategoria() != null) {
             for (Object obj : categoria.getItems()) {
-                if (((String) obj).equals(cliente.getCategoria())) {
+                if (((String) obj).equals(clienteEnVista.getCategoria())) {
                     categoria.getSelectionModel().select(obj);
                     break;
                 }
             }
         }
-        if (cliente.getJurRazonSocial() != null) {
+        if (clienteEnVista.getJurRazonSocial() != null) {
             for (Object obj : razonSocial.getItems()) {
-                if (((String) obj).equals(cliente.getFisNacionalidad())) {
+                if (((String) obj).equals(clienteEnVista.getFisNacionalidad())) {
                     razonSocial.getSelectionModel().select(obj);
                     break;
                 }
@@ -213,8 +218,8 @@ public class ControladorClienteFormulario implements Initializable {
         /**
          * ----------------------------------------------------------------------------
          */
-        if (cliente.getEsEmpresa() != null) {
-            if (cliente.getEsEmpresa() == 0) {
+        if (clienteEnVista.getEsEmpresa() != null) {
+            if (clienteEnVista.getEsEmpresa() == 0) {
                 tabPanel.getSelectionModel().select(tabPersona);
                 tabEmpresa.setDisable(true);
             } else {
@@ -222,43 +227,20 @@ public class ControladorClienteFormulario implements Initializable {
                 tabPersona.setDisable(true);
             }
         }
-        if (cliente.getFisSexoHombre() != null) {
-            if (cliente.getFisSexoHombre() == 0) {
+        if (clienteEnVista.getFisSexoHombre() != null) {
+            if (clienteEnVista.getFisSexoHombre() == 0) {
                 sexoF.setSelected(true);
             }
         }
-        if (cliente.getFisFechaNacimiento() != null) {
-            fechaNacimiento.setValue(new Date(cliente.getFisFechaNacimiento().getTime()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        if (clienteEnVista.getFisFechaNacimiento() != null) {
+            fechaNacimiento.setValue(new Date(clienteEnVista.getFisFechaNacimiento().getTime()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         }
         return this;
     }
-
-    private void deshabilitaEditables() {
-//        nombre.setEditable(false);
-//        primerApellido.setEditable(false);
-//        segundoApellido.setEditable(false);
-//        dni.setEditable(false);
-//        provincia.setEditable(false);
-//        codigoPostal.setEditable(false);
-//        correoElectronico.setEditable(false);
-//        calle.setEditable(false);
-//        ciudad.setEditable(false);
-//        comentario.setEditable(false);
-//        numero.setEditable(false);
-//        paginaWeb.setEditable(false);
-//        nacionalidad.setEditable(false);
-//        estado.setEditable(false);
-//        tratamiento.setEditable(false);
-//        categoria.setEditable(false);
-//        razonSocial.setEditable(false);
-//        sexoF.setDisable(false);
-//        sexoM.setDisable(false);
-//        fechaNacimiento.setEditable(false);
-        RecorredorPaneles.setOnlyReadsInputs(principal);
-    }
-
-    private void deshabilitaBotones() {
-        aceptar.setDisable(true);
-        reseteaCampos.setDisable(true);
+      @Override
+    public ControladorClienteFormulario setModo(int modoFormulario) {
+        this.modoFormulario = modoFormulario;
+        configurarModo();
+        return this;
     }
 }

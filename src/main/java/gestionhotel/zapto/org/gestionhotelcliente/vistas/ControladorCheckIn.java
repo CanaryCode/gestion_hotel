@@ -7,7 +7,11 @@ import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaHab
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaHuesped;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaReserva;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Habitacion;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersona;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersonaId;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -66,6 +70,7 @@ public class ControladorCheckIn implements Initializable {
     private ObservableList<TablaHuesped> listaTablaHuespedBebes = FXCollections.observableArrayList();
     private ObservableList<TablaHuesped> listaTablaHuespedTodos = FXCollections.observableArrayList();
     private ObservableList<TablaHabitacion> listaTablaHabitacion = FXCollections.observableArrayList();
+    private ObservableList<Habitacion> listaHabitacion = FXCollections.observableArrayList();
     private ObservableList<TablaReserva> listaTablaReserva = FXCollections.observableArrayList();
     private ObservableList<DetallesReserva> listaDetalleReserva = FXCollections.observableArrayList();
 
@@ -219,6 +224,8 @@ public class ControladorCheckIn implements Initializable {
     private void codigoModificaHabitacion() {
         ObjetoVentana obj = VentanasFactory.getObjetoVentanaHabitacionBuscador(Ventanas.CHECK_IN, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
+            ((ControladorHabitacionBuscador)obj.getfXMLLoader().getController()).setLista(listaHabitacion).
+                    setFiltro(PruebasModelo.getListaHabitaciones());
             obj.ver();
         }
     }
