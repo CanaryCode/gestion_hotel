@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -21,39 +20,31 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Label>
-            <ScrollPane prefHeight="99.0" prefWidth="780.0">
-              <content>
-                <AnchorPane>
-                     <children>
-                        <TableView fx:id="tablaResponsable" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <columns>
-                              <TableColumn fx:id="tableColumnDniResponsable" prefWidth="130.0" text="dni" />
-                              <TableColumn fx:id="tableColumnNombreResponsable" prefWidth="101.0" text="nombre" />
-                              <TableColumn fx:id="tableColumnPrimerApellidoResponsable" minWidth="0.0" prefWidth="115.0" text="Primer Apellido" />
-                              <TableColumn fx:id="tableColumnSegundoApellidoResponsable" prefWidth="115.0" text="Segundo Apellido" />
-                              <TableColumn fx:id="tableColumnFechaNacimientoResponsable" minWidth="0.0" prefWidth="100.0" text="Fecha Nacimiento" />
-                              <TableColumn fx:id="tableColumnSexoResponsable" prefWidth="58.0" text="Sexo" />
-                              <TableColumn fx:id="tableColumnDiscapacitadoResponsable" prefWidth="82.0" text="Discapacitado" />
-                              <TableColumn fx:id="tableColumnPaisResponsable" prefWidth="75.0" text="Pais" />
-                              <TableColumn fx:id="tableColumnCiudadResponsable" prefWidth="78.0" text="Ciudad" />
-                              <TableColumn fx:id="tableColumnProvinciaResponsable" prefWidth="75.0" text="Provincia" />
-                              <TableColumn fx:id="tableColumnNumeroResponsable" prefWidth="53.0" text="Número" />
-                              <TableColumn fx:id="tableColumnCalleResponsable" prefWidth="75.0" text="Calle" />
-                              <TableColumn fx:id="tableColumnCodigoPostalResponsable" prefWidth="75.0" text="Còdigo postal" />
-                              <TableColumn fx:id="tableColumnPasaporteResponsable" prefWidth="75.0" text="Pasaporte" />
-                              <TableColumn fx:id="tableColumnFechaExpedicionResponsable" prefWidth="75.0" text="Fecha Exp." />
-                              <TableColumn fx:id="tableColumnEmailResponsable" prefWidth="75.0" text="Correo Electrónico" />
-                              <TableColumn fx:id="tableColumnTratamientoResponsable" prefWidth="75.0" text="Tratamiento" />
-                              <TableColumn fx:id="tableColumnCategoriaResponsable" prefWidth="75.0" text="Categoría" />
-                           </columns>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-              </content>
+            <TableView fx:id="tablaResponsable" prefHeight="75.0">
+               <columns>
+                  <TableColumn fx:id="tableColumnDniResponsable" prefWidth="130.0" text="dni" />
+                  <TableColumn fx:id="tableColumnNombreResponsable" prefWidth="101.0" text="nombre" />
+                  <TableColumn fx:id="tableColumnPrimerApellidoResponsable" minWidth="0.0" prefWidth="115.0" text="Primer Apellido" />
+                  <TableColumn fx:id="tableColumnSegundoApellidoResponsable" prefWidth="115.0" text="Segundo Apellido" />
+                  <TableColumn fx:id="tableColumnFechaNacimientoResponsable" minWidth="0.0" prefWidth="100.0" text="Fecha Nacimiento" />
+                  <TableColumn fx:id="tableColumnSexoResponsable" prefWidth="58.0" text="Sexo" />
+                  <TableColumn fx:id="tableColumnDiscapacitadoResponsable" prefWidth="82.0" text="Discapacitado" />
+                  <TableColumn fx:id="tableColumnPaisResponsable" prefWidth="75.0" text="Pais" />
+                  <TableColumn fx:id="tableColumnCiudadResponsable" prefWidth="78.0" text="Ciudad" />
+                  <TableColumn fx:id="tableColumnProvinciaResponsable" prefWidth="75.0" text="Provincia" />
+                  <TableColumn fx:id="tableColumnNumeroResponsable" prefWidth="53.0" text="Número" />
+                  <TableColumn fx:id="tableColumnCalleResponsable" prefWidth="75.0" text="Calle" />
+                  <TableColumn fx:id="tableColumnCodigoPostalResponsable" prefWidth="75.0" text="Còdigo postal" />
+                  <TableColumn fx:id="tableColumnPasaporteResponsable" prefWidth="75.0" text="Pasaporte" />
+                  <TableColumn fx:id="tableColumnFechaExpedicionResponsable" prefWidth="75.0" text="Fecha Exp." />
+                  <TableColumn fx:id="tableColumnEmailResponsable" prefWidth="75.0" text="Correo Electrónico" />
+                  <TableColumn fx:id="tableColumnTratamientoResponsable" prefWidth="75.0" text="Tratamiento" />
+                  <TableColumn fx:id="tableColumnCategoriaResponsable" prefWidth="75.0" text="Categoría" />
+               </columns>
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
-            </ScrollPane>
+            </TableView>
             <AnchorPane>
                <children>
                   <GridPane prefHeight="34.0" prefWidth="760.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -75,7 +66,7 @@
                         </AnchorPane>
                         <AnchorPane GridPane.columnIndex="1">
                            <children>
-                              <Button id="botonError" fx:id="botonBorrarResponsable" disable="true" layoutX="115.0" layoutY="31.0" mnemonicParsing="false" style="-fx-content-display: left;" text="borrar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Button id="botonBorrar" fx:id="botonBorrarResponsable" disable="true" layoutX="115.0" layoutY="31.0" mnemonicParsing="false" text="borrar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                            <GridPane.margin>
                               <Insets left="10.0" />
@@ -92,39 +83,31 @@
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin></Label>
-            <ScrollPane prefHeight="123.0">
-               <content>
-                  <AnchorPane>
-                     <children>
-                        <TableView fx:id="tablaOtros" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <columns>
-                              <TableColumn fx:id="tableColumnDniOtros" prefWidth="130.0" text="dni" />
-                              <TableColumn fx:id="tableColumnNombreOtros" prefWidth="101.0" text="nombre" />
-                              <TableColumn fx:id="tableColumnPrimerApellidoOtros" minWidth="0.0" prefWidth="115.0" text="Primer Apellido" />
-                              <TableColumn fx:id="tableColumnSegundoApellidoOtros" prefWidth="115.0" text="Segundo Apellido" />
-                              <TableColumn fx:id="tableColumnFechaNacimientoOtros" minWidth="0.0" prefWidth="100.0" text="Fecha Nacimiento" />
-                              <TableColumn fx:id="tableColumnSexoOtros" prefWidth="58.0" text="Sexo" />
-                              <TableColumn fx:id="tableColumnDiscapacitadoOtros" prefWidth="82.0" text="Discapacitado" />
-                              <TableColumn fx:id="tableColumnPaisOtros" prefWidth="75.0" text="Pais" />
-                              <TableColumn fx:id="tableColumnCiudadOtros" prefWidth="78.0" text="Ciudad" />
-                              <TableColumn fx:id="tableColumnProvinciaOtros" prefWidth="75.0" text="Provincia" />
-                              <TableColumn fx:id="tableColumnCalleOtros" prefWidth="75.0" text="Calle" />
-                              <TableColumn fx:id="tableColumnNumeroOtros" prefWidth="75.0" text="Numero" />
-                              <TableColumn fx:id="tableColumnCodigoPostalOtros" prefWidth="75.0" text="Còdigo postal" />
-                              <TableColumn fx:id="tableColumnPasaporteOtros" prefWidth="75.0" text="Pasaporte" />
-                              <TableColumn fx:id="tableColumnFechaExpedicionOtros" prefWidth="75.0" text="Fecha Exp." />
-                              <TableColumn fx:id="tableColumnEmailOtros" prefWidth="75.0" text="Correo Electrónico" />
-                              <TableColumn fx:id="tableColumnTratamientoOtros" prefWidth="75.0" text="Tratamiento" />
-                              <TableColumn fx:id="tableColumnCategoriaOtros" prefWidth="75.0" text="Categoría" />
-                           </columns>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-               </content>
+            <TableView fx:id="tablaOtros" prefHeight="100.0">
+               <columns>
+                  <TableColumn fx:id="tableColumnDniOtros" prefWidth="130.0" text="dni" />
+                  <TableColumn fx:id="tableColumnNombreOtros" prefWidth="101.0" text="nombre" />
+                  <TableColumn fx:id="tableColumnPrimerApellidoOtros" minWidth="0.0" prefWidth="115.0" text="Primer Apellido" />
+                  <TableColumn fx:id="tableColumnSegundoApellidoOtros" prefWidth="115.0" text="Segundo Apellido" />
+                  <TableColumn fx:id="tableColumnFechaNacimientoOtros" minWidth="0.0" prefWidth="100.0" text="Fecha Nacimiento" />
+                  <TableColumn fx:id="tableColumnSexoOtros" prefWidth="58.0" text="Sexo" />
+                  <TableColumn fx:id="tableColumnDiscapacitadoOtros" prefWidth="82.0" text="Discapacitado" />
+                  <TableColumn fx:id="tableColumnPaisOtros" prefWidth="75.0" text="Pais" />
+                  <TableColumn fx:id="tableColumnCiudadOtros" prefWidth="78.0" text="Ciudad" />
+                  <TableColumn fx:id="tableColumnProvinciaOtros" prefWidth="75.0" text="Provincia" />
+                  <TableColumn fx:id="tableColumnCalleOtros" prefWidth="75.0" text="Calle" />
+                  <TableColumn fx:id="tableColumnNumeroOtros" prefWidth="75.0" text="Numero" />
+                  <TableColumn fx:id="tableColumnCodigoPostalOtros" prefWidth="75.0" text="Còdigo postal" />
+                  <TableColumn fx:id="tableColumnPasaporteOtros" prefWidth="75.0" text="Pasaporte" />
+                  <TableColumn fx:id="tableColumnFechaExpedicionOtros" prefWidth="75.0" text="Fecha Exp." />
+                  <TableColumn fx:id="tableColumnEmailOtros" prefWidth="75.0" text="Correo Electrónico" />
+                  <TableColumn fx:id="tableColumnTratamientoOtros" prefWidth="75.0" text="Tratamiento" />
+                  <TableColumn fx:id="tableColumnCategoriaOtros" prefWidth="75.0" text="Categoría" />
+               </columns>
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
-            </ScrollPane>
+            </TableView>
             <AnchorPane>
                <children>
                   <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -146,7 +129,7 @@
                         </AnchorPane>
                         <AnchorPane GridPane.columnIndex="1">
                            <children>
-                              <Button id="botonError" fx:id="botonBorrarOtros" disable="true" layoutX="127.0" layoutY="31.0" mnemonicParsing="false" style="-fx-content-display: left;" text="borrar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Button id="botonBorrar" fx:id="botonBorrarOtros" disable="true" layoutX="127.0" layoutY="31.0" mnemonicParsing="false" text="borrar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                            <GridPane.margin>
                               <Insets left="10.0" />
@@ -164,40 +147,32 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Label>
-            <ScrollPane prefHeight="123.0">
-               <content>
-                  <AnchorPane>
-                     <children>
-                        <TableView fx:id="tablaChild" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <columns>
-                              <TableColumn fx:id="tableColumnDniChild" prefWidth="130.0" text="dni" />
-                              <TableColumn fx:id="tableColumnNombreChild" prefWidth="101.0" text="nombre" />
-                              <TableColumn fx:id="tableColumnPrimerApellidoChild" minWidth="0.0" prefWidth="115.0" text="Primer Apellido" />
-                              <TableColumn fx:id="tableColumnSegundoApellidoChild" prefWidth="115.0" text="Segundo Apellido" />
-                              <TableColumn fx:id="tableColumnFechaNacimientoChild" minWidth="0.0" prefWidth="100.0" text="Fecha Nacimiento" />
-                              <TableColumn fx:id="tableColumnSexoChild" prefWidth="58.0" text="Sexo" />
-                              <TableColumn fx:id="tableColumnDiscapacitadoChild" prefWidth="82.0" text="Discapacitado" />
-                              <TableColumn fx:id="tableColumnPaisChild" prefWidth="75.0" text="Pais" />
-                              <TableColumn fx:id="tableColumnCiudadChild" prefWidth="78.0" text="Ciudad" />
-                              <TableColumn fx:id="tableColumnProvinciaChild" prefWidth="75.0" text="Provincia" />
-                              <TableColumn fx:id="tableColumnNumeroChild" prefWidth="53.0" text="Número" />
-                              <TableColumn fx:id="tableColumnCalleChild" prefWidth="75.0" text="Calle" />
-                              <TableColumn fx:id="tableColumnCodigoPostalChild" prefWidth="75.0" text="Còdigo postal" />
-                              <TableColumn fx:id="tableColumnPasaporteChild" prefWidth="75.0" text="Pasaporte" />
-                              <TableColumn fx:id="tableColumnFechaExpedicionChild" prefWidth="75.0" text="Fecha Exp." />
-                              <TableColumn fx:id="tableColumnEmailChild" prefWidth="75.0" text="Correo Electrónico" />
-                              <TableColumn fx:id="tableColumnTratamientoChild" prefWidth="75.0" text="Tratamiento" />
-                              <TableColumn fx:id="tableColumnCategoriaChild" prefWidth="75.0" text="Categoría" />
-                              <TableColumn fx:id="tableColumnNumeroChild" prefWidth="53.0" text="Número" />
-                           </columns>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-               </content>
+            <TableView fx:id="tablaChild" prefHeight="100.0">
+               <columns>
+                  <TableColumn fx:id="tableColumnDniChild" prefWidth="130.0" text="dni" />
+                  <TableColumn fx:id="tableColumnNombreChild" prefWidth="101.0" text="nombre" />
+                  <TableColumn fx:id="tableColumnPrimerApellidoChild" minWidth="0.0" prefWidth="115.0" text="Primer Apellido" />
+                  <TableColumn fx:id="tableColumnSegundoApellidoChild" prefWidth="115.0" text="Segundo Apellido" />
+                  <TableColumn fx:id="tableColumnFechaNacimientoChild" minWidth="0.0" prefWidth="100.0" text="Fecha Nacimiento" />
+                  <TableColumn fx:id="tableColumnSexoChild" prefWidth="58.0" text="Sexo" />
+                  <TableColumn fx:id="tableColumnDiscapacitadoChild" prefWidth="82.0" text="Discapacitado" />
+                  <TableColumn fx:id="tableColumnPaisChild" prefWidth="75.0" text="Pais" />
+                  <TableColumn fx:id="tableColumnCiudadChild" prefWidth="78.0" text="Ciudad" />
+                  <TableColumn fx:id="tableColumnProvinciaChild" prefWidth="75.0" text="Provincia" />
+                  <TableColumn fx:id="tableColumnNumeroChild" prefWidth="53.0" text="Número" />
+                  <TableColumn fx:id="tableColumnCalleChild" prefWidth="75.0" text="Calle" />
+                  <TableColumn fx:id="tableColumnCodigoPostalChild" prefWidth="75.0" text="Còdigo postal" />
+                  <TableColumn fx:id="tableColumnPasaporteChild" prefWidth="75.0" text="Pasaporte" />
+                  <TableColumn fx:id="tableColumnFechaExpedicionChild" prefWidth="75.0" text="Fecha Exp." />
+                  <TableColumn fx:id="tableColumnEmailChild" prefWidth="75.0" text="Correo Electrónico" />
+                  <TableColumn fx:id="tableColumnTratamientoChild" prefWidth="75.0" text="Tratamiento" />
+                  <TableColumn fx:id="tableColumnCategoriaChild" prefWidth="75.0" text="Categoría" />
+                  <TableColumn fx:id="tableColumnNumeroChild" prefWidth="53.0" text="Número" />
+               </columns>
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
-            </ScrollPane>
+            </TableView>
             <AnchorPane>
                <children>
                   <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -219,7 +194,7 @@
                         </AnchorPane>
                         <AnchorPane GridPane.columnIndex="1">
                            <children>
-                              <Button id="botonError" fx:id="botonBorrarChild" disable="true" layoutX="127.0" layoutY="31.0" mnemonicParsing="false" style="-fx-content-display: left;" text="borrar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Button id="botonBorrar" fx:id="botonBorrarChild" disable="true" layoutX="127.0" layoutY="31.0" mnemonicParsing="false" style="-fx-content-display: left;" text="borrar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                            <GridPane.margin>
                               <Insets left="10.0" />
@@ -237,39 +212,31 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Label>
-            <ScrollPane prefHeight="123.0">
-               <content>
-                  <AnchorPane>
-                     <children>
-                        <TableView fx:id="tablaBebes" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <columns>
-                              <TableColumn fx:id="tableColumnDniBebes" prefWidth="130.0" text="dni" />
-                              <TableColumn fx:id="tableColumnNombreBebes" prefWidth="101.0" text="nombre" />
-                              <TableColumn fx:id="tableColumnPrimerApellidoBebes" minWidth="0.0" prefWidth="115.0" text="Primer Apellido" />
-                              <TableColumn fx:id="tableColumnSegundoApellidoBebes" prefWidth="115.0" text="Segundo Apellido" />
-                              <TableColumn fx:id="tableColumnFechaNacimientoBebes" minWidth="0.0" prefWidth="100.0" text="Fecha Nacimiento" />
-                              <TableColumn fx:id="tableColumnSexoBebes" prefWidth="58.0" text="Sexo" />
-                              <TableColumn fx:id="tableColumnDiscapacitadoBebes" prefWidth="82.0" text="Discapacitado" />
-                              <TableColumn fx:id="tableColumnPaisBebes" prefWidth="75.0" text="Pais" />
-                              <TableColumn fx:id="tableColumnCiudadBebes" prefWidth="78.0" text="Ciudad" />
-                              <TableColumn fx:id="tableColumnProvinciaBebes" prefWidth="75.0" text="Provincia" />
-                              <TableColumn fx:id="tableColumnNumeroBebes" prefWidth="53.0" text="Número" />
-                              <TableColumn fx:id="tableColumnCalleBebes" prefWidth="75.0" text="Calle" />
-                              <TableColumn fx:id="tableColumnCodigoPostalBebes" prefWidth="75.0" text="Còdigo postal" />
-                              <TableColumn fx:id="tableColumnPasaporteBebes" prefWidth="75.0" text="Pasaporte" />
-                              <TableColumn fx:id="tableColumnFechaExpedicionBebes" prefWidth="75.0" text="Fecha Exp." />
-                              <TableColumn fx:id="tableColumnEmailBebes" prefWidth="75.0" text="Correo Electrónico" />
-                              <TableColumn fx:id="tableColumnTratamientoBebes" prefWidth="75.0" text="Tratamiento" />
-                              <TableColumn fx:id="tableColumnCategoriaBebes" prefWidth="75.0" text="Categoría" />
-                           </columns>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-               </content>
+            <TableView fx:id="tablaBebes" prefHeight="100.0">
+               <columns>
+                  <TableColumn fx:id="tableColumnDniBebes" prefWidth="130.0" text="dni" />
+                  <TableColumn fx:id="tableColumnNombreBebes" prefWidth="101.0" text="nombre" />
+                  <TableColumn fx:id="tableColumnPrimerApellidoBebes" minWidth="0.0" prefWidth="115.0" text="Primer Apellido" />
+                  <TableColumn fx:id="tableColumnSegundoApellidoBebes" prefWidth="115.0" text="Segundo Apellido" />
+                  <TableColumn fx:id="tableColumnFechaNacimientoBebes" minWidth="0.0" prefWidth="100.0" text="Fecha Nacimiento" />
+                  <TableColumn fx:id="tableColumnSexoBebes" prefWidth="58.0" text="Sexo" />
+                  <TableColumn fx:id="tableColumnDiscapacitadoBebes" prefWidth="82.0" text="Discapacitado" />
+                  <TableColumn fx:id="tableColumnPaisBebes" prefWidth="75.0" text="Pais" />
+                  <TableColumn fx:id="tableColumnCiudadBebes" prefWidth="78.0" text="Ciudad" />
+                  <TableColumn fx:id="tableColumnProvinciaBebes" prefWidth="75.0" text="Provincia" />
+                  <TableColumn fx:id="tableColumnNumeroBebes" prefWidth="53.0" text="Número" />
+                  <TableColumn fx:id="tableColumnCalleBebes" prefWidth="75.0" text="Calle" />
+                  <TableColumn fx:id="tableColumnCodigoPostalBebes" prefWidth="75.0" text="Còdigo postal" />
+                  <TableColumn fx:id="tableColumnPasaporteBebes" prefWidth="75.0" text="Pasaporte" />
+                  <TableColumn fx:id="tableColumnFechaExpedicionBebes" prefWidth="75.0" text="Fecha Exp." />
+                  <TableColumn fx:id="tableColumnEmailBebes" prefWidth="75.0" text="Correo Electrónico" />
+                  <TableColumn fx:id="tableColumnTratamientoBebes" prefWidth="75.0" text="Tratamiento" />
+                  <TableColumn fx:id="tableColumnCategoriaBebes" prefWidth="75.0" text="Categoría" />
+               </columns>
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
-            </ScrollPane>
+            </TableView>
             <AnchorPane>
                <children>
                   <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -291,7 +258,7 @@
                         </AnchorPane>
                         <AnchorPane GridPane.columnIndex="1">
                            <children>
-                              <Button id="botonError" fx:id="botonBorrarBebes" disable="true" layoutX="127.0" layoutY="31.0" mnemonicParsing="false" style="-fx-content-display: left;" text="borrar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Button id="botonBorrar" fx:id="botonBorrarBebes" disable="true" layoutX="127.0" layoutY="31.0" mnemonicParsing="false" style="-fx-content-display: left;" text="borrar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                            <GridPane.margin>
                               <Insets left="10.0" />

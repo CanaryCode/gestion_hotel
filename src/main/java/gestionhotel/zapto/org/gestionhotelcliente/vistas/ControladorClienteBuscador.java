@@ -7,6 +7,7 @@ import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaCliente;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersona;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,7 +21,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TabPane;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn;;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
@@ -46,7 +47,7 @@ public class ControladorClienteBuscador implements Initializable, BuscadorInterf
     @FXML
     private ComboBox<?> nacionalidad, tratamiento, categoria, razonSocial, estado;
     @FXML
-    private Button borrar, crear, actualizar, buscar, seleccionar, resetearCampos, telefono, ver;
+    private Button borrar, crear, actualizar, buscar, seleccionar, resetearCampos, telefono;
     @FXML
     AnchorPane panelPrincipal, panelPersona, panelEmpresa, panelFiltro;
     @FXML
@@ -69,9 +70,10 @@ public class ControladorClienteBuscador implements Initializable, BuscadorInterf
             tableColumnCodigoPostal, tableColumnSexo, tableColumnEstado, tableColumnEmail, tableColumnPaginaWeb, tableColumnCategoria,
             tableColumnTratamiento;
 
-    private ObservableList<TablaCliente> listaClientes = FXCollections.observableArrayList();
-    private ObservableList<Persona> listaPersonas = FXCollections.observableArrayList();
+    private ObservableList<TablaCliente> listaTablaClientes = FXCollections.observableArrayList();
+    private ObservableList<Persona> listaAddClientes = FXCollections.observableArrayList();
     private ObservableList<Persona> listaFiltro = FXCollections.observableArrayList();
+    private ObservableList<TelefonoPersona> listaAddTelefono = FXCollections.observableArrayList();
     private Persona ClienteEnVista;
 
     private ObservableList<Node> nodosApagables;
@@ -103,50 +105,50 @@ public class ControladorClienteBuscador implements Initializable, BuscadorInterf
 
         });
         toggleNombreEmpresa.selectedProperty().addListener((e) -> {
-             UtilBuscador.apagaToggle(toggleNombreEmpresa, nombreEmpresa, panelPrincipal, nodosApagables);
+            UtilBuscador.apagaToggle(toggleNombreEmpresa, nombreEmpresa, panelPrincipal, nodosApagables);
         });
         toggleRazonSocial.selectedProperty().addListener((e) -> {
-             UtilBuscador.apagaToggle(toggleRazonSocial, razonSocial, panelPrincipal, nodosApagables);
+            UtilBuscador.apagaToggle(toggleRazonSocial, razonSocial, panelPrincipal, nodosApagables);
         });
         toggleNacionalidad.selectedProperty().addListener((e) -> {
-             UtilBuscador.apagaToggle(toggleNacionalidad, nacionalidad, panelPrincipal, nodosApagables);
+            UtilBuscador.apagaToggle(toggleNacionalidad, nacionalidad, panelPrincipal, nodosApagables);
         });
         toggleTratamiento.selectedProperty().addListener((e) -> {
-             UtilBuscador.apagaToggle(toggleTratamiento, tratamiento, panelPrincipal, nodosApagables);
+            UtilBuscador.apagaToggle(toggleTratamiento, tratamiento, panelPrincipal, nodosApagables);
         });
         toggleDni.selectedProperty().addListener((e) -> {
-             UtilBuscador.apagaToggle(toggleDni, dni, panelPrincipal, nodosApagables);
+            UtilBuscador.apagaToggle(toggleDni, dni, panelPrincipal, nodosApagables);
         });
         toggleEstado.selectedProperty().addListener((e) -> {
-             UtilBuscador.apagaToggle(toggleEstado, estado, panelPrincipal, nodosApagables);
+            UtilBuscador.apagaToggle(toggleEstado, estado, panelPrincipal, nodosApagables);
         });
         toggleProvincia.selectedProperty().addListener((e) -> {
-             UtilBuscador.apagaToggle(toggleProvincia, provincia, panelPrincipal, nodosApagables);
+            UtilBuscador.apagaToggle(toggleProvincia, provincia, panelPrincipal, nodosApagables);
         });
         toggleCiudad.selectedProperty().addListener((e) -> {
-             UtilBuscador.apagaToggle(toggleCiudad, ciudad, panelPrincipal, nodosApagables);
+            UtilBuscador.apagaToggle(toggleCiudad, ciudad, panelPrincipal, nodosApagables);
         });
         toggleCalle.selectedProperty().addListener((e) -> {
-             UtilBuscador.apagaToggle(toggleCalle, calle, panelPrincipal, nodosApagables);
+            UtilBuscador.apagaToggle(toggleCalle, calle, panelPrincipal, nodosApagables);
         });
         toggleNumero.selectedProperty().addListener((e) -> {
-             UtilBuscador.apagaToggle(toggleNumero, numero, panelPrincipal, nodosApagables);
+            UtilBuscador.apagaToggle(toggleNumero, numero, panelPrincipal, nodosApagables);
         });
         toggleCodigoPostal.selectedProperty().addListener((e) -> {
-             UtilBuscador.apagaToggle(toggleCodigoPostal, codigoPostal, panelPrincipal, nodosApagables);
+            UtilBuscador.apagaToggle(toggleCodigoPostal, codigoPostal, panelPrincipal, nodosApagables);
         });
         togglePaginaWeb.selectedProperty().addListener((e) -> {
-             UtilBuscador.apagaToggle(togglePaginaWeb, paginaWeb, panelPrincipal, nodosApagables);
+            UtilBuscador.apagaToggle(togglePaginaWeb, paginaWeb, panelPrincipal, nodosApagables);
         });
 
         toggleEmail.selectedProperty().addListener((e) -> {
-             UtilBuscador.apagaToggle(toggleEmail, correoElectronico, panelPrincipal, nodosApagables);
+            UtilBuscador.apagaToggle(toggleEmail, correoElectronico, panelPrincipal, nodosApagables);
         });
         toggleCategoria.selectedProperty().addListener((e) -> {
-             UtilBuscador.apagaToggle(toggleCategoria, categoria, panelPrincipal, nodosApagables);
+            UtilBuscador.apagaToggle(toggleCategoria, categoria, panelPrincipal, nodosApagables);
         });
         toggleSexo.selectedProperty().addListener((e) -> {
-             UtilBuscador.apagaToggle(toggleSexo, sexoM, panelPrincipal, nodosApagables);
+            UtilBuscador.apagaToggle(toggleSexo, sexoM, panelPrincipal, nodosApagables);
         });
         //-------------------------------------------------------------------------------------------
         tabPanel.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -166,28 +168,21 @@ public class ControladorClienteBuscador implements Initializable, BuscadorInterf
         buscar.setOnAction((e) -> {
             //--------------------------
         });
-        buscar.setOnAction((e) -> {
-            UtilBuscador.accionSeleccionar(listaPersonas, ClienteEnVista, Ventanas.CLIENTE_BUSCADOR);
+        seleccionar.setOnAction((e) -> {
+            UtilBuscador.accionSeleccionar(listaAddClientes, ClienteEnVista, Ventanas.CLIENTE_BUSCADOR);
         });
         resetearCampos.setOnAction((e) -> {
             UtilBuscador.ResetearCampos(panelPrincipal);
         });
         telefono.setOnAction((e) -> {
-            UtilBuscador.abrirTelefono();
+            UtilBuscador.abrirTelefono(VentanasFactory.getObjetoVentanaTelefonoBuscador(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null), listaAddTelefono, PruebasModelo.getLisTelefono(), Ventanas.MODO_FORMULARIO_LECTURA);
 
         });
-        ver.setOnAction((e) -> {
-            UtilBuscador.accionVer(VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null), ClienteEnVista);
-
-        });
-        listaPersonas = PruebasModelo.getListaDeClientes();
-        listaClientes = TablaCliente.getTablaBuscadorCliente(listaPersonas);
+//        ver.setOnAction((e) -> {
+//            UtilBuscador.accionVer(VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null), ClienteEnVista);
+//
+//        });
         //---------------------------------------------------------------------
-        tabla.setItems(FXCollections.observableArrayList(listaClientes));
-        tabla.getSelectionModel().selectedItemProperty().addListener((observable) -> {
-        ClienteEnVista =UtilBuscador.accionOnSelectedTable( listaPersonas, tabla, seleccionar,
-                    actualizar, telefono, ver);
-        });
         tableColumnDocumentoNumero.setCellValueFactory(new PropertyValueFactory("numeroDocumento"));
         tableColumnNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
         tableColumnPrimerApellido.setCellValueFactory(new PropertyValueFactory("primerApellido"));
@@ -208,8 +203,15 @@ public class ControladorClienteBuscador implements Initializable, BuscadorInterf
         tableColumnNombreComercial.setCellValueFactory(new PropertyValueFactory("nombreComercial"));
         tableColumnPaginaWeb.setCellValueFactory(new PropertyValueFactory("paginaWeb"));
         tableColumnNacionalidad.setCellValueFactory(new PropertyValueFactory("nacionalidad"));
-        //----------------------------------------------------------------------------------------
 
+        tabla.getSelectionModel().selectedItemProperty().addListener((observable) -> {
+            ClienteEnVista = UtilBuscador.accionOnSelectedTable(listaFiltro, tabla, seleccionar,
+                    actualizar, telefono, borrar);
+        });
+        tabla.setOnMouseClicked((event) -> {
+           UtilBuscador.accionVer(event, VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null), ClienteEnVista);
+        });
+        //----------------------------------------------------------------------------------------
         nodosApagables = FXCollections.observableArrayList(resetearCampos, buscar);
     }
 
@@ -220,14 +222,15 @@ public class ControladorClienteBuscador implements Initializable, BuscadorInterf
     }
 
     @Override
-    public <T> ControladorClienteBuscador setLista(ObservableList<T> ListaObjeto) {
-        this.listaPersonas = (ObservableList<Persona>) ListaObjeto;
+    public <T> ControladorClienteBuscador setListaToAdd(ObservableList<T> ListaObjeto) {
+        this.listaAddClientes = (ObservableList<Persona>) ListaObjeto;
         return this;
     }
 
     @Override
     public <T> ControladorClienteBuscador setFiltro(ObservableList<T> ListaObjeto) {
         this.listaFiltro = (ObservableList<Persona>) ListaObjeto;
+        tabla.setItems(TablaCliente.getTablaBuscadorCliente(listaFiltro));
         return this;
     }
 }

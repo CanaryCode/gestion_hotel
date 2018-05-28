@@ -1,6 +1,7 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBuscador;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaHabitacion;
@@ -9,8 +10,6 @@ import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaRes
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Habitacion;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersona;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersonaId;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -49,13 +48,15 @@ public class ControladorCheckIn implements Initializable {
             tableColumnDiscapacitado, tableColumnPais, tableColumnCiudad, tableColumnProvincia,
             tableColumnNumero, tableColumnCalle, tableColumnCodigoPostal, tableColumnPasaporte,
             tableColumnFechaExpedicion, tableColumnEmail, tableColumnTratamiento, tableColumnCategoria,
+            tableColumnPaginaWeb,
             //--------------------------------------------------------------------------------
             numeroHabitacion, tipoHabitacion, vistaHabitacion,
             //-----------------------------------------------------------------------------------------------
             tableColumnTipoCliente, tableColumnNombreCliente, tableColumnNombreAgencia, tableColumnFechaEntradaPrevista,
             tableColumnFechaFinPrevista, tableColumnNUmeroAdultos, tableColumnNumeroChild, tableColumnNumeroBebes,
             tableColumnPension, tableColumnCamaExtra, tableColumnCuna, tableColumnPreferenciaHabitacion, tableColumnPreferenciaVistas,
-            tableColumnTipoCama, tableColumnNumeroHabitacion, tableColumnTurnoRestaurante, tableColumnTipoRestaurante, tableColumnNumeroTarjeta, tableColumnTipoTarjeta;
+            tableColumnTipoCama, tableColumnNumeroHabitacion, tableColumnTurnoRestaurante, tableColumnTipoRestaurante,
+            tableColumnNumeroTarjeta, tableColumnTipoTarjeta,tableColumnVoucher;
     ;
 
     private DetallesReserva detalleReserva;
@@ -71,9 +72,12 @@ public class ControladorCheckIn implements Initializable {
     private ObservableList<TablaHuesped> listaTablaHuespedTodos = FXCollections.observableArrayList();
     private ObservableList<TablaHabitacion> listaTablaHabitacion = FXCollections.observableArrayList();
     private ObservableList<Habitacion> listaHabitacion = FXCollections.observableArrayList();
-    private ObservableList<TablaReserva> listaTablaReserva = FXCollections.observableArrayList();
+    private ObservableList<TablaReserva> listaTablaReserva;
     private ObservableList<DetallesReserva> listaDetalleReserva = FXCollections.observableArrayList();
-
+    
+    private DetallesReserva detallesReservaEnVista;
+    private Habitacion habitacionEnVista;
+    private Persona huespedEnVista;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tablaHuesped.setItems(listaTablaHuespedTodos);
@@ -115,6 +119,8 @@ public class ControladorCheckIn implements Initializable {
                 new PropertyValueFactory("categoria"));
         tableColumnNumero.setCellValueFactory(
                 new PropertyValueFactory("numero"));
+        tableColumnPaginaWeb.setCellValueFactory(
+                new PropertyValueFactory("paginaWeb"));
         //---------------------------------------------------------------------------------------------
         numeroHabitacion.setCellValueFactory(
                 new PropertyValueFactory("numero"));
@@ -161,37 +167,66 @@ public class ControladorCheckIn implements Initializable {
                 new PropertyValueFactory("tarjetaCredito"));
         tableColumnTipoTarjeta.setCellValueFactory(
                 new PropertyValueFactory("tipoTarjetaCredito"));
+        tableColumnVoucher.setCellValueFactory(
+                new PropertyValueFactory("voucher"));
+        //------------------------------------------------------------------------------------------
+         tablaHabitacion.setOnMouseClicked((event) -> {
+             UtilBuscador.accionVer(event, VentanasFactory.getObjetoVentanaHabitacionFormulario(Ventanas.CHECK_IN, Modality.WINDOW_MODAL, null), habitacionEnVista);
+         });
+         tablaReserva.setOnMouseClicked((event) -> {
+             UtilBuscador.accionVer(event, VentanasFactory.getObjetoVentanaReservaFormulario(Ventanas.CHECK_IN, Modality.WINDOW_MODAL, null), detallesReservaEnVista);
+         });
+         tablaHuesped.setOnMouseClicked((event) -> {
+             UtilBuscador.accionVer(event, VentanasFactory.getObjetoVentanaHuespedFormulario(Ventanas.CHECK_IN, Modality.WINDOW_MODAL, null), huespedEnVista);
+         });
+        //------------------------------------------------------------------------------------------
+         tablaHabitacion.getSelectionModel().selectedItemProperty().addListener((observable) -> {
+             habitacionEnVista=UtilBuscador.accionOnSelectedTable(listaHabitacion, tablaHabitacion);
+         });
+         tablaReserva.getSelectionModel().selectedItemProperty().addListener((observable) -> {
+             detallesReservaEnVista=UtilBuscador.accionOnSelectedTable(listaDetalleReserva, tablaReserva);
+         });
+         tablaHuesped.getSelectionModel().selectedItemProperty().addListener((observable) -> {
+             huespedEnVista=UtilBuscador.accionOnSelectedTable(listaTodosLosHuespedes, tablaHuesped);
+         });
         //---------------------------------------------------------------------------------------------------
-        modificaHuesped.setOnAction(
-                (event) -> {
-                    codigoModificaHuesped();
-                }
+        modificaHuesped.setOnAction((event) -> {
+            codigoModificaHuesped();
+        }
         );
 
-        modificaHabitacion.setOnAction(
-                (event) -> {
-                    codigoModificaHabitacion();
-                }
+        modificaHabitacion.setOnAction((event) -> {
+            codigoModificaHabitacion();
+        }
         );
-        botonOk.setOnAction(
-                (event) -> {
-                    codigoBotonOk();
-                }
+        botonOk.setOnAction((event) -> {
+            codigoBotonOk();
+        }
         );
-        reseteaCampos.setOnAction(
-                (event) -> {
-                    codigoReseteaCampos();
-                }
+        reseteaCampos.setOnAction((event) -> {
+            codigoReseteaCampos();
+        }
         );
-        modificaReserva.setOnAction(
-                (event) -> {
-                    codigoModificaReserva();
-                }
+        modificaReserva.setOnAction((event) -> {
+            codigoModificaReserva();
+        }
         );
         listaTodosLosHuespedes.addListener(new ListChangeListener<Persona>() {
             @Override
             public void onChanged(ListChangeListener.Change<? extends Persona> c) {
-                codigoLisstaTodos();
+                codigoListaTodos();
+            }
+        });
+        listaHabitacion.addListener(new ListChangeListener<Habitacion>() {
+            @Override
+            public void onChanged(ListChangeListener.Change<? extends Habitacion> c) {
+                codigoListaHabitacion(c);
+            }
+        });
+        listaDetalleReserva.addListener(new ListChangeListener<DetallesReserva>() {
+            @Override
+            public void onChanged(ListChangeListener.Change<? extends DetallesReserva> c) {
+                codigoListaReserva(c);
             }
         });
     }
@@ -224,8 +259,10 @@ public class ControladorCheckIn implements Initializable {
     private void codigoModificaHabitacion() {
         ObjetoVentana obj = VentanasFactory.getObjetoVentanaHabitacionBuscador(Ventanas.CHECK_IN, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
-            ((ControladorHabitacionBuscador)obj.getfXMLLoader().getController()).setLista(listaHabitacion).
-                    setFiltro(PruebasModelo.getListaHabitaciones());
+            ((ControladorHabitacionBuscador) obj.getfXMLLoader().getController()).
+                    setListaToAdd(listaHabitacion).
+                    setFiltro(PruebasModelo.getListaHabitaciones()).
+                    setModo(Ventanas.MODO_BUSCADOR_SELECCIONAR);
             obj.ver();
         }
     }
@@ -234,7 +271,9 @@ public class ControladorCheckIn implements Initializable {
         if (detalleReserva != null) {
             ObjetoVentana obj = VentanasFactory.getObjetoVentanaReservaFormulario(Ventanas.CHECK_IN, Modality.APPLICATION_MODAL, null);
             if (obj != null) {
-                ((ControladorReservaFormulario) obj.getfXMLLoader().getController()).setDetalleReserva(detalleReserva);
+                ((ControladorReservaFormulario) obj.getfXMLLoader().getController())
+                        .setObjetoEnVista(detalleReserva).
+                        setModo(Ventanas.MODO_FORMULARIO_ACTUALIZAR);
                 obj.ver();
             }
         }
@@ -247,11 +286,29 @@ public class ControladorCheckIn implements Initializable {
     private void codigoReseteaCampos() {
 
     }
-private void codigoLisstaTodos(){
-    if(listaTodosLosHuespedes.isEmpty()){
-        botonOk.setDisable(true);
-    }else{
-        botonOk.setDisable(false);
+
+    private void codigoListaTodos() {
+        checkeoTodasLasListasRellenas();
     }
-}
+
+    private void codigoListaHabitacion(ListChangeListener.Change<? extends Habitacion> cambio) {
+        
+        listaTablaHabitacion=TablaHabitacion.getTablaHabitacion(listaHabitacion);
+        tablaHabitacion.setItems(listaTablaHabitacion);
+        checkeoTodasLasListasRellenas();
+    }
+
+    private void codigoListaReserva(ListChangeListener.Change<? extends DetallesReserva> cambio) {
+        listaTablaReserva=TablaReserva.getListaTablaReserva(listaDetalleReserva);
+        tablaReserva.setItems(listaTablaReserva);
+        checkeoTodasLasListasRellenas();
+    }
+
+    private void checkeoTodasLasListasRellenas() {
+        if (!listaTodosLosHuespedes.isEmpty() && !listaHabitacion.isEmpty() && !listaDetalleReserva.isEmpty()) {
+            botonOk.setDisable(false);
+        } else {
+            botonOk.setDisable(true);
+        }
+    }
 }

@@ -25,7 +25,8 @@ public class Ventanas {
     /**
      * modos en los que se puede abrir una ventana se modifica en el controlador de la misma.
      */
-    public static final int MODO_INSERTAR=1,MODO_ACTUALIZAR=2,MODO_VER=3,MODO_SELECCIONAR=4;
+    public static final int MODO_FORMULARIO_INSERTAR=1,MODO_FORMULARIO_ACTUALIZAR=2,MODO_FORMULARIO_LECTURA=3,
+            MODO_BUSCADOR_SELECCIONAR=4;
     /**
      * modos en los que se puede abrir una ventana se modifica en el controlador de la misma.
      */

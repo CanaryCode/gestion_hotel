@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -118,7 +117,7 @@
                                              <children>
                                                 <AnchorPane prefHeight="200.0" GridPane.columnIndex="1">
                                                    <children>
-                                                      <Button id="botonBuscar" fx:id="seleccionar" disable="true" mnemonicParsing="false" text="%button.buscar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                      <Button id="botonBuscar" fx:id="buscar" disable="true" mnemonicParsing="false" text="%button.buscar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
@@ -165,28 +164,16 @@
                <children>
                   <VBox AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <AnchorPane prefHeight="124.0" prefWidth="578.0">
-                           <children>
-                              <ScrollPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <content>
-                                    <AnchorPane prefHeight="400.0" prefWidth="769.0">
-                                       <children>
-                                          <TableView fx:id="tabla" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <columns>
-                                                <TableColumn fx:id="tableColumnNombre" maxWidth="324.0" minWidth="-1.0" prefWidth="199.0" text="Nombre" />
-                                                <TableColumn fx:id="tableColumnNumero" maxWidth="232.0" minWidth="-1.0" prefWidth="208.0" text="Numero Telefono" />
-                                                <TableColumn fx:id="tableColumnTipo" maxWidth="345.0" minWidth="-1.0" prefWidth="211.0" text="Tipo" />
-                                             </columns>
-                                          </TableView>
-                                       </children>
-                                    </AnchorPane>
-                                 </content>
-                              </ScrollPane>
-                           </children>
+                        <TableView fx:id="tabla">
+                           <columns>
+                              <TableColumn fx:id="tableColumnNombre" maxWidth="324.0" minWidth="-1.0" prefWidth="199.0" text="Nombre" />
+                              <TableColumn fx:id="tableColumnNumero" maxWidth="232.0" minWidth="-1.0" prefWidth="208.0" text="Numero Telefono" />
+                              <TableColumn fx:id="tableColumnTipo" maxWidth="345.0" minWidth="-1.0" prefWidth="211.0" text="Tipo" />
+                           </columns>
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
-                        </AnchorPane>
+                        </TableView>
                         <AnchorPane>
                            <children>
                               <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -243,7 +230,7 @@
                            <children>
                               <AnchorPane>
                                  <children>
-                                    <Button id="botonOk" fx:id="aceptar" disable="true" layoutX="14.0" layoutY="-4.0" mnemonicParsing="false" text="ok" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <Button id="botonOk" fx:id="seleccionar" disable="true" layoutX="14.0" layoutY="-4.0" mnemonicParsing="false" text="ok" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <font>
                                           <Font size="15.0" />
                                        </font>

@@ -419,7 +419,7 @@
 }
 #botonBorrar{
     -fx-graphic:url(../imagenes/borrar24.png);
-    -fx-background-color: #3366ff;
+    -fx-background-color: red;
     -fx-alignment:BOTTOM_CENTER;
     -fx-text-fill: white;
     -fx-opacity: 0.9;
@@ -432,7 +432,10 @@
 
 #botonBorrar:hover{
     -fx-graphic:url(../imagenes/borrar32.png);
-    -fx-background-color: #329fe6;
+    -fx-opacity: 0.9;
+    -fx-cursor:hand;
+    -fx-font-size: 8pt;
+    -fx-background-color: orange;
     -fx-cursor:hand;
 }
 #botonBorrar:pressed{
@@ -453,8 +456,8 @@
 }
 #botonBuscar:hover{
     -fx-graphic:url(../imagenes/buscar32.png);
-    -fx-background-color: #329fe6;
     -fx-cursor:hand;
+    -fx-background-color: #3366ff;
 }
 #botonBuscar:pressed{
     -fx-graphic:url(../imagenes/buscar24.png);

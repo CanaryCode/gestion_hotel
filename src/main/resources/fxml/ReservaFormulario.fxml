@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
@@ -28,42 +27,26 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </AnchorPane>
-            <ScrollPane prefHeight="63.0" prefWidth="690.0">
-               <content>
-                  <AnchorPane>
-                     <children>
-                        <TableView fx:id="tablaAgencia" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <columns>
-                              <TableColumn fx:id="tableColumnRazonSocialAgencia" prefWidth="75.0" text="Razón social" />
-                              <TableColumn fx:id="tableColumnTipoAgencia" prefWidth="75.0" text="Tipo" />
-                              <TableColumn fx:id="tableColumnNombreComercialAgencia" prefWidth="75.0" text="Nombre comercial" />
-                              <TableColumn fx:id="tableColumnDocumentoNumeroAgencia" prefWidth="75.0" text="NumeroDocumento" />
-                              <TableColumn fx:id="tableColumnNombreAgencia" prefWidth="75.0" text="Nombre" />
-                              <TableColumn fx:id="tableColumnPrimerApellidoAgencia" prefWidth="94.0" text="Primer Apellido" />
-                              <TableColumn fx:id="tableColumnSegundoApellidoAgencia" prefWidth="115.0" text="Segundo Apellido" />
-                              <TableColumn fx:id="tableColumnFechaNacimientoAgencia" prefWidth="131.0" text="Fecha de nacimiento" />
-                              <TableColumn fx:id="tableColumnNacionalidadAgencia" prefWidth="99.0" text="Nacionalidad" />
-                              <TableColumn fx:id="tableColumnProvinciaAgencia" prefWidth="109.0" text="Provincia" />
-                              <TableColumn fx:id="tableColumnCiudadAgencia" prefWidth="75.0" text="Ciudad" />
-                              <TableColumn fx:id="tableColumnCalleAgencia" prefWidth="143.0" text="Calle" />
-                              <TableColumn fx:id="tableColumnNumeroAgencia" prefWidth="75.0" text="Número" />
-                              <TableColumn fx:id="tableColumnCodigoPostalAgencia" prefWidth="87.0" text="Código Postal" />
-                              <TableColumn fx:id="tableColumnSexoAgencia" prefWidth="75.0" text="Sexo" />
-                              <TableColumn fx:id="tableColumnNacionalidadAgencia" prefWidth="75.0" text="Nacionalidad" />
-                              <TableColumn fx:id="tableColumnEstadoAgencia" prefWidth="75.0" text="Estado" />
-                              <TableColumn fx:id="tableColumnEmailAgencia" prefWidth="75.0" text="Email" />
-                              <TableColumn fx:id="tableColumnPaginaWebAgencia" prefWidth="75.0" text="Página web" />
-                              <TableColumn fx:id="tableColumnCategoriaAgencia" prefWidth="75.0" text="Categoría" />
-                              <TableColumn fx:id="tableColumnTratamientoAgencia" prefWidth="75.0" text="Tratamiento" />
-                           </columns>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-               </content>
+            <TableView fx:id="tablaAgencia" prefHeight="70.0">
+               <columns>
+                  <TableColumn fx:id="tableColumnRazonSocialAgencia" prefWidth="100.0" text="Razón social" />
+                  <TableColumn fx:id="tableColumnDocumentoNumeroAgencia" prefWidth="100.0" text="NumeroDocumento" />
+                  <TableColumn fx:id="tableColumnNombreComercialAgencia" prefWidth="100.0" text="Nombre comercial" />
+                  <TableColumn fx:id="tableColumnNombreAgencia" prefWidth="100.0" text="Nombre" />
+                  <TableColumn fx:id="tableColumnCategoriaAgencia" prefWidth="100.0" text="Categoría" />
+                  <TableColumn fx:id="tableColumnEstadoAgencia" prefWidth="100.0" text="Estado" />
+                  <TableColumn fx:id="tableColumnProvinciaAgencia" minWidth="-1.0" prefWidth="100.0" text="Provincia" />
+                  <TableColumn fx:id="tableColumnCiudadAgencia" prefWidth="100.0" text="Ciudad" />
+                  <TableColumn fx:id="tableColumnCalleAgencia" prefWidth="100.0" text="Calle" />
+                  <TableColumn fx:id="tableColumnNumeroAgencia" prefWidth="100.0" text="Número" />
+                  <TableColumn fx:id="tableColumnCodigoPostalAgencia" prefWidth="100.0" text="Código Postal" />
+                  <TableColumn fx:id="tableColumnEmailAgencia" prefWidth="200.0" text="Email" />
+                  <TableColumn fx:id="tableColumnPaginaWebAgencia" prefWidth="200.0" text="Página web" />
+               </columns>
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
-            </ScrollPane>
+            </TableView>
             <GridPane>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" />
@@ -74,8 +57,11 @@
                <children>
                   <AnchorPane>
                      <children>
-                        <Button id="botonBuscar" fx:id="buscarAgencia" mnemonicParsing="false" text="Buscar Agencia" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button id="botonActualizar" fx:id="modificarAgencia" mnemonicParsing="false" text="Modificar agencia" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin>
                   </AnchorPane>
                </children>
                <VBox.margin>
@@ -90,42 +76,33 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </AnchorPane>
-            <ScrollPane prefHeight="63.0" prefWidth="690.0">
-              <content>
-                <AnchorPane>
-                     <children>
-                        <TableView fx:id="tablaCliente" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <columns>
-                              <TableColumn fx:id="tableColumnRazonSocialCliente" prefWidth="75.0" text="Razón social" />
-                              <TableColumn fx:id="tableColumnTipoCliente" prefWidth="75.0" text="Tipo" />
-                              <TableColumn fx:id="tableColumnNombreComercialCliente" prefWidth="75.0" text="Nombre comercial" />
-                              <TableColumn fx:id="tableColumnDocumentoNumeroCliente" prefWidth="75.0" text="NumeroDocumento" />
-                              <TableColumn fx:id="tableColumnNombreCliente" prefWidth="75.0" text="Nombre" />
-                              <TableColumn fx:id="tableColumnPrimerApellidoCliente" prefWidth="94.0" text="Primer Apellido" />
-                              <TableColumn fx:id="tableColumnSegundoApellidoCliente" prefWidth="115.0" text="Segundo Apellido" />
-                              <TableColumn fx:id="tableColumnFechaNacimientoCliente" prefWidth="131.0" text="Fecha de nacimiento" />
-                              <TableColumn fx:id="tableColumnNacionalidadCliente" prefWidth="99.0" text="Nacionalidad" />
-                              <TableColumn fx:id="tableColumnProvinciaCliente" prefWidth="109.0" text="Provincia" />
-                              <TableColumn fx:id="tableColumnCiudadCliente" prefWidth="75.0" text="Ciudad" />
-                              <TableColumn fx:id="tableColumnCalleCliente" prefWidth="143.0" text="Calle" />
-                              <TableColumn fx:id="tableColumnNumeroCliente" prefWidth="75.0" text="Número" />
-                              <TableColumn fx:id="tableColumnCodigoPostalCliente" prefWidth="87.0" text="Código Postal" />
-                              <TableColumn fx:id="tableColumnSexoCliente" prefWidth="75.0" text="Sexo" />
-                              <TableColumn fx:id="tableColumnNacionalidadCliente" prefWidth="75.0" text="Nacionalidad" />
-                              <TableColumn fx:id="tableColumnEstadoCliente" prefWidth="75.0" text="Estado" />
-                              <TableColumn fx:id="tableColumnEmailCliente" prefWidth="75.0" text="Email" />
-                              <TableColumn fx:id="tableColumnPaginaWebCliente" prefWidth="75.0" text="Página web" />
-                              <TableColumn fx:id="tableColumnCategoriaCliente" prefWidth="75.0" text="Categoría" />
-                              <TableColumn fx:id="tableColumnTratamientoCliente" prefWidth="75.0" text="Tratamiento" />
-                           </columns>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-              </content>
+            <TableView fx:id="tablaCliente" prefHeight="70.0">
+               <columns>
+                  <TableColumn fx:id="tableColumnTipoCliente" prefWidth="100.0" text="Tipo" />
+                  <TableColumn fx:id="tableColumnCategoriaCliente" prefWidth="100.0" text="Categoría" />
+                  <TableColumn fx:id="tableColumnRazonSocialCliente" prefWidth="100.0" text="Razón social" />
+                  <TableColumn fx:id="tableColumnNombreComercialCliente" prefWidth="100.0" text="Nombre comercial" />
+                  <TableColumn fx:id="tableColumnDocumentoNumeroCliente" prefWidth="100.0" text="NumeroDocumento" />
+                  <TableColumn fx:id="tableColumnNombreCliente" prefWidth="100.0" text="Nombre" />
+                  <TableColumn fx:id="tableColumnPrimerApellidoCliente" prefWidth="100.0" text="Primer Apellido" />
+                  <TableColumn fx:id="tableColumnSegundoApellidoCliente" prefWidth="100.0" text="Segundo Apellido" />
+                  <TableColumn fx:id="tableColumnTratamientoCliente" prefWidth="100.0" text="Tratamiento" />
+                  <TableColumn fx:id="tableColumnSexoCliente" prefWidth="100.0" text="Sexo" />
+                  <TableColumn fx:id="tableColumnFechaNacimientoCliente" prefWidth="100.0" text="Fecha de nacimiento" />
+                  <TableColumn fx:id="tableColumnEstadoCliente" prefWidth="100.0" text="Estado" />
+                  <TableColumn fx:id="tableColumnNacionalidadCliente" prefWidth="100.0" text="Nacionalidad" />
+                  <TableColumn fx:id="tableColumnProvinciaCliente" prefWidth="100.0" text="Provincia" />
+                  <TableColumn fx:id="tableColumnCiudadCliente" prefWidth="100.0" text="Ciudad" />
+                  <TableColumn fx:id="tableColumnCalleCliente" prefWidth="100.0" text="Calle" />
+                  <TableColumn fx:id="tableColumnNumeroCliente" prefWidth="100.0" text="Número" />
+                  <TableColumn fx:id="tableColumnCodigoPostalCliente" prefWidth="100.0" text="Código Postal" />
+                  <TableColumn fx:id="tableColumnPaginaWebCliente" prefWidth="200.0" text="Página web" />
+                  <TableColumn fx:id="tableColumnEmailCliente" prefWidth="200.0" text="Email" />
+               </columns>
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
-            </ScrollPane>
+            </TableView>
             <GridPane>
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" />
@@ -136,8 +113,11 @@
                <children>
                   <AnchorPane>
                      <children>
-                        <Button id="botonBuscar" fx:id="buscarCliente" mnemonicParsing="false" text="Buscar Cliente" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button id="botonActualizar" fx:id="modificarCliente" mnemonicParsing="false" text="Modificar cliente" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin>
                   </AnchorPane>
                </children>
                <VBox.margin>
@@ -152,37 +132,31 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </AnchorPane>
-            <ScrollPane prefHeight="110.0">
-               <content>
-                  <AnchorPane prefWidth="1354.0">
-                     <children>
-                        <TableView fx:id="tablaAlojamiento" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <columns>
-                              <TableColumn fx:id="tableColumnFechaInicio" prefWidth="75.0" text="Fecha inicio" />
-                              <TableColumn fx:id="tableColumnFechaFin" prefWidth="75.0" text="Fecha fin" />
-                              <TableColumn fx:id="tableColumnNumeroAdultos" prefWidth="105.0" text="Número adultos" />
-                              <TableColumn fx:id="tableColumnNumeroChild" prefWidth="85.0" text="Número niños" />
-                              <TableColumn fx:id="tableColumnNumeroBebes" prefWidth="83.0" text="Numero bebés" />
-                              <TableColumn fx:id="tableColumnPension" prefWidth="96.0" text="Pensión" />
-                              <TableColumn fx:id="tableColumnCamaExtra" prefWidth="69.0" text="Cama extra" />
-                              <TableColumn fx:id="tableColumnCuna" prefWidth="62.0" text="Cuna" />
-                              <TableColumn fx:id="tableColumnPrefTipoHabitacion" prefWidth="145.0" text="Preferencia tipo habitación" />
-                              <TableColumn fx:id="tableColumnPrefHabitacion" minWidth="8.0" prefWidth="126.0" text="Preferencia habitación" />
-                              <TableColumn fx:id="tableColumnPrefTipoCama" prefWidth="131.0" text="Preferencia tipo cama" />
-                              <TableColumn fx:id="tableColumnPrefVistas" prefWidth="130.0" text="Preferencia vistas" />
-                              <TableColumn fx:id="tableColumnPrefRestaurante" prefWidth="130.0" text="Preferencia restaurante" />
-                              <TableColumn fx:id="tableColumnPrefTipoRestaurante" prefWidth="130.0" text="Preferencia tipo restaurante" />
-                           </columns></TableView>
-                     </children>
-                  </AnchorPane>
-               </content>
+            <TableView fx:id="tablaAlojamiento" prefHeight="120.0">
+               <columns>
+                  <TableColumn fx:id="tableColumnFechaInicio" prefWidth="75.0" text="Fecha inicio" />
+                  <TableColumn fx:id="tableColumnFechaFin" prefWidth="100.0" text="Fecha fin" />
+                  <TableColumn fx:id="tableColumnNumeroAdultos" prefWidth="100.0" text="Número adultos" />
+                  <TableColumn fx:id="tableColumnNumeroChild" prefWidth="100.0" text="Número niños" />
+                  <TableColumn fx:id="tableColumnNumeroBebes" prefWidth="100.0" text="Numero bebés" />
+                  <TableColumn fx:id="tableColumnPension" prefWidth="100.0" text="Pensión" />
+                  <TableColumn fx:id="tableColumnCamaExtra" prefWidth="100.0" text="Cama extra" />
+                  <TableColumn fx:id="tableColumnCuna" prefWidth="100.0" text="Cuna" />
+                  <TableColumn fx:id="tableColumnPrefTipoHabitacion" prefWidth="100.0" text="Pref. tipo habitación" />
+                  <TableColumn fx:id="tableColumnPrefHabitacion" minWidth="8.0" prefWidth="100.0" text="Pref. habitación" />
+                  <TableColumn fx:id="tableColumnPrefTipoCama" prefWidth="100.0" text="Pref. tipo cama" />
+                  <TableColumn fx:id="tableColumnPrefVistas" prefWidth="100.0" text="Pref. vistas" />
+                  <TableColumn fx:id="tableColumnPrefRestaurante" prefWidth="100.0" text="Pref. restaurante" />
+                  <TableColumn fx:id="tableColumnPrefTipoRestaurante" prefWidth="100.0" text="Pref. tipo restaurante" />
+               </columns>
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
-            </ScrollPane>
+            </TableView>
             <GridPane>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
@@ -190,8 +164,19 @@
                <children>
                   <AnchorPane>
                      <children>
-                        <Button id="botonBuscar" fx:id="alojamientos" mnemonicParsing="false" text="Buscar Alojamientos" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button id="botonAdd" fx:id="addAlojamiento" mnemonicParsing="false" text="Añadir alojamientos" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin>
+                  </AnchorPane>
+                  <AnchorPane GridPane.columnIndex="1">
+                     <children>
+                        <Button id="botonBorrar" fx:id="borrarAlojamiento" disable="true" mnemonicParsing="false" text="Borrar alojamientos" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
                   </AnchorPane>
                </children>
                <VBox.margin>

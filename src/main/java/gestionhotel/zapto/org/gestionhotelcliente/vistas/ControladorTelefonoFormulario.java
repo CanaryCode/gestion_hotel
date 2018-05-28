@@ -1,7 +1,10 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilFormularios;
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.FormularioInterface;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersona;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -10,13 +13,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
  *
  * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
-public class ControladorTelefonoFormulario implements Initializable {
+public class ControladorTelefonoFormulario implements Initializable, FormularioInterface {
 
     @FXML
     private TextField numero, nombre;
@@ -29,52 +33,38 @@ public class ControladorTelefonoFormulario implements Initializable {
 
     @FXML
     private Button reseteaCampos, aceptar;
-    private int modoVentana;
+    @FXML
+    private AnchorPane principal;
+    
+    private int modo;
+    private TelefonoPersona telefonoEnVista;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-        tipo.setItems(Registro.ListaTipoTelefono);
-        tipo.getSelectionModel().selectFirst();
+        
+        UtilFormularios.iniciaComboBox(tipo, Registro.ListaTipoTelefono);
         reseteaCampos.setOnAction((event) -> {
-            codigoResetarCampos();
+            UtilFormularios.reseteaCampos(principal);
         });
         aceptar.setOnAction((event) -> {
-            codigoAceptar();
+            UtilFormularios.accionAceptar();
         });
-
-        ConfiguraModo();
     }
 
-    private void ConfiguraModo() {
-        if (modoVentana == Ventanas.MODO_INSERTAR) {
-
-        } else if (modoVentana == Ventanas.MODO_ACTUALIZAR) {
-            reseteaCampos.setDisable(true);
-        } else if (modoVentana == Ventanas.MODO_VER) {
-            deshabilitaBotones();
-        }
-    }
-
-    private void codigoAceptar() {
-
-    }
-
-    private void codigoResetarCampos() {
-
-    }
-
-    public ControladorTelefonoFormulario setModoFormulario(int modo) {
-        this.modoVentana = modo;
+    @Override
+    public ControladorTelefonoFormulario setModo(int modo) {
+        this.modo = modo;
+        UtilFormularios.configurarModo(modo, aceptar, reseteaCampos, principal);
         return this;
     }
 
-    public void deshabilitaBotones() {
-        aceptar.setDisable(true);
-        reseteaCampos.setDisable(true);
+    @Override
+    public ControladorTelefonoFormulario setObjetoEnVista(Object objetoEnVista) {
+        this.telefonoEnVista = (TelefonoPersona) objetoEnVista;
+        return this;
     }
 
 }

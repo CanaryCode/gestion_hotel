@@ -1,6 +1,8 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBuscador;
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.FormularioInterface;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
@@ -8,6 +10,7 @@ import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaAlo
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaCliente;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo;
 import static gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo.getListaDeAlojamientos;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,7 +32,7 @@ import javafx.stage.Modality;
  *
  * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
-public class ControladorReservaFormulario implements Initializable {
+public class ControladorReservaFormulario implements Initializable, FormularioInterface {
 
     @FXML
     private ComboBox tipoTarjeta;
@@ -38,7 +41,7 @@ public class ControladorReservaFormulario implements Initializable {
     private TextArea comentario;
 
     @FXML
-    private Button confirmar, buscarCliente, buscarAgencia, alojamientos;
+    private Button confirmar, modificarCliente, modificarAgencia, addAlojamiento, borrarAlojamiento;
 
     @FXML
     private TextField numeroTarjeta;
@@ -57,14 +60,11 @@ public class ControladorReservaFormulario implements Initializable {
             tableColumnSexoCliente, tableColumnEstadoCliente, tableColumnEmailCliente,
             tableColumnPaginaWebCliente, tableColumnCategoriaCliente, tableColumnTratamientoCliente,
             //------------------------------------------------------------------------------------
-            tableColumnRazonSocialAgencia, tableColumnTipoAgencia,
-            tableColumnNombreComercialAgencia, tableColumnDocumentoNumeroAgencia,
-            tableColumnNombreAgencia, tableColumnPrimerApellidoAgencia,
-            tableColumnSegundoApellidoAgencia, tableColumnFechaNacimientoAgencia,
-            tableColumnNacionalidadAgencia, tableColumnProvinciaAgencia, tableColumnCiudadAgencia,
+            tableColumnRazonSocialAgencia,tableColumnNombreComercialAgencia, tableColumnDocumentoNumeroAgencia,
+            tableColumnNombreAgencia, tableColumnProvinciaAgencia, tableColumnCiudadAgencia,
             tableColumnCalleAgencia, tableColumnNumeroAgencia, tableColumnCodigoPostalAgencia,
-            tableColumnSexoAgencia, tableColumnEstadoAgencia, tableColumnEmailAgencia,
-            tableColumnPaginaWebAgencia, tableColumnCategoriaAgencia, tableColumnTratamientoAgencia,
+            tableColumnEstadoAgencia, tableColumnEmailAgencia,tableColumnPaginaWebAgencia, 
+            tableColumnCategoriaAgencia,
             //-------------------------------------------------------------------------------------------------
             tableColumnFechaInicio, tableColumnFechaFin, tableColumnNumeroAdultos, tableColumnNumeroChild,
             tableColumnNumeroBebes, tableColumnPension, tableColumnCamaExtra, tableColumnCuna,
@@ -76,28 +76,35 @@ public class ControladorReservaFormulario implements Initializable {
     private ObservableList<Persona> listaAgencia = FXCollections.observableArrayList();
     private ObservableList<TablaCliente> listaTablaAgencia = FXCollections.observableArrayList();
     private ObservableList<DetallesReserva> listaDetalleReserva = FXCollections.observableArrayList();
-    private ObservableList<DetallesReserva> listaDetalleReservaInternos = FXCollections.observableArrayList();
     private ObservableList<TablaAlojamiento> listaTablaAlojamientos = FXCollections.observableArrayList();
+    private ObservableList<DetallesReserva> listaAlojamientos = FXCollections.observableArrayList();
 
-    private DetallesReserva detalleReserva;
+    private DetallesReserva reservaEnVista;
+    private Persona ClienteEnVista, AgenciaEnVista;
+    private DetallesReserva AlojamientoEnVista;
+    private int modo;
 
     @Override
+    
     public void initialize(URL url, ResourceBundle rb) {
-        buscarCliente.setOnAction((e) -> {
-            codigoBuscarCliente();
-        });
         confirmar.setOnAction((e) -> {
             codigoConfirmar();
         });
-        buscarAgencia.setOnAction((e) -> {
-            codigoBuscarAgencia();
+        modificarAgencia.setOnAction((e) -> {
+            codigoModificaAgencia();
         });
-        alojamientos.setOnAction((e) -> {
-            codigoAlojamientos();
+        addAlojamiento.setOnAction((e) -> {
+            codigoAddAlojamiento();
         });
-
-        tipoTarjeta.setItems(FXCollections.observableList(Registro.ListaTipoTarjeta));
-        tipoTarjeta.getSelectionModel().selectFirst();
+        modificarCliente.setOnAction((e) -> {
+            codigoModificaCliente();
+        });
+        borrarAlojamiento.setOnAction((e) -> {
+            codigoBorrarAlojamiento();
+        });
+        //----------------------------------------------------------------------
+        
+        UtilBuscador.iniciaComboBox(tipoTarjeta, Registro.ListaTipoTarjeta);
 
         // ------------------------------------------------------------------------------------------
         tableColumnDocumentoNumeroCliente.setCellValueFactory(new PropertyValueFactory("numeroDocumento"));
@@ -123,24 +130,17 @@ public class ControladorReservaFormulario implements Initializable {
         //------------------------------------------------------------------------------------------
         tableColumnDocumentoNumeroAgencia.setCellValueFactory(new PropertyValueFactory("numeroDocumento"));
         tableColumnNombreAgencia.setCellValueFactory(new PropertyValueFactory("nombre"));
-        tableColumnPrimerApellidoAgencia.setCellValueFactory(new PropertyValueFactory("primerApellido"));
-        tableColumnSegundoApellidoAgencia.setCellValueFactory(new PropertyValueFactory("segundoApellido"));
-        tableColumnFechaNacimientoAgencia.setCellValueFactory(new PropertyValueFactory("fechaNacimiento"));
-        tableColumnSexoAgencia.setCellValueFactory(new PropertyValueFactory("sexoHombre"));
         tableColumnCiudadAgencia.setCellValueFactory(new PropertyValueFactory("ciudad"));
         tableColumnProvinciaAgencia.setCellValueFactory(new PropertyValueFactory("provincia"));
         tableColumnEstadoAgencia.setCellValueFactory(new PropertyValueFactory("estado"));
         tableColumnCalleAgencia.setCellValueFactory(new PropertyValueFactory("calle"));
         tableColumnCodigoPostalAgencia.setCellValueFactory(new PropertyValueFactory("codigoPostal"));
         tableColumnEmailAgencia.setCellValueFactory(new PropertyValueFactory("email"));
-        tableColumnTratamientoAgencia.setCellValueFactory(new PropertyValueFactory("tratamiento"));
         tableColumnCategoriaAgencia.setCellValueFactory(new PropertyValueFactory("categoria"));
         tableColumnNumeroAgencia.setCellValueFactory(new PropertyValueFactory("numero"));
         tableColumnRazonSocialAgencia.setCellValueFactory(new PropertyValueFactory("razonSocial"));
-        tableColumnTipoAgencia.setCellValueFactory(new PropertyValueFactory("esEmpresa"));
         tableColumnNombreComercialAgencia.setCellValueFactory(new PropertyValueFactory("nombreComercial"));
         tableColumnPaginaWebAgencia.setCellValueFactory(new PropertyValueFactory("paginaWeb"));
-        tableColumnNacionalidadAgencia.setCellValueFactory(new PropertyValueFactory("nacionalidad"));
         //-------------------------------------------------------------------------------------------
         tableColumnFechaInicio.setCellValueFactory(new PropertyValueFactory("fechaInicio"));
         tableColumnFechaFin.setCellValueFactory(new PropertyValueFactory("fechaFin"));
@@ -156,64 +156,110 @@ public class ControladorReservaFormulario implements Initializable {
         tableColumnPrefVistas.setCellValueFactory(new PropertyValueFactory("PrefVistas"));
         tableColumnPrefRestaurante.setCellValueFactory(new PropertyValueFactory("PrefTurnoRestaurante"));
         tableColumnPrefTipoRestaurante.setCellValueFactory(new PropertyValueFactory("PrefTipoRestaurante"));
+        //-------------------------------------------------------------------------------------------------------------
+        tablaAlojamiento.getSelectionModel().selectedItemProperty().addListener((observable) -> {
+            AlojamientoEnVista = UtilBuscador.accionOnSelectedTable(listaAlojamientos, tablaAlojamiento, borrarAlojamiento);
+        });
+        tablaAgencia.getSelectionModel().selectedItemProperty().addListener((observable) -> {
+            AgenciaEnVista = UtilBuscador.accionOnSelectedTable(listaAgencia, tablaAgencia);
+        });
+        tablaCliente.getSelectionModel().selectedItemProperty().addListener((observable) -> {
+            ClienteEnVista = UtilBuscador.accionOnSelectedTable(listaCliente, tablaCliente);
+        });
+        tablaAgencia.setOnMouseClicked((event) -> {
+            UtilBuscador.accionVer(event,VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.RESERVA_FORMULARIO, Modality.APPLICATION_MODAL, null), ClienteEnVista);
+        });
+        tablaCliente.setOnMouseClicked((event) -> {
+            UtilBuscador.accionVer(event,VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.RESERVA_FORMULARIO, Modality.APPLICATION_MODAL, null), ClienteEnVista);
+        });
+        //---------------------------------------------------------------------------------------------
     }
 
     private void codigoConfirmar() {
 
     }
 
-    private void codigoBuscarAgencia() {
+    private void codigoModificaAgencia() {
         ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarCliente(Ventanas.RESERVA_FORMULARIO, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
+            ((ControladorClienteBuscador) obj.getfXMLLoader().getController()).
+                    setListaToAdd(listaAgencia).
+                    setFiltro(PruebasModelo.getListaDeClientes()).
+                    setModo(Ventanas.MODO_BUSCADOR_SELECCIONAR);
             obj.ver();
         }
     }
 
-    private void codigoAlojamientos() {
+    private void codigoAddAlojamiento() {
         ObjetoVentana obj = VentanasFactory.getObjetoVentanaAlojamiento(Ventanas.RESERVA_FORMULARIO, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
+           ((ControladorAlojamientoFormulario) obj.getfXMLLoader().getController()).
+                   setObjetoEnVista(AlojamientoEnVista).
+                   setModo(Ventanas.MODO_FORMULARIO_INSERTAR);
             obj.ver();
         }
     }
 
-    private void codigoBuscarCliente() {
+    private void codigoModificaCliente() {
         ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarCliente(Ventanas.RESERVA_FORMULARIO, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
+            ((ControladorClienteBuscador) obj.getfXMLLoader().getController()).
+                    setListaToAdd(listaCliente).
+                    setFiltro(PruebasModelo.getListaDeClientes()).
+                    setModo(Ventanas.MODO_BUSCADOR_SELECCIONAR);
             obj.ver();
         }
     }
+    private void codigoBorrarAgencia() {
+        listaAgencia.remove(AgenciaEnVista);
+    }
 
-    public ControladorReservaFormulario setDetalleReserva(DetallesReserva detalleReserva) {
-        this.detalleReserva = detalleReserva;
-        //-----------------------------------------------------
-        listaCliente.add(detalleReserva.getReserva().getPersonaByCodCliente());
+    private void codigoBorrarAlojamiento() {
+        listaAlojamientos.remove(AlojamientoEnVista);
+    }
+
+    private void codigoBorrarCliente() {
+       listaTablaCliente.remove(ClienteEnVista);
+    }
+
+    @Override
+    public ControladorReservaFormulario setModo(int modo) {
+        this.modo= modo;
+        return this;
+    }
+
+    @Override
+    public ControladorReservaFormulario setObjetoEnVista(Object objetoEnVista) {
+     reservaEnVista=(DetallesReserva) objetoEnVista;
+             //-----------------------------------------------------
+        listaCliente.add(reservaEnVista.getReserva().getPersonaByCodCliente());
         listaTablaCliente.addAll(TablaCliente.getTablaBuscadorCliente(listaCliente));
         tablaCliente.setItems(listaTablaCliente);
         //---------------------------------------------------
-        listaAgencia.add(detalleReserva.getReserva().getPersonaByAgencia());
+        listaAgencia.add(reservaEnVista.getReserva().getPersonaByAgencia());
         listaTablaAgencia.addAll(TablaCliente.getTablaBuscadorCliente(listaAgencia));
         tablaAgencia.setItems(listaTablaAgencia);
         //---------------------------------------------------
-            for (DetallesReserva dr : getListaDeAlojamientos()) {
-            if(detalleReserva.getReserva().getCodReserva().equals(dr.getReserva().getCodReserva()))
-                listaDetalleReservaInternos.add(dr);
+        for (DetallesReserva dr : getListaDeAlojamientos()) {
+            if (reservaEnVista.getReserva().getCodReserva().equals(dr.getReserva().getCodReserva())) {
+                listaAlojamientos.add(dr);
+            }
         }
-        listaTablaAlojamientos.addAll(TablaAlojamiento.getListaTablaAlojamiento(listaDetalleReservaInternos));
+        listaTablaAlojamientos.addAll(TablaAlojamiento.getListaTablaAlojamiento(listaAlojamientos));
         tablaAlojamiento.setItems(listaTablaAlojamientos);
         //---------------------------------------------------
-        listaDetalleReserva.add(detalleReserva);
+        listaDetalleReserva.add(reservaEnVista);
         //----------------------------------------------------
-        
 
-        if (detalleReserva.getReserva().getTipoTarjetaCredito() != null) {
-            tipoTarjeta.getSelectionModel().select(detalleReserva.getReserva().getTipoTarjetaCredito());
+        if (reservaEnVista.getReserva().getTipoTarjetaCredito() != null) {
+            tipoTarjeta.getSelectionModel().select(reservaEnVista.getReserva().getTipoTarjetaCredito());
         }
-        if (detalleReserva.getReserva().getNumeroTarjetaCredito() != null) {
-            numeroTarjeta.setText(detalleReserva.getReserva().getNumeroTarjetaCredito());
+        if (reservaEnVista.getReserva().getNumeroTarjetaCredito() != null) {
+            numeroTarjeta.setText(reservaEnVista.getReserva().getNumeroTarjetaCredito());
         }
-        if (detalleReserva.getReserva().getComentario() != null) {
-            comentario.setText(detalleReserva.getReserva().getComentario());
+        if (reservaEnVista.getReserva().getComentario() != null) {
+            comentario.setText(reservaEnVista.getReserva().getComentario());
         }
-        return this;
+       return this;
     }
 }

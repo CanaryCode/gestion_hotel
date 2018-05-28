@@ -17,7 +17,7 @@ public class TablaHabitacion {
 
     String vista, numero, tipo, cama;
 
-    public static ObservableList<TablaHabitacion> getTablaBuscadorCliente(ObservableList<Habitacion> listaHabitacion) {
+    public static ObservableList<TablaHabitacion> getTablaHabitacion(ObservableList<Habitacion> listaHabitacion) {
         ObservableList<TablaHabitacion> listaTablaHabitacion = FXCollections.observableArrayList();
         if (!listaHabitacion.isEmpty()) {
             for (Habitacion habitacion : listaHabitacion) {
@@ -25,9 +25,8 @@ public class TablaHabitacion {
                 String vista = habitacion.getDescripcion();
                 String tipo = habitacion.getTipo();
                 String cama = "";
-                TablaHabitacion tablaHabitacion = new TablaHabitacion(vista, numero, tipo, cama);
-
                 TablaHabitacion tH = new TablaHabitacion(vista, numero, tipo, cama);
+                
                 listaTablaHabitacion.add(tH);
             }
         }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
@@ -133,59 +134,60 @@ public class RecorredorPaneles {
         });
     }
 
-    public static void setOnlyReadsInputs(Pane pane) {
+    /**
+     * Se utiliza para recorrer todos los controles de un Panel pasado por
+     * parámetro y sus correspondientes subniveles anidados hasta recorrer todos
+     * los controles que hay dentro y restaurar los valores iniciales.
+     *
+     * @param pane Panel raiz desde donde se quiere empezar a inspeccionar
+     */
+    public static void DesahilitaNodes(Pane pane) {
         //obten todos nodos del panel padre y por cada uno:
-        pane.getChildren().forEach(new Consumer<Node>() {
-            @Override
-            public void accept(Node object) {
-                //si es instancia de pane
-                if (object instanceof Pane) {
-                    //utiliza recursividad.
-                    setOnlyReadsInputs((Pane) object);
-                    //si es instancia de SplitPane
-                } else if (object instanceof SplitPane) {
-                    //utiliza el método getItems() para obstener una lista de todos
-                    //los nodos que tiene dentro.
-                    ObservableList<Node> listaNodos = ((SplitPane) object).getItems();
-                    //por cada nodo mira si es instacia de Pane y en el caso de ser
-                    //así utiliza la recursividad.
-                    listaNodos.stream().filter((nodo) -> (nodo instanceof Pane)).forEachOrdered((nodo) -> {
-                        setOnlyReadsInputs((Pane) nodo);
-                    });
-                    //si es instancia de TabPane u
-                } else if (object instanceof TabPane) {
-                    //utiliza el método getTabs() para obtener las pestañas de las que está compuesta.
-                    ObservableList<Tab> listaTabs = ((TabPane) object).getTabs();
-                    //por cada pestaña utiliza el método getContent() para obtener los nodos
-                    //y si son instancia de Pane, utiliza la recursividad.
-                    listaTabs.stream().map((tab) -> tab.getContent()).filter((nodo) -> (nodo instanceof Pane)).forEachOrdered((nodo) -> {
-                        setOnlyReadsInputs((Pane) nodo);
-                    });
-                    //si el objeto es un InputContol
-                } else if (object instanceof TextInputControl) {
-                    //borra lo que haya escrito en el
-                    ((TextInputControl) object).setEditable(false);
-                    //si es un ComboBox
-                } else if (object instanceof ComboBox) {
-                    //haz que se seleccione el primer articulo de la lista.
-                    ((ComboBox) object).setDisable(true);
-                    ((ComboBox) object).setStyle("-fx-opacity: 1.0;");
-                    //si es un DatePicker
-                } else if (object instanceof DatePicker) {
-                    //haz que no haya nada seleccionado.
-                    ((DatePicker) object).setDisable(true);
-                    ((DatePicker) object).setStyle("-fx-opacity: 1.0;");
-                    //si es un radioButton
-                } else if (object instanceof RadioButton) {
-                    //obten el TogggleGroup y haz que se marque el primero.
-                    ((RadioButton) object).setDisable(true);
-                    ((RadioButton) object).setStyle("-fx-opacity: 1.0;");
-                    //si es un ToggleButton
-                } else if (object instanceof ToggleButton) {
-                    //haz que se deseleccione.
-                    ((ToggleButton) object).setDisable(true);
-                    ((ToggleButton) object).setStyle("-fx-opacity: 1.0;");
-                }
+        pane.getChildren().forEach((object) -> {
+            //si es instancia de pane
+            if (object instanceof Pane) {
+                //utiliza recursividad.
+                DesahilitaNodes((Pane) object);
+                //si es instancia de SplitPane
+            } else if (object instanceof SplitPane) {
+                //utiliza el método getItems() para obstener una lista de todos
+                //los nodos que tiene dentro.
+                ObservableList<Node> listaNodos = ((SplitPane) object).getItems();
+                //por cada nodo mira si es instacia de Pane y en el caso de ser
+                //así utiliza la recursividad.
+                listaNodos.stream().filter((nodo) -> (nodo instanceof Pane)).forEachOrdered((nodo) -> {
+                    DesahilitaNodes((Pane) nodo);
+                });
+                //si es instancia de TabPane u
+            } else if (object instanceof TabPane) {
+                //utiliza el método getTabs() para obtener las pestañas de las que está compuesta.
+                ObservableList<Tab> listaTabs = ((TabPane) object).getTabs();
+                //por cada pestaña utiliza el método getContent() para obtener los nodos
+                //y si son instancia de Pane, utiliza la recursividad.
+                listaTabs.stream().map((tab) -> tab.getContent()).filter((nodo) -> (nodo instanceof Pane)).forEachOrdered((nodo) -> {
+                    DesahilitaNodes((Pane) nodo);
+                });
+                //si el objeto es un InputContol
+            } else if (object instanceof TextInputControl) {
+                ((TextInputControl) object).setText("");
+                ((TextInputControl) object).setEditable(false);
+            } else if (object instanceof ComboBox) {
+                ((ComboBox) object).setDisable(true);
+                ((ComboBox) object).setStyle("-fx-opacity: 1.0;");
+            } else if (object instanceof DatePicker) {
+                ((DatePicker) object).setDisable(true);
+                ((DatePicker) object).setEditable(false);
+                ((DatePicker) object).setStyle("-fx-opacity: 1.0;");
+            } else if (object instanceof RadioButton) {
+                ((RadioButton) object).setDisable(true);
+                ((RadioButton) object).setStyle("-fx-opacity: 1.0;");
+            } else if (object instanceof ToggleButton) {
+                ((ToggleButton) object).setSelected(false);
+                ((ToggleButton) object).setDisable(true);
+                ((ToggleButton) object).setStyle("-fx-opacity: 1.0;");
+            } else if (object instanceof Button) {
+                ((Button) object).setDisable(true);
+                ((Button) object).setStyle("-fx-opacity: 1.0;");
             }
         });
     }

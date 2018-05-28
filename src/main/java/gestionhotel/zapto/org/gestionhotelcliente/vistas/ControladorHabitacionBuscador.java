@@ -1,17 +1,13 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
-import com.mysql.jdbc.Util;
-import gestionhotel.zapto.org.gestionhotelcliente.controladores.RecorredorPaneles;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBuscador;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.BuscadorInterface;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaHabitacion;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Habitacion;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -51,31 +47,24 @@ public class ControladorHabitacionBuscador implements Initializable, BuscadorInt
 
     @FXML
     private TableColumn tableColumnNumero, tableColumnTipo, tableColumnCama, tableColumnVista;
-    private ObservableList<Habitacion> listaHabitacion = FXCollections.observableArrayList();
+    private ObservableList<Habitacion> listaAddHabitacion = FXCollections.observableArrayList();
     private ObservableList<Habitacion> listaFiltro = FXCollections.observableArrayList();
     private ObservableList<TablaHabitacion> listaTablaHabitacion = FXCollections.observableArrayList();
     private ObservableList<Node> listaNodosApagables;
 
     private Habitacion habitacionEnVista;
-    
+    private int modo;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        tabla.setItems(listaTablaHabitacion);
-        tabla.getSelectionModel().selectedItemProperty().addListener((observable) -> {
-            habitacionEnVista = UtilBuscador.accionOnSelectedTable(listaHabitacion, tabla, seleccionar, actualizar);
-        });
         //----------------------------------------------------------------------
-        numero.setItems(Registro.ListaHabitacion);
-        numero.getSelectionModel().selectFirst();
-        tipoCama.setItems(Registro.ListaTipoCama);
-        tipoCama.getSelectionModel().selectFirst();
-        tipoHabitacion.setItems(Registro.ListaTipoHabitacion);
-        tipoHabitacion.getSelectionModel().selectFirst();
-        vistas.setItems(Registro.ListaVistas);
-        vistas.getSelectionModel().selectFirst();
+        UtilBuscador.iniciaComboBox(numero, Registro.ListaHabitacion);
+        UtilBuscador.iniciaComboBox(tipoCama, Registro.ListaTipoCama);
+        UtilBuscador.iniciaComboBox(tipoHabitacion, Registro.ListaTipoHabitacion);
+        UtilBuscador.iniciaComboBox(vistas, Registro.ListaVistas);
         //----------------------------------------------------------------------
         seleccionar.setOnAction((event) -> {
-            UtilBuscador.accionSeleccionar(listaHabitacion, habitacionEnVista, Ventanas.HABITACION_BUSCADOR);
+            UtilBuscador.accionSeleccionar(listaAddHabitacion, habitacionEnVista, Ventanas.HABITACION_BUSCADOR);
         });
         resetearCampos.setOnAction((event) -> {
             UtilBuscador.ResetearCampos(principal);
@@ -114,26 +103,32 @@ public class ControladorHabitacionBuscador implements Initializable, BuscadorInt
         tableColumnVista.setCellValueFactory(
                 new PropertyValueFactory("vista"));
 
+        tabla.getSelectionModel().selectedItemProperty().addListener((observable) -> {
+            habitacionEnVista = UtilBuscador.accionOnSelectedTable(listaFiltro, tabla,
+                    seleccionar, actualizar,borrar);
+        });
+
         //-------------------------------------------------------------
-        listaNodosApagables = FXCollections.observableArrayList(seleccionar, resetearCampos);
+        listaNodosApagables = FXCollections.observableArrayList(buscar, resetearCampos);
     }
 
     @Override
-    public <T> BuscadorInterface setLista(ObservableList<T> ListaObjeto) {
-        this.listaHabitacion = listaHabitacion;
+    public <T> ControladorHabitacionBuscador setListaToAdd(ObservableList<T> ListaObjeto) {
+        this.listaAddHabitacion = (ObservableList<Habitacion>) ListaObjeto;
         return this;
     }
 
     @Override
-    public <T> BuscadorInterface setFiltro(ObservableList<T> ListaObjeto) {
-        this.listaFiltro = listaFiltro;
-        listaTablaHabitacion = TablaHabitacion.getTablaBuscadorCliente(listaFiltro);
+    public ControladorHabitacionBuscador setModo(int modo) {
+        this.modo = modo;
+        return this;
+    }
+
+    @Override
+    public <T> ControladorHabitacionBuscador setFiltro(ObservableList<T> ListaObjeto) {
+        this.listaFiltro = (ObservableList<Habitacion>) ListaObjeto;
+        this.listaTablaHabitacion = TablaHabitacion.getTablaHabitacion(listaFiltro);
         tabla.setItems(listaTablaHabitacion);
-        return this;
-    }
-
-    @Override
-    public BuscadorInterface setModo(int modo) {
         return this;
     }
 

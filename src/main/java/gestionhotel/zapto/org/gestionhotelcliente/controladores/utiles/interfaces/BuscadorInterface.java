@@ -13,6 +13,6 @@ import javafx.collections.ObservableList;
  */
 public interface BuscadorInterface {
     public BuscadorInterface setModo(int modo);
-    public <T> BuscadorInterface setLista(ObservableList<T> ListaObjeto);
+    public <T> BuscadorInterface setListaToAdd(ObservableList<T> ListaObjeto);
     public <T> BuscadorInterface setFiltro(ObservableList<T> ListaObjeto);
 }

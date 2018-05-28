@@ -1,12 +1,10 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
-import gestionhotel.zapto.org.gestionhotelcliente.controladores.RecorredorPaneles;
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilFormularios;
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.FormularioInterface;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import java.net.URL;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,7 +21,7 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author Antonio Jesús Pérez Delgado
  */
-public class ControladorHuesped implements Initializable {
+public class ControladorHuesped implements Initializable, FormularioInterface {
 
     @FXML
     TextField nombre, primerApellido, segundoApellido, calle, numero, provincia, ciudad,
@@ -44,190 +42,59 @@ public class ControladorHuesped implements Initializable {
     Button aceptar, reseteaCampos;
     @FXML
     AnchorPane principal;
-    private int modoFormulario;
+    private int modo;
     private Persona huespedEnVista;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        tratamiento.setItems(Registro.ListaTratamiento);
-        tratamiento.getSelectionModel().selectFirst();
-        categoria.setItems(Registro.listaCategoriaHuesped);
-        categoria.getSelectionModel().selectFirst();
-        nacionalidad.setItems(Registro.listaPaises);
-        nacionalidad.getSelectionModel().selectFirst();
+        UtilFormularios.iniciaComboBox(tratamiento, Registro.ListaTratamiento);
+        UtilFormularios.iniciaComboBox(categoria, Registro.listaCategoriaHuesped);
+        UtilFormularios.iniciaComboBox(nacionalidad, Registro.listaPaises);
         reseteaCampos.setOnAction((event) -> {
-            codigoResetearCampos();
+            UtilFormularios.reseteaCampos(principal);
         });
     }
 
-    private void configurarModo() {
-        if (modoFormulario == Ventanas.MODO_ACTUALIZAR) {
-            aceptar.setOnAction((event) -> {
-                //entonces cuando termines, de  hacerlo cierra la ventana.
-                Ventanas.cerrarVentana(Ventanas.HUESPED_FORMULARIO);
-                //si se está insertando a una persona
-            });
-            reseteaCampos.setDisable(true);
-
-        } else if (modoFormulario == Ventanas.MODO_INSERTAR) {
-            aceptar.setOnAction((event) -> {
-                //entonces resetea todos los campos.
-                codigoResetearCampos();
-            });
-        } else if (modoFormulario == Ventanas.MODO_VER) {
-            deshabilitaEditables();
-            deshabilitaBotones();
-        }
-
-    }
-
-    public ControladorHuesped setModoFormulario(int modoFormulario) {
-        this.modoFormulario = modoFormulario;
-        configurarModo();
+    @Override
+    public ControladorHuesped setModo(int modo) {
+        this.modo = modo;
+        UtilFormularios.configurarModo(modo, aceptar, reseteaCampos, principal);
         return this;
     }
 
-    public void codigoResetearCampos() {
-        RecorredorPaneles.reseteaControles(principal);
-
-    }
-
-    public ControladorHuesped setHuespedEnVista(Persona huesped) {
-        huespedEnVista = huesped;
-        if (huesped.getNombre() != null) {
-            nombre.setText(huesped.getNombre());
-        }
-
-        if (huesped.getFisPrimerApellido() != null) {
-            primerApellido.setText(huesped.getFisPrimerApellido());
-        }
-
-        if (huesped.getFisSegundoApellido() != null) {
-            segundoApellido.setText(huesped.getFisSegundoApellido());
-        }
-
-        if (huesped.getDocumentoNumero() != null) {
-            dni.setText(huesped.getDocumentoNumero());
-        }
-
-        if (huesped.getProvincia() != null) {
-            provincia.setText(huesped.getProvincia());
-        }
-
-        if (huesped.getCodPostal() != null) {
-            codigoPostal.setText(huesped.getCodPostal());
-        }
-
-        if (huesped.getEmail() != null) {
-            correoElectronico.setText(huesped.getEmail());
-        }
-
-        if (huesped.getCalle() != null) {
-            calle.setText(huesped.getCalle());
-        }
-
-        if (huesped.getCiudad() != null) {
-            ciudad.setText(huesped.getCiudad());
-        }
-
-        if (huesped.getComentario() != null) {
-            comentario.setText(huesped.getComentario());
-        }
-
-        if (huesped.getNumero() != null) {
-            numero.setText(huesped.getNumero());
-        }
-        if (huesped.getPasaporte() != null) {
-            pasaporte.setText(huesped.getPasaporte());
-        }
-        if (huesped.getPaginaWeb() != null) {
-            paginaWeb.setText(huesped.getPaginaWeb());
-        }
+    @Override
+    public ControladorHuesped setObjetoEnVista(Object objetoEnVista) {
+        huespedEnVista = (Persona) objetoEnVista;
+        UtilFormularios.ValidarNodo(nombre, huespedEnVista.getNombre());
+        UtilFormularios.ValidarNodo(primerApellido, huespedEnVista.getFisPrimerApellido());
+        UtilFormularios.ValidarNodo(segundoApellido, huespedEnVista.getFisSegundoApellido());
+        UtilFormularios.ValidarNodo(dni, huespedEnVista.getDocumentoNumero());
+        UtilFormularios.ValidarNodo(provincia, huespedEnVista.getProvincia());
+        UtilFormularios.ValidarNodo(codigoPostal, huespedEnVista.getCodPostal());
+        UtilFormularios.ValidarNodo(ciudad, huespedEnVista.getCiudad());
+        UtilFormularios.ValidarNodo(correoElectronico, huespedEnVista.getEmail());
+        UtilFormularios.ValidarNodo(calle, huespedEnVista.getCalle());
+        UtilFormularios.ValidarNodo(comentario, huespedEnVista.getComentario());
+        UtilFormularios.ValidarNodo(numero, huespedEnVista.getNumero());
+        UtilFormularios.ValidarNodo(pasaporte, huespedEnVista.getPasaporte());
+        UtilFormularios.ValidarNodo(paginaWeb, huespedEnVista.getPaginaWeb());
         /**
          * --------------------------------------------------------------
          */
-        if (huesped.getFisNacionalidad() != null) {
-            for (Object obj : nacionalidad.getItems()) {
-                if (((String) obj).equals(huesped.getFisNacionalidad())) {
-                    nacionalidad.getSelectionModel().select(obj);
-                    break;
-                }
-            }
-        }
-        if (huesped.getFisTratamiento() != null) {
-            for (Object obj : tratamiento.getItems()) {
-                if (((String) obj).equals(huesped.getFisTratamiento())) {
-                    tratamiento.getSelectionModel().select(obj);
-                    break;
-                }
-            }
-        }
-        if (huesped.getCategoria() != null) {
-            for (Object obj : categoria.getItems()) {
-                if (((String) obj).equals(huesped.getCategoria())) {
-                    categoria.getSelectionModel().select(obj);
-                    break;
-                }
-            }
-        }
+        UtilFormularios.ValidarNodo(nacionalidad, huespedEnVista.getFisNacionalidad());
+        UtilFormularios.ValidarNodo(tratamiento, huespedEnVista.getFisTratamiento());
+        UtilFormularios.ValidarNodo(categoria, huespedEnVista.getCategoria());
         /**
          * --------------------------------------------------------------
          */
-        if (huesped.getFisDiscapacitado() != null) {
-            if (huesped.getFisDiscapacitado() == 1) {
-                discapacitadoSi.setSelected(true);
-            }
-        }
-
-        if (huesped.getFisSexoHombre() != null) {
-            if (huesped.getFisSexoHombre() == 0) {
-                sexoF.setSelected(true);
-            }
-        }
+        UtilFormularios.ValidarNodo(discapacitadoSi, huespedEnVista.getFisDiscapacitado());
+        UtilFormularios.ValidarNodo(sexoF, huespedEnVista.getFisSexoHombre());
         /**
          * -----------------------------------------------------------------
          */
-        if (huesped.getFisFechaNacimiento() != null) {
-            fechaNacimiento.setValue(new Date(huesped.getFisFechaNacimiento().getTime()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        }
-        if (huesped.getFisExpPasaporte() != null) {
-            fechaExpedicion.setValue(new Date(huesped.getFisExpPasaporte().getTime()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        }
+        UtilFormularios.ValidarNodo(fechaNacimiento, huespedEnVista.getFisFechaNacimiento());
+        UtilFormularios.ValidarNodo(fechaExpedicion, huespedEnVista.getFisExpPasaporte());
+
         return this;
-    }
-
-    private void deshabilitaEditables() {
-//        nombre.setEditable(false);
-//        primerApellido.setEditable(false);
-//        segundoApellido.setEditable(false);
-//        dni.setEditable(false);
-//        provincia.setEditable(false);
-//        codigoPostal.setEditable(false);
-//        correoElectronico.setEditable(false);
-//        calle.setEditable(false);
-//        ciudad.setEditable(false);
-//        comentario.setEditable(false);
-//        numero.setEditable(false);
-//        pasaporte.setEditable(false);
-//        paginaWeb.setEditable(false);
-//        nacionalidad.setEditable(false);
-//        tratamiento.setEditable(false);
-//        categoria.setEditable(false);
-//        discapacitadoSi.setDisable(false);
-//        discapacitadoNo.setDisable(false);
-//        sexoF.setDisable(false);
-//        sexoM.setDisable(false);
-//        /**
-//         * -----------------------------------------------------------------
-//         */
-//        fechaNacimiento.setEditable(false);
-//        fechaExpedicion.setEditable(false);
-
-        RecorredorPaneles.setOnlyReadsInputs(principal);
-    }
-
-    private void deshabilitaBotones() {
-        aceptar.setDisable(true);
-        reseteaCampos.setDisable(true);
     }
 }

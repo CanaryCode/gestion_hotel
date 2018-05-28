@@ -1,10 +1,14 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBuscador;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaHuesped;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Habitacion;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.ListChangeListener;
@@ -63,9 +67,10 @@ public class ControladorHuespedReserva implements Initializable {
             tableColumnCategoriaBebes;
     //-------------------------------------------------------------------------------------------
 
-    private ObservableList<Persona> listaHuespededResponsable, listaHuespedOtros, listaHuespedChild, listaHuespedBebes, listaTodosLosHuespedes;
+    private ObservableList<Persona> listaHuespedResponsable, listaHuespedOtros, listaHuespedChild, listaHuespedBebes, listaTodosLosHuespedes;
     private ObservableList<TablaHuesped> listaTablaHuespedResponsable, listaTablaHuespedOtros, listaTablaHuespedChild, listaTablaHuespedBebes, listaTablaTodosLosHuespedes;
     private int maxHuespedResponsables = 1, maxHuespedOtros = 2, maxHuespedChild = 2, maxHuespedBebes;
+    private Persona ResponsableEnVista,OtrosHuespedesEnVista,ChildEnVista,BebesEnVista;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -101,19 +106,6 @@ public class ControladorHuespedReserva implements Initializable {
 
         reseteaCampos.setOnAction((event) -> {
             codigoReseteaCampos();
-        });
-        tablaResponsable.getSelectionModel().selectedItemProperty().addListener((observable) -> {
-            codigoAccionarBotonesBorrar(tablaResponsable, botonBorrarResponsable);
-
-        });
-        tablaOtros.getSelectionModel().selectedItemProperty().addListener((observable) -> {
-            codigoAccionarBotonesBorrar(tablaOtros, botonBorrarOtros);
-        });
-        tablaChild.getSelectionModel().selectedItemProperty().addListener((observable) -> {
-            codigoAccionarBotonesBorrar(tablaChild, botonBorrarChild);
-        });
-        tablaBebes.getSelectionModel().selectedItemProperty().addListener((observable) -> {
-            codigoAccionarBotonesBorrar(tablaBebes, botonBorrarBebes);
         });
         tableColumnDniOtros.setCellValueFactory(new PropertyValueFactory("numeroDocumento"));
         tableColumnNombreOtros.setCellValueFactory(new PropertyValueFactory("nombre"));
@@ -191,18 +183,41 @@ public class ControladorHuespedReserva implements Initializable {
         tableColumnCategoriaBebes.setCellValueFactory(new PropertyValueFactory("categoria"));
         tableColumnNumeroBebes.setCellValueFactory(new PropertyValueFactory("numero"));
         //------------------------------------------------------------------------------------------
+        tablaResponsable.getSelectionModel().selectedItemProperty().addListener((observable) -> {
+            ResponsableEnVista=UtilBuscador.accionOnSelectedTable(listaHuespedResponsable, tablaResponsable,botonBorrarResponsable);
+        });
+               
+        tablaOtros.getSelectionModel().selectedItemProperty().addListener((observable) -> {
+            OtrosHuespedesEnVista=UtilBuscador.accionOnSelectedTable(listaHuespedOtros, tablaOtros,botonBorrarOtros);
+        });
+        tablaChild.getSelectionModel().selectedItemProperty().addListener((observable) -> {
+            ChildEnVista=UtilBuscador.accionOnSelectedTable(listaHuespedChild, tablaChild,botonBorrarChild);
+        });
+        tablaBebes.getSelectionModel().selectedItemProperty().addListener((observable) -> {
+            BebesEnVista=UtilBuscador.accionOnSelectedTable(listaHuespedBebes, tablaBebes,botonBorrarBebes);
+        });
+        //------------------------------------------------------------------------------------------
+        tablaResponsable.setOnMouseClicked((event) -> {
+            UtilBuscador.accionVer(event, VentanasFactory.getObjetoVentanaHuespedFormulario(Ventanas.HUESPED_RESERVA, Modality.WINDOW_MODAL, null),ResponsableEnVista);
+        });
+        tablaOtros.setOnMouseClicked((event) -> {
+            UtilBuscador.accionVer(event, VentanasFactory.getObjetoVentanaHuespedFormulario(Ventanas.HUESPED_RESERVA, Modality.WINDOW_MODAL, null), OtrosHuespedesEnVista);
+        });
+        tablaChild.setOnMouseClicked((event) -> {
+            UtilBuscador.accionVer(event, VentanasFactory.getObjetoVentanaHuespedFormulario(Ventanas.HUESPED_RESERVA, Modality.WINDOW_MODAL, null), ChildEnVista);
+        });
+        tablaBebes.setOnMouseClicked((event) -> {
+            UtilBuscador.accionVer(event, VentanasFactory.getObjetoVentanaHuespedFormulario(Ventanas.HUESPED_RESERVA, Modality.WINDOW_MODAL, null), BebesEnVista);
+        });
     }
-
-    /**
-     *
-     */
     private void accionAddResponsable() {
         ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.HUESPED_RESERVA,
-                Modality.APPLICATION_MODAL, null);
+                Modality.WINDOW_MODAL, null);
         if (obj != null) {
             ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
-                    setModoVentana(Ventanas.MODO_SELECCIONAR).
-                    setListaHuesped(listaHuespededResponsable, listaTablaHuespedResponsable, listaTodosLosHuespedes);
+                    setListaToAdd(listaHuespedResponsable).
+                    setFiltro(PruebasModelo.getListaDeHuespedes()).
+                    setModo(Ventanas.MODO_BUSCADOR_SELECCIONAR);
             obj.ver();
         }
 
@@ -213,14 +228,38 @@ public class ControladorHuespedReserva implements Initializable {
         ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
             ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
-                    setModoVentana(Ventanas.MODO_SELECCIONAR).setListaHuesped(listaHuespedOtros, listaTablaHuespedOtros, listaTodosLosHuespedes);
+                    setListaToAdd(listaHuespedOtros).
+                    setFiltro(PruebasModelo.getListaDeHuespedes()).
+                    setModo(Ventanas.MODO_BUSCADOR_SELECCIONAR);
             obj.ver();
         }
 
     }
 
+    private void accionAddChild() {
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
+        if (obj != null) {
+            ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
+                    setListaToAdd(listaHuespedChild).
+                    setFiltro(PruebasModelo.getListaDeHuespedes()).
+                    setModo(Ventanas.MODO_BUSCADOR_SELECCIONAR);
+            obj.ver();
+        }
+    }
+
+    private void accionAddBebes() {
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
+        if (obj != null) {
+            ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
+                    setListaToAdd(listaTodosLosHuespedes).
+                    setFiltro(PruebasModelo.getListaDeHuespedes()).
+                    setModo(Ventanas.MODO_BUSCADOR_SELECCIONAR);
+            obj.ver();
+        }
+    }
+
     private void accionBorrarResponsable() {
-        logicaBorrar(listaHuespededResponsable, tablaResponsable);
+        logicaBorrar(listaHuespedResponsable, tablaResponsable);
 
     }
 
@@ -228,27 +267,9 @@ public class ControladorHuespedReserva implements Initializable {
         logicaBorrar(listaHuespedOtros, tablaOtros);
     }
 
-    private void accionAddChild() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
-        if (obj != null) {
-            ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
-                    setModoVentana(Ventanas.MODO_SELECCIONAR).setListaHuesped(listaHuespedChild, listaTablaHuespedChild, listaTodosLosHuespedes);
-            obj.ver();
-        }
-    }
-
     private void accionBorrarChild() {
         logicaBorrar(listaHuespedChild, tablaChild);
 
-    }
-
-    private void accionAddBebes() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
-        if (obj != null) {
-            ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
-                    setModoVentana(Ventanas.MODO_SELECCIONAR).setListaHuesped(listaHuespedBebes, listaTablaHuespedBebes, listaTodosLosHuespedes);
-            obj.ver();
-        }
     }
 
     private void accionBorrarBebes() {
@@ -261,7 +282,7 @@ public class ControladorHuespedReserva implements Initializable {
 
     private void codigoReseteaCampos() {
         listaHuespedOtros.clear();
-        listaHuespededResponsable.clear();
+        listaHuespedResponsable.clear();
         listaHuespedChild.clear();
         listaHuespedBebes.clear();
         listaTodosLosHuespedes.clear();
@@ -308,7 +329,7 @@ public class ControladorHuespedReserva implements Initializable {
             ObservableList<TablaHuesped> listaTablaHuespedBebes, ObservableList<TablaHuesped> listaTablaTodosLosHuespedes) {
 
         this.listaHuespedOtros = listaHuespedeOtros;
-        this.listaHuespededResponsable = listaHuespedResponsable;
+        this.listaHuespedResponsable = listaHuespedResponsable;
         this.listaHuespedChild = listaHuespedChild;
         this.listaHuespedBebes = listaHuespedBebes;
         this.listaTodosLosHuespedes = listaTodosLosHuespedes;
@@ -344,10 +365,10 @@ public class ControladorHuespedReserva implements Initializable {
                 enciendoAdds(listaHuespedOtros, maxHuespedOtros, botonAddOtros);
             }
         });
-        listaHuespededResponsable.addListener(new ListChangeListener<Persona>() {
+        listaHuespedResponsable.addListener(new ListChangeListener<Persona>() {
             @Override
             public void onChanged(ListChangeListener.Change<? extends Persona> cambio) {
-                cambioListas(cambio, listaHuespededResponsable, listaTablaHuespedResponsable);
+                cambioListas(cambio, listaHuespedResponsable, listaTablaHuespedResponsable);
                 enciendoAdds(listaHuespedResponsable, maxHuespedResponsables, botonAddResponsable);
             }
         });
@@ -364,7 +385,7 @@ public class ControladorHuespedReserva implements Initializable {
             }
         });
         //----------------------------------------------------------------------------------------
-        if (listaHuespededResponsable.isEmpty()) {
+        if (listaHuespedResponsable.isEmpty()) {
             botonBorrarResponsable.setDisable(true);
             reseteaCampos.setDisable(true);
             botonOk.setDisable(true);
@@ -397,14 +418,12 @@ public class ControladorHuespedReserva implements Initializable {
                 listaTodosLosHuespedes.remove(p);
                 listaTablaTodosLosHuespedes.clear();
                 listaTablaTodosLosHuespedes.addAll(TablaHuesped.getTablaBuscadorHuesped(listaTodosLosHuespedes));
-                listaTabla.clear();
                 listaTabla.addAll(TablaHuesped.getTablaBuscadorHuesped(listaHuesped));
             }
             for (Persona p : cambio.getAddedSubList()) {
                 listaTodosLosHuespedes.add(p);
                 listaTablaTodosLosHuespedes.clear();
                 listaTablaTodosLosHuespedes.addAll(TablaHuesped.getTablaBuscadorHuesped(listaTodosLosHuespedes));
-                listaTabla.clear();
                 listaTabla.addAll(TablaHuesped.getTablaBuscadorHuesped(listaHuesped));
             }
         }
@@ -435,7 +454,7 @@ public class ControladorHuespedReserva implements Initializable {
             if (alert.getResult() == ButtonType.YES) {
                 borrarListas();
                 Ventanas.cerrarVentana(Ventanas.HUESPED_RESERVA);
-            }else{
+            } else {
                 event.consume();
             }
         });
@@ -445,7 +464,7 @@ public class ControladorHuespedReserva implements Initializable {
         listaHuespedBebes.clear();
         listaHuespedChild.clear();
         listaHuespedOtros.clear();
-        listaHuespededResponsable.clear();
+        listaHuespedResponsable.clear();
         listaTodosLosHuespedes.clear();
     }
 }
