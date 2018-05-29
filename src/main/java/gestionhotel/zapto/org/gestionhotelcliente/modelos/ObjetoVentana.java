@@ -15,7 +15,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.util.Duration;
 
@@ -48,6 +47,20 @@ public class ObjetoVentana {
     Object controlador;
     int modoDesvanecimiento;
     boolean cargado;
+
+    public static ObjetoVentana crear(String nombreFXML, String NombreVentana, String NombreOwner,
+            String titulo, Modality modalidad, Object controlador, int modoDesvanecimiento) {
+        VentanaCustom vc = Ventanas.getVentana(NombreVentana);
+
+        ObjetoVentana obj = new ObjetoVentana(
+                new FXMLLoader(), new VentanaCustom(NombreVentana, NombreOwner),
+                nombreFXML, NombreVentana, titulo, NombreOwner, modalidad, null,
+                modoDesvanecimiento, true);
+
+        obj.configuraVentana();
+
+        return obj;
+    }
 
     /**
      *
@@ -108,7 +121,7 @@ public class ObjetoVentana {
      *
      * @return
      */
-    public ObjetoVentana configuraVentana() {
+    public void configuraVentana() {
         try {
             ventana.setTitle(titulo);
             ventana.getIcons().add(new Image("/imagenes/hotel.png"));
@@ -138,9 +151,11 @@ public class ObjetoVentana {
             ventana.initOwner(ventanaOwner);
         } catch (Exception ex) {
             LanzadorDeError.lanzarErrorUsuario(ex.getMessage());
-            Logger.getLogger(ObjetoVentana.class.getName()).log(Level.SEVERE, null, ex);
+            Logger
+                    .getLogger(ObjetoVentana.class
+                            .getName()).log(Level.SEVERE, null, ex);
         }
-        return new ObjetoVentana();
+
     }
 
     /**
@@ -156,7 +171,7 @@ public class ObjetoVentana {
             ventana.setActividad(true);
             Ventanas.addVentana(ventana);
         } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "La ventana: " + titulo + "\n"
+            Alert alert = new Alert(Alert.AlertType.WARNING, "La ventana: " + titulo + "\n"
                     + "Está en uso, para abrir esta ventana tiene que cerrar la ventana en uso,\n"
                     + "Si cierra la ventana podrían perderse los cambios realizados.\n"
                     + "¿quiere cerrarla y abrirla de nuevo?", ButtonType.YES, ButtonType.NO);

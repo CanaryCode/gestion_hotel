@@ -1,5 +1,6 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.LimitadorDeCaracteres;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilFormularios;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.FormularioInterface;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
@@ -68,6 +69,50 @@ public class ControladorClienteFormulario implements Initializable, FormularioIn
         UtilFormularios.iniciaComboBox(categoria, Registro.ListaCategoriaCliente);
         UtilFormularios.iniciaComboBox(nacionalidad, Registro.listaPaises);
         UtilFormularios.iniciaComboBox(razonSocial, Registro.ListaRazonSocial);
+        //-----------------------------------------------------------------------
+        nombre.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
+        });
+        primerApellido.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(primerApellido, newValue, oldValue, 40);
+        });
+        segundoApellido.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(segundoApellido, newValue, oldValue, 40);
+        });
+        calle.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(calle, newValue, oldValue, 40);
+        });
+        numero.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(numero, newValue, oldValue, 40);
+        });
+        provincia.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(provincia, newValue, oldValue, 40);
+        });
+        ciudad.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(ciudad, newValue, oldValue, 40);
+        });
+        correoElectronico.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(correoElectronico, newValue, oldValue, 40);
+        }); 
+        codigoPostal.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(codigoPostal, newValue, oldValue, 40);
+        }); 
+        cif.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(cif, newValue, oldValue, 40);
+        });
+        nombreEmpresa.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(nombreEmpresa, newValue, oldValue, 40);
+        });
+        paginaWeb.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(paginaWeb, newValue, oldValue, 40);
+        });
+        dni.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(dni, newValue, oldValue, 40);
+        });
+        comentario.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(comentario, newValue, oldValue, 300);
+        });
+        //-----------------------------------------------------------------------
         reseteaCampos.setOnAction((event) -> {
             UtilFormularios.reseteaCampos(principal);
         });

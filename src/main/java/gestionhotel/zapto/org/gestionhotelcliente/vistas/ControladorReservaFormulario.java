@@ -1,5 +1,6 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.LimitadorDeCaracteres;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBuscador;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilFormularios;
@@ -105,6 +106,13 @@ public class ControladorReservaFormulario implements Initializable, FormularioIn
         });
         borrarAlojamiento.setOnAction((e) -> {
             codigoBorrarAlojamiento();
+        });
+        //----------------------------------------------------------------------
+        comentario.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(comentario, newValue, oldValue, 300);
+        });
+        numeroTarjeta.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(numeroTarjeta, newValue, oldValue, 40);
         });
         //----------------------------------------------------------------------
 

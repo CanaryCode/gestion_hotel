@@ -1,5 +1,6 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.LimitadorDeCaracteres;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilFormularios;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.FormularioInterface;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
@@ -45,7 +46,14 @@ public class ControladorTelefonoFormulario implements Initializable, FormularioI
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        //-----------------------------------------------------------------------
+         numero.textProperty().addListener((observable, oldValue, newValue) -> {
+             LimitadorDeCaracteres.addLimitacion(numero, newValue, oldValue, 40);
+         });
+         nombre.textProperty().addListener((observable, oldValue, newValue) -> {
+             LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 120);
+         });
+        //-----------------------------------------------------------------------
         UtilFormularios.iniciaComboBox(tipo, Registro.ListaTipoTelefono);
         reseteaCampos.setOnAction((event) -> {
             UtilFormularios.reseteaCampos(principal);
@@ -72,8 +80,8 @@ public class ControladorTelefonoFormulario implements Initializable, FormularioI
         if (p != null && p.getEsEmpresa() == 1) {
             UtilFormularios.ValidarNodo(nombre, telefonoEnVista.getPersona().getJurNombreComercial());
         } else {
-           UtilFormularios.ValidarNodo(nombre, telefonoEnVista.getPersona().getNombre()+" "+
-                   p.getFisPrimerApellido()+" "+p.getFisSegundoApellido());
+            UtilFormularios.ValidarNodo(nombre, telefonoEnVista.getPersona().getNombre() + " "
+                    + p.getFisPrimerApellido() + " " + p.getFisSegundoApellido());
         }
 
         return this;

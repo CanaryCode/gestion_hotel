@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="principal" maxHeight="600.0" maxWidth="900.0" minHeight="80.0" minWidth="100.0" styleClass="mainFxmlClass" stylesheets="@../styles/estilos.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorListaVacia">
+   <children>
+      <TableView fx:id="tabla" prefHeight="108.0" prefWidth="248.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+   </children>
+</AnchorPane>

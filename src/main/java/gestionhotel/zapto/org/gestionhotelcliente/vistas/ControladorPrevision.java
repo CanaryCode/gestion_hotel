@@ -1,15 +1,16 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.ActivadorDeControles;
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.LimitadorDeCaracteres;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBuscador;
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.BuscadorInterface;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaPrevision;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -31,7 +32,7 @@ import javafx.stage.Modality;
  *
  * @author Antonio Jesús Pérez Delgado
  */
-public class ControladorPrevision implements Initializable {
+public class ControladorPrevision implements Initializable,BuscadorInterface{
 
     @FXML
     private TextField cliente, reserva;
@@ -45,12 +46,22 @@ public class ControladorPrevision implements Initializable {
 
     @FXML
     private TableView<TablaPrevision> tabla;
-    ObservableList<TablaPrevision> listaTablaCheckIn = FXCollections.observableArrayList(), listaFiltroTabla;
-    ObservableList<DetallesReserva> listaAlojamientos = FXCollections.observableArrayList();
+    private ObservableList<TablaPrevision> listaTablaCheckIn = FXCollections.observableArrayList(), listaFiltroTabla;
+    private ObservableList<DetallesReserva> listaAlojamientos = FXCollections.observableArrayList();
+    private ObservableList<DetallesReserva> listaFiltroAlojamientos = FXCollections.observableArrayList();
     public DetallesReserva detallesReservaEnVista;
+    public int modo;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //----------------------------------------------------------------------
+        cliente.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(cliente, newValue, oldValue, 120);
+        });
+        reserva.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(reserva, newValue, oldValue, 40);
+        });
+        //----------------------------------------------------------------------
         resetearCampos.setOnAction((event) -> {
             accionReseteaCampos();
         });
@@ -176,5 +187,23 @@ public class ControladorPrevision implements Initializable {
         seleccionaReservaEnVista();
         noShow.setDisable(false);
         checkIn.setDisable(false);
+    }
+
+    @Override
+    public ControladorPrevision setModo(int modo) {
+        this.modo=modo;
+        return this;
+    }
+
+    @Override
+    public <T> ControladorPrevision setListaToAdd(ObservableList<T> ListaObjeto) {
+        listaAlojamientos=(ObservableList<DetallesReserva>) ListaObjeto;
+        return this;
+    }
+
+    @Override
+    public <T> ControladorPrevision setFiltro(ObservableList<T> ListaObjeto) {
+        listaFiltroAlojamientos=(ObservableList<DetallesReserva>) ListaObjeto;
+        return this;
     }
 }

@@ -1,5 +1,6 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.LimitadorDeCaracteres;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilFormularios;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.FormularioInterface;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
@@ -51,6 +52,9 @@ public class ControladorHabitacionFormulario implements Initializable, Formulari
         });
         aceptar.setOnAction((event) -> {
             codigoAceptar();
+        });
+        comentario.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(comentario, newValue, oldValue, 300);
         });
     }
 

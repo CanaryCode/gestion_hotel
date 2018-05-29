@@ -1,5 +1,6 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.LimitadorDeCaracteres;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBuscador;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.BuscadorInterface;
@@ -63,6 +64,14 @@ public class ControladorTelefonoBuscador implements Initializable, BuscadorInter
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //----------------------------------------------------------------------
+         numero.textProperty().addListener((observable, oldValue, newValue) -> {
+             LimitadorDeCaracteres.addLimitacion(numero, newValue, oldValue, 40);
+         });
+         propietario.textProperty().addListener((observable, oldValue, newValue) -> {
+             LimitadorDeCaracteres.addLimitacion(propietario, newValue, oldValue, 120);
+         });
+        //----------------------------------------------------------------------
         UtilBuscador.iniciaComboBox(tipo, Registro.ListaTipoTelefono);
         //---------------------------------------------------------------------
         seleccionar.setOnAction((event) -> {

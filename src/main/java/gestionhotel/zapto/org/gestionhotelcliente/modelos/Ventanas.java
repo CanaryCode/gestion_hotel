@@ -18,7 +18,7 @@ public class Ventanas {
             HUESPED_FORMULARIO = "HuespedFormulario", HUESPED_BUSCADOR = "HuespedBuscador", PREVISION=  "Prevision",
             CLIENTE_FORMULARIO = "ClienteFormulario", HUESPED_RESERVA = "HuespedReserva", PRINCIPAL = "Principal",
             QUIENES_SOMOS = "QuienesSomos", CALCULADORA = "Calculadora",TELEFONO_BUSCADOR="telefonoBuscador",
-            TELEFONO_FORMULARIO="TelefonoFormulario",RESERVA_HABITACION="ReservaHabitacion",CHECK_IN="CheckIn",
+            TELEFONO_FORMULARIO="TelefonoFormulario",LISTA_VACIA="listaVacia",CHECK_IN="CheckIn",
             ALOJAMIENTO_FORMULARIO="Alojamiento",HABITACION_FORMULARIO="HabitacionFormulario",
             HABITACION_BUSCADOR="HabitacionBuscador";
     

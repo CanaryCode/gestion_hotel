@@ -2,6 +2,7 @@ package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.ConfiguradorMensajes;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.ConfiguradorIdioma;
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.LimitadorDeCaracteres;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
@@ -61,6 +62,12 @@ public class ControladorLogIn implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         botonEntrar.setOnAction((ActionEvent event) -> {
             logicaBoton();
+        });
+        usuario.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(usuario, newValue, oldValue, 40);
+        });
+        password.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(password, newValue, oldValue, 40);
         });
         lenguaje.setItems(FXCollections.observableArrayList(Registro.ListaLenguajes));
         lenguaje.getSelectionModel().selectFirst();

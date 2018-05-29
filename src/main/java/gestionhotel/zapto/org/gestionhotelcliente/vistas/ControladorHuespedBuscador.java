@@ -1,5 +1,6 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.LimitadorDeCaracteres;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBuscador;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.BuscadorInterface;
@@ -24,7 +25,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
@@ -152,6 +152,43 @@ public class ControladorHuespedBuscador implements Initializable, BuscadorInterf
         UtilBuscador.iniciaComboBox(tratamiento, Registro.ListaTratamiento);
         UtilBuscador.iniciaComboBox(nacionalidad, Registro.listaPaises);
         UtilBuscador.iniciaComboBox(estado, Registro.listaPaises);
+        //----------------------------------------------------------------------------------------
+         nombre.textProperty().addListener((observable, oldValue, newValue) -> {
+             LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
+         });
+         primerApellido.textProperty().addListener((observable, oldValue, newValue) -> {
+             LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
+         });
+         segundoApellido.textProperty().addListener((observable, oldValue, newValue) -> {
+             LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
+         });
+         provincia.textProperty().addListener((observable, oldValue, newValue) -> {
+             LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
+         });
+         ciudad.textProperty().addListener((observable, oldValue, newValue) -> {
+             LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
+         });
+         calle.textProperty().addListener((observable, oldValue, newValue) -> {
+             LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
+         });
+         pasaporte.textProperty().addListener((observable, oldValue, newValue) -> {
+             LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
+         });
+         numero.textProperty().addListener((observable, oldValue, newValue) -> {
+             LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
+         });
+         codigoPostal.textProperty().addListener((observable, oldValue, newValue) -> {
+             LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
+         });
+         dni.textProperty().addListener((observable, oldValue, newValue) -> {
+             LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
+         });
+         correoElectronico.textProperty().addListener((observable, oldValue, newValue) -> {
+             LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
+         });
+         paginaWeb.textProperty().addListener((observable, oldValue, newValue) -> {
+             LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
+         });
         //----------------------------------------------------------------------------------------
         tableColumnDni.setCellValueFactory(new PropertyValueFactory("numeroDocumento"));
         tableColumnNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
