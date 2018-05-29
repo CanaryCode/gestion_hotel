@@ -2,6 +2,7 @@ package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBuscador;
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilFormularios;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.FormularioInterface;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
@@ -11,7 +12,6 @@ import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaCli
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo;
-import static gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo.getListaDeAlojamientos;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -25,6 +25,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 
 /**
@@ -35,13 +36,16 @@ import javafx.stage.Modality;
 public class ControladorReservaFormulario implements Initializable, FormularioInterface {
 
     @FXML
+    private AnchorPane principal;
+    @FXML
     private ComboBox tipoTarjeta;
 
     @FXML
     private TextArea comentario;
 
     @FXML
-    private Button confirmar, modificarCliente, modificarAgencia, addAlojamiento, borrarAlojamiento;
+    private Button confirmar, reseteaCampos, modificarCliente, modificarAgencia, addAlojamiento,
+            borrarAlojamiento;
 
     @FXML
     private TextField numeroTarjeta;
@@ -60,10 +64,10 @@ public class ControladorReservaFormulario implements Initializable, FormularioIn
             tableColumnSexoCliente, tableColumnEstadoCliente, tableColumnEmailCliente,
             tableColumnPaginaWebCliente, tableColumnCategoriaCliente, tableColumnTratamientoCliente,
             //------------------------------------------------------------------------------------
-            tableColumnRazonSocialAgencia,tableColumnNombreComercialAgencia, tableColumnDocumentoNumeroAgencia,
+            tableColumnRazonSocialAgencia, tableColumnNombreComercialAgencia, tableColumnDocumentoNumeroAgencia,
             tableColumnNombreAgencia, tableColumnProvinciaAgencia, tableColumnCiudadAgencia,
             tableColumnCalleAgencia, tableColumnNumeroAgencia, tableColumnCodigoPostalAgencia,
-            tableColumnEstadoAgencia, tableColumnEmailAgencia,tableColumnPaginaWebAgencia, 
+            tableColumnEstadoAgencia, tableColumnEmailAgencia, tableColumnPaginaWebAgencia,
             tableColumnCategoriaAgencia,
             //-------------------------------------------------------------------------------------------------
             tableColumnFechaInicio, tableColumnFechaFin, tableColumnNumeroAdultos, tableColumnNumeroChild,
@@ -85,7 +89,7 @@ public class ControladorReservaFormulario implements Initializable, FormularioIn
     private int modo;
 
     @Override
-    
+
     public void initialize(URL url, ResourceBundle rb) {
         confirmar.setOnAction((e) -> {
             codigoConfirmar();
@@ -94,7 +98,7 @@ public class ControladorReservaFormulario implements Initializable, FormularioIn
             codigoModificaAgencia();
         });
         addAlojamiento.setOnAction((e) -> {
-            codigoAddAlojamiento();
+            UtilBuscador.accionCrear(VentanasFactory.getObjetoVentanaDetallesReserva(Ventanas.RESERVA_FORMULARIO, Modality.APPLICATION_MODAL, null));
         });
         modificarCliente.setOnAction((e) -> {
             codigoModificaCliente();
@@ -103,7 +107,7 @@ public class ControladorReservaFormulario implements Initializable, FormularioIn
             codigoBorrarAlojamiento();
         });
         //----------------------------------------------------------------------
-        
+
         UtilBuscador.iniciaComboBox(tipoTarjeta, Registro.ListaTipoTarjeta);
 
         // ------------------------------------------------------------------------------------------
@@ -158,7 +162,7 @@ public class ControladorReservaFormulario implements Initializable, FormularioIn
         tableColumnPrefTipoRestaurante.setCellValueFactory(new PropertyValueFactory("PrefTipoRestaurante"));
         //-------------------------------------------------------------------------------------------------------------
         tablaAlojamiento.getSelectionModel().selectedItemProperty().addListener((observable) -> {
-            AlojamientoEnVista = UtilBuscador.accionOnSelectedTable(listaAlojamientos, tablaAlojamiento, borrarAlojamiento);
+            AlojamientoEnVista = UtilFormularios.accionOnSelectedTable(modo, listaAlojamientos, tablaAlojamiento, borrarAlojamiento);
         });
         tablaAgencia.getSelectionModel().selectedItemProperty().addListener((observable) -> {
             AgenciaEnVista = UtilBuscador.accionOnSelectedTable(listaAgencia, tablaAgencia);
@@ -167,10 +171,17 @@ public class ControladorReservaFormulario implements Initializable, FormularioIn
             ClienteEnVista = UtilBuscador.accionOnSelectedTable(listaCliente, tablaCliente);
         });
         tablaAgencia.setOnMouseClicked((event) -> {
-            UtilBuscador.accionVer(event,VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.RESERVA_FORMULARIO, Modality.APPLICATION_MODAL, null), ClienteEnVista);
+            AgenciaEnVista = UtilBuscador.onMouseClickedOnTable(tablaAgencia, event, VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.RESERVA_FORMULARIO, Modality.WINDOW_MODAL, null), AgenciaEnVista,
+                    listaAgencia);
         });
         tablaCliente.setOnMouseClicked((event) -> {
-            UtilBuscador.accionVer(event,VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.RESERVA_FORMULARIO, Modality.APPLICATION_MODAL, null), ClienteEnVista);
+            ClienteEnVista = UtilBuscador.onMouseClickedOnTable(tablaCliente, event, VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.RESERVA_FORMULARIO, Modality.WINDOW_MODAL, null), ClienteEnVista,
+                    listaCliente);
+
+        });
+        tablaAlojamiento.setOnMouseClicked((event) -> {
+            AlojamientoEnVista = UtilBuscador.onMouseClickedOnTable(tablaAlojamiento, event, VentanasFactory.getObjetoVentanaDetallesReserva(Ventanas.RESERVA_FORMULARIO, Modality.WINDOW_MODAL, null), AlojamientoEnVista,
+                    listaAlojamientos, borrarAlojamiento);
         });
         //---------------------------------------------------------------------------------------------
     }
@@ -190,16 +201,6 @@ public class ControladorReservaFormulario implements Initializable, FormularioIn
         }
     }
 
-    private void codigoAddAlojamiento() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaAlojamiento(Ventanas.RESERVA_FORMULARIO, Modality.APPLICATION_MODAL, null);
-        if (obj != null) {
-           ((ControladorAlojamientoFormulario) obj.getfXMLLoader().getController()).
-                   setObjetoEnVista(AlojamientoEnVista).
-                   setModo(Ventanas.MODO_FORMULARIO_INSERTAR);
-            obj.ver();
-        }
-    }
-
     private void codigoModificaCliente() {
         ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarCliente(Ventanas.RESERVA_FORMULARIO, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
@@ -210,37 +211,37 @@ public class ControladorReservaFormulario implements Initializable, FormularioIn
             obj.ver();
         }
     }
-    private void codigoBorrarAgencia() {
-        listaAgencia.remove(AgenciaEnVista);
-    }
 
     private void codigoBorrarAlojamiento() {
         listaAlojamientos.remove(AlojamientoEnVista);
     }
 
-    private void codigoBorrarCliente() {
-       listaTablaCliente.remove(ClienteEnVista);
-    }
-
     @Override
     public ControladorReservaFormulario setModo(int modo) {
-        this.modo= modo;
+        this.modo = modo;
+        UtilFormularios.configurarModo(Ventanas.RESERVA_FORMULARIO, modo, confirmar, reseteaCampos, principal);
         return this;
     }
 
     @Override
     public ControladorReservaFormulario setObjetoEnVista(Object objetoEnVista) {
-     reservaEnVista=(DetallesReserva) objetoEnVista;
-             //-----------------------------------------------------
+        reservaEnVista = (DetallesReserva) objetoEnVista;
+        //----------------------------------------------------------------------
+        //------------------Lista Cliente---------------------------------------
+        //----------------------------------------------------------------------
         listaCliente.add(reservaEnVista.getReserva().getPersonaByCodCliente());
         listaTablaCliente.addAll(TablaCliente.getTablaBuscadorCliente(listaCliente));
         tablaCliente.setItems(listaTablaCliente);
-        //---------------------------------------------------
+        //----------------------------------------------------------------------
+        //------------------Lista Agencia---------------------------------------
+        //----------------------------------------------------------------------
         listaAgencia.add(reservaEnVista.getReserva().getPersonaByAgencia());
         listaTablaAgencia.addAll(TablaCliente.getTablaBuscadorCliente(listaAgencia));
         tablaAgencia.setItems(listaTablaAgencia);
-        //---------------------------------------------------
-        for (DetallesReserva dr : getListaDeAlojamientos()) {
+        //----------------------------------------------------------------------
+        //------------------Lista Alojamientos----------------------------------
+        //----------------------------------------------------------------------
+        for (DetallesReserva dr : PruebasModelo.getListaDeAlojamientos()) {
             if (reservaEnVista.getReserva().getCodReserva().equals(dr.getReserva().getCodReserva())) {
                 listaAlojamientos.add(dr);
             }
@@ -260,6 +261,6 @@ public class ControladorReservaFormulario implements Initializable, FormularioIn
         if (reservaEnVista.getReserva().getComentario() != null) {
             comentario.setText(reservaEnVista.getReserva().getComentario());
         }
-       return this;
+        return this;
     }
 }

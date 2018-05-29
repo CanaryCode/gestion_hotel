@@ -41,84 +41,81 @@ public class Registro {
         "Túnez", "Turkmenistán", "Turquía", "Tuvalu", "Ucrania", "Uganda", "Uruguay", "Uzbekistán", "Vanuatu", "Venezuela", "Vietnam",
         "Yemen", "Yibuti", "Zambia", "Zimbabue", "Otro"};
 
-    public static final ObservableList listaPaises = FXCollections.observableArrayList(arrayPaises);
+    public static final ObservableList<String> listaPaises = FXCollections.observableArrayList(arrayPaises);
 
     private static final String[] arrayCategoria = {
         "desconocido", "Normal", "V.I.P", "Especial", "Repetidor", "Otro"
     };
-    public static final ObservableList listaCategoriaHuesped = FXCollections.observableArrayList(arrayCategoria);
+    public static final ObservableList<String> listaCategoriaHuesped = FXCollections.observableArrayList(arrayCategoria);
 
     private static String[] arrayPension = {
         "desconocido", "M.P.", "Completa", "Alo Y Des", "Otro"
     };
-    public static final ObservableList ListaPension = FXCollections.observableArrayList(arrayPension);
+    public static final ObservableList<String> ListaPension = FXCollections.observableArrayList(arrayPension);
 
-    private static final String[] arrayHabitacion = {
-        "desconocido", "11", "13", "412", "Otro"
-    };
-    public static final ObservableList ListaHabitacion = FXCollections.observableArrayList(arrayHabitacion);
-    private static final String[] arrayTratamiento = {
+   private static final String[] arrayTratamiento = {
         "desconocido", "Sr/Sra", "Dr/Dra", "Ingeniero/a", "Don/Doña", "Ilustrisimo/a", "Excelentisimo/a", "Otro"
     };
-    public static final ObservableList ListaTratamiento = FXCollections.observableArrayList(arrayTratamiento);
+    public static final ObservableList<String> ListaTratamiento = FXCollections.observableArrayList(arrayTratamiento);
 
     private static final String[] lenguajes = {
         "Español", "English"
     };
-    public static final ObservableList ListaLenguajes = FXCollections.observableArrayList(lenguajes);
+    public static final ObservableList<String> ListaLenguajes = FXCollections.observableArrayList(lenguajes);
 
     private static final String[] razonSocial = {
         "desconocido", "Emp. Individual", "S.L", "S.L.N.E", "S.A", "COOP", "C.B", "Otro"
     };
-    public static final ObservableList ListaRazonSocial = FXCollections.observableArrayList(razonSocial);
+    public static final ObservableList<String> ListaRazonSocial = FXCollections.observableArrayList(razonSocial);
 
     private static final String[] categoriaCliente = {
         "desconocido", "Especial", "Mongolo", "Mongolo profundo", "Otro"
     };
-    public static final ObservableList ListaCategoriaCliente = FXCollections.observableArrayList(categoriaCliente);
+    public static final ObservableList<String> ListaCategoriaCliente = FXCollections.observableArrayList(categoriaCliente);
 
     private static final String[] numeroPersonas = {
         "desconocido", "1", "2", "3", "4", "5"
     };
-    public static final ObservableList ListaNumeroPersonas = FXCollections.observableArrayList(numeroPersonas);
+    public static final ObservableList<String> ListaNumeroPersonas = FXCollections.observableArrayList(numeroPersonas);
 
     private static final String[] tipoHabitacion = {
         "desconocido", "Individual", "Doble", "Doble superior", "Suite", "Suite junior", "Otro"
     };
-    public static final ObservableList ListaTipoHabitacion = FXCollections.observableArrayList(tipoHabitacion);
+    public static final ObservableList<String> ListaTipoHabitacion = FXCollections.observableArrayList(tipoHabitacion);
 
     private static final String[] tipoCama = {
         "desconocido", "Individual", "Matrimonio", "Doble separadas", "Otro"
     };
-    public static ObservableList ListaTipoCama = FXCollections.observableArrayList(tipoCama);
+    public static ObservableList<String> ListaTipoCama = FXCollections.observableArrayList(tipoCama);
 
     private static final String[] tipoTarjeta = {
         "desconocido", "Visa", "Mastercard", "American Express", "Maestro", "ServiRed", "Otro"
     };
-    public static ObservableList ListaTipoTarjeta = FXCollections.observableArrayList(tipoTarjeta);
+    public static ObservableList<String> ListaTipoTarjeta = FXCollections.observableArrayList(tipoTarjeta);
 
     private static final String[] agencia = {
         "desconocido", "directo", "Tui", "Jahn Raisen", "Thomson", "Expedia", "Corte ingles", "Halcon", "Otro"
     };
-    public static ObservableList ListaAgencia = FXCollections.observableArrayList(agencia);
+    public static ObservableList<String> ListaAgencia = FXCollections.observableArrayList(agencia);
     private static final String[] tiposTelefono = {
         "Desconocido", "Móvil", "Casa", "Empresa", "Fax", "Otro"
     };
-    public static ObservableList ListaTipoTelefono = FXCollections.observableArrayList(tiposTelefono);
+    public static ObservableList<String> ListaTipoTelefono = FXCollections.observableArrayList(tiposTelefono);
     private static final String[] vistas = {
         "Desconocido", "Mar", "Montaña", "Piscina", "Calle", "Otro"
     };
-    public static ObservableList ListaVistas = FXCollections.observableArrayList(vistas);
+    public static ObservableList<String> ListaVistas = FXCollections.observableArrayList(vistas);
     private static final String[] turnoRestaurante = {
         "Desconocido", "Primero", "Segundo", "Tercero", "Otro"
     };
-    public static ObservableList ListaTurnoRestaurante = FXCollections.observableArrayList(turnoRestaurante);
+    public static ObservableList<String> ListaTurnoRestaurante = FXCollections.observableArrayList(turnoRestaurante);
     private static final String[] tiposRestaurante = {
         "Desconocido", "Principal", "Tradicional", "Mexicano", "Tailandés", "Otro"
     };
-    public static ObservableList ListaTipoRestaurante = FXCollections.observableArrayList(tiposRestaurante);
+    public static ObservableList<String> ListaTipoRestaurante = FXCollections.observableArrayList(tiposRestaurante);
     private static final String[] numeroHabitacion = {
         "1", "2", "3", "4", "5", "6"
     };
-    public static ObservableList ListaNumeroHabitacion= FXCollections.observableArrayList(numeroHabitacion);
+    public static ObservableList<String> ListaNumeroHabitacion= FXCollections.observableArrayList(numeroHabitacion);
+   
 }

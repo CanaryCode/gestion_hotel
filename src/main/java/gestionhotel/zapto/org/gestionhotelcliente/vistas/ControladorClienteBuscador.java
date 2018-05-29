@@ -3,12 +3,12 @@ package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBuscador;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.BuscadorInterface;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.Consultas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaCliente;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersona;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -21,7 +21,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TabPane;
-import javafx.scene.control.TableColumn;;
+import javafx.scene.control.TableColumn;
+;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
@@ -34,6 +35,8 @@ import javafx.stage.Modality;
  *
  * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
+
+
 public class ControladorClienteBuscador implements Initializable, BuscadorInterface {
 
     @FXML
@@ -175,13 +178,11 @@ public class ControladorClienteBuscador implements Initializable, BuscadorInterf
             UtilBuscador.ResetearCampos(panelPrincipal);
         });
         telefono.setOnAction((e) -> {
-            UtilBuscador.abrirTelefono(VentanasFactory.getObjetoVentanaTelefonoBuscador(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null), listaAddTelefono, PruebasModelo.getLisTelefono(), Ventanas.MODO_FORMULARIO_LECTURA);
+            ObservableList<TelefonoPersona> listaFiltroTelefono = Consultas.getListaFiltroTelefono(ClienteEnVista);
+            UtilBuscador.abrirTelefono(VentanasFactory.getObjetoVentanaTelefonoBuscador(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null), listaAddTelefono, Consultas.getListaFiltroTelefono(ClienteEnVista), Ventanas.MODO_FORMULARIO_LECTURA);
 
         });
-//        ver.setOnAction((e) -> {
-//            UtilBuscador.accionVer(VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null), ClienteEnVista);
-//
-//        });
+
         //---------------------------------------------------------------------
         tableColumnDocumentoNumero.setCellValueFactory(new PropertyValueFactory("numeroDocumento"));
         tableColumnNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
@@ -203,16 +204,14 @@ public class ControladorClienteBuscador implements Initializable, BuscadorInterf
         tableColumnNombreComercial.setCellValueFactory(new PropertyValueFactory("nombreComercial"));
         tableColumnPaginaWeb.setCellValueFactory(new PropertyValueFactory("paginaWeb"));
         tableColumnNacionalidad.setCellValueFactory(new PropertyValueFactory("nacionalidad"));
-
-        tabla.getSelectionModel().selectedItemProperty().addListener((observable) -> {
-            ClienteEnVista = UtilBuscador.accionOnSelectedTable(listaFiltro, tabla, seleccionar,
+        
+        tabla.setOnMouseClicked((event) -> {
+                ClienteEnVista=UtilBuscador.onMouseClickedOnTable(tabla, event, VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null), 
+                        ClienteEnVista,listaFiltro, seleccionar,
                     actualizar, telefono, borrar);
         });
-        tabla.setOnMouseClicked((event) -> {
-           UtilBuscador.accionVer(event, VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null), ClienteEnVista);
-        });
         //----------------------------------------------------------------------------------------
-        nodosApagables = FXCollections.observableArrayList(resetearCampos, buscar);
+    nodosApagables=FXCollections.observableArrayList(resetearCampos,buscar);
     }
 
     @Override

@@ -237,7 +237,7 @@ public class VentanasFactory {
      * @param controlador controlador del fxml.
      * @return ventana preconfigurada lista para abrir.
      */
-    public static ObjetoVentana getObjetoVentanaAlojamiento(String owner, Modality modalidad, Object controlador) {
+    public static ObjetoVentana getObjetoVentanaDetallesReserva(String owner, Modality modalidad, Object controlador) {
         ObjetoVentana obj = ObjetoVentanaBuilder.crear("AlojamientoFormulario", Ventanas.ALOJAMIENTO_FORMULARIO,
                 owner,"Alojamiento", modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;

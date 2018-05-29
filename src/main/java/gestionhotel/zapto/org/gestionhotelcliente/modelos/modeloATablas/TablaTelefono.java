@@ -1,6 +1,9 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersona;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersonaId;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo;
 import java.util.List;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
@@ -23,14 +26,20 @@ public class TablaTelefono {
 
     public static ObservableList<TablaTelefono> getTablaTelefono(List<TelefonoPersona> listaTelefono) {
         ObservableList<TablaTelefono> Telefonos = FXCollections.observableArrayList();
-        if (listaTelefono!=null||!listaTelefono.isEmpty()) {
+        if (listaTelefono != null || !listaTelefono.isEmpty()) {
             for (TelefonoPersona telefonoPersona : listaTelefono) {
-                String comentario = telefonoPersona.getDescripcion();
-                String nombre = "un nombre de prueba";
-                String tipo = "un tipo de prueba";
-                String numero = "un nombre de prueba";
-                TablaTelefono tablaTelefono = new TablaTelefono(numero, nombre, comentario, tipo);
-                Telefonos.add(tablaTelefono);
+                Persona p = telefonoPersona.getPersona();
+                if (p != null) {
+                    
+                    String comentario = telefonoPersona.getComentario();
+                    String nombre = telefonoPersona.getPersona().getNombre()+" "+
+                            telefonoPersona.getPersona().getFisPrimerApellido()+" "+
+                            telefonoPersona.getPersona().getFisSegundoApellido();
+                    String tipo = telefonoPersona.getTipo();
+                    String numero = telefonoPersona.getId().getNumTelefono();
+                    TablaTelefono tablaTelefono = new TablaTelefono(numero, nombre, comentario, tipo);
+                    Telefonos.add(tablaTelefono);
+                }
             }
         }
         return Telefonos;

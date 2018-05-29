@@ -14,17 +14,69 @@ import javafx.collections.ObservableList;
  */
 public class TablaPrevision {
 
-    String numeroReserva, cliente, tipo;
-    int habitacion;
+    String numeroReserva, cliente, tipo, habitacion, nombreAgencia;
     LocalDate fechaPrevistaEntrada, fechaPrevistaSalida;
 
-    public TablaPrevision(String numeroReserva, String cliente, int habitacion, String tipo, LocalDate fechaPrevistaEntrada, LocalDate fechaPrevistaSalida) {
+    public static ObservableList<TablaPrevision> modeloCheckin(List<DetallesReserva> listaDetallesReserva) {
+        ObservableList<TablaPrevision> listaCheckIn = FXCollections.observableArrayList();
+        if (!listaDetallesReserva.isEmpty()) {
+            for (DetallesReserva detallesReserva : listaDetallesReserva) {
+                String numeroReserva = "";
+                String nombrecliente = "";
+                String habitacion = "";
+                String nombreAgencia= "";
+                LocalDate fechaPrevistaEntrada = null;
+                LocalDate fechaPrevistaSalida = null;
+                String tipo = "";
+                numeroReserva = detallesReserva.getReserva().getNumero();
+                Persona cliente = detallesReserva.getReserva().getPersonaByCodCliente();
+                Persona agencia = detallesReserva.getReserva().getPersonaByAgencia();
+                
+                if (cliente != null) {
+                    String nombre = "";
+                    String primerApellido = "";
+                    String segundoApellido = "";
+                    if (cliente.getNombre() != null) {
+                        nombre = cliente.getNombre();
+                    }
+                    if (agencia.getJurNombreComercial() != null) {
+                        nombreAgencia = agencia.getJurNombreComercial();
+                    }
+                    if (cliente.getFisPrimerApellido() != null) {
+                        primerApellido = cliente.getFisPrimerApellido();
+                    }
+                    if (cliente.getFisSegundoApellido() != null) {
+                        segundoApellido = cliente.getFisSegundoApellido();
+                    }
+                    nombrecliente = nombre + " " + primerApellido + " " + segundoApellido;
+                }
+                habitacion = detallesReserva.getPreferenciaHabitacion();
+                fechaPrevistaEntrada = detallesReserva.getFechaEntradaPrevista().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                fechaPrevistaSalida = detallesReserva.getFechaSalidaPrevista().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                tipo = detallesReserva.getPreferenciaTipoHabitacion();
+                TablaPrevision c = new TablaPrevision(nombreAgencia,numeroReserva, nombrecliente, habitacion, tipo, fechaPrevistaEntrada, fechaPrevistaSalida);
+                listaCheckIn.add(c);
+            }
+        }
+        return listaCheckIn;
+    }
+
+    public TablaPrevision(String nombreAgencia, String numeroReserva, String cliente, String habitacion, String tipo, LocalDate fechaPrevistaEntrada, LocalDate fechaPrevistaSalida) {
+        this.nombreAgencia = nombreAgencia;
         this.numeroReserva = numeroReserva;
         this.cliente = cliente;
         this.habitacion = habitacion;
         this.tipo = tipo;
         this.fechaPrevistaEntrada = fechaPrevistaEntrada;
         this.fechaPrevistaSalida = fechaPrevistaSalida;
+    }
+
+    public String getNombreAgencia() {
+        return nombreAgencia;
+    }
+
+    public void setNombreAgencia(String nombreAgencia) {
+        this.nombreAgencia = nombreAgencia;
     }
 
     public String getNumeroReserva() {
@@ -43,11 +95,11 @@ public class TablaPrevision {
         this.cliente = cliente;
     }
 
-    public int getHabitacion() {
+    public String getHabitacion() {
         return habitacion;
     }
 
-    public void setHabitacion(int habitacion) {
+    public void setHabitacion(String habitacion) {
         this.habitacion = habitacion;
     }
 
@@ -73,43 +125,5 @@ public class TablaPrevision {
 
     public void setFechaPrevistaSalida(LocalDate fechaPrevistaSalida) {
         this.fechaPrevistaSalida = fechaPrevistaSalida;
-    }
-
-    public static ObservableList<TablaPrevision> modeloCheckin(List<DetallesReserva> listaDetallesReserva) {
-        ObservableList<TablaPrevision> listaCheckIn = FXCollections.observableArrayList();
-        if (!listaDetallesReserva.isEmpty()) {
-            for (DetallesReserva detallesReserva : listaDetallesReserva) {
-                String numeroReserva = "";
-                String cliente = "";
-                int habitacion = 0;
-                LocalDate fechaPrevistaEntrada = null;
-                LocalDate fechaPrevistaSalida = null;
-                String tipo = "";
-                numeroReserva = detallesReserva.getReserva().getNumero();
-                Persona persona = detallesReserva.getReserva().getPersonaByCodCliente();
-                if (persona != null) {
-                    String nombre = "";
-                    String primerApellido = "";
-                    String segundoApellido = "";
-                    if (persona.getNombre() != null) {
-                        nombre = persona.getNombre();
-                    }
-                    if (persona.getFisPrimerApellido() != null) {
-                        primerApellido = persona.getFisPrimerApellido();
-                    }
-                    if (persona.getFisSegundoApellido() != null) {
-                        segundoApellido = persona.getFisSegundoApellido();
-                    }
-                    cliente = nombre + " " + primerApellido + " " + segundoApellido;
-                }
-                habitacion = detallesReserva.getHabitacion().getNumero();
-                fechaPrevistaEntrada = detallesReserva.getFechaEntradaPrevista().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                fechaPrevistaSalida = detallesReserva.getFechaSalidaPrevista().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                tipo = detallesReserva.getHabitacion().getTipo();
-                TablaPrevision c = new TablaPrevision(numeroReserva, cliente, habitacion, tipo, fechaPrevistaEntrada, fechaPrevistaSalida);
-                listaCheckIn.add(c);
-            }
-        }
-        return listaCheckIn;
     }
 }

@@ -1,5 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos;
-// Generated 18-may-2018 17:14:22 by Hibernate Tools 4.3.1
+// Generated 28-may-2018 19:38:21 by Hibernate Tools 4.3.1
 
 
 
@@ -12,19 +12,25 @@ public class TelefonoPersona  implements java.io.Serializable {
      private TelefonoPersonaId id;
      private Persona persona;
      private String descripcion;
+     private String tipo;
+     private String comentario;
 
     public TelefonoPersona() {
     }
 
 	
-    public TelefonoPersona(TelefonoPersonaId id, Persona persona) {
+    public TelefonoPersona(TelefonoPersonaId id, Persona persona, String tipo, String comentario) {
         this.id = id;
         this.persona = persona;
+        this.tipo = tipo;
+        this.comentario = comentario;
     }
-    public TelefonoPersona(TelefonoPersonaId id, Persona persona, String descripcion) {
+    public TelefonoPersona(TelefonoPersonaId id, Persona persona, String descripcion, String tipo, String comentario) {
        this.id = id;
        this.persona = persona;
        this.descripcion = descripcion;
+       this.tipo = tipo;
+       this.comentario = comentario;
     }
    
     public TelefonoPersonaId getId() {
@@ -47,6 +53,20 @@ public class TelefonoPersona  implements java.io.Serializable {
     
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+    public String getTipo() {
+        return this.tipo;
+    }
+    
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    public String getComentario() {
+        return this.comentario;
+    }
+    
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
     }
 
 

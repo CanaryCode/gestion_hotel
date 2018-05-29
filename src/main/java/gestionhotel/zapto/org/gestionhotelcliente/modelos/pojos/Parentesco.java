@@ -1,5 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos;
-// Generated 18-may-2018 17:14:22 by Hibernate Tools 4.3.1
+// Generated 28-may-2018 19:38:21 by Hibernate Tools 4.3.1
 
 
 
@@ -13,21 +13,24 @@ public class Parentesco  implements java.io.Serializable {
      private Persona personaByCodPariente;
      private Persona personaByCodPersona;
      private String tipoParentesco;
+     private String comentario;
 
     public Parentesco() {
     }
 
 	
-    public Parentesco(ParentescoId id, Persona personaByCodPariente, Persona personaByCodPersona) {
+    public Parentesco(ParentescoId id, Persona personaByCodPariente, Persona personaByCodPersona, String comentario) {
         this.id = id;
         this.personaByCodPariente = personaByCodPariente;
         this.personaByCodPersona = personaByCodPersona;
+        this.comentario = comentario;
     }
-    public Parentesco(ParentescoId id, Persona personaByCodPariente, Persona personaByCodPersona, String tipoParentesco) {
+    public Parentesco(ParentescoId id, Persona personaByCodPariente, Persona personaByCodPersona, String tipoParentesco, String comentario) {
        this.id = id;
        this.personaByCodPariente = personaByCodPariente;
        this.personaByCodPersona = personaByCodPersona;
        this.tipoParentesco = tipoParentesco;
+       this.comentario = comentario;
     }
    
     public ParentescoId getId() {
@@ -57,6 +60,13 @@ public class Parentesco  implements java.io.Serializable {
     
     public void setTipoParentesco(String tipoParentesco) {
         this.tipoParentesco = tipoParentesco;
+    }
+    public String getComentario() {
+        return this.comentario;
+    }
+    
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
     }
 
 

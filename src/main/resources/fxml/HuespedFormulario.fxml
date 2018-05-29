@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="principal" prefHeight="494.0" prefWidth="900.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorHuesped">
+<AnchorPane id="AnchorPane" fx:id="principal" prefHeight="494.0" prefWidth="900.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorHuespedFormulario">
    <children>
       <VBox prefHeight="465.0" prefWidth="860.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
@@ -65,40 +65,55 @@
                               <Insets left="10.0" />
                            </GridPane.margin>
                         </Label>
-                        <RadioButton fx:id="sexoM" mnemonicParsing="false" selected="true" text="%radioButton.masculino" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                           <toggleGroup>
-                              <ToggleGroup fx:id="sexo" />
-                           </toggleGroup>
-                        </RadioButton>
-                        <RadioButton fx:id="sexoF" mnemonicParsing="false" text="%radioButton.femenino" textFill="WHITE" toggleGroup="$sexo" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <AnchorPane GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <children>
+                              <RadioButton fx:id="sexoM" mnemonicParsing="false" selected="true" text="%radioButton.masculino" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="sexo" />
+                                 </toggleGroup>
+                              </RadioButton>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane GridPane.columnIndex="3" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets left="80.0" />
                            </GridPane.margin>
-                        </RadioButton>
+                           <children>
+                              <RadioButton fx:id="sexoF" mnemonicParsing="false" text="%radioButton.femenino" textFill="WHITE" toggleGroup="$sexo" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
                         <Label styleClass="et" text="%label.radioButton.discapacitado" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets left="10.0" />
                            </GridPane.margin>
                         </Label>
-                        <RadioButton fx:id="discapacitadoNo" mnemonicParsing="false" selected="true" text="%radioButton.no" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                        <AnchorPane GridPane.columnIndex="5" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets left="10.0" />
                            </GridPane.margin>
-                           <toggleGroup>
-                              <ToggleGroup fx:id="discapacitado" />
-                           </toggleGroup>
-                        </RadioButton>
-                        <RadioButton fx:id="discapacitadoSi" mnemonicParsing="false" text="%radioButton.si" textFill="WHITE" toggleGroup="$discapacitado" GridPane.columnIndex="5" GridPane.rowIndex="1">
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
+                           <children>
+                              <RadioButton fx:id="discapacitadoNo" mnemonicParsing="false" selected="true" text="%radioButton.no" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="discapacitado" />
+                                 </toggleGroup>
+                              </RadioButton>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane GridPane.columnIndex="5" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets left="60.0" />
                            </GridPane.margin>
-                        </RadioButton>
+                           <children>
+                              <RadioButton fx:id="discapacitadoSi" mnemonicParsing="false" text="%radioButton.si" textFill="WHITE" toggleGroup="$discapacitado" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </RadioButton>
+                           </children>
+                        </AnchorPane>
                      </children>
                   </GridPane>
                </children>
@@ -130,12 +145,12 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ComboBox fx:id="nacionalidad" prefWidth="5000.0" GridPane.columnIndex="1">
+                        <ComboBox fx:id="estado" prefWidth="5000.0" GridPane.columnIndex="1">
                            <GridPane.margin>
                               <Insets bottom="10.0" />
                            </GridPane.margin>
                         </ComboBox>
-                        <Label styleClass="etiquetaNormal" text="%label.comboBox.nacionalidad" textFill="WHITE" />
+                        <Label styleClass="etiquetaNormal" text="estado" textFill="WHITE" />
                         <Label styleClass="etiquetaNormal" text="%label.textField.provincia" textFill="WHITE" GridPane.columnIndex="2">
                            <GridPane.margin>
                               <Insets left="10.0" />
@@ -265,6 +280,8 @@
                            </GridPane.margin>
                         </Label>
                         <ComboBox fx:id="categoria" prefWidth="5000.0" GridPane.columnIndex="1" />
+                        <Label styleClass="etiquetaNormal" text="%label.comboBox.nacionalidad" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="nacionalidad" prefWidth="5000.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                </children>

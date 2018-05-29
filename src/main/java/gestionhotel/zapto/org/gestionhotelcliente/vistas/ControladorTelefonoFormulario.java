@@ -4,6 +4,7 @@ import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilFormu
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.FormularioInterface;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersona;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -35,7 +36,7 @@ public class ControladorTelefonoFormulario implements Initializable, FormularioI
     private Button reseteaCampos, aceptar;
     @FXML
     private AnchorPane principal;
-    
+
     private int modo;
     private TelefonoPersona telefonoEnVista;
 
@@ -44,7 +45,7 @@ public class ControladorTelefonoFormulario implements Initializable, FormularioI
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         UtilFormularios.iniciaComboBox(tipo, Registro.ListaTipoTelefono);
         reseteaCampos.setOnAction((event) -> {
             UtilFormularios.reseteaCampos(principal);
@@ -57,13 +58,24 @@ public class ControladorTelefonoFormulario implements Initializable, FormularioI
     @Override
     public ControladorTelefonoFormulario setModo(int modo) {
         this.modo = modo;
-        UtilFormularios.configurarModo(modo, aceptar, reseteaCampos, principal);
+        UtilFormularios.configurarModo(Ventanas.TELEFONO_FORMULARIO, modo, aceptar, reseteaCampos, principal);
         return this;
     }
 
     @Override
     public ControladorTelefonoFormulario setObjetoEnVista(Object objetoEnVista) {
         this.telefonoEnVista = (TelefonoPersona) objetoEnVista;
+        UtilFormularios.ValidarNodo(tipo, telefonoEnVista.getTipo());
+        UtilFormularios.ValidarNodo(numero, telefonoEnVista.getId().getNumTelefono());
+        UtilFormularios.ValidarNodo(comentario, telefonoEnVista.getComentario());
+        Persona p = telefonoEnVista.getPersona();
+        if (p != null && p.getEsEmpresa() == 1) {
+            UtilFormularios.ValidarNodo(nombre, telefonoEnVista.getPersona().getJurNombreComercial());
+        } else {
+           UtilFormularios.ValidarNodo(nombre, telefonoEnVista.getPersona().getNombre()+" "+
+                   p.getFisPrimerApellido()+" "+p.getFisSegundoApellido());
+        }
+
         return this;
     }
 

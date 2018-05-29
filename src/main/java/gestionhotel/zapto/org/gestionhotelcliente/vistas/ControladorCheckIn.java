@@ -171,23 +171,16 @@ public class ControladorCheckIn implements Initializable {
                 new PropertyValueFactory("voucher"));
         //------------------------------------------------------------------------------------------
          tablaHabitacion.setOnMouseClicked((event) -> {
-             UtilBuscador.accionVer(event, VentanasFactory.getObjetoVentanaHabitacionFormulario(Ventanas.CHECK_IN, Modality.WINDOW_MODAL, null), habitacionEnVista);
+            habitacionEnVista= UtilBuscador.onMouseClickedOnTable(tablaHabitacion,event, VentanasFactory.getObjetoVentanaHabitacionFormulario(Ventanas.CHECK_IN, Modality.WINDOW_MODAL, null), habitacionEnVista,
+                     listaHabitacion, tablaHabitacion);
          });
          tablaReserva.setOnMouseClicked((event) -> {
-             UtilBuscador.accionVer(event, VentanasFactory.getObjetoVentanaReservaFormulario(Ventanas.CHECK_IN, Modality.WINDOW_MODAL, null), detallesReservaEnVista);
+            detallesReservaEnVista= UtilBuscador.onMouseClickedOnTable(tablaReserva,event, VentanasFactory.getObjetoVentanaReservaFormulario(Ventanas.CHECK_IN, Modality.WINDOW_MODAL, null), detallesReservaEnVista,
+                     listaDetalleReserva, tablaReserva);
          });
          tablaHuesped.setOnMouseClicked((event) -> {
-             UtilBuscador.accionVer(event, VentanasFactory.getObjetoVentanaHuespedFormulario(Ventanas.CHECK_IN, Modality.WINDOW_MODAL, null), huespedEnVista);
-         });
-        //------------------------------------------------------------------------------------------
-         tablaHabitacion.getSelectionModel().selectedItemProperty().addListener((observable) -> {
-             habitacionEnVista=UtilBuscador.accionOnSelectedTable(listaHabitacion, tablaHabitacion);
-         });
-         tablaReserva.getSelectionModel().selectedItemProperty().addListener((observable) -> {
-             detallesReservaEnVista=UtilBuscador.accionOnSelectedTable(listaDetalleReserva, tablaReserva);
-         });
-         tablaHuesped.getSelectionModel().selectedItemProperty().addListener((observable) -> {
-             huespedEnVista=UtilBuscador.accionOnSelectedTable(listaTodosLosHuespedes, tablaHuesped);
+             huespedEnVista=UtilBuscador.onMouseClickedOnTable(tablaHuesped,event, VentanasFactory.getObjetoVentanaHuespedFormulario(Ventanas.CHECK_IN, Modality.WINDOW_MODAL, null), huespedEnVista,
+                     listaTodosLosHuespedes);
          });
         //---------------------------------------------------------------------------------------------------
         modificaHuesped.setOnAction((event) -> {

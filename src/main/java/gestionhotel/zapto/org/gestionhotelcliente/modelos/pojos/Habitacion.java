@@ -1,5 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos;
-// Generated 18-may-2018 17:14:22 by Hibernate Tools 4.3.1
+// Generated 28-may-2018 19:38:21 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -16,21 +16,33 @@ public class Habitacion  implements java.io.Serializable {
      private String tipo;
      private Byte limpiar;
      private Byte camaExtra;
+     private String comentario;
+     private String vistas;
+     private String tipoCama;
+     private String estado;
      private Set detallesReservas = new HashSet(0);
 
     public Habitacion() {
     }
 
 	
-    public Habitacion(int numero) {
+    public Habitacion(int numero, String comentario, String vistas, String tipoCama, String estado) {
         this.numero = numero;
+        this.comentario = comentario;
+        this.vistas = vistas;
+        this.tipoCama = tipoCama;
+        this.estado = estado;
     }
-    public Habitacion(int numero, String descripcion, String tipo, Byte limpiar, Byte camaExtra, Set detallesReservas) {
+    public Habitacion(int numero, String descripcion, String tipo, Byte limpiar, Byte camaExtra, String comentario, String vistas, String tipoCama, String estado, Set detallesReservas) {
        this.numero = numero;
        this.descripcion = descripcion;
        this.tipo = tipo;
        this.limpiar = limpiar;
        this.camaExtra = camaExtra;
+       this.comentario = comentario;
+       this.vistas = vistas;
+       this.tipoCama = tipoCama;
+       this.estado = estado;
        this.detallesReservas = detallesReservas;
     }
    
@@ -68,6 +80,34 @@ public class Habitacion  implements java.io.Serializable {
     
     public void setCamaExtra(Byte camaExtra) {
         this.camaExtra = camaExtra;
+    }
+    public String getComentario() {
+        return this.comentario;
+    }
+    
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+    public String getVistas() {
+        return this.vistas;
+    }
+    
+    public void setVistas(String vistas) {
+        this.vistas = vistas;
+    }
+    public String getTipoCama() {
+        return this.tipoCama;
+    }
+    
+    public void setTipoCama(String tipoCama) {
+        this.tipoCama = tipoCama;
+    }
+    public String getEstado() {
+        return this.estado;
+    }
+    
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
     public Set getDetallesReservas() {
         return this.detallesReservas;

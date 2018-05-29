@@ -3,6 +3,7 @@ package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilFormularios;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.FormularioInterface;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,13 +22,13 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author Antonio Jesús Pérez Delgado
  */
-public class ControladorHuesped implements Initializable, FormularioInterface {
+public class ControladorHuespedFormulario implements Initializable, FormularioInterface {
 
     @FXML
     TextField nombre, primerApellido, segundoApellido, calle, numero, provincia, ciudad,
             correoElectronico, paginaWeb, codigoPostal, dni, pasaporte;
     @FXML
-    ComboBox categoria, tratamiento, nacionalidad;
+    ComboBox categoria, tratamiento, nacionalidad,estado;
 
     @FXML
     TextArea comentario;
@@ -50,20 +51,21 @@ public class ControladorHuesped implements Initializable, FormularioInterface {
         UtilFormularios.iniciaComboBox(tratamiento, Registro.ListaTratamiento);
         UtilFormularios.iniciaComboBox(categoria, Registro.listaCategoriaHuesped);
         UtilFormularios.iniciaComboBox(nacionalidad, Registro.listaPaises);
+        UtilFormularios.iniciaComboBox(estado, Registro.listaPaises);
         reseteaCampos.setOnAction((event) -> {
             UtilFormularios.reseteaCampos(principal);
         });
     }
 
     @Override
-    public ControladorHuesped setModo(int modo) {
+    public ControladorHuespedFormulario setModo(int modo) {
         this.modo = modo;
-        UtilFormularios.configurarModo(modo, aceptar, reseteaCampos, principal);
+        UtilFormularios.configurarModo(Ventanas.HUESPED_FORMULARIO,modo, aceptar, reseteaCampos, principal);
         return this;
     }
 
     @Override
-    public ControladorHuesped setObjetoEnVista(Object objetoEnVista) {
+    public ControladorHuespedFormulario setObjetoEnVista(Object objetoEnVista) {
         huespedEnVista = (Persona) objetoEnVista;
         UtilFormularios.ValidarNodo(nombre, huespedEnVista.getNombre());
         UtilFormularios.ValidarNodo(primerApellido, huespedEnVista.getFisPrimerApellido());
@@ -84,6 +86,7 @@ public class ControladorHuesped implements Initializable, FormularioInterface {
         UtilFormularios.ValidarNodo(nacionalidad, huespedEnVista.getFisNacionalidad());
         UtilFormularios.ValidarNodo(tratamiento, huespedEnVista.getFisTratamiento());
         UtilFormularios.ValidarNodo(categoria, huespedEnVista.getCategoria());
+        UtilFormularios.ValidarNodo(estado, huespedEnVista.getEstado());
         /**
          * --------------------------------------------------------------
          */

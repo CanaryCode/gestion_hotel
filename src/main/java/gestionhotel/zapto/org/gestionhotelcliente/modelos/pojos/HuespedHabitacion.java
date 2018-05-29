@@ -1,5 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos;
-// Generated 18-may-2018 17:14:22 by Hibernate Tools 4.3.1
+// Generated 28-may-2018 19:38:21 by Hibernate Tools 4.3.1
 
 
 
@@ -12,13 +12,15 @@ public class HuespedHabitacion  implements java.io.Serializable {
      private Integer idHuespedHabitacion;
      private DetallesReserva detallesReserva;
      private Persona persona;
+     private String comentario;
 
     public HuespedHabitacion() {
     }
 
-    public HuespedHabitacion(DetallesReserva detallesReserva, Persona persona) {
+    public HuespedHabitacion(DetallesReserva detallesReserva, Persona persona, String comentario) {
        this.detallesReserva = detallesReserva;
        this.persona = persona;
+       this.comentario = comentario;
     }
    
     public Integer getIdHuespedHabitacion() {
@@ -41,6 +43,13 @@ public class HuespedHabitacion  implements java.io.Serializable {
     
     public void setPersona(Persona persona) {
         this.persona = persona;
+    }
+    public String getComentario() {
+        return this.comentario;
+    }
+    
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
     }
 
 

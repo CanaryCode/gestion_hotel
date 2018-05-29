@@ -3,6 +3,7 @@ package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilFormularios;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.FormularioInterface;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -51,7 +52,7 @@ public class ControladorAlojamientoFormulario implements Initializable, Formular
         UtilFormularios.iniciaComboBox(pension, Registro.ListaPension);
         UtilFormularios.iniciaComboBox(vistas, Registro.ListaVistas);
         UtilFormularios.iniciaComboBox(tipoCama, Registro.ListaTipoCama);
-        UtilFormularios.iniciaComboBox(numeroHabitacion, Registro.ListaHabitacion);
+        UtilFormularios.iniciaComboBox(numeroHabitacion, Registro.ListaNumeroHabitacion);
         UtilFormularios.iniciaComboBox(turnoRestaurante, Registro.ListaTurnoRestaurante);
         UtilFormularios.iniciaComboBox(tipoRestaurante, Registro.ListaTipoRestaurante);
         UtilFormularios.iniciaComboBox(tipoHabitacion, Registro.ListaTipoHabitacion);
@@ -68,7 +69,7 @@ public class ControladorAlojamientoFormulario implements Initializable, Formular
     @Override
     public ControladorAlojamientoFormulario setModo(int modo) {
         this.modo=modo;
-        UtilFormularios.configurarModo(modo, confirmar,reseteaCampos , principal);
+        UtilFormularios.configurarModo(Ventanas.ALOJAMIENTO_FORMULARIO,modo, confirmar,reseteaCampos , principal);
         return this;
     }
 
@@ -78,7 +79,7 @@ public class ControladorAlojamientoFormulario implements Initializable, Formular
         
       UtilFormularios.ValidarNodo(fechaInicio,alojamientoEnVista.getFechaEntradaPrevista());
       UtilFormularios.ValidarNodo(fechaFin,alojamientoEnVista.getFechaSalidaPrevista());
-     // UtilFormularios.ValidarNodo(comentario,alojamientoEnVista.get);
+      UtilFormularios.ValidarNodo(comentario,alojamientoEnVista.getComentario());
       UtilFormularios.ValidarNodo(camaExtraNo,alojamientoEnVista.getCamaExtra());
       UtilFormularios.ValidarNodo(cunaNo,alojamientoEnVista.getCuna());
       UtilFormularios.ValidarNodo(numeroPersonas,String.valueOf(alojamientoEnVista.getNumeroAdultos()));

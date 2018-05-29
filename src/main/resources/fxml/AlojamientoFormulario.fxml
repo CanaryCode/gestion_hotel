@@ -92,15 +92,23 @@
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                   <HBox GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <children>
-                        <RadioButton fx:id="camaExtraSi" mnemonicParsing="false" selected="true" text="si" textFill="WHITE">
+                        <AnchorPane>
                            <HBox.margin>
                               <Insets right="40.0" />
                            </HBox.margin>
-                           <toggleGroup>
-                              <ToggleGroup fx:id="camaExtra" />
-                           </toggleGroup>
-                        </RadioButton>
-                        <RadioButton fx:id="camaExtraNo" mnemonicParsing="false" text="no" textFill="WHITE" toggleGroup="$camaExtra" />
+                           <children>
+                              <RadioButton fx:id="camaExtraSi" mnemonicParsing="false" prefHeight="30.0" prefWidth="29.0" selected="true" text="si" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="camaExtra" />
+                                 </toggleGroup>
+                              </RadioButton>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane>
+                           <children>
+                              <RadioButton fx:id="camaExtraNo" mnemonicParsing="false" prefHeight="30.0" prefWidth="35.0" text="no" textFill="WHITE" toggleGroup="$camaExtra" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
                      </children>
                   </HBox>
                   <Label styleClass="etiquetaNormal" text="numero niños" textFill="WHITE" GridPane.columnIndex="2">
@@ -121,15 +129,23 @@
                   </Label>
                   <HBox GridPane.columnIndex="5" GridPane.rowIndex="1">
                      <children>
-                        <RadioButton fx:id="cunaSi" mnemonicParsing="false" selected="true" text="si" textFill="WHITE">
+                        <AnchorPane>
                            <HBox.margin>
                               <Insets right="40.0" />
                            </HBox.margin>
-                           <toggleGroup>
-                              <ToggleGroup fx:id="cuna" />
-                           </toggleGroup>
-                        </RadioButton>
-                        <RadioButton fx:id="cunaNo" mnemonicParsing="false" text="no" textFill="WHITE" toggleGroup="$cuna" />
+                           <children>
+                              <RadioButton fx:id="cunaSi" mnemonicParsing="false" prefHeight="30.0" prefWidth="29.0" selected="true" text="si" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="cuna" />
+                                 </toggleGroup>
+                              </RadioButton>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane>
+                           <children>
+                              <RadioButton fx:id="cunaNo" mnemonicParsing="false" prefHeight="30.0" prefWidth="35.0" text="no" textFill="WHITE" toggleGroup="$cuna" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
                      </children>
                   </HBox>
                </children>

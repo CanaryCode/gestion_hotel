@@ -201,8 +201,6 @@ public class ObjetoVentana {
                 efectoAbrirVentana();
                 ventana.setActividad(true);
                 Ventanas.addVentana(ventana);
-                ventana.setActividad(true);
-                Ventanas.addVentana(ventana);
             }
         }
     }

@@ -58,7 +58,7 @@ public class ControladorHabitacionBuscador implements Initializable, BuscadorInt
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //----------------------------------------------------------------------
-        UtilBuscador.iniciaComboBox(numero, Registro.ListaHabitacion);
+        UtilBuscador.iniciaComboBox(numero, Registro.ListaNumeroHabitacion);
         UtilBuscador.iniciaComboBox(tipoCama, Registro.ListaTipoCama);
         UtilBuscador.iniciaComboBox(tipoHabitacion, Registro.ListaTipoHabitacion);
         UtilBuscador.iniciaComboBox(vistas, Registro.ListaVistas);
@@ -102,10 +102,10 @@ public class ControladorHabitacionBuscador implements Initializable, BuscadorInt
                 new PropertyValueFactory("cama"));
         tableColumnVista.setCellValueFactory(
                 new PropertyValueFactory("vista"));
-
-        tabla.getSelectionModel().selectedItemProperty().addListener((observable) -> {
-            habitacionEnVista = UtilBuscador.accionOnSelectedTable(listaFiltro, tabla,
-                    seleccionar, actualizar,borrar);
+        
+        tabla.setOnMouseClicked((event) -> {
+            habitacionEnVista=UtilBuscador.onMouseClickedOnTable(tabla, event, VentanasFactory.getObjetoVentanaHabitacionFormulario(Ventanas.HABITACION_BUSCADOR, Modality.WINDOW_MODAL, null), habitacionEnVista,
+                    listaFiltro, seleccionar, actualizar, borrar);
         });
 
         //-------------------------------------------------------------

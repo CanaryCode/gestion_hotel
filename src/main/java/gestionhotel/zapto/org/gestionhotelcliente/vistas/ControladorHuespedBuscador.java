@@ -3,16 +3,17 @@ package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBuscador;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.BuscadorInterface;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.Consultas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaHuesped;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersona;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -51,7 +52,7 @@ public class ControladorHuespedBuscador implements Initializable, BuscadorInterf
     private RadioButton sexoM, sexoF, discapacitadoNo, discapacitadoSi;
 
     @FXML
-    private ComboBox<?> nacionalidad, tratamiento, categoria;
+    private ComboBox<?> nacionalidad, tratamiento, categoria, estado;
 
     @FXML
     private Button borrar, crear, actualizar, seleccionar, buscar, resetarCampos, telefono;
@@ -60,7 +61,7 @@ public class ControladorHuespedBuscador implements Initializable, BuscadorInterf
             toggleSexo, toggleDiscapacitado, toggleNacionalidad, toggleProvincia, toggleCiudad,
             toggleCalle, toggleNumero, toggleCodigoPostal, toggleDni, togglePasaporte,
             toggleExpPasaporte, togglePaginaWeb, toggleEmail, toggleTratamiento,
-            toggleCategoría;
+            toggleCategoría, toggleEstado;
     @FXML
     private TableView<TablaHuesped> tabla;
 
@@ -109,6 +110,9 @@ public class ControladorHuespedBuscador implements Initializable, BuscadorInterf
 //        toggleEstado.selectedProperty().addListener((e) -> {
 //             UtilBuscador.apagaToggle(toggleEstado, estado, panelPrincipal, nodosApagables);
 //        });
+        toggleEstado.selectedProperty().addListener((e) -> {
+            UtilBuscador.apagaToggle(toggleEstado, estado, panelPrincipal, nodosApagables);
+        });
         toggleProvincia.selectedProperty().addListener((e) -> {
             UtilBuscador.apagaToggle(toggleProvincia, provincia, panelPrincipal, nodosApagables);
         });
@@ -143,13 +147,11 @@ public class ControladorHuespedBuscador implements Initializable, BuscadorInterf
         toggleExpPasaporte.selectedProperty().addListener((e) -> {
             UtilBuscador.apagaToggle(toggleExpPasaporte, fechaExpedicion, panelPrincipal, nodosApagables);
         });
-
-        categoria.setItems(Registro.ListaCategoriaCliente);
-        categoria.getSelectionModel().selectFirst();
-        tratamiento.setItems(Registro.ListaTratamiento);
-        tratamiento.getSelectionModel().selectFirst();
-        nacionalidad.setItems(Registro.listaPaises);
-        nacionalidad.getSelectionModel().selectFirst();
+        //-------------------------------------------------------------------------
+        UtilBuscador.iniciaComboBox(categoria, Registro.ListaCategoriaCliente);
+        UtilBuscador.iniciaComboBox(tratamiento, Registro.ListaTratamiento);
+        UtilBuscador.iniciaComboBox(nacionalidad, Registro.listaPaises);
+        UtilBuscador.iniciaComboBox(estado, Registro.listaPaises);
         //----------------------------------------------------------------------------------------
         tableColumnDni.setCellValueFactory(new PropertyValueFactory("numeroDocumento"));
         tableColumnNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
@@ -169,13 +171,10 @@ public class ControladorHuespedBuscador implements Initializable, BuscadorInterf
         tableColumnTratamiento.setCellValueFactory(new PropertyValueFactory("tratamiento"));
         tableColumnCategoria.setCellValueFactory(new PropertyValueFactory("categoria"));
         tableColumnNumero.setCellValueFactory(new PropertyValueFactory("numero"));
-
-        tabla.getSelectionModel().selectedItemProperty().addListener((observable) -> {
-            huespedEnVista = UtilBuscador.accionOnSelectedTable(listaFiltro, tabla, seleccionar,
-                    actualizar, telefono, borrar);
-        });
+        //--------------------------------------------------------------------------------------
         tabla.setOnMouseClicked((event) -> {
-            UtilBuscador.accionVer(event, VentanasFactory.getObjetoVentanaHuespedFormulario(Ventanas.HUESPED_BUSCADOR, Modality.WINDOW_MODAL, null), huespedEnVista);
+            huespedEnVista=UtilBuscador.onMouseClickedOnTable(tabla, event, VentanasFactory.getObjetoVentanaHuespedFormulario(Ventanas.HUESPED_BUSCADOR, Modality.WINDOW_MODAL, null), huespedEnVista,
+                    listaFiltro, seleccionar,actualizar, telefono, borrar);
         });
         //--------------------------------------------------------------------------------------------
         borrar.setOnAction((e) -> {
@@ -201,7 +200,11 @@ public class ControladorHuespedBuscador implements Initializable, BuscadorInterf
             UtilBuscador.ResetearCampos(panelPrincipal);
         });
         telefono.setOnAction((e) -> {
-            UtilBuscador.abrirTelefono(VentanasFactory.getObjetoVentanaTelefonoBuscador(Ventanas.HUESPED_BUSCADOR, Modality.WINDOW_MODAL, null), listaAddTelefono, PruebasModelo.getLisTelefono(), Ventanas.MODO_FORMULARIO_LECTURA);
+            ObservableList<TelefonoPersona> listaFiltroTelefono=Consultas.getListaFiltroTelefono(huespedEnVista);
+            Platform.runLater(() -> {
+                UtilBuscador.abrirTelefono(VentanasFactory.getObjetoVentanaTelefonoBuscador(Ventanas.HUESPED_BUSCADOR, Modality.WINDOW_MODAL, null), listaAddTelefono, listaFiltroTelefono, Ventanas.MODO_FORMULARIO_LECTURA);
+
+            });
         });
         nodosApagables = FXCollections.observableArrayList(resetarCampos, buscar);
     }

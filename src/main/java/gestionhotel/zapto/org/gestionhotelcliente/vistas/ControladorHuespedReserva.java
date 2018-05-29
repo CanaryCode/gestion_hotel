@@ -5,8 +5,6 @@ import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBusca
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaHuesped;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Habitacion;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo;
 import java.net.URL;
@@ -70,7 +68,7 @@ public class ControladorHuespedReserva implements Initializable {
     private ObservableList<Persona> listaHuespedResponsable, listaHuespedOtros, listaHuespedChild, listaHuespedBebes, listaTodosLosHuespedes;
     private ObservableList<TablaHuesped> listaTablaHuespedResponsable, listaTablaHuespedOtros, listaTablaHuespedChild, listaTablaHuespedBebes, listaTablaTodosLosHuespedes;
     private int maxHuespedResponsables = 1, maxHuespedOtros = 2, maxHuespedChild = 2, maxHuespedBebes;
-    private Persona ResponsableEnVista,OtrosHuespedesEnVista,ChildEnVista,BebesEnVista;
+    private Persona ResponsableEnVista, OtrosHuespedesEnVista, ChildEnVista, BebesEnVista;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -183,33 +181,24 @@ public class ControladorHuespedReserva implements Initializable {
         tableColumnCategoriaBebes.setCellValueFactory(new PropertyValueFactory("categoria"));
         tableColumnNumeroBebes.setCellValueFactory(new PropertyValueFactory("numero"));
         //------------------------------------------------------------------------------------------
-        tablaResponsable.getSelectionModel().selectedItemProperty().addListener((observable) -> {
-            ResponsableEnVista=UtilBuscador.accionOnSelectedTable(listaHuespedResponsable, tablaResponsable,botonBorrarResponsable);
-        });
-               
-        tablaOtros.getSelectionModel().selectedItemProperty().addListener((observable) -> {
-            OtrosHuespedesEnVista=UtilBuscador.accionOnSelectedTable(listaHuespedOtros, tablaOtros,botonBorrarOtros);
-        });
-        tablaChild.getSelectionModel().selectedItemProperty().addListener((observable) -> {
-            ChildEnVista=UtilBuscador.accionOnSelectedTable(listaHuespedChild, tablaChild,botonBorrarChild);
-        });
-        tablaBebes.getSelectionModel().selectedItemProperty().addListener((observable) -> {
-            BebesEnVista=UtilBuscador.accionOnSelectedTable(listaHuespedBebes, tablaBebes,botonBorrarBebes);
-        });
-        //------------------------------------------------------------------------------------------
         tablaResponsable.setOnMouseClicked((event) -> {
-            UtilBuscador.accionVer(event, VentanasFactory.getObjetoVentanaHuespedFormulario(Ventanas.HUESPED_RESERVA, Modality.WINDOW_MODAL, null),ResponsableEnVista);
+            ResponsableEnVista=UtilBuscador.onMouseClickedOnTable(tablaResponsable, event, VentanasFactory.getObjetoVentanaHuespedFormulario(Ventanas.HUESPED_RESERVA, Modality.WINDOW_MODAL, null), ResponsableEnVista,
+                    listaHuespedResponsable, botonBorrarResponsable);
         });
         tablaOtros.setOnMouseClicked((event) -> {
-            UtilBuscador.accionVer(event, VentanasFactory.getObjetoVentanaHuespedFormulario(Ventanas.HUESPED_RESERVA, Modality.WINDOW_MODAL, null), OtrosHuespedesEnVista);
+            OtrosHuespedesEnVista=UtilBuscador.onMouseClickedOnTable(tablaOtros, event, VentanasFactory.getObjetoVentanaHuespedFormulario(Ventanas.HUESPED_RESERVA, Modality.WINDOW_MODAL, null), OtrosHuespedesEnVista,
+                    listaHuespedOtros, tablaOtros, botonBorrarOtros);
         });
         tablaChild.setOnMouseClicked((event) -> {
-            UtilBuscador.accionVer(event, VentanasFactory.getObjetoVentanaHuespedFormulario(Ventanas.HUESPED_RESERVA, Modality.WINDOW_MODAL, null), ChildEnVista);
+            ChildEnVista=UtilBuscador.onMouseClickedOnTable(tablaChild, event, VentanasFactory.getObjetoVentanaHuespedFormulario(Ventanas.HUESPED_RESERVA, Modality.WINDOW_MODAL, null), ChildEnVista,
+                    listaHuespedChild, botonBorrarChild);
         });
         tablaBebes.setOnMouseClicked((event) -> {
-            UtilBuscador.accionVer(event, VentanasFactory.getObjetoVentanaHuespedFormulario(Ventanas.HUESPED_RESERVA, Modality.WINDOW_MODAL, null), BebesEnVista);
+            UtilBuscador.onMouseClickedOnTable(tablaBebes, event, VentanasFactory.getObjetoVentanaHuespedFormulario(Ventanas.HUESPED_RESERVA, Modality.WINDOW_MODAL, null),
+                    BebesEnVista, listaHuespedBebes, botonBorrarBebes);
         });
     }
+
     private void accionAddResponsable() {
         ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.HUESPED_RESERVA,
                 Modality.WINDOW_MODAL, null);

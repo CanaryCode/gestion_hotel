@@ -2,6 +2,7 @@ package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.ActivadorDeControles;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBuscador;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva;
@@ -40,12 +41,12 @@ public class ControladorPrevision implements Initializable {
 
     @FXML
     private TableColumn tableColumnNumeroReserva, tableColumnCliente, tableColumnHabitacion, tableColumnTipoHabitacion,
-            tableColumnFechaPrevistaEntrada, tableColumnFechaPrevistaSalida;
+            tableColumnFechaPrevistaEntrada, tableColumnFechaPrevistaSalida,tableColumnAgencia;
 
     @FXML
     private TableView<TablaPrevision> tabla;
-    ObservableList<TablaPrevision> listaPendientesCheckIn = FXCollections.observableArrayList(), listaFiltro;
-    List<DetallesReserva> listaReservas = FXCollections.observableArrayList();
+    ObservableList<TablaPrevision> listaTablaCheckIn = FXCollections.observableArrayList(), listaFiltroTabla;
+    ObservableList<DetallesReserva> listaAlojamientos = FXCollections.observableArrayList();
     public DetallesReserva detallesReservaEnVista;
 
     @Override
@@ -65,11 +66,10 @@ public class ControladorPrevision implements Initializable {
 
         activaBotonesBuscarYResetea();
 
-        listaReservas = PruebasModelo.getListaDeAlojamientos();
-
-        listaPendientesCheckIn = TablaPrevision.modeloCheckin(listaReservas);
-        listaFiltro = FXCollections.observableArrayList(listaPendientesCheckIn);
-        tabla.setItems(listaFiltro);
+        listaAlojamientos = PruebasModelo.getListaDeAlojamientos();
+        listaTablaCheckIn = TablaPrevision.modeloCheckin(listaAlojamientos);
+        listaFiltroTabla = FXCollections.observableArrayList(listaTablaCheckIn);
+        tabla.setItems(listaFiltroTabla);
 
         tableColumnCliente.setCellValueFactory(new PropertyValueFactory("cliente"));
         tableColumnFechaPrevistaEntrada.setCellValueFactory(new PropertyValueFactory("fechaPrevistaEntrada"));
@@ -77,10 +77,16 @@ public class ControladorPrevision implements Initializable {
         tableColumnNumeroReserva.setCellValueFactory(new PropertyValueFactory("numeroReserva"));
         tableColumnTipoHabitacion.setCellValueFactory(new PropertyValueFactory("tipo"));
         tableColumnFechaPrevistaSalida.setCellValueFactory(new PropertyValueFactory("fechaPrevistaSalida"));
-
+        tableColumnAgencia.setCellValueFactory(new PropertyValueFactory("nombreAgencia"));
+        //-------------------------------------------------------------------------------------------
         tabla.getSelectionModel().selectedItemProperty().addListener((observable) -> {
             codigoSeleccionTabla();
         });
+        tabla.setOnMouseClicked((event) -> {
+            detallesReservaEnVista=UtilBuscador.onMouseClickedOnTable(tabla, event, VentanasFactory.getObjetoVentanaDetallesReserva(Ventanas.PREVISION, Modality.WINDOW_MODAL, null), detallesReservaEnVista,
+                    listaAlojamientos,checkIn,resetearCampos,noShow);
+        });
+        //---------------------------------------------------------------------------------------------
         cliente.textProperty().addListener((observable, oldValue, newValue) -> {
             accionFiltroCliente(newValue);
         });
@@ -91,7 +97,7 @@ public class ControladorPrevision implements Initializable {
 
     private void seleccionaReservaEnVista() {
         if (tabla.getSelectionModel().getSelectedItem() != null) {
-            for (DetallesReserva dr : listaReservas) {
+            for (DetallesReserva dr : listaAlojamientos) {
                 if (dr.getReserva().getNumero().equals(tabla.getSelectionModel().getSelectedItem().getNumeroReserva())) {
                     detallesReservaEnVista = dr;
                     this.checkIn.setDisable(true);
@@ -117,7 +123,7 @@ public class ControladorPrevision implements Initializable {
     }
 
     private void accionReserva() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaReservaFormulario(Ventanas.PREVISION, Modality.APPLICATION_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getObjetoVentanaReservaFormulario(Ventanas.PREVISION, Modality.WINDOW_MODAL, null);
         if (obj != null) {
             obj.ver();
         }
@@ -140,30 +146,30 @@ public class ControladorPrevision implements Initializable {
     }
 
     private void accionFiltroReserva(String newValue) {
-        listaFiltro = FXCollections.observableArrayList();
+        listaFiltroTabla = FXCollections.observableArrayList();
         tabla.getSelectionModel().select(null);
         checkIn.setDisable(true);
         noShow.setDisable(true);
-        for (TablaPrevision row : listaPendientesCheckIn) {
+        for (TablaPrevision row : listaTablaCheckIn) {
             if (row.getNumeroReserva().contains(newValue) && row.getCliente().contains(cliente.getText())) {
-                listaFiltro.add(row);
+                listaFiltroTabla.add(row);
             }
         }
-        tabla.setItems(listaFiltro);
+        tabla.setItems(listaFiltroTabla);
     }
 
     private void accionFiltroCliente(String newValue) {
-        listaFiltro = FXCollections.observableArrayList();
+        listaFiltroTabla = FXCollections.observableArrayList();
         tabla.getSelectionModel().select(null);
         detallesReservaEnVista = null;
         checkIn.setDisable(true);
         noShow.setDisable(true);
-        for (TablaPrevision row : listaPendientesCheckIn) {
+        for (TablaPrevision row : listaTablaCheckIn) {
             if (row.getCliente().contains(newValue) && row.getNumeroReserva().contains(reserva.getText())) {
-                listaFiltro.add(row);
+                listaFiltroTabla.add(row);
             }
         }
-        tabla.setItems(listaFiltro);
+        tabla.setItems(listaFiltroTabla);
     }
 
     private void codigoSeleccionTabla() {

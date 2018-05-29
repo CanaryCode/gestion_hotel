@@ -4,7 +4,7 @@ import gestionhotel.zapto.org.gestionhotelcliente.controladores.RecorredorPanele
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import java.time.ZoneId;
 import java.util.Date;
-import javafx.beans.Observable;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -13,6 +13,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.layout.Pane;
 
@@ -61,7 +62,7 @@ public class UtilFormularios {
             }
         } else if (nodo instanceof TabPane) {
             if (input != null) {
-                if (((Byte) input).byteValue()==0) {
+                if (((Byte) input).byteValue() == 0) {
                     ((TabPane) nodo).getSelectionModel().select(((TabPane) nodo).getTabs().get(0));
                     ((TabPane) nodo).getTabs().get(1).setDisable(true);
                 } else {
@@ -72,30 +73,51 @@ public class UtilFormularios {
         }
     }
 
-    public static void configurarModo(int modoFormulario, Button aceptar, Button reseteaCampos,
+    public static void configurarModo(String nombreVentana, int modoFormulario, Button aceptar, Button reseteaCampos,
             Pane principal) {
 
         if (modoFormulario == Ventanas.MODO_FORMULARIO_ACTUALIZAR) {
+            Platform.runLater(() -> {
+                Ventanas.getVentana(nombreVentana).setTitle(Ventanas.getVentana(nombreVentana).getTitle() + " " + "--->**MODO ACTUALIZAR**");
+            });
+
             aceptar.setOnAction((event) -> {
                 //entonces cuando termines, de  hacerlo cierra la ventana.
-                Ventanas.cerrarVentana(Ventanas.CLIENTE_FORMULARIO);
+                Ventanas.cerrarVentana(nombreVentana);
                 //si se está insertando a una persona
             });
             reseteaCampos.setDisable(true);
 
         } else if (modoFormulario == Ventanas.MODO_FORMULARIO_INSERTAR) {
+            Platform.runLater(() -> {
+                Ventanas.getVentana(nombreVentana).setTitle(Ventanas.getVentana(nombreVentana).getTitle() + " " + "--->**MODO INSERTAR**");
+            });
             aceptar.setOnAction((event) -> {
                 //entonces resetea todos los campos.
                 reseteaCampos(principal);
             });
 
         } else if (modoFormulario == Ventanas.MODO_FORMULARIO_LECTURA) {
-           RecorredorPaneles.DesahilitaNodes(principal);
+            Platform.runLater(() -> {
+                Ventanas.getVentana(nombreVentana).setTitle(Ventanas.getVentana(nombreVentana).getTitle() + " " + "--->**MODO LECTURA**");
+            });
+            RecorredorPaneles.DesahilitaNodes(principal);
         }
     }
-      public static <T> void iniciaComboBox(ComboBox combo, ObservableList<T> lista) {
+
+    public static <T> T accionOnSelectedTable(int modo, ObservableList<T> listaObjeto, TableView tabla, Node... nodosHabilitados) {
+        if (modo != Ventanas.MODO_FORMULARIO_LECTURA) {
+            for (Node nodo : nodosHabilitados) {
+                nodo.setDisable(false);
+            }
+        }
+    T Objeto = listaObjeto.get(tabla.getSelectionModel().getSelectedIndex());
+    return Objeto ;
+}
+
+public static <T> void iniciaComboBox(ComboBox combo, ObservableList<T> lista) {
         combo.setItems(lista);
         combo.getSelectionModel().selectFirst();
     }
-    
+
 }

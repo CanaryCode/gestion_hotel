@@ -123,12 +123,13 @@
                <children>
                   <TableView fx:id="tabla" prefHeight="300.0">
                     <columns>
-                      <TableColumn fx:id="tableColumnNumeroReserva" prefWidth="150.0" text="%tableColumn.codigoDeReserva" />
-                      <TableColumn fx:id="tableColumnCliente" prefWidth="637.0" text="%tableColumn.cliente" />
-                        <TableColumn fx:id="tableColumnHabitacion" minWidth="0.0" prefWidth="93.0" text="%tableColumn.habitacion" />
-                        <TableColumn fx:id="tableColumnTipoHabitacion" minWidth="-1.0" prefWidth="120.0" text="%tableColumn.tipoDeHabitacion" />
-                        <TableColumn fx:id="tableColumnFechaPrevistaEntrada" minWidth="-1.0" prefWidth="87.0" text="%tableColumn.fechaPrevistaDeEntrada" />
-                        <TableColumn fx:id="tableColumnFechaPrevistaSalida" maxWidth="99.0" minWidth="-1.0" prefWidth="96.0" text="%tableColumn.fechaPrevistaDeSalida" />
+                      <TableColumn fx:id="tableColumnNumeroReserva" prefWidth="100.0" text="%tableColumn.codigoDeReserva" />
+                      <TableColumn fx:id="tableColumnCliente" prefWidth="330.0" text="%tableColumn.cliente" />
+                        <TableColumn fx:id="tableColumnAgencia" prefWidth="330.0" text="Nombre Agencia" />
+                        <TableColumn fx:id="tableColumnHabitacion" prefWidth="100.0" text="Pref. habitación" />
+                        <TableColumn fx:id="tableColumnTipoHabitacion" prefWidth="100.0" text="Pref. tipo habitación" />
+                        <TableColumn fx:id="tableColumnFechaPrevistaEntrada" prefWidth="100.0" text="%tableColumn.fechaPrevistaDeEntrada" />
+                        <TableColumn fx:id="tableColumnFechaPrevistaSalida" prefWidth="100.0" text="%tableColumn.fechaPrevistaDeSalida" />
                     </columns>
                      <VBox.margin>
                         <Insets bottom="10.0" />

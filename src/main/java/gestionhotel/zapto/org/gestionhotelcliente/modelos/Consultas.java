@@ -1,7 +1,14 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.Conexiones;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersona;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersonaId;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo;
 import java.util.List;
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -58,5 +65,15 @@ public class Consultas {
             //una lista con algo dentro.
             return lista;
         }
+    }
+    public static ObservableList<TelefonoPersona> getListaFiltroTelefono(Persona personaEnVista){
+        ObservableList<TelefonoPersona> lista=FXCollections.observableArrayList();
+        for (TelefonoPersona t : PruebasModelo.getLisTelefono()) {
+            if(t.getId().getCodPersona()==personaEnVista.getCodPersona()){
+               lista.add(t);
+            }
+        }
+        
+        return lista;
     }
 }

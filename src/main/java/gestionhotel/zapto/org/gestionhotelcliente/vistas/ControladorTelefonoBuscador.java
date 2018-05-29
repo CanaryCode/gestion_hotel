@@ -3,6 +3,7 @@ package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBuscador;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.BuscadorInterface;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaTelefono;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersona;
@@ -14,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -33,10 +35,13 @@ public class ControladorTelefonoBuscador implements Initializable, BuscadorInter
     private AnchorPane principal, panelFiltro;
 
     @FXML
-    private TextField numero, nombre, tipo;
+    private TextField numero, propietario;
 
     @FXML
-    private ToggleButton toggleNumero, toggleNombre, toggleTipo;
+    private ComboBox tipo;
+
+    @FXML
+    private ToggleButton toggleNumero, togglePropietario, toggleTipo;
 
     @FXML
     private Button seleccionar, resetearCampos, crear, actualizar, borrar, buscar;
@@ -45,7 +50,7 @@ public class ControladorTelefonoBuscador implements Initializable, BuscadorInter
     private TableView<TablaTelefono> tabla;
 
     @FXML
-    private TableColumn tableColumnNombre, tableColumnNumero, tableColumnTipo;
+    private TableColumn tableColumnPropietario, tableColumnNumero, tableColumnTipo;
     private ObservableList<TelefonoPersona> listaAddLTelefono = FXCollections.observableArrayList();
     private ObservableList<TelefonoPersona> listaFiltro = FXCollections.observableArrayList();
     private ObservableList<TablaTelefono> listaTablaTelefono = FXCollections.observableArrayList();
@@ -58,8 +63,7 @@ public class ControladorTelefonoBuscador implements Initializable, BuscadorInter
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        tabla.setItems(listaTablaTelefono);
-
+        UtilBuscador.iniciaComboBox(tipo, Registro.ListaTipoTelefono);
         //---------------------------------------------------------------------
         seleccionar.setOnAction((event) -> {
             UtilBuscador.accionSeleccionar(listaFiltro, telefonoEnVista, Ventanas.TELEFONO_BUSCADOR);
@@ -82,23 +86,25 @@ public class ControladorTelefonoBuscador implements Initializable, BuscadorInter
         toggleNumero.selectedProperty().addListener((e) -> {
             UtilBuscador.apagaToggle(toggleNumero, numero, principal, nodosApagables);
         });
-        toggleNombre.selectedProperty().addListener((e) -> {
-            UtilBuscador.apagaToggle(toggleNombre, nombre, principal, nodosApagables);
+        togglePropietario.selectedProperty().addListener((e) -> {
+            UtilBuscador.apagaToggle(togglePropietario, propietario, principal, nodosApagables);
         });
         toggleTipo.selectedProperty().addListener((e) -> {
             UtilBuscador.apagaToggle(toggleTipo, tipo, principal, nodosApagables);
         });
         //----------------------------------------------------
-        tableColumnNombre.setCellValueFactory(
+        tableColumnPropietario.setCellValueFactory(
                 new PropertyValueFactory("nombre"));
         tableColumnNumero.setCellValueFactory(
                 new PropertyValueFactory("numero"));
         tableColumnTipo.setCellValueFactory(
                 new PropertyValueFactory("tipo"));
-
-        tabla.getSelectionModel().selectedItemProperty().addListener((observable) -> {
-            UtilBuscador.accionOnSelectedTable(listaFiltro, tabla, seleccionar, actualizar,borrar);
+        //------------------------------------------------------------------------------------------
+        tabla.setOnMouseClicked((event) -> {
+            telefonoEnVista=UtilBuscador.onMouseClickedOnTable(tabla, event, VentanasFactory.getObjetoVentanaTelefonoFormulario(Ventanas.TELEFONO_BUSCADOR, Modality.WINDOW_MODAL, null), telefonoEnVista,
+                    listaFiltro, seleccionar, actualizar,borrar);
         });
+        //-----------------------------------------------------------------------------------------
         nodosApagables = FXCollections.observableArrayList(resetearCampos, buscar);
     }
 

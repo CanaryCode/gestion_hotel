@@ -1,5 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos;
-// Generated 18-may-2018 17:14:22 by Hibernate Tools 4.3.1
+// Generated 28-may-2018 19:38:21 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -34,13 +34,18 @@ public class DetallesReserva  implements java.io.Serializable {
      private String preferenciaTurnoRestaurante;
      private Byte cuna;
      private Byte camaExtra;
+     private String comentario;
      private Set estadoHabitacions = new HashSet(0);
      private Set huespedHabitacions = new HashSet(0);
 
     public DetallesReserva() {
     }
 
-    public DetallesReserva(Habitacion habitacion, Reserva reserva, String nombreReserva, Integer cantidadHuespedes, Date fechaEntradaPrevista, Date fechaSalidaPrevista, Date fechaEntrada, Date fechaSalida, String pension, String tipoCama, Integer numeroAdultos, Integer numeroChild, Integer numeroBebes, String preferenciaHabitacion, String preferenciaTipoHabitacion, String preferenciaVistas, String preferenciaTipoCama, String preferenciaTipoRestaurante, String preferenciaTurnoRestaurante, Byte cuna, Byte camaExtra, Set estadoHabitacions, Set huespedHabitacions) {
+	
+    public DetallesReserva(String comentario) {
+        this.comentario = comentario;
+    }
+    public DetallesReserva(Habitacion habitacion, Reserva reserva, String nombreReserva, Integer cantidadHuespedes, Date fechaEntradaPrevista, Date fechaSalidaPrevista, Date fechaEntrada, Date fechaSalida, String pension, String tipoCama, Integer numeroAdultos, Integer numeroChild, Integer numeroBebes, String preferenciaHabitacion, String preferenciaTipoHabitacion, String preferenciaVistas, String preferenciaTipoCama, String preferenciaTipoRestaurante, String preferenciaTurnoRestaurante, Byte cuna, Byte camaExtra, String comentario, Set estadoHabitacions, Set huespedHabitacions) {
        this.habitacion = habitacion;
        this.reserva = reserva;
        this.nombreReserva = nombreReserva;
@@ -62,6 +67,7 @@ public class DetallesReserva  implements java.io.Serializable {
        this.preferenciaTurnoRestaurante = preferenciaTurnoRestaurante;
        this.cuna = cuna;
        this.camaExtra = camaExtra;
+       this.comentario = comentario;
        this.estadoHabitacions = estadoHabitacions;
        this.huespedHabitacions = huespedHabitacions;
     }
@@ -219,6 +225,13 @@ public class DetallesReserva  implements java.io.Serializable {
     
     public void setCamaExtra(Byte camaExtra) {
         this.camaExtra = camaExtra;
+    }
+    public String getComentario() {
+        return this.comentario;
+    }
+    
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
     }
     public Set getEstadoHabitacions() {
         return this.estadoHabitacions;

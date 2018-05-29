@@ -1,6 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles;
 
-import com.sun.javafx.scene.control.skin.TableColumnHeader;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.RecorredorPaneles;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.FormularioInterface;
@@ -11,22 +10,17 @@ import gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorTelefonoBusc
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputControl;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
-import javafx.util.Callback;
 
 /**
  *
@@ -46,6 +40,7 @@ public class UtilBuscador {
     }
 
     public static <T> void accionActualizar(ObjetoVentana obj, T objetoEnVista) {
+        
         if (obj != null) {
             ((FormularioInterface) obj.getfXMLLoader().getController()).
                     setModo(Ventanas.MODO_FORMULARIO_ACTUALIZAR).
@@ -54,17 +49,29 @@ public class UtilBuscador {
         }
     }
 
-    public static <T> void accionVer(MouseEvent event, ObjetoVentana obj, T objetoEnVista) {
-        Object o = ((Object) event.getTarget());
-        if (event.getClickCount() >= 2 ) {
-            VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null);
-            if (obj != null) {
-                ((FormularioInterface) obj.getfXMLLoader().getController()).
-                        setModo(Ventanas.MODO_FORMULARIO_LECTURA).
-                        setObjetoEnVista(objetoEnVista);
-                obj.ver();
+    public static <T> T onMouseClickedOnTable(TableView tabla, MouseEvent event,
+            ObjetoVentana obj, T objetoEnVista,ObservableList<T> listaObjeto,
+            Node... nodosHabilitados) {
+        
+        T Objeto = null;
+        if (tabla.getSelectionModel().getSelectedItem() != null) {
+            for (Node nodo : nodosHabilitados) {
+                nodo.setDisable(false);
+            }
+            Objeto = listaObjeto.get(tabla.getSelectionModel().getSelectedIndex());
+
+            double headerHeight = tabla.lookup(".column-header-background").getBoundsInLocal().getHeight();
+            if (event.getClickCount() >= 2 && headerHeight <= event.getY()) {
+                VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null);
+                if (obj != null) {
+                    ((FormularioInterface) obj.getfXMLLoader().getController()).
+                            setModo(Ventanas.MODO_FORMULARIO_LECTURA).
+                            setObjetoEnVista(objetoEnVista);
+                    obj.ver();
+                }
             }
         }
+        return Objeto;
     }
 
     public static void ResetearCampos(Pane panelPrincipal) {
@@ -117,21 +124,19 @@ public class UtilBuscador {
             //Si el nodo asociado al toggle es un RadioButton
             if (nodo instanceof RadioButton) {
                 //recorre los grupos de botones del RadioButton
-                for (Toggle t : ((RadioButton) nodo).getToggleGroup().getToggles()) {
+                ((RadioButton) nodo).getToggleGroup().getToggles().forEach((t) -> {
                     //Habilita el RadioButton que esté en ese momento iterando
                     ((RadioButton) t).setDisable(false);
-                }
-                //Si el nodo asociado al toggle no es un RadioButton
+                }); //Si el nodo asociado al toggle no es un RadioButton
             } else {
                 //apaga habilita el nodo que es un toggle
                 nodo.setDisable(false);
             }
             //recorre todos los nodos apagables
-            for (Node nod : listaNodosApagables) {
+            listaNodosApagables.forEach((nod) -> {
                 //habilita todos los nodos apagables
                 nod.setDisable(false);
-            }
-            //si el toggle está apagado
+            }); //si el toggle está apagado
         } else {
             //desahabilita el nodo
             nodo.setDisable(true);
@@ -143,9 +148,9 @@ public class UtilBuscador {
                 ((ComboBox) nodo).getSelectionModel().selectFirst();
             } else if (nodo instanceof RadioButton) {
                 ((RadioButton) nodo).getToggleGroup().selectToggle(((RadioButton) nodo).getToggleGroup().getToggles().get(0));
-                for (Toggle t : ((RadioButton) nodo).getToggleGroup().getToggles()) {
+                ((RadioButton) nodo).getToggleGroup().getToggles().forEach((t) -> {
                     ((RadioButton) t).setDisable(true);
-                }
+                });
             }
 
             List<ToggleButton> listaToggle = RecorredorPaneles.getListaObjetos(panelPrincipal, FXCollections.observableArrayList());
@@ -157,13 +162,13 @@ public class UtilBuscador {
                 }
             }
             if (hayToggleOn) {
-                for (Node n : listaNodosApagables) {
+                listaNodosApagables.forEach((n) -> {
                     n.setDisable(false);
-                }
+                });
             } else {
-                for (Node n : listaNodosApagables) {
+                listaNodosApagables.forEach((n) -> {
                     n.setDisable(true);
-                }
+                });
             }
         }
     }

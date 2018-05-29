@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 18-may-2018 17:14:23 by Hibernate Tools 4.3.1 -->
+<!-- Generated 28-may-2018 19:38:22 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva" table="detalles_reserva" catalog="gestionhotel" optimistic-lock="version">
         <id name="idDetallesReserva" type="java.lang.Integer">
@@ -70,6 +70,9 @@
         </property>
         <property name="camaExtra" type="java.lang.Byte">
             <column name="cama_extra" />
+        </property>
+        <property name="comentario" type="string">
+            <column name="comentario" length="300" not-null="true" />
         </property>
         <set name="estadoHabitacions" table="estado_habitacion" inverse="true" lazy="true" fetch="select">
             <key>

@@ -1,6 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
-import gestionhotel.zapto.org.gestionhotelcliente.controladores.RecorredorPaneles;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilFormularios;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.FormularioInterface;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
@@ -8,7 +7,6 @@ import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,7 +20,6 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 
 /**
  * FXML Controller class
@@ -84,7 +81,7 @@ public class ControladorClienteFormulario implements Initializable, FormularioIn
     public ControladorClienteFormulario setObjetoEnVista(Object objetoEnVista) {
         clienteEnVista = (Persona) objetoEnVista;
         //---------------------------------------------------------------------------------
-        if (clienteEnVista.getEsEmpresa() == 0) {
+        if (clienteEnVista.getEsEmpresa()!=null&&clienteEnVista.getEsEmpresa() == 0) {
             UtilFormularios.ValidarNodo(nombre, clienteEnVista.getNombre());
             UtilFormularios.ValidarNodo(sexoM, clienteEnVista.getFisSexoHombre());
             UtilFormularios.ValidarNodo(fechaNacimiento, clienteEnVista.getFisFechaNacimiento());
@@ -118,7 +115,7 @@ public class ControladorClienteFormulario implements Initializable, FormularioIn
     @Override
     public ControladorClienteFormulario setModo(int modoFormulario) {
         this.modoFormulario = modoFormulario;
-        UtilFormularios.configurarModo(modoFormulario, aceptar, reseteaCampos, principal);
+        UtilFormularios.configurarModo(Ventanas.CLIENTE_FORMULARIO,modoFormulario, aceptar, reseteaCampos, principal);
         return this;
     }
 }

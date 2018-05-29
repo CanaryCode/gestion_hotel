@@ -22,9 +22,9 @@ public class TablaHabitacion {
         if (!listaHabitacion.isEmpty()) {
             for (Habitacion habitacion : listaHabitacion) {
                 String numero = String.valueOf(habitacion.getNumero());
-                String vista = habitacion.getDescripcion();
+                String vista = habitacion.getVistas();
                 String tipo = habitacion.getTipo();
-                String cama = "";
+                String cama = habitacion.getTipoCama();
                 TablaHabitacion tH = new TablaHabitacion(vista, numero, tipo, cama);
                 
                 listaTablaHabitacion.add(tH);
