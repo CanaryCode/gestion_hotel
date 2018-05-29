@@ -437,7 +437,7 @@ public class ControladorHuespedReserva implements Initializable {
 
     public void configuraVentana() {
         Ventanas.getVentana(Ventanas.HUESPED_RESERVA).setOnCloseRequest((event) -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Si sale de esta ventana se perderán toda la selección."
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Si sale de esta ventana se perderá toda la selección."
                     + "\n ¿Está de acuerdo con salir?", ButtonType.YES, ButtonType.NO);
             alert.showAndWait();
             if (alert.getResult() == ButtonType.YES) {
