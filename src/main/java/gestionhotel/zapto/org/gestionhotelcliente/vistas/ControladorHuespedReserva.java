@@ -1,9 +1,12 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.CreadorDeTabla;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.VinculadorModeloATabla;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBuscador;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.clases.Select;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaHuesped;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo;
@@ -16,9 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 
@@ -37,38 +38,18 @@ public class ControladorHuespedReserva implements Initializable {
     @FXML
     private AnchorPane principal;
     @FXML
-    private TableView<TablaHuesped> tablaResponsable, tablaOtros, tablaChild, tablaBebes;
-    @FXML
-    private TableColumn tableColumnNumeroResponsable, tableColumnDniResponsable, tableColumnNombreResponsable,
-            tableColumnPrimerApellidoResponsable, tableColumnSegundoApellidoResponsable, tableColumnFechaNacimientoResponsable,
-            tableColumnSexoResponsable, tableColumnDiscapacitadoResponsable, tableColumnCiudadResponsable, tableColumnProvinciaResponsable,
-            tableColumnPaisResponsable, tableColumnCalleResponsable, tableColumnCodigoPostalResponsable,
-            tableColumnPasaporteResponsable, tableColumnFechaExpedicionResponsable, tableColumnEmailResponsable,
-            tableColumnTratamientoResponsable, tableColumnCategoriaResponsable,
-            //------------------------------------------------------------------------------------------
-            tableColumnNumeroOtros, tableColumnDniOtros, tableColumnNombreOtros, tableColumnPrimerApellidoOtros,
-            tableColumnSegundoApellidoOtros, tableColumnFechaNacimientoOtros, tableColumnSexoOtros, tableColumnDiscapacitadoOtros,
-            tableColumnCiudadOtros, tableColumnProvinciaOtros, tableColumnPaisOtros, tableColumnCalleOtros, tableColumnCodigoPostalOtros,
-            tableColumnPasaporteOtros, tableColumnFechaExpedicionOtros, tableColumnEmailOtros, tableColumnTratamientoOtros,
-            tableColumnCategoriaOtros,
-            //-------------------------------------------------------------------------------------------
-            tableColumnNumeroChild, tableColumnDniChild, tableColumnNombreChild, tableColumnPrimerApellidoChild,
-            tableColumnSegundoApellidoChild, tableColumnFechaNacimientoChild, tableColumnSexoChild, tableColumnDiscapacitadoChild,
-            tableColumnCiudadChild, tableColumnProvinciaChild, tableColumnPaisChild, tableColumnCalleChild, tableColumnCodigoPostalChild,
-            tableColumnPasaporteChild, tableColumnFechaExpedicionChild, tableColumnEmailChild, tableColumnTratamientoChild,
-            tableColumnCategoriaChild,
-            //-------------------------------------------------------------------------------------------
-            tableColumnNumeroBebes, tableColumnDniBebes, tableColumnNombreBebes, tableColumnPrimerApellidoBebes,
-            tableColumnSegundoApellidoBebes, tableColumnFechaNacimientoBebes, tableColumnSexoBebes, tableColumnDiscapacitadoBebes,
-            tableColumnCiudadBebes, tableColumnProvinciaBebes, tableColumnPaisBebes, tableColumnCalleBebes, tableColumnCodigoPostalBebes,
-            tableColumnPasaporteBebes, tableColumnFechaExpedicionBebes, tableColumnEmailBebes, tableColumnTratamientoBebes,
-            tableColumnCategoriaBebes;
+    private TableView<TablaHuesped> tablaResponsable, tablaOtro, tablaChild, tablaBebes;
     //-------------------------------------------------------------------------------------------
-
-    private ObservableList<Persona> listaHuespedResponsable, listaHuespedOtros, listaHuespedChild, listaHuespedBebes, listaTodosLosHuespedes;
-    private ObservableList<TablaHuesped> listaTablaHuespedResponsable, listaTablaHuespedOtros, listaTablaHuespedChild, listaTablaHuespedBebes, listaTablaTodosLosHuespedes;
+    private ObservableList<Persona> listaHuespedResponsable, listaHuespedOtros, listaHuespedChild,
+            listaHuespedBebes, listaTodosLosHuespedes;
+    private ObservableList<TablaHuesped> listaTablaHuespedResponsable, listaTablaHuespedOtros,
+            listaTablaHuespedChild, listaTablaHuespedBebes;
     private int maxHuespedResponsables = 1, maxHuespedOtros = 2, maxHuespedChild = 2, maxHuespedBebes;
     private Persona ResponsableEnVista, OtrosHuespedesEnVista, ChildEnVista, BebesEnVista;
+    ListChangeListener<Persona> listenerBebe;
+    ListChangeListener<Persona> listenerOtros;
+    ListChangeListener<Persona> listenerResponsable;
+    ListChangeListener<Persona> listenerChild;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -78,25 +59,28 @@ public class ControladorHuespedReserva implements Initializable {
         botonAddOtros.setOnAction((e) -> {
             accionAddOtros();
         });
-
-        botonBorrarResponsable.setOnAction((e) -> {
-            accionBorrarResponsable();
-        });
-        botonBorrarOtros.setOnAction((e) -> {
-            accionBorrarOtros();
-        });
         botonAddChild.setOnAction((e) -> {
             accionAddChild();
         });
-        botonBorrarChild.setOnAction((e) -> {
-            accionBorrarChild();
-        });
+
         botonAddBebes.setOnAction((e) -> {
             accionAddBebes();
         });
-        botonBorrarBebes.setOnAction((e) -> {
-            accionBorrarBebes();
+        //----------------------------------------------------------------------
+
+        botonBorrarResponsable.setOnAction((e) -> {
+            logicaBorrar(listaHuespedResponsable, tablaResponsable);;
         });
+        botonBorrarOtros.setOnAction((e) -> {
+            logicaBorrar(listaHuespedOtros, tablaOtros);
+        });
+        botonBorrarChild.setOnAction((e) -> {
+            logicaBorrar(listaHuespedChild, tablaChild);
+        });
+        botonBorrarBebes.setOnAction((e) -> {
+            logicaBorrar(listaHuespedBebes, tablaBebes);
+        });
+        //-----------------------------------------------------------------------
 
         botonOk.setOnAction((e) -> {
             accionOK();
@@ -105,188 +89,101 @@ public class ControladorHuespedReserva implements Initializable {
         reseteaCampos.setOnAction((event) -> {
             codigoReseteaCampos();
         });
-        tableColumnDniOtros.setCellValueFactory(new PropertyValueFactory("numeroDocumento"));
-        tableColumnNombreOtros.setCellValueFactory(new PropertyValueFactory("nombre"));
-        tableColumnPrimerApellidoOtros.setCellValueFactory(new PropertyValueFactory("primerApellido"));
-        tableColumnSegundoApellidoOtros.setCellValueFactory(new PropertyValueFactory("SegundoApellido"));
-        tableColumnFechaNacimientoOtros.setCellValueFactory(new PropertyValueFactory("fechaNacimiento"));
-        tableColumnSexoOtros.setCellValueFactory(new PropertyValueFactory("sexoHombre"));
-        tableColumnDiscapacitadoOtros.setCellValueFactory(new PropertyValueFactory("discapacitado"));
-        tableColumnCiudadOtros.setCellValueFactory(new PropertyValueFactory("ciudad"));
-        tableColumnProvinciaOtros.setCellValueFactory(new PropertyValueFactory("provincia"));
-        tableColumnPaisOtros.setCellValueFactory(new PropertyValueFactory("estado"));
-        tableColumnCalleOtros.setCellValueFactory(new PropertyValueFactory("calle"));
-        tableColumnCodigoPostalOtros.setCellValueFactory(new PropertyValueFactory("codigoPostal"));
-        tableColumnPasaporteOtros.setCellValueFactory(new PropertyValueFactory("pasaporte"));
-        tableColumnFechaExpedicionOtros.setCellValueFactory(new PropertyValueFactory("expPasaporte"));
-        tableColumnEmailOtros.setCellValueFactory(new PropertyValueFactory("email"));
-        tableColumnTratamientoOtros.setCellValueFactory(new PropertyValueFactory("tratamiento"));
-        tableColumnCategoriaOtros.setCellValueFactory(new PropertyValueFactory("categoria"));
-        tableColumnNumeroOtros.setCellValueFactory(new PropertyValueFactory("numero"));
         //------------------------------------------------------------------------------------------
-        tableColumnDniResponsable.setCellValueFactory(new PropertyValueFactory("numeroDocumento"));
-        tableColumnNombreResponsable.setCellValueFactory(new PropertyValueFactory("nombre"));
-        tableColumnPrimerApellidoResponsable.setCellValueFactory(new PropertyValueFactory("primerApellido"));
-        tableColumnSegundoApellidoResponsable.setCellValueFactory(new PropertyValueFactory("SegundoApellido"));
-        tableColumnFechaNacimientoResponsable.setCellValueFactory(new PropertyValueFactory("fechaNacimiento"));
-        tableColumnSexoResponsable.setCellValueFactory(new PropertyValueFactory("sexoHombre"));
-        tableColumnDiscapacitadoResponsable.setCellValueFactory(new PropertyValueFactory("discapacitado"));
-        tableColumnCiudadResponsable.setCellValueFactory(new PropertyValueFactory("ciudad"));
-        tableColumnProvinciaResponsable.setCellValueFactory(new PropertyValueFactory("provincia"));
-        tableColumnPaisResponsable.setCellValueFactory(new PropertyValueFactory("estado"));
-        tableColumnCalleResponsable.setCellValueFactory(new PropertyValueFactory("calle"));
-        tableColumnCodigoPostalResponsable.setCellValueFactory(new PropertyValueFactory("codigoPostal"));
-        tableColumnPasaporteResponsable.setCellValueFactory(new PropertyValueFactory("pasaporte"));
-        tableColumnFechaExpedicionResponsable.setCellValueFactory(new PropertyValueFactory("expPasaporte"));
-        tableColumnEmailResponsable.setCellValueFactory(new PropertyValueFactory("email"));
-        tableColumnTratamientoResponsable.setCellValueFactory(new PropertyValueFactory("tratamiento"));
-        tableColumnCategoriaResponsable.setCellValueFactory(new PropertyValueFactory("categoria"));
-        tableColumnNumeroResponsable.setCellValueFactory(new PropertyValueFactory("numero"));
-        //------------------------------------------------------------------------------------------
-        tableColumnDniChild.setCellValueFactory(new PropertyValueFactory("numeroDocumento"));
-        tableColumnNombreChild.setCellValueFactory(new PropertyValueFactory("nombre"));
-        tableColumnPrimerApellidoChild.setCellValueFactory(new PropertyValueFactory("primerApellido"));
-        tableColumnSegundoApellidoChild.setCellValueFactory(new PropertyValueFactory("SegundoApellido"));
-        tableColumnFechaNacimientoChild.setCellValueFactory(new PropertyValueFactory("fechaNacimiento"));
-        tableColumnSexoChild.setCellValueFactory(new PropertyValueFactory("sexoHombre"));
-        tableColumnDiscapacitadoChild.setCellValueFactory(new PropertyValueFactory("discapacitado"));
-        tableColumnCiudadChild.setCellValueFactory(new PropertyValueFactory("ciudad"));
-        tableColumnProvinciaChild.setCellValueFactory(new PropertyValueFactory("provincia"));
-        tableColumnPaisChild.setCellValueFactory(new PropertyValueFactory("estado"));
-        tableColumnCalleChild.setCellValueFactory(new PropertyValueFactory("calle"));
-        tableColumnCodigoPostalChild.setCellValueFactory(new PropertyValueFactory("codigoPostal"));
-        tableColumnPasaporteChild.setCellValueFactory(new PropertyValueFactory("pasaporte"));
-        tableColumnFechaExpedicionChild.setCellValueFactory(new PropertyValueFactory("expPasaporte"));
-        tableColumnEmailChild.setCellValueFactory(new PropertyValueFactory("email"));
-        tableColumnTratamientoChild.setCellValueFactory(new PropertyValueFactory("tratamiento"));
-        tableColumnCategoriaChild.setCellValueFactory(new PropertyValueFactory("categoria"));
-        tableColumnNumeroChild.setCellValueFactory(new PropertyValueFactory("numero"));
-        //------------------------------------------------------------------------------------------
-        tableColumnDniBebes.setCellValueFactory(new PropertyValueFactory("numeroDocumento"));
-        tableColumnNombreBebes.setCellValueFactory(new PropertyValueFactory("nombre"));
-        tableColumnPrimerApellidoBebes.setCellValueFactory(new PropertyValueFactory("primerApellido"));
-        tableColumnSegundoApellidoBebes.setCellValueFactory(new PropertyValueFactory("SegundoApellido"));
-        tableColumnFechaNacimientoBebes.setCellValueFactory(new PropertyValueFactory("fechaNacimiento"));
-        tableColumnSexoBebes.setCellValueFactory(new PropertyValueFactory("sexoHombre"));
-        tableColumnDiscapacitadoBebes.setCellValueFactory(new PropertyValueFactory("discapacitado"));
-        tableColumnCiudadBebes.setCellValueFactory(new PropertyValueFactory("ciudad"));
-        tableColumnProvinciaBebes.setCellValueFactory(new PropertyValueFactory("provincia"));
-        tableColumnPaisBebes.setCellValueFactory(new PropertyValueFactory("estado"));
-        tableColumnCalleBebes.setCellValueFactory(new PropertyValueFactory("calle"));
-        tableColumnCodigoPostalBebes.setCellValueFactory(new PropertyValueFactory("codigoPostal"));
-        tableColumnPasaporteBebes.setCellValueFactory(new PropertyValueFactory("pasaporte"));
-        tableColumnFechaExpedicionBebes.setCellValueFactory(new PropertyValueFactory("expPasaporte"));
-        tableColumnEmailBebes.setCellValueFactory(new PropertyValueFactory("email"));
-        tableColumnTratamientoBebes.setCellValueFactory(new PropertyValueFactory("tratamiento"));
-        tableColumnCategoriaBebes.setCellValueFactory(new PropertyValueFactory("categoria"));
-        tableColumnNumeroBebes.setCellValueFactory(new PropertyValueFactory("numero"));
+        tablaBebes.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == null) {
+                botonBorrarBebes.setDisable(true);
+            } else {
+                botonBorrarBebes.setDisable(false);
+            }
+        });
+        tablaChild.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == null) {
+                botonBorrarChild.setDisable(true);
+            } else {
+                botonBorrarChild.setDisable(false);
+            }
+        });
+        tablaOtros.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == null) {
+                botonBorrarOtros.setDisable(true);
+            } else {
+                botonBorrarOtros.setDisable(false);
+            }
+        });
+        tablaResponsable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == null) {
+                botonBorrarResponsable.setDisable(true);
+            } else {
+                botonBorrarResponsable.setDisable(false);
+            }
+        });
         //------------------------------------------------------------------------------------------
         tablaResponsable.setOnMouseClicked((event) -> {
-            ResponsableEnVista=UtilBuscador.onMouseClickedOnTable(tablaResponsable, event, VentanasFactory.getObjetoVentanaHuespedFormulario(Ventanas.HUESPED_RESERVA, Modality.WINDOW_MODAL, null), ResponsableEnVista,
+            ResponsableEnVista = UtilBuscador.onMouseClickedOnTable(tablaResponsable, event, VentanasFactory.getHuespedFormulario(Ventanas.HUESPED_RESERVA, Modality.WINDOW_MODAL, null), ResponsableEnVista,
                     listaHuespedResponsable, botonBorrarResponsable);
         });
         tablaOtros.setOnMouseClicked((event) -> {
-            OtrosHuespedesEnVista=UtilBuscador.onMouseClickedOnTable(tablaOtros, event, VentanasFactory.getObjetoVentanaHuespedFormulario(Ventanas.HUESPED_RESERVA, Modality.WINDOW_MODAL, null), OtrosHuespedesEnVista,
+            OtrosHuespedesEnVista = UtilBuscador.onMouseClickedOnTable(tablaOtros, event, VentanasFactory.getHuespedFormulario(Ventanas.HUESPED_RESERVA, Modality.WINDOW_MODAL, null), OtrosHuespedesEnVista,
                     listaHuespedOtros, tablaOtros, botonBorrarOtros);
         });
         tablaChild.setOnMouseClicked((event) -> {
-            ChildEnVista=UtilBuscador.onMouseClickedOnTable(tablaChild, event, VentanasFactory.getObjetoVentanaHuespedFormulario(Ventanas.HUESPED_RESERVA, Modality.WINDOW_MODAL, null), ChildEnVista,
+            ChildEnVista = UtilBuscador.onMouseClickedOnTable(tablaChild, event, VentanasFactory.getHuespedFormulario(Ventanas.HUESPED_RESERVA, Modality.WINDOW_MODAL, null), ChildEnVista,
                     listaHuespedChild, botonBorrarChild);
         });
         tablaBebes.setOnMouseClicked((event) -> {
-            UtilBuscador.onMouseClickedOnTable(tablaBebes, event, VentanasFactory.getObjetoVentanaHuespedFormulario(Ventanas.HUESPED_RESERVA, Modality.WINDOW_MODAL, null),
+            UtilBuscador.onMouseClickedOnTable(tablaBebes, event, VentanasFactory.getHuespedFormulario(Ventanas.HUESPED_RESERVA, Modality.WINDOW_MODAL, null),
                     BebesEnVista, listaHuespedBebes, botonBorrarBebes);
         });
     }
 
     private void accionAddResponsable() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.HUESPED_RESERVA,
+        ObjetoVentana obj = VentanasFactory.getBuscarHuesped(Ventanas.HUESPED_RESERVA,
                 Modality.WINDOW_MODAL, null);
-        if (obj != null) {
-            ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
-                    setListaToAdd(listaHuespedResponsable).
-                    setFiltro(PruebasModelo.getListaDeHuespedes()).
-                    setModo(Ventanas.MODO_BUSCADOR_SELECCIONAR);
-            obj.ver();
-        }
-
+        ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
+                setListaToAdd(listaHuespedResponsable).
+                setFiltro(PruebasModelo.getListaDeHuespedes()).
+                setModo(Ventanas.MODO_BUSCADOR_SELECCIONAR);
+        obj.ver();
     }
 
     private void accionAddOtros() {
-
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
-        if (obj != null) {
-            ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
-                    setListaToAdd(listaHuespedOtros).
-                    setFiltro(PruebasModelo.getListaDeHuespedes()).
-                    setModo(Ventanas.MODO_BUSCADOR_SELECCIONAR);
-            obj.ver();
-        }
-
+        ObjetoVentana obj = VentanasFactory.getBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
+        ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
+                setListaToAdd(listaHuespedOtros).
+                setFiltro(PruebasModelo.getListaDeHuespedes()).
+                setModo(Ventanas.MODO_BUSCADOR_SELECCIONAR);
+        obj.ver();
     }
 
     private void accionAddChild() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
-        if (obj != null) {
-            ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
-                    setListaToAdd(listaHuespedChild).
-                    setFiltro(PruebasModelo.getListaDeHuespedes()).
-                    setModo(Ventanas.MODO_BUSCADOR_SELECCIONAR);
-            obj.ver();
-        }
+        ObjetoVentana obj = VentanasFactory.getBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
+        ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
+                setListaToAdd(listaHuespedChild).
+                setFiltro(PruebasModelo.getListaDeHuespedes()).
+                setModo(Ventanas.MODO_BUSCADOR_SELECCIONAR);
+        obj.ver();
     }
 
     private void accionAddBebes() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
-        if (obj != null) {
-            ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
-                    setListaToAdd(listaTodosLosHuespedes).
-                    setFiltro(PruebasModelo.getListaDeHuespedes()).
-                    setModo(Ventanas.MODO_BUSCADOR_SELECCIONAR);
-            obj.ver();
-        }
-    }
-
-    private void accionBorrarResponsable() {
-        logicaBorrar(listaHuespedResponsable, tablaResponsable);
-
-    }
-
-    private void accionBorrarOtros() {
-        logicaBorrar(listaHuespedOtros, tablaOtros);
-    }
-
-    private void accionBorrarChild() {
-        logicaBorrar(listaHuespedChild, tablaChild);
-
-    }
-
-    private void accionBorrarBebes() {
-        logicaBorrar(listaHuespedBebes, tablaBebes);
+        ObjetoVentana obj = VentanasFactory.getBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
+        ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
+                setListaToAdd(listaHuespedBebes).
+                setFiltro(PruebasModelo.getListaDeHuespedes()).
+                setModo(Ventanas.MODO_BUSCADOR_SELECCIONAR);
+        obj.ver();
     }
 
     private void accionOK() {
+        listaHuespedBebes.removeListener(listenerBebe);
+        listaHuespedChild.removeListener(listenerChild);
+        listaHuespedOtros.remove(listaHuespedOtros);
+        listaHuespedResponsable.removeListener(listenerResponsable);
         Ventanas.cerrarVentana(Ventanas.HUESPED_RESERVA);
     }
 
     private void codigoReseteaCampos() {
-        listaHuespedOtros.clear();
-        listaHuespedResponsable.clear();
-        listaHuespedChild.clear();
-        listaHuespedBebes.clear();
-        listaTodosLosHuespedes.clear();
-        listaTablaHuespedResponsable.clear();
-        listaTablaHuespedOtros.clear();
-        listaTablaHuespedChild.clear();
-        listaTablaHuespedBebes.clear();
-    }
-
-    private void codigoAccionarBotonesBorrar(TableView tabla, Button boton) {
-        if (tabla.getSelectionModel().getSelectedItem() != null) {
-            boton.setDisable(false);
-        } else {
-            boton.setDisable(true);
-        }
+        borrarListas();
     }
 
     public ControladorHuespedReserva setNumeroHuespedes(int numeroResponsables, int numeroOtros,
@@ -311,70 +208,73 @@ public class ControladorHuespedReserva implements Initializable {
         return this;
     }
 
-    public ControladorHuespedReserva setListas(ObservableList<Persona> listaHuespedeOtros,
-            ObservableList<Persona> listaHuespedResponsable, ObservableList<Persona> listaHuespedChild,
-            ObservableList<Persona> listaHuespedBebes, ObservableList<Persona> listaTodosLosHuespedes, ObservableList<TablaHuesped> listaTablaHuespedResponsable,
-            ObservableList<TablaHuesped> listaTablaHuespedOtros, ObservableList<TablaHuesped> listaTablaHuespedChild,
-            ObservableList<TablaHuesped> listaTablaHuespedBebes, ObservableList<TablaHuesped> listaTablaTodosLosHuespedes) {
-
-        this.listaHuespedOtros = listaHuespedeOtros;
-        this.listaHuespedResponsable = listaHuespedResponsable;
-        this.listaHuespedChild = listaHuespedChild;
-        this.listaHuespedBebes = listaHuespedBebes;
-        this.listaTodosLosHuespedes = listaTodosLosHuespedes;
-        this.listaTablaHuespedResponsable = listaTablaHuespedResponsable;
-        this.listaTablaHuespedOtros = listaTablaHuespedOtros;
-        this.listaTablaHuespedChild = listaTablaHuespedChild;
-        this.listaTablaHuespedBebes = listaTablaHuespedBebes;
-        this.listaTablaTodosLosHuespedes = listaTablaTodosLosHuespedes;
+    public ControladorHuespedReserva setListas(ObservableList<Persona> HuespedOtrosLista,
+            ObservableList<Persona> HuespedResponsableLista, ObservableList<Persona> HuespedChildLista,
+            ObservableList<Persona> HuespedBebesLista, ObservableList<Persona> TodosLosHuespedesLista) {
+        this.listaHuespedResponsable = HuespedResponsableLista;
+        this.listaTablaHuespedResponsable = new TablaHuesped().getListaObjetosDeTabla(HuespedResponsableLista);
+        CreadorDeTabla.generaTabla(principal, tablaResponsable, this.listaTablaHuespedResponsable, new TablaHuesped().getListaObjetosColumnas());
+        //-----------------------------------------------------------------------------------------------
+        this.listaHuespedOtros = HuespedOtrosLista;
+        this.listaTablaHuespedOtros = new TablaHuesped().getListaObjetosDeTabla(this.listaHuespedOtros);
+        CreadorDeTabla.generaTabla(principal, tablaOtros, this.listaTablaHuespedOtros, new TablaHuesped().getListaObjetosColumnas());
+        //------------------------------------------------------------------------------------------------
+        this.listaHuespedChild = HuespedChildLista;
+        this.listaTablaHuespedChild = new TablaHuesped().getListaObjetosDeTabla(this.listaHuespedChild);
+        CreadorDeTabla.generaTabla(principal, tablaChild, this.listaTablaHuespedChild, new TablaHuesped().getListaObjetosColumnas());
+        //--------------------------------------------------------------------------------------------
+        this.listaHuespedBebes = HuespedBebesLista;
+        this.listaTablaHuespedBebes = new TablaHuesped().getListaObjetosDeTabla(this.listaHuespedBebes);
+        CreadorDeTabla.generaTabla(principal, tablaBebes, this.listaTablaHuespedBebes, new TablaHuesped().getListaObjetosColumnas());
+        //---------------------------------------------------------------------------------------------
+        this.listaTodosLosHuespedes = TodosLosHuespedesLista;
         //-------------------------------------------------
-        tablaResponsable.setItems(listaTablaHuespedResponsable);
-        tablaOtros.setItems(listaTablaHuespedOtros);
-        tablaChild.setItems(listaTablaHuespedChild);
-        tablaBebes.setItems(listaTablaHuespedBebes);
         //-----------------------------------------------------------
-        this.listaHuespedChild.addListener(new ListChangeListener<Persona>() {
+        listenerChild=new ListChangeListener<Persona>() {
             @Override
             public void onChanged(ListChangeListener.Change<? extends Persona> cambio) {
-                cambioListas(cambio, listaHuespedChild, listaTablaHuespedChild);
-                enciendoAdds(listaHuespedChild, maxHuespedChild, botonAddChild);
+                VinculadorModeloATabla.vinculaAListaTabla(listaHuespedChild, listaTablaHuespedChild, new TablaHuesped(), cambio);
+                VinculadorModeloATabla.vinculaVariasAUna(HuespedChildLista, cambio, TodosLosHuespedesLista);
+                enciendoAdds(HuespedChildLista, maxHuespedChild, botonAddChild);
+                habilitadoBotonesOkYResetea();
             }
-        });
-        this.listaHuespedBebes.addListener(new ListChangeListener<Persona>() {
+        };
+        this.listaHuespedChild.addListener(listenerChild);
+        
+        listenerBebe=new ListChangeListener<Persona>() {
             @Override
             public void onChanged(ListChangeListener.Change<? extends Persona> cambio) {
-                cambioListas(cambio, listaHuespedBebes, listaTablaHuespedBebes);
-                enciendoAdds(listaHuespedBebes, maxHuespedBebes, botonAddBebes);
+                VinculadorModeloATabla.vinculaAListaTabla(HuespedBebesLista, listaTablaHuespedBebes, new TablaHuesped(), cambio);
+                VinculadorModeloATabla.vinculaVariasAUna(HuespedBebesLista, cambio, TodosLosHuespedesLista);
+                enciendoAdds(HuespedBebesLista, maxHuespedBebes, botonAddBebes);
+                habilitadoBotonesOkYResetea();
             }
-        });
-        listaHuespedOtros.addListener(new ListChangeListener<Persona>() {
+        };
+        this.listaHuespedBebes.addListener(listenerBebe);
+        
+        listenerOtros=new ListChangeListener<Persona>() {
             @Override
             public void onChanged(ListChangeListener.Change<? extends Persona> cambio) {
-                cambioListas(cambio, listaHuespedOtros, listaTablaHuespedOtros);
-                enciendoAdds(listaHuespedOtros, maxHuespedOtros, botonAddOtros);
+                VinculadorModeloATabla.vinculaAListaTabla(listaHuespedOtros, listaTablaHuespedOtros, new TablaHuesped(), cambio);
+                VinculadorModeloATabla.vinculaVariasAUna(HuespedOtrosLista, cambio, TodosLosHuespedesLista);
+                enciendoAdds(HuespedOtrosLista, maxHuespedOtros, botonAddOtros);
+                habilitadoBotonesOkYResetea();
             }
-        });
-        listaHuespedResponsable.addListener(new ListChangeListener<Persona>() {
+        };
+        this.listaHuespedOtros.addListener(listenerOtros);
+        
+        listenerResponsable=new ListChangeListener<Persona>() {
             @Override
             public void onChanged(ListChangeListener.Change<? extends Persona> cambio) {
-                cambioListas(cambio, listaHuespedResponsable, listaTablaHuespedResponsable);
-                enciendoAdds(listaHuespedResponsable, maxHuespedResponsables, botonAddResponsable);
+                VinculadorModeloATabla.vinculaAListaTabla(listaHuespedResponsable, listaTablaHuespedResponsable, new TablaHuesped(), cambio);
+                VinculadorModeloATabla.vinculaVariasAUna(HuespedResponsableLista, cambio, TodosLosHuespedesLista);
+                enciendoAdds(HuespedResponsableLista, maxHuespedResponsables, botonAddResponsable);
+                habilitadoBotonesOkYResetea();
             }
-        });
-        listaTodosLosHuespedes.addListener(new ListChangeListener<Persona>() {
-            @Override
-            public void onChanged(ListChangeListener.Change<? extends Persona> cambio) {
-                if (listaTodosLosHuespedes.isEmpty()) {
-                    reseteaCampos.setDisable(true);
-                    botonOk.setDisable(true);
-                } else {
-                    reseteaCampos.setDisable(false);
-                    botonOk.setDisable(false);
-                }
-            }
-        });
+        };
+        this.listaHuespedResponsable.addListener(listenerResponsable);
         //----------------------------------------------------------------------------------------
-        if (listaHuespedResponsable.isEmpty()) {
+        if (HuespedResponsableLista.isEmpty()) {
             botonBorrarResponsable.setDisable(true);
             reseteaCampos.setDisable(true);
             botonOk.setDisable(true);
@@ -383,17 +283,17 @@ public class ControladorHuespedReserva implements Initializable {
             reseteaCampos.setDisable(false);
             botonOk.setDisable(false);
         }
-        if (listaHuespedOtros.isEmpty()) {
+        if (HuespedOtrosLista.isEmpty()) {
             botonBorrarOtros.setDisable(true);
         } else {
             botonBorrarOtros.setDisable(false);
         }
-        if (listaHuespedChild.isEmpty()) {
+        if (HuespedChildLista.isEmpty()) {
             botonBorrarChild.setDisable(true);
         } else {
             botonBorrarChild.setDisable(false);
         }
-        if (listaHuespedBebes.isEmpty()) {
+        if (HuespedBebesLista.isEmpty()) {
             botonBorrarBebes.setDisable(true);
         } else {
             botonBorrarBebes.setDisable(false);
@@ -401,29 +301,10 @@ public class ControladorHuespedReserva implements Initializable {
         return this;
     }
 
-    private void cambioListas(ListChangeListener.Change<? extends Persona> cambio, ObservableList<Persona> listaHuesped, ObservableList<TablaHuesped> listaTabla) {
-        while (cambio.next()) {
-            for (Persona p : cambio.getRemoved()) {
-                listaTodosLosHuespedes.remove(p);
-                listaTablaTodosLosHuespedes.clear();
-                listaTablaTodosLosHuespedes.addAll(TablaHuesped.getTablaBuscadorHuesped(listaTodosLosHuespedes));
-                listaTabla.addAll(TablaHuesped.getTablaBuscadorHuesped(listaHuesped));
-            }
-            for (Persona p : cambio.getAddedSubList()) {
-                listaTodosLosHuespedes.add(p);
-                listaTablaTodosLosHuespedes.clear();
-                listaTablaTodosLosHuespedes.addAll(TablaHuesped.getTablaBuscadorHuesped(listaTodosLosHuespedes));
-                listaTabla.addAll(TablaHuesped.getTablaBuscadorHuesped(listaHuesped));
-            }
-        }
-    }
-
     private void logicaBorrar(ObservableList<Persona> listaHuesped, TableView<TablaHuesped> tabla) {
-        for (Persona p : listaHuesped) {
-            TablaHuesped th = tabla.getSelectionModel().getSelectedItem();
-            if (th != null) {
-                listaHuesped.remove(tabla.getSelectionModel().getSelectedIndex());
-            }
+        TablaHuesped th = tabla.getSelectionModel().getSelectedItem();
+        if (th != null) {
+            listaHuesped.remove(tabla.getSelectionModel().getSelectedIndex());
         }
     }
 
@@ -454,6 +335,18 @@ public class ControladorHuespedReserva implements Initializable {
         listaHuespedChild.clear();
         listaHuespedOtros.clear();
         listaHuespedResponsable.clear();
-        listaTodosLosHuespedes.clear();
+    }
+
+    private void habilitadoBotonesOkYResetea() {
+        if (listaTodosLosHuespedes.isEmpty()) {
+            reseteaCampos.setDisable(true);
+        } else {
+            reseteaCampos.setDisable(false);
+        }
+        if (listaHuespedResponsable.isEmpty()) {
+            botonOk.setDisable(true);
+        } else {
+            botonOk.setDisable(false);
+        }
     }
 }
