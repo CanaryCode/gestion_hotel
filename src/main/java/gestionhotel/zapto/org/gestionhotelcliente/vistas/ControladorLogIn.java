@@ -4,9 +4,12 @@ import gestionhotel.zapto.org.gestionhotelcliente.controladores.ConfiguradorMens
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.ConfiguradorIdioma;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.LimitadorDeCaracteres;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.clases.Select;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.Sistema;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Usuario;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -53,7 +56,7 @@ public class ControladorLogIn implements Initializable {
 
     @FXML
     ComboBox lenguaje;
-    boolean validado=false;
+    boolean validado = false;
 
     public ControladorLogIn() {
     }
@@ -74,31 +77,34 @@ public class ControladorLogIn implements Initializable {
     }
 
     private void logicaBoton() {
-        if (loginValido()&&!validado) {
-            validado=true;
+        if (loginValido() && !validado) {
+            validado = true;
             ConfiguradorMensajes.mensajeExito("Usuario y contraseña validos", mensajeError);
             desvaneceCandado();
             evaneceMensaje();
             reproduceVideo();
             Locale.setDefault(ConfiguradorIdioma.cambiaIdioma(lenguaje.getSelectionModel().getSelectedItem().toString()));
-            ObjetoVentana obj = VentanasFactory.getObjetoVentanaPrincipal();
+            ObjetoVentana obj = VentanasFactory.getPrincipal();
             if (obj != null) {
                 Timeline t = new Timeline(new KeyFrame(Duration.seconds(8), (event) -> {
                     obj.verReajustable();
                     Ventanas.cerrarVentana(Ventanas.LOGIN);
                 }));
                 t.play();
-            } else {
-                ConfiguradorMensajes.mensajeError("Usuario o contraseña incorrectos", mensajeError);
             }
+        } else {
+            ConfiguradorMensajes.mensajeError("Usuario o contraseña incorrectos", mensajeError);
         }
     }
 
     private boolean loginValido() {
         boolean resultado = false;
-        String usuario = this.usuario.getText();
+        Usuario usuarioSistema = null;
+        String user = this.usuario.getText();
         String passw = this.password.getText();
-        if (usuario.equals("") && passw.equals("")) {
+        usuarioSistema = Select.isUserAndPasswordRight(user, passw);
+        if (usuarioSistema != null) {
+            Sistema.setUsuarioSistema(usuarioSistema);
             resultado = true;
         }
         return resultado;
@@ -120,15 +126,16 @@ public class ControladorLogIn implements Initializable {
         bienvenidos.setVisible(true);
         fadeTransition.play();
     }
-        public void reproduceVideo() {
-       
-            Media m = new Media(getClass().getResource("/video/videoLogin.mp4").toExternalForm());
-            MediaPlayer player = new MediaPlayer(m);
-            visualizadorVideo.setMediaPlayer(player);
-            visualizadorVideo.setFitWidth(300);
-            visualizadorVideo.setFitHeight(560);
-            player.setCycleCount(MediaPlayer.INDEFINITE);
-            player.setAutoPlay(true);
-        
+
+    public void reproduceVideo() {
+
+        Media m = new Media(getClass().getResource("/video/videoLogin.mp4").toExternalForm());
+        MediaPlayer player = new MediaPlayer(m);
+        visualizadorVideo.setMediaPlayer(player);
+        visualizadorVideo.setFitWidth(300);
+        visualizadorVideo.setFitHeight(560);
+        player.setCycleCount(MediaPlayer.INDEFINITE);
+        player.setAutoPlay(true);
+
     }
 }

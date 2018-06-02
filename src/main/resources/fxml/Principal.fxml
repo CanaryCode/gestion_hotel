@@ -154,6 +154,7 @@
             <items>
               <MenuItem fx:id="reserva" mnemonicParsing="false" text="%menuItem.prevision" />
                   <MenuItem fx:id="addReservas" mnemonicParsing="false" text="añadir reserva" />
+                  <MenuItem fx:id="huespedesDentro" mnemonicParsing="false" text="Huespes dentro" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="%menu.recepcion">

@@ -1,8 +1,8 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.CreadorDeTabla;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import java.util.Date;
-import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -10,12 +10,43 @@ import javafx.collections.ObservableList;
  *
  * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
-public class TablaCliente {
+public class TablaCliente implements TablaInterface<TablaCliente, Persona> {
 
     private String numeroDocumento, nombre, calle, codigoPostal, ciudad, provincia, estado,
             sexoHombre, nacionalidad, categoria, email, numero, comentario,
             teléfonoFijo, teléfonoMovil, primerApellido, segundoApellido, tratamiento, paginaWeb, esEmpresa,
             razonSocial, nombreComercial;
+
+    public TablaCliente() {
+
+    }
+
+    @Override
+    public ObservableList<CreadorDeTabla> getListaObjetosColumnas() {
+        ObservableList<CreadorDeTabla> lista = FXCollections.observableArrayList();
+        lista.add(new CreadorDeTabla("Tipo", "esEmpresa", 100));
+        lista.add(new CreadorDeTabla("Documento", "numeroDocumento", 100));
+        lista.add(new CreadorDeTabla("Nombre comercial", "razonSocial", 100));
+        lista.add(new CreadorDeTabla("Razón social", "nombreComercial", 100));
+        lista.add(new CreadorDeTabla("Nombre", "nombre", 100));
+        lista.add(new CreadorDeTabla("Primer Apellido", "primerApellido", 100));
+        lista.add(new CreadorDeTabla("Segundo Apellido", "segundoApellido", 100));
+        lista.add(new CreadorDeTabla("Tratamiento", "tratamiento", 100));
+        lista.add(new CreadorDeTabla("Categoria", "categoria", 100));
+        lista.add(new CreadorDeTabla("Nacionalidad", "nacionalidad", 100));
+        lista.add(new CreadorDeTabla("Sexo", "sexoHombre", 100));
+        lista.add(new CreadorDeTabla("Fecha nacimiento", "fechaNacimiento", 100));
+        lista.add(new CreadorDeTabla("Pais", "estado", 100));
+        lista.add(new CreadorDeTabla("Provincia", "provincia", 100));
+        lista.add(new CreadorDeTabla("Ciudad", "ciudad", 100));
+        lista.add(new CreadorDeTabla("Calle", "calle", 100));
+        lista.add(new CreadorDeTabla("Numero", "numero", 100));
+        lista.add(new CreadorDeTabla("Código Postal", "codigoPostal", 100));
+        lista.add(new CreadorDeTabla("E-mail", "email", 200));
+        lista.add(new CreadorDeTabla("Página web", "paginaWeb", 200));
+
+        return lista;
+    }
 
     /**
      * con una lista del modelo personas de la base de datos crea una lista del
@@ -25,7 +56,8 @@ public class TablaCliente {
      * consulta a las base de datos
      * @return lista del modelo de la tabla
      */
-    public static ObservableList<TablaCliente> getTablaBuscadorCliente(List<Persona> listaPersona) {
+    @Override
+    public ObservableList<TablaCliente> getListaObjetosDeTabla(ObservableList<Persona> listaPersona) {
         ObservableList<TablaCliente> listaClientes = FXCollections.observableArrayList();
         if (!listaPersona.isEmpty()) {
             for (Persona persona : listaPersona) {

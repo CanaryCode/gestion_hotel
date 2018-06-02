@@ -38,7 +38,7 @@ public class ControladorHuespedReserva implements Initializable {
     @FXML
     private AnchorPane principal;
     @FXML
-    private TableView<TablaHuesped> tablaResponsable, tablaOtro, tablaChild, tablaBebes;
+    private TableView<TablaHuesped> tablaResponsable, tablaOtros, tablaChild, tablaBebes;
     //-------------------------------------------------------------------------------------------
     private ObservableList<Persona> listaHuespedResponsable, listaHuespedOtros, listaHuespedChild,
             listaHuespedBebes, listaTodosLosHuespedes;
@@ -142,7 +142,7 @@ public class ControladorHuespedReserva implements Initializable {
                 Modality.WINDOW_MODAL, null);
         ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
                 setListaToAdd(listaHuespedResponsable).
-                setFiltro(PruebasModelo.getListaDeHuespedes()).
+                setFiltro(getFiltro()).
                 setModo(Ventanas.MODO_BUSCADOR_SELECCIONAR);
         obj.ver();
     }
@@ -151,7 +151,7 @@ public class ControladorHuespedReserva implements Initializable {
         ObjetoVentana obj = VentanasFactory.getBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
         ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
                 setListaToAdd(listaHuespedOtros).
-                setFiltro(PruebasModelo.getListaDeHuespedes()).
+                setFiltro(getFiltro()).
                 setModo(Ventanas.MODO_BUSCADOR_SELECCIONAR);
         obj.ver();
     }
@@ -160,7 +160,7 @@ public class ControladorHuespedReserva implements Initializable {
         ObjetoVentana obj = VentanasFactory.getBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
         ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
                 setListaToAdd(listaHuespedChild).
-                setFiltro(PruebasModelo.getListaDeHuespedes()).
+                setFiltro(getFiltro()).
                 setModo(Ventanas.MODO_BUSCADOR_SELECCIONAR);
         obj.ver();
     }
@@ -169,7 +169,7 @@ public class ControladorHuespedReserva implements Initializable {
         ObjetoVentana obj = VentanasFactory.getBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
         ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
                 setListaToAdd(listaHuespedBebes).
-                setFiltro(PruebasModelo.getListaDeHuespedes()).
+                setFiltro(getFiltro()).
                 setModo(Ventanas.MODO_BUSCADOR_SELECCIONAR);
         obj.ver();
     }
@@ -177,7 +177,7 @@ public class ControladorHuespedReserva implements Initializable {
     private void accionOK() {
         listaHuespedBebes.removeListener(listenerBebe);
         listaHuespedChild.removeListener(listenerChild);
-        listaHuespedOtros.remove(listaHuespedOtros);
+        listaHuespedOtros.remove(listenerOtros);
         listaHuespedResponsable.removeListener(listenerResponsable);
         Ventanas.cerrarVentana(Ventanas.HUESPED_RESERVA);
     }
@@ -230,7 +230,7 @@ public class ControladorHuespedReserva implements Initializable {
         this.listaTodosLosHuespedes = TodosLosHuespedesLista;
         //-------------------------------------------------
         //-----------------------------------------------------------
-        listenerChild=new ListChangeListener<Persona>() {
+        listenerChild = new ListChangeListener<Persona>() {
             @Override
             public void onChanged(ListChangeListener.Change<? extends Persona> cambio) {
                 VinculadorModeloATabla.vinculaAListaTabla(listaHuespedChild, listaTablaHuespedChild, new TablaHuesped(), cambio);
@@ -240,8 +240,8 @@ public class ControladorHuespedReserva implements Initializable {
             }
         };
         this.listaHuespedChild.addListener(listenerChild);
-        
-        listenerBebe=new ListChangeListener<Persona>() {
+
+        listenerBebe = new ListChangeListener<Persona>() {
             @Override
             public void onChanged(ListChangeListener.Change<? extends Persona> cambio) {
                 VinculadorModeloATabla.vinculaAListaTabla(HuespedBebesLista, listaTablaHuespedBebes, new TablaHuesped(), cambio);
@@ -251,8 +251,8 @@ public class ControladorHuespedReserva implements Initializable {
             }
         };
         this.listaHuespedBebes.addListener(listenerBebe);
-        
-        listenerOtros=new ListChangeListener<Persona>() {
+
+        listenerOtros = new ListChangeListener<Persona>() {
             @Override
             public void onChanged(ListChangeListener.Change<? extends Persona> cambio) {
                 VinculadorModeloATabla.vinculaAListaTabla(listaHuespedOtros, listaTablaHuespedOtros, new TablaHuesped(), cambio);
@@ -262,8 +262,8 @@ public class ControladorHuespedReserva implements Initializable {
             }
         };
         this.listaHuespedOtros.addListener(listenerOtros);
-        
-        listenerResponsable=new ListChangeListener<Persona>() {
+
+        listenerResponsable = new ListChangeListener<Persona>() {
             @Override
             public void onChanged(ListChangeListener.Change<? extends Persona> cambio) {
                 VinculadorModeloATabla.vinculaAListaTabla(listaHuespedResponsable, listaTablaHuespedResponsable, new TablaHuesped(), cambio);
@@ -348,5 +348,15 @@ public class ControladorHuespedReserva implements Initializable {
         } else {
             botonOk.setDisable(false);
         }
+    }
+
+    public ObservableList<Persona> getFiltro() {
+
+        ObservableList<Persona> lista = Select.getHuespedesFuera();
+        lista.removeAll(listaHuespedResponsable);
+        lista.removeAll(listaHuespedOtros);
+        lista.removeAll(listaHuespedChild);
+        lista.removeAll(listaHuespedBebes);
+        return lista;
     }
 }

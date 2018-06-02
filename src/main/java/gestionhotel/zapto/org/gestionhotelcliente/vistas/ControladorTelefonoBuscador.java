@@ -1,5 +1,6 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.CreadorDeTabla;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.LimitadorDeCaracteres;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBuscador;
@@ -17,11 +18,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 
@@ -50,8 +49,6 @@ public class ControladorTelefonoBuscador implements Initializable, BuscadorInter
     @FXML
     private TableView<TablaTelefono> tabla;
 
-    @FXML
-    private TableColumn tableColumnPropietario, tableColumnNumero, tableColumnTipo;
     private ObservableList<TelefonoPersona> listaAddLTelefono = FXCollections.observableArrayList();
     private ObservableList<TelefonoPersona> listaFiltro = FXCollections.observableArrayList();
     private ObservableList<TablaTelefono> listaTablaTelefono = FXCollections.observableArrayList();
@@ -81,10 +78,10 @@ public class ControladorTelefonoBuscador implements Initializable, BuscadorInter
             UtilBuscador.ResetearCampos(principal);
         });
         crear.setOnAction((event) -> {
-            UtilBuscador.accionCrear(VentanasFactory.getObjetoVentanaTelefonoFormulario(Ventanas.TELEFONO_BUSCADOR, Modality.APPLICATION_MODAL, null));
+            UtilBuscador.accionCrear(VentanasFactory.getTelefonoFormulario(Ventanas.TELEFONO_BUSCADOR, Modality.APPLICATION_MODAL, null));
         });
         actualizar.setOnAction((event) -> {
-            UtilBuscador.accionActualizar(VentanasFactory.getObjetoVentanaTelefonoFormulario(Ventanas.TELEFONO_BUSCADOR, Modality.APPLICATION_MODAL, null), telefonoEnVista);
+            UtilBuscador.accionActualizar(VentanasFactory.getTelefonoFormulario(Ventanas.TELEFONO_BUSCADOR, Modality.APPLICATION_MODAL, null), telefonoEnVista);
         });
         borrar.setOnAction((event) -> {
             UtilBuscador.accionBorrar();
@@ -101,16 +98,9 @@ public class ControladorTelefonoBuscador implements Initializable, BuscadorInter
         toggleTipo.selectedProperty().addListener((e) -> {
             UtilBuscador.apagaToggle(toggleTipo, tipo, principal, nodosApagables);
         });
-        //----------------------------------------------------
-        tableColumnPropietario.setCellValueFactory(
-                new PropertyValueFactory("nombre"));
-        tableColumnNumero.setCellValueFactory(
-                new PropertyValueFactory("numero"));
-        tableColumnTipo.setCellValueFactory(
-                new PropertyValueFactory("tipo"));
         //------------------------------------------------------------------------------------------
         tabla.setOnMouseClicked((event) -> {
-            telefonoEnVista=UtilBuscador.onMouseClickedOnTable(tabla, event, VentanasFactory.getObjetoVentanaTelefonoFormulario(Ventanas.TELEFONO_BUSCADOR, Modality.WINDOW_MODAL, null), telefonoEnVista,
+            telefonoEnVista=UtilBuscador.onMouseClickedOnTable(tabla, event, VentanasFactory.getTelefonoFormulario(Ventanas.TELEFONO_BUSCADOR, Modality.WINDOW_MODAL, null), telefonoEnVista,
                     listaFiltro, seleccionar, actualizar,borrar);
         });
         //-----------------------------------------------------------------------------------------
@@ -132,8 +122,8 @@ public class ControladorTelefonoBuscador implements Initializable, BuscadorInter
     @Override
     public <T> ControladorTelefonoBuscador setFiltro(ObservableList<T> ListaObjeto) {
         this.listaFiltro = (ObservableList<TelefonoPersona>) ListaObjeto;
-        this.listaTablaTelefono = TablaTelefono.getTablaTelefono(listaFiltro);
-        tabla.setItems(listaTablaTelefono);
+        this.listaTablaTelefono = new TablaTelefono().getListaObjetosDeTabla(listaFiltro);
+        CreadorDeTabla.generaTabla(principal, tabla, listaTablaTelefono, new TablaTelefono().getListaObjetosColumnas());
         return this;
     }
 

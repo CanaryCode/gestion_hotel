@@ -5,6 +5,7 @@
  */
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.CreadorDeTabla;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Habitacion;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,11 +14,28 @@ import javafx.collections.ObservableList;
  *
  * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
-public class TablaHabitacion {
+public class TablaHabitacion implements TablaInterface<TablaHabitacion, Habitacion> {
 
     String vista, numero, tipo, cama;
 
-    public static ObservableList<TablaHabitacion> getTablaHabitacion(ObservableList<Habitacion> listaHabitacion) {
+    public TablaHabitacion() {
+
+    }
+
+    @Override
+    public ObservableList<CreadorDeTabla> getListaObjetosColumnas() {
+
+        ObservableList<CreadorDeTabla> lista = FXCollections.observableArrayList();
+        lista.add(new CreadorDeTabla("Número", "numero", 100));
+        lista.add(new CreadorDeTabla("Vista", "vista", 300));
+        lista.add(new CreadorDeTabla("Tipo", "tipo", 300));
+        lista.add(new CreadorDeTabla("Cama", "cama", 100));
+
+        return lista;
+    }
+
+    @Override
+    public ObservableList<TablaHabitacion> getListaObjetosDeTabla(ObservableList<Habitacion> listaHabitacion) {
         ObservableList<TablaHabitacion> listaTablaHabitacion = FXCollections.observableArrayList();
         if (!listaHabitacion.isEmpty()) {
             for (Habitacion habitacion : listaHabitacion) {
@@ -26,7 +44,7 @@ public class TablaHabitacion {
                 String tipo = habitacion.getTipo();
                 String cama = habitacion.getTipoCama();
                 TablaHabitacion tH = new TablaHabitacion(vista, numero, tipo, cama);
-                
+
                 listaTablaHabitacion.add(tH);
             }
         }

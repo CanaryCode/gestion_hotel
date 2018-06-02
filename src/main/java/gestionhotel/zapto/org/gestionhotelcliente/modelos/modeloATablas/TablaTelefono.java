@@ -1,11 +1,8 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.CreadorDeTabla;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersona;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersonaId;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo;
-import java.util.List;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -13,7 +10,7 @@ import javafx.collections.ObservableList;
  *
  * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
-public class TablaTelefono {
+public class TablaTelefono implements TablaInterface<TablaTelefono, TelefonoPersona >{
 
     private String numero, nombre, comentario, tipo;
 
@@ -23,18 +20,32 @@ public class TablaTelefono {
         this.comentario = comentario;
         this.tipo = tipo;
     }
+    public TablaTelefono(){
+    }
 
-    public static ObservableList<TablaTelefono> getTablaTelefono(List<TelefonoPersona> listaTelefono) {
+    @Override
+    public ObservableList<CreadorDeTabla> getListaObjetosColumnas() {
+        ObservableList<CreadorDeTabla> lista = FXCollections.observableArrayList();
+        lista.add(new CreadorDeTabla("Propietario", "nombre", 400));
+        lista.add(new CreadorDeTabla("Número", "numero", 100));
+        lista.add(new CreadorDeTabla("Tipo", "tipo", 400));
+        return lista;
+    }
+
+    @Override
+    public ObservableList<TablaTelefono> getListaObjetosDeTabla(ObservableList<TelefonoPersona> listaTelefono) {
         ObservableList<TablaTelefono> Telefonos = FXCollections.observableArrayList();
+
         if (listaTelefono != null || !listaTelefono.isEmpty()) {
+
             for (TelefonoPersona telefonoPersona : listaTelefono) {
                 Persona p = telefonoPersona.getPersona();
+
                 if (p != null) {
-                    
                     String comentario = telefonoPersona.getComentario();
-                    String nombre = telefonoPersona.getPersona().getNombre()+" "+
-                            telefonoPersona.getPersona().getFisPrimerApellido()+" "+
-                            telefonoPersona.getPersona().getFisSegundoApellido();
+                    String nombre = telefonoPersona.getPersona().getNombre() + " "
+                            + telefonoPersona.getPersona().getFisPrimerApellido() + " "
+                            + telefonoPersona.getPersona().getFisSegundoApellido();
                     String tipo = telefonoPersona.getTipo();
                     String numero = telefonoPersona.getId().getNumTelefono();
                     TablaTelefono tablaTelefono = new TablaTelefono(numero, nombre, comentario, tipo);
@@ -76,5 +87,7 @@ public class TablaTelefono {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+
 
 }

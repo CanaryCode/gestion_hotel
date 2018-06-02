@@ -12,6 +12,7 @@ import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaAlo
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaCliente;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Reserva;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -84,7 +85,7 @@ public class ControladorReservaFormulario implements Initializable, FormularioIn
     private ObservableList<TablaAlojamiento> listaTablaAlojamientos = FXCollections.observableArrayList();
     private ObservableList<DetallesReserva> listaAlojamientos = FXCollections.observableArrayList();
 
-    private DetallesReserva reservaEnVista;
+    private Reserva reservaEnVista;
     private Persona ClienteEnVista, AgenciaEnVista;
     private DetallesReserva AlojamientoEnVista;
     private int modo;
@@ -99,7 +100,7 @@ public class ControladorReservaFormulario implements Initializable, FormularioIn
             codigoModificaAgencia();
         });
         addAlojamiento.setOnAction((e) -> {
-            UtilBuscador.accionCrear(VentanasFactory.getObjetoVentanaDetallesReserva(Ventanas.RESERVA_FORMULARIO, Modality.APPLICATION_MODAL, null));
+            UtilBuscador.accionCrear(VentanasFactory.getAlojamientoFormulario(Ventanas.RESERVA_FORMULARIO, Modality.APPLICATION_MODAL, null));
         });
         modificarCliente.setOnAction((e) -> {
             codigoModificaCliente();
@@ -179,16 +180,16 @@ public class ControladorReservaFormulario implements Initializable, FormularioIn
             ClienteEnVista = UtilBuscador.accionOnSelectedTable(listaCliente, tablaCliente);
         });
         tablaAgencia.setOnMouseClicked((event) -> {
-            AgenciaEnVista = UtilBuscador.onMouseClickedOnTable(tablaAgencia, event, VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.RESERVA_FORMULARIO, Modality.WINDOW_MODAL, null), AgenciaEnVista,
+            AgenciaEnVista = UtilBuscador.onMouseClickedOnTable(tablaAgencia, event, VentanasFactory.getClienteFormulario(Ventanas.RESERVA_FORMULARIO, Modality.WINDOW_MODAL, null), AgenciaEnVista,
                     listaAgencia);
         });
         tablaCliente.setOnMouseClicked((event) -> {
-            ClienteEnVista = UtilBuscador.onMouseClickedOnTable(tablaCliente, event, VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.RESERVA_FORMULARIO, Modality.WINDOW_MODAL, null), ClienteEnVista,
+            ClienteEnVista = UtilBuscador.onMouseClickedOnTable(tablaCliente, event, VentanasFactory.getClienteFormulario(Ventanas.RESERVA_FORMULARIO, Modality.WINDOW_MODAL, null), ClienteEnVista,
                     listaCliente);
 
         });
         tablaAlojamiento.setOnMouseClicked((event) -> {
-            AlojamientoEnVista = UtilBuscador.onMouseClickedOnTable(tablaAlojamiento, event, VentanasFactory.getObjetoVentanaDetallesReserva(Ventanas.RESERVA_FORMULARIO, Modality.WINDOW_MODAL, null), AlojamientoEnVista,
+            AlojamientoEnVista = UtilBuscador.onMouseClickedOnTable(tablaAlojamiento, event, VentanasFactory.getAlojamientoFormulario(Ventanas.RESERVA_FORMULARIO, Modality.WINDOW_MODAL, null), AlojamientoEnVista,
                     listaAlojamientos, borrarAlojamiento);
         });
         //---------------------------------------------------------------------------------------------
@@ -199,7 +200,7 @@ public class ControladorReservaFormulario implements Initializable, FormularioIn
     }
 
     private void codigoModificaAgencia() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarCliente(Ventanas.RESERVA_FORMULARIO, Modality.APPLICATION_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getBuscarCliente(Ventanas.RESERVA_FORMULARIO, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
             ((ControladorClienteBuscador) obj.getfXMLLoader().getController()).
                     setListaToAdd(listaAgencia).
@@ -210,7 +211,7 @@ public class ControladorReservaFormulario implements Initializable, FormularioIn
     }
 
     private void codigoModificaCliente() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarCliente(Ventanas.RESERVA_FORMULARIO, Modality.APPLICATION_MODAL, null);
+        ObjetoVentana obj = VentanasFactory.getBuscarCliente(Ventanas.RESERVA_FORMULARIO, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
             ((ControladorClienteBuscador) obj.getfXMLLoader().getController()).
                     setListaToAdd(listaCliente).
@@ -233,41 +234,50 @@ public class ControladorReservaFormulario implements Initializable, FormularioIn
 
     @Override
     public ControladorReservaFormulario setObjetoEnVista(Object objetoEnVista) {
-        reservaEnVista = (DetallesReserva) objetoEnVista;
+        reservaEnVista = (Reserva) objetoEnVista;
         //----------------------------------------------------------------------
         //------------------Lista Cliente---------------------------------------
         //----------------------------------------------------------------------
-        listaCliente.add(reservaEnVista.getReserva().getPersonaByCodCliente());
-        listaTablaCliente.addAll(TablaCliente.getTablaBuscadorCliente(listaCliente));
+        if (reservaEnVista.getPersonaByCodCliente() != null) {
+            listaCliente.add(reservaEnVista.getPersonaByCodCliente());
+            listaTablaCliente.addAll(new TablaCliente().getListaObjetosDeTabla(listaCliente));
+        }
         tablaCliente.setItems(listaTablaCliente);
         //----------------------------------------------------------------------
         //------------------Lista Agencia---------------------------------------
         //----------------------------------------------------------------------
-        listaAgencia.add(reservaEnVista.getReserva().getPersonaByAgencia());
-        listaTablaAgencia.addAll(TablaCliente.getTablaBuscadorCliente(listaAgencia));
+        if (reservaEnVista.getPersonaByAgencia() != null) {
+            listaAgencia.add(reservaEnVista.getPersonaByAgencia());
+            listaTablaAgencia.addAll(new TablaCliente().getListaObjetosDeTabla(listaAgencia));
+
+        }
         tablaAgencia.setItems(listaTablaAgencia);
         //----------------------------------------------------------------------
         //------------------Lista Alojamientos----------------------------------
         //----------------------------------------------------------------------
-        for (DetallesReserva dr : PruebasModelo.getListaDeAlojamientos()) {
-            if (reservaEnVista.getReserva().getCodReserva().equals(dr.getReserva().getCodReserva())) {
-                listaAlojamientos.add(dr);
+        if (reservaEnVista.getDetallesReservas() != null) {
+            for (DetallesReserva dr : PruebasModelo.getListaDeAlojamientos()) {
+                if (reservaEnVista.getCodReserva() != null) {
+                    if (reservaEnVista.getCodReserva().equals(dr.getReserva().getCodReserva())) {
+                        listaAlojamientos.add(dr);
+                    }
+                }
             }
+            listaTablaAlojamientos.addAll(new TablaAlojamiento().getListaObjetosDeTabla(listaAlojamientos));
         }
-        listaTablaAlojamientos.addAll(TablaAlojamiento.getListaTablaAlojamiento(listaAlojamientos));
         tablaAlojamiento.setItems(listaTablaAlojamientos);
         //---------------------------------------------------
-        listaDetalleReserva.add(reservaEnVista);
+        listaDetalleReserva.addAll(reservaEnVista.getDetallesReservas());
         //----------------------------------------------------
 
-        if (reservaEnVista.getReserva().getTipoTarjetaCredito() != null) {
-            tipoTarjeta.getSelectionModel().select(reservaEnVista.getReserva().getTipoTarjetaCredito());
+        if (reservaEnVista.getTipoTarjetaCredito() != null) {
+            tipoTarjeta.getSelectionModel().select(reservaEnVista.getTipoTarjetaCredito());
         }
-        if (reservaEnVista.getReserva().getNumeroTarjetaCredito() != null) {
-            numeroTarjeta.setText(reservaEnVista.getReserva().getNumeroTarjetaCredito());
+        if (reservaEnVista.getNumeroTarjetaCredito() != null) {
+            numeroTarjeta.setText(reservaEnVista.getNumeroTarjetaCredito());
         }
-        if (reservaEnVista.getReserva().getComentario() != null) {
-            comentario.setText(reservaEnVista.getReserva().getComentario());
+        if (reservaEnVista.getComentario() != null) {
+            comentario.setText(reservaEnVista.getComentario());
         }
         return this;
     }

@@ -11,6 +11,8 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
@@ -40,7 +42,7 @@ public class UtilBuscador {
     }
 
     public static <T> void accionActualizar(ObjetoVentana obj, T objetoEnVista) {
-        
+
         if (obj != null) {
             ((FormularioInterface) obj.getfXMLLoader().getController()).
                     setModo(Ventanas.MODO_FORMULARIO_ACTUALIZAR).
@@ -50,9 +52,9 @@ public class UtilBuscador {
     }
 
     public static <T> T onMouseClickedOnTable(TableView tabla, MouseEvent event,
-            ObjetoVentana obj, T objetoEnVista,ObservableList<T> listaObjeto,
+            ObjetoVentana obj, T objetoEnVista, ObservableList<T> listaObjeto,
             Node... nodosHabilitados) {
-        
+
         T Objeto = null;
         if (tabla.getSelectionModel().getSelectedItem() != null) {
             for (Node nodo : nodosHabilitados) {
@@ -62,7 +64,7 @@ public class UtilBuscador {
 
             double headerHeight = tabla.lookup(".column-header-background").getBoundsInLocal().getHeight();
             if (event.getClickCount() >= 2 && headerHeight <= event.getY()) {
-                VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null);
+                VentanasFactory.getClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null);
                 if (obj != null) {
                     ((FormularioInterface) obj.getfXMLLoader().getController()).
                             setModo(Ventanas.MODO_FORMULARIO_LECTURA).
@@ -87,8 +89,14 @@ public class UtilBuscador {
     }
 
     public static <T> void accionSeleccionar(ObservableList<T> listaObjeto, T objetoEnVista, String NombreVentana) {
-        listaObjeto.add(objetoEnVista);
-        Ventanas.cerrarVentana(NombreVentana);
+        if (!listaObjeto.contains(objetoEnVista)) {
+            listaObjeto.add(objetoEnVista);
+            Ventanas.cerrarVentana(NombreVentana);
+        }else{
+            Alert alert= new Alert(Alert.AlertType.WARNING,
+                    "Item repetido no se puede seleccionar", ButtonType.CLOSE);
+            alert.show();
+        }
     }
 
     public static <T> void accionBuscar() {

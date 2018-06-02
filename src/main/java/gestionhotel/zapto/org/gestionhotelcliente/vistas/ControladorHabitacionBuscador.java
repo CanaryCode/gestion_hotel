@@ -1,10 +1,12 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.CreadorDeTabla;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBuscador;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.BuscadorInterface;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaCliente;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaHabitacion;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Habitacion;
 import java.net.URL;
@@ -45,8 +47,6 @@ public class ControladorHabitacionBuscador implements Initializable, BuscadorInt
     @FXML
     private TableView<TablaHabitacion> tabla;
 
-    @FXML
-    private TableColumn tableColumnNumero, tableColumnTipo, tableColumnCama, tableColumnVista;
     private ObservableList<Habitacion> listaAddHabitacion = FXCollections.observableArrayList();
     private ObservableList<Habitacion> listaFiltro = FXCollections.observableArrayList();
     private ObservableList<TablaHabitacion> listaTablaHabitacion = FXCollections.observableArrayList();
@@ -70,10 +70,10 @@ public class ControladorHabitacionBuscador implements Initializable, BuscadorInt
             UtilBuscador.ResetearCampos(principal);
         });
         crear.setOnAction((event) -> {
-            UtilBuscador.accionCrear(VentanasFactory.getObjetoVentanaHabitacionFormulario(Ventanas.HABITACION_BUSCADOR, Modality.WINDOW_MODAL, null));
+            UtilBuscador.accionCrear(VentanasFactory.getHabitacionFormulario(Ventanas.HABITACION_BUSCADOR, Modality.WINDOW_MODAL, null));
         });
         actualizar.setOnAction((event) -> {
-            UtilBuscador.accionActualizar(VentanasFactory.getObjetoVentanaHabitacionFormulario(Ventanas.HABITACION_BUSCADOR, Modality.APPLICATION_MODAL, null), habitacionEnVista);
+            UtilBuscador.accionActualizar(VentanasFactory.getHabitacionFormulario(Ventanas.HABITACION_BUSCADOR, Modality.APPLICATION_MODAL, null), habitacionEnVista);
         });
         borrar.setOnAction((event) -> {
             UtilBuscador.accionBorrar();
@@ -94,17 +94,10 @@ public class ControladorHabitacionBuscador implements Initializable, BuscadorInt
             UtilBuscador.apagaToggle(toggleVistas, vistas, principal, listaNodosApagables);
         });
         //----------------------------------------------------
-        tableColumnNumero.setCellValueFactory(
-                new PropertyValueFactory("numero"));
-        tableColumnTipo.setCellValueFactory(
-                new PropertyValueFactory("tipo"));
-        tableColumnCama.setCellValueFactory(
-                new PropertyValueFactory("cama"));
-        tableColumnVista.setCellValueFactory(
-                new PropertyValueFactory("vista"));
+       
         
         tabla.setOnMouseClicked((event) -> {
-            habitacionEnVista=UtilBuscador.onMouseClickedOnTable(tabla, event, VentanasFactory.getObjetoVentanaHabitacionFormulario(Ventanas.HABITACION_BUSCADOR, Modality.WINDOW_MODAL, null), habitacionEnVista,
+            habitacionEnVista=UtilBuscador.onMouseClickedOnTable(tabla, event, VentanasFactory.getHabitacionFormulario(Ventanas.HABITACION_BUSCADOR, Modality.WINDOW_MODAL, null), habitacionEnVista,
                     listaFiltro, seleccionar, actualizar, borrar);
         });
 
@@ -127,8 +120,8 @@ public class ControladorHabitacionBuscador implements Initializable, BuscadorInt
     @Override
     public <T> ControladorHabitacionBuscador setFiltro(ObservableList<T> ListaObjeto) {
         this.listaFiltro = (ObservableList<Habitacion>) ListaObjeto;
-        this.listaTablaHabitacion = TablaHabitacion.getTablaHabitacion(listaFiltro);
-        tabla.setItems(listaTablaHabitacion);
+        this.listaTablaHabitacion = new TablaHabitacion().getListaObjetosDeTabla(listaFiltro);
+        CreadorDeTabla.generaTabla(principal, tabla, listaTablaHabitacion, new TablaHabitacion().getListaObjetosColumnas());
         return this;
     }
 

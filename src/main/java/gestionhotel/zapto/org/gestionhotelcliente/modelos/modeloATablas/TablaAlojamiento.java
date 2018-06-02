@@ -1,5 +1,6 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.CreadorDeTabla;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -10,14 +11,40 @@ import javafx.collections.ObservableList;
  *
  * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
-public class TablaAlojamiento {
+public class TablaAlojamiento implements TablaInterface<TablaAlojamiento, DetallesReserva> {
 
     private LocalDate fechaInicio, fechaFin;
-    private int NumeroAdultos, NumeroChild, NumeroBebes;
-    private String Pension, CamaExtra, cuna, PrefTipoHabitacion, PrefHabitacion, PrefTipoCama,
-            PrefVistas, PrefTurnoRestaurante, PrefTipoRestaurante;
+    private int numeroAdultos, numeroChild, numeroBebes;
+    private String pension, camaExtra, cuna, prefTipoHabitacion, prefHabitacion, prefTipoCama,
+            prefVistas, prefTurnoRestaurante, prefTipoRestaurante;
 
-    public static ObservableList<TablaAlojamiento> getListaTablaAlojamiento(ObservableList<DetallesReserva> listaReservas) {
+    public TablaAlojamiento() {
+
+    }
+
+    @Override
+    public ObservableList<CreadorDeTabla> getListaObjetosColumnas() {
+        ObservableList<CreadorDeTabla> lista = FXCollections.observableArrayList();
+        lista.add(new CreadorDeTabla("Prevision llegada", "fechaInicio", 100));
+        lista.add(new CreadorDeTabla("Prevision salida", "fechaFin", 100));
+        lista.add(new CreadorDeTabla("Numero adultos", "numeroAdultos", 100));
+        lista.add(new CreadorDeTabla("Numero niños", "numeroChild", 100));
+        lista.add(new CreadorDeTabla("Numero bebes", "numeroBebes", 100));
+        lista.add(new CreadorDeTabla("Pensión", "pension", 100));
+        lista.add(new CreadorDeTabla("Cama extra", "camaExtra", 100));
+        lista.add(new CreadorDeTabla("Cuna", "cuna", 100));
+        lista.add(new CreadorDeTabla("Pref. Número habitación", "prefHabitacion", 100));
+        lista.add(new CreadorDeTabla("Pref. Tipo habitación", "prefTipoHabitacion", 100));
+        lista.add(new CreadorDeTabla("Pref. Tipo cama", "prefTipoCama", 100));
+        lista.add(new CreadorDeTabla("Pref. Vistas", "prefVistas", 100));
+        lista.add(new CreadorDeTabla("Pref. Turno Restaurante", "prefTurnoRestaurante", 100));
+        lista.add(new CreadorDeTabla("Pref. Tipo Restaurante", "prefTipoRestaurante", 100));
+
+        return lista;
+    }
+
+    @Override
+    public ObservableList<TablaAlojamiento> getListaObjetosDeTabla(ObservableList<DetallesReserva> listaReservas) {
         ObservableList<TablaAlojamiento> listaTablaAlojamientos = FXCollections.observableArrayList();
         for (DetallesReserva detallesReserva : listaReservas) {
 
@@ -85,21 +112,21 @@ public class TablaAlojamiento {
             int NumeroChild, int NumeroBebes, String Pension, String CamaExtra, String cuna,
             String PrefTipoHabitacion, String PrefHabitacion, String PrefTipoCama,
             String PrefVistas, String PrefTurnoRestaurante, String PrefTipoRestaurante) {
-        
+
         this.fechaInicio = FechaInicio;
         this.fechaFin = FechaFin;
-        this.NumeroAdultos = NumeroAdultos;
-        this.NumeroChild = NumeroChild;
-        this.NumeroBebes = NumeroBebes;
-        this.Pension = Pension;
-        this.CamaExtra = CamaExtra;
+        this.numeroAdultos = NumeroAdultos;
+        this.numeroChild = NumeroChild;
+        this.numeroBebes = NumeroBebes;
+        this.pension = Pension;
+        this.camaExtra = CamaExtra;
         this.cuna = cuna;
-        this.PrefTipoHabitacion = PrefTipoHabitacion;
-        this.PrefHabitacion = PrefHabitacion;
-        this.PrefTipoCama = PrefTipoCama;
-        this.PrefVistas = PrefVistas;
-        this.PrefTurnoRestaurante = PrefTurnoRestaurante;
-        this.PrefTipoRestaurante = PrefTipoRestaurante;
+        this.prefTipoHabitacion = PrefTipoHabitacion;
+        this.prefHabitacion = PrefHabitacion;
+        this.prefTipoCama = PrefTipoCama;
+        this.prefVistas = PrefVistas;
+        this.prefTurnoRestaurante = PrefTurnoRestaurante;
+        this.prefTipoRestaurante = PrefTipoRestaurante;
     }
 
     public LocalDate getFechaInicio() {
@@ -119,43 +146,43 @@ public class TablaAlojamiento {
     }
 
     public int getNumeroAdultos() {
-        return NumeroAdultos;
+        return numeroAdultos;
     }
 
     public void setNumeroAdultos(int NumeroAdultos) {
-        this.NumeroAdultos = NumeroAdultos;
+        this.numeroAdultos = NumeroAdultos;
     }
 
     public int getNumeroChild() {
-        return NumeroChild;
+        return numeroChild;
     }
 
     public void setNumeroChild(int NumeroChild) {
-        this.NumeroChild = NumeroChild;
+        this.numeroChild = NumeroChild;
     }
 
     public int getNumeroBebes() {
-        return NumeroBebes;
+        return numeroBebes;
     }
 
     public void setNumeroBebes(int NumeroBebes) {
-        this.NumeroBebes = NumeroBebes;
+        this.numeroBebes = NumeroBebes;
     }
 
     public String getPension() {
-        return Pension;
+        return pension;
     }
 
     public void setPension(String Pension) {
-        this.Pension = Pension;
+        this.pension = Pension;
     }
 
     public String getCamaExtra() {
-        return CamaExtra;
+        return camaExtra;
     }
 
     public void setCamaExtra(String CamaExtra) {
-        this.CamaExtra = CamaExtra;
+        this.camaExtra = CamaExtra;
     }
 
     public String getCuna() {
@@ -167,51 +194,51 @@ public class TablaAlojamiento {
     }
 
     public String getPrefTipoHabitacion() {
-        return PrefTipoHabitacion;
+        return prefTipoHabitacion;
     }
 
     public void setPrefTipoHabitacion(String PrefTipoHabitacion) {
-        this.PrefTipoHabitacion = PrefTipoHabitacion;
+        this.prefTipoHabitacion = PrefTipoHabitacion;
     }
 
     public String getPrefHabitacion() {
-        return PrefHabitacion;
+        return prefHabitacion;
     }
 
     public void setPrefHabitacion(String PrefHabitacion) {
-        this.PrefHabitacion = PrefHabitacion;
+        this.prefHabitacion = PrefHabitacion;
     }
 
     public String getPrefTipoCama() {
-        return PrefTipoCama;
+        return prefTipoCama;
     }
 
     public void setPrefTipoCama(String PrefTipoCama) {
-        this.PrefTipoCama = PrefTipoCama;
+        this.prefTipoCama = PrefTipoCama;
     }
 
     public String getPrefVistas() {
-        return PrefVistas;
+        return prefVistas;
     }
 
     public void setPrefVistas(String PrefVistas) {
-        this.PrefVistas = PrefVistas;
+        this.prefVistas = PrefVistas;
     }
 
     public String getPrefTurnoRestaurante() {
-        return PrefTurnoRestaurante;
+        return prefTurnoRestaurante;
     }
 
     public void setPrefTurnoRestaurante(String PrefTurnoRestaurante) {
-        this.PrefTurnoRestaurante = PrefTurnoRestaurante;
+        this.prefTurnoRestaurante = PrefTurnoRestaurante;
     }
 
     public String getPrefTipoRestaurante() {
-        return PrefTipoRestaurante;
+        return prefTipoRestaurante;
     }
 
     public void setPrefTipoRestaurante(String PrefTipoRestaurante) {
-        this.PrefTipoRestaurante = PrefTipoRestaurante;
+        this.prefTipoRestaurante = PrefTipoRestaurante;
     }
 
 }

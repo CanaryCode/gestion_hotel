@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -21,27 +20,6 @@
                </VBox.margin>
             </Label>
             <TableView fx:id="tablaReserva" prefHeight="75.0">
-               <columns>
-                  <TableColumn fx:id="tableColumnTipoCliente" prefWidth="100.0" text="Tipo Cliente" />
-                  <TableColumn fx:id="tableColumnNombreCliente" prefWidth="200.0" text="Nombre Cliente" />
-                  <TableColumn fx:id="tableColumnNombreAgencia" prefWidth="200.0" text="Nombre Agencia" />
-                  <TableColumn fx:id="tableColumnFechaEntradaPrevista" prefWidth="100.0" text="Fecha entrada prevista" />
-                  <TableColumn fx:id="tableColumnFechaFinPrevista" prefWidth="100.0" text="Fecha fin prevista" />
-                  <TableColumn fx:id="tableColumnNUmeroAdultos" prefWidth="100.0" text="Numero adultos" />
-                  <TableColumn fx:id="tableColumnNumeroChild" prefWidth="100.0" text="Numero niños" />
-                  <TableColumn fx:id="tableColumnNumeroBebes" prefWidth="100.0" text="Numero Bebes" />
-                  <TableColumn fx:id="tableColumnPension" prefWidth="100.0" text="Pensión" />
-                  <TableColumn fx:id="tableColumnCamaExtra" prefWidth="100.0" text="Cama extra" />
-                  <TableColumn fx:id="tableColumnCuna" prefWidth="100.0" text="Cuna" />
-                  <TableColumn fx:id="tableColumnPreferenciaHabitacion" prefWidth="100.0" text="Preferencia tipo habitación" />
-                  <TableColumn fx:id="tableColumnPreferenciaVistas" prefWidth="100.0" text="Preferencia vistas" />
-                  <TableColumn fx:id="tableColumnTipoCama" prefWidth="100.0" text="Preferencia tipo cama" />
-                  <TableColumn fx:id="tableColumnNumeroHabitacion" prefWidth="100.0" text="Preferencia numero habitación" />
-                  <TableColumn fx:id="tableColumnTurnoRestaurante" prefWidth="100.0" text="Preferencia turno restaurante" />
-                  <TableColumn fx:id="tableColumnTipoRestaurante" prefWidth="100.0" text="Preferencia tipo restaurante" />
-                  <TableColumn fx:id="tableColumnTipoTarjeta" prefWidth="100.0" text="Tipo tarjeta" />
-                  <TableColumn fx:id="tableColumnNumeroTarjeta" prefWidth="100.0" text="Numero Tarjeta" />
-               </columns>
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
@@ -77,28 +55,6 @@
                </VBox.margin>
             </Label>
             <TableView fx:id="tablaHuesped" prefHeight="200.0">
-               <columns>
-                  <TableColumn fx:id="tableColumnDni" prefWidth="100.0" text="dni" />
-                  <TableColumn fx:id="tableColumnVoucher" prefWidth="100.0" text="Número Voucher" />
-                  <TableColumn fx:id="tableColumnPasaporte" prefWidth="100.0" text="Pasaporte" />
-                  <TableColumn fx:id="tableColumnNombre" prefWidth="100.0" text="nombre" />
-                  <TableColumn fx:id="tableColumnPrimerApellido" minWidth="0.0" prefWidth="100.0" text="Primer Apellido" />
-                  <TableColumn fx:id="tableColumnSegundoApellido" prefWidth="100.0" text="Segundo Apellido" />
-                  <TableColumn fx:id="tableColumnCategoria" prefWidth="100.0" text="Categoría" />
-                  <TableColumn fx:id="tableColumnTratamiento" prefWidth="100.0" text="Tratamiento" />
-                  <TableColumn fx:id="tableColumnFechaNacimiento" minWidth="0.0" prefWidth="100.0" text="Fecha Nacimiento" />
-                  <TableColumn fx:id="tableColumnSexo" prefWidth="100.0" text="Sexo" />
-                  <TableColumn fx:id="tableColumnDiscapacitado" prefWidth="100.0" text="Discapacitado" />
-                  <TableColumn fx:id="tableColumnPais" prefWidth="100.0" text="Pais" />
-                  <TableColumn fx:id="tableColumnProvincia" prefWidth="100.0" text="Provincia" />
-                  <TableColumn fx:id="tableColumnCiudad" prefWidth="100.0" text="Ciudad" />
-                  <TableColumn fx:id="tableColumnCalle" prefWidth="100.0" text="Calle" />
-                  <TableColumn fx:id="tableColumnNumero" prefWidth="100.0" text="Número" />
-                  <TableColumn fx:id="tableColumnCodigoPostal" prefWidth="100.0" text="Còdigo postal" />
-                  <TableColumn fx:id="tableColumnFechaExpedicion" prefWidth="100.0" text="Fecha Exp." />
-                  <TableColumn fx:id="tableColumnEmail" prefWidth="200.0" text="Correo Electrónico" />
-                  <TableColumn fx:id="tableColumnPaginaWeb" prefWidth="200.0" text="Página web" />
-               </columns>
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
@@ -134,11 +90,6 @@
                </VBox.margin>
             </Label>
             <TableView fx:id="tablaHabitacion" prefHeight="75.0">
-               <columns>
-                  <TableColumn fx:id="numeroHabitacion" prefWidth="100.0" text="Numero" />
-                  <TableColumn fx:id="tipoHabitacion" minWidth="50.0" prefWidth="550.0" text="Tipo" />
-                  <TableColumn fx:id="vistaHabitacion" minWidth="50.0" prefWidth="550.0" text="Vista" />
-               </columns>
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>

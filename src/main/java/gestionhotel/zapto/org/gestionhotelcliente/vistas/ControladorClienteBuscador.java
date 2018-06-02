@@ -1,10 +1,11 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.CreadorDeTabla;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.LimitadorDeCaracteres;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBuscador;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.BuscadorInterface;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.Consultas;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.clases.Select;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaCliente;
@@ -25,6 +26,11 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 ;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -65,14 +71,6 @@ public class ControladorClienteBuscador implements Initializable, BuscadorInterf
             togglePaginaWeb, toggleEmail, toggleCategoria;
     @FXML
     private TableView<TablaCliente> tabla;
-
-    @FXML
-    private TableColumn tableColumnRazonSocial, tableColumnTipo, tableColumnNombreComercial,
-            tableColumnDocumentoNumero, tableColumnNombre, tableColumnPrimerApellido,
-            tableColumnSegundoApellido, tableColumnFechaNacimiento, tableColumnNacionalidad,
-            tableColumnProvincia, tableColumnCiudad, tableColumnCalle, tableColumnNumero,
-            tableColumnCodigoPostal, tableColumnSexo, tableColumnEstado, tableColumnEmail, tableColumnPaginaWeb, tableColumnCategoria,
-            tableColumnTratamiento;
 
     private ObservableList<TablaCliente> listaTablaClientes = FXCollections.observableArrayList();
     private ObservableList<Persona> listaAddClientes = FXCollections.observableArrayList();
@@ -205,10 +203,10 @@ public class ControladorClienteBuscador implements Initializable, BuscadorInterf
         });
 
         crear.setOnAction((e) -> {
-            UtilBuscador.accionCrear(VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null));
+            UtilBuscador.accionCrear(VentanasFactory.getClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null));
         });
         actualizar.setOnAction((e) -> {
-            UtilBuscador.accionActualizar(VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null), ClienteEnVista);
+            UtilBuscador.accionActualizar(VentanasFactory.getClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null), ClienteEnVista);
         });
         buscar.setOnAction((e) -> {
             //--------------------------
@@ -220,40 +218,19 @@ public class ControladorClienteBuscador implements Initializable, BuscadorInterf
             UtilBuscador.ResetearCampos(panelPrincipal);
         });
         telefono.setOnAction((e) -> {
-            ObservableList<TelefonoPersona> listaFiltroTelefono = Consultas.getListaFiltroTelefono(ClienteEnVista);
-            UtilBuscador.abrirTelefono(VentanasFactory.getObjetoVentanaTelefonoBuscador(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null), listaAddTelefono, Consultas.getListaFiltroTelefono(ClienteEnVista), Ventanas.MODO_FORMULARIO_LECTURA);
+            ObservableList<TelefonoPersona> listaFiltroTelefono = Select.getListaFiltroTelefono(ClienteEnVista);
+            UtilBuscador.abrirTelefono(VentanasFactory.getTelefonoBuscador(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null), listaAddTelefono, Select.getListaFiltroTelefono(ClienteEnVista), Ventanas.MODO_FORMULARIO_LECTURA);
 
         });
 
         //---------------------------------------------------------------------
-        tableColumnDocumentoNumero.setCellValueFactory(new PropertyValueFactory("numeroDocumento"));
-        tableColumnNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
-        tableColumnPrimerApellido.setCellValueFactory(new PropertyValueFactory("primerApellido"));
-        tableColumnSegundoApellido.setCellValueFactory(new PropertyValueFactory("segundoApellido"));
-        tableColumnFechaNacimiento.setCellValueFactory(new PropertyValueFactory("fechaNacimiento"));
-        tableColumnSexo.setCellValueFactory(new PropertyValueFactory("sexoHombre"));
-        tableColumnCiudad.setCellValueFactory(new PropertyValueFactory("ciudad"));
-        tableColumnProvincia.setCellValueFactory(new PropertyValueFactory("provincia"));
-        tableColumnEstado.setCellValueFactory(new PropertyValueFactory("estado"));
-        tableColumnCalle.setCellValueFactory(new PropertyValueFactory("calle"));
-        tableColumnCodigoPostal.setCellValueFactory(new PropertyValueFactory("codigoPostal"));
-        tableColumnEmail.setCellValueFactory(new PropertyValueFactory("email"));
-        tableColumnTratamiento.setCellValueFactory(new PropertyValueFactory("tratamiento"));
-        tableColumnCategoria.setCellValueFactory(new PropertyValueFactory("categoria"));
-        tableColumnNumero.setCellValueFactory(new PropertyValueFactory("numero"));
-        tableColumnRazonSocial.setCellValueFactory(new PropertyValueFactory("razonSocial"));
-        tableColumnTipo.setCellValueFactory(new PropertyValueFactory("esEmpresa"));
-        tableColumnNombreComercial.setCellValueFactory(new PropertyValueFactory("nombreComercial"));
-        tableColumnPaginaWeb.setCellValueFactory(new PropertyValueFactory("paginaWeb"));
-        tableColumnNacionalidad.setCellValueFactory(new PropertyValueFactory("nacionalidad"));
-        
         tabla.setOnMouseClicked((event) -> {
-                ClienteEnVista=UtilBuscador.onMouseClickedOnTable(tabla, event, VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null), 
-                        ClienteEnVista,listaFiltro, seleccionar,
+            ClienteEnVista = UtilBuscador.onMouseClickedOnTable(tabla, event, VentanasFactory.getClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null),
+                    ClienteEnVista, listaFiltro, seleccionar,
                     actualizar, telefono, borrar);
         });
         //----------------------------------------------------------------------------------------
-    nodosApagables=FXCollections.observableArrayList(resetearCampos,buscar);
+        nodosApagables = FXCollections.observableArrayList(resetearCampos, buscar);
     }
 
     @Override
@@ -271,7 +248,8 @@ public class ControladorClienteBuscador implements Initializable, BuscadorInterf
     @Override
     public <T> ControladorClienteBuscador setFiltro(ObservableList<T> ListaObjeto) {
         this.listaFiltro = (ObservableList<Persona>) ListaObjeto;
-        tabla.setItems(TablaCliente.getTablaBuscadorCliente(listaFiltro));
+        listaTablaClientes = new TablaCliente().getListaObjetosDeTabla(listaFiltro);
+        CreadorDeTabla.generaTabla(panelPrincipal, tabla, listaTablaClientes, new TablaCliente().getListaObjetosColumnas());
         return this;
     }
 }

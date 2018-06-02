@@ -5,7 +5,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -176,12 +175,6 @@
                   <VBox AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <TableView fx:id="tabla">
-                           <columns>
-                              <TableColumn fx:id="tableColumnNumero" maxWidth="324.0" minWidth="-1.0" prefWidth="95.0" text="Numero" />
-                              <TableColumn fx:id="tableColumnTipo" maxWidth="312.0" minWidth="-1.0" prefWidth="154.0" text="Tipo" />
-                              <TableColumn fx:id="tableColumnCama" maxWidth="383.0" minWidth="-1.0" prefWidth="159.0" text="Cama" />
-                              <TableColumn fx:id="tableColumnVista" prefWidth="367.0" text="Vistas" />
-                           </columns>
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>

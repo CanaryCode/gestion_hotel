@@ -7,7 +7,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
@@ -555,26 +554,6 @@
                               <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <TableView fx:id="tabla">
-                                       <columns>
-                                          <TableColumn fx:id="tableColumnDni" prefWidth="130.0" text="dni" />
-                                          <TableColumn fx:id="tableColumnNombre" prefWidth="101.0" text="nombre" />
-                                          <TableColumn fx:id="tableColumnPrimerApellido" minWidth="0.0" prefWidth="115.0" text="Primer Apellido" />
-                                          <TableColumn fx:id="tableColumnSegundoApellido" prefWidth="115.0" text="Segundo Apellido" />
-                                          <TableColumn fx:id="tableColumnFechaNacimiento" minWidth="0.0" prefWidth="100.0" text="Fecha Nacimiento" />
-                                          <TableColumn fx:id="tableColumnSexo" prefWidth="58.0" text="Sexo" />
-                                          <TableColumn fx:id="tableColumnDiscapacitado" prefWidth="82.0" text="Discapacitado" />
-                                          <TableColumn fx:id="tableColumnPais" prefWidth="75.0" text="Pais" />
-                                          <TableColumn fx:id="tableColumnCiudad" prefWidth="78.0" text="Ciudad" />
-                                          <TableColumn fx:id="tableColumnProvincia" prefWidth="75.0" text="Provincia" />
-                                          <TableColumn fx:id="tableColumnNumero" prefWidth="53.0" text="Número" />
-                                          <TableColumn fx:id="tableColumnCalle" prefWidth="75.0" text="Calle" />
-                                          <TableColumn fx:id="tableColumnCodigoPostal" prefWidth="75.0" text="Còdigo postal" />
-                                          <TableColumn fx:id="tableColumnPasaporte" prefWidth="75.0" text="Pasaporte" />
-                                          <TableColumn fx:id="tableColumnFechaExpedicion" prefWidth="75.0" text="Fecha Exp." />
-                                          <TableColumn fx:id="tableColumnEmail" prefWidth="75.0" text="Correo Electrónico" />
-                                          <TableColumn fx:id="tableColumnTratamiento" prefWidth="75.0" text="Tratamiento" />
-                                          <TableColumn fx:id="tableColumnCategoria" prefWidth="75.0" text="Categoría" />
-                                       </columns>
                                        <HBox.margin>
                                           <Insets right="20.0" />
                                        </HBox.margin>

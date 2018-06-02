@@ -1,12 +1,17 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.clases.Select;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Fechas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaHuesped;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Reserva;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo;
 import gestionhotel.zapto.org.gestionhotelcliente.vistas.reloj.Reloj;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,7 +32,7 @@ public class ControladorPrincipal implements Initializable {
 
     @FXML
     private MenuItem kardex, reserva, quienesSomos, registroClientes, addReservas,
-            buscadorHuesped, buscadorCliente;
+            buscadorHuesped, buscadorCliente, huespedesDentro;
     @FXML
     private Label nombreUsuario, pieDePágina, horaActual;
     @FXML
@@ -71,43 +76,51 @@ public class ControladorPrincipal implements Initializable {
         botonCalculadora.setOnAction((e) -> {
             codigoAbrirCalculadora();
         });
+        huespedesDentro.setOnAction((e) -> {
+            codigoMenuHuespedesDentro();
+        });
         configuracionReloj();
     }
 
     private void codigoMenuAddReservas() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaReservaFormulario(Ventanas.PRINCIPAL, Modality.NONE, null);
+        ObjetoVentana obj = VentanasFactory.getReservaFormulario(Ventanas.PRINCIPAL, Modality.NONE, null);
+        ((ControladorReservaFormulario) obj.getfXMLLoader().getController()).
+                setObjetoEnVista(new Reserva()).
+                setModo(Ventanas.MODO_FORMULARIO_INSERTAR);
         obj.ver();
     }
 
     private void codigoMenuKardex() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.PRINCIPAL, Modality.NONE, null);
+        ObjetoVentana obj = VentanasFactory.getClienteFormulario(Ventanas.PRINCIPAL, Modality.NONE, null);
         obj.ver();
     }
 
     private void codigoMenuReserva() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaPrevision(Ventanas.PRINCIPAL, Modality.NONE, null);
-        obj.ver();
+        ObjetoVentana obj = VentanasFactory.getPrevision(Ventanas.PRINCIPAL, Modality.NONE, null);
+        ((ControladorPrevision)obj.getfXMLLoader().getController()).
+                setFiltro(Select.getAlojamientosPendientesCheckIn());
+        obj.verReajustable();
     }
 
     private void codigoMenuQuienesSomos() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaQuienesSomos(Ventanas.PRINCIPAL, Modality.NONE, null);
+        ObjetoVentana obj = VentanasFactory.getQuienesSomos(Ventanas.PRINCIPAL, Modality.NONE, null);
         obj.ver();
-        ((ControladorQuienesSomos)obj.getfXMLLoader().getController()).reproduceVideo();
+        ((ControladorQuienesSomos) obj.getfXMLLoader().getController()).reproduceVideo();
     }
 
     private void codigoMenuRegistroClientes() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaClienteFormulario(Ventanas.PRINCIPAL, Modality.NONE, null);
+        ObjetoVentana obj = VentanasFactory.getClienteFormulario(Ventanas.PRINCIPAL, Modality.NONE, null);
         obj.ver();
     }
 
     private void codigoMenuBuscadorHuesped() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarHuesped(Ventanas.PRINCIPAL, Modality.NONE, null);
+        ObjetoVentana obj = VentanasFactory.getBuscarHuesped(Ventanas.PRINCIPAL, Modality.NONE, null);
         obj.ver();
 
     }
 
     private void codigoMenuBuscadorCliente() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaBuscarCliente(Ventanas.PRINCIPAL, Modality.NONE, null);
+        ObjetoVentana obj = VentanasFactory.getBuscarCliente(Ventanas.PRINCIPAL, Modality.NONE, null);
         obj.ver();
 
     }
@@ -130,9 +143,19 @@ public class ControladorPrincipal implements Initializable {
     }
 
     private void codigoAbrirCalculadora() {
-        ObjetoVentana obj = VentanasFactory.getObjetoVentanaCalculadora(Ventanas.PRINCIPAL, Modality.NONE, null);
-        if (obj != null&&Ventanas.getVentana(obj.getNombreVentana())==null) {
+        ObjetoVentana obj = VentanasFactory.getCalculadora(Ventanas.PRINCIPAL, Modality.NONE, null);
+        if (obj != null && Ventanas.getVentana(obj.getNombreVentana()) == null) {
             obj.ver();
+        }
+    }
+
+    private void codigoMenuHuespedesDentro() {
+        ObjetoVentana obj = VentanasFactory.getListaVacia(Ventanas.PRINCIPAL, Modality.NONE, null);
+        ObservableList l=Select.getHuespedesDentro();
+        if (obj != null) {
+            ((ControladorListaVacia) obj.getfXMLLoader().getController()).configuraTabla(new TablaHuesped().getListaObjetosDeTabla(Select.getHuespedesDentro()),
+                    new TablaHuesped().getListaObjetosColumnas(), "Huéspedes dentro");
+            obj.verReajustable();
         }
     }
 }

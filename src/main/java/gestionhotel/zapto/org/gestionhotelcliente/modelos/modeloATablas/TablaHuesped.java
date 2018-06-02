@@ -1,5 +1,6 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.CreadorDeTabla;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import java.util.Date;
 import java.util.List;
@@ -10,65 +11,96 @@ import javafx.collections.ObservableList;
  *
  * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
-public class TablaHuesped {
+public class TablaHuesped implements TablaInterface<TablaHuesped, Persona> {
 
     private String numeroDocumento, nombre, calle, codigoPostal, ciudad, provincia, estado,
             sexoHombre, nacionalidad, categoria, pasaporte, email, discapacitado, numero, comentario,
             primerApellido, segundoApellido, tratamiento, paginaWeb;
-   private int codigoPersona;
+    private int codigoPersona;
     private Date fechaNacimiento, expPasaporte, vencPasaporte;
-
-    public static ObservableList<TablaHuesped> getTablaBuscadorHuesped(List<Persona> listaPersona) {
-        ObservableList<TablaHuesped> listaHuespedes = FXCollections.observableArrayList();
-        if (!listaPersona.isEmpty()) {
-            for (Persona persona : listaPersona) {
-                String numero = persona.getNumero();
-                String nombre = persona.getNombre();
-                String primerApellido = persona.getFisPrimerApellido();
-                String SegundoApellido = persona.getFisSegundoApellido();
-                Date fechaNacimiento = persona.getFisFechaNacimiento();
-                Date fechaExpPasaporte = persona.getFisExpPasaporte();
-                String nacionalidad = persona.getFisNacionalidad();
-                String tratamiento = persona.getFisTratamiento();
-                String ciudad = persona.getCiudad();
-                String provincia = persona.getProvincia();
-                String calle = persona.getCalle();
-                String codigoPostal = persona.getCodPostal();
-                String dni = persona.getDocumentoNumero();
-                String estado = persona.getEstado();
-                String pasaporte = persona.getPasaporte();
-                String email = persona.getEmail();
-                String categoria = persona.getCategoria();
-                String comentario = persona.getComentario();
-                String sexo = "";
-                int codigoPersona=persona.getCodPersona();
-                if (persona.getFisSexoHombre() != null) {
-                    sexo = (persona.getFisSexoHombre() == 0) ? "mujer" : "hombre";
-                }
-                String discapacitado = "";
-                if (persona.getFisSexoHombre() != null) {
-                    discapacitado = (persona.getFisSexoHombre() == 0) ? "Discapacitado" : "No";
-                }
-
-                TablaHuesped huesped = new TablaHuesped(numero, dni, nombre, calle, codigoPostal, ciudad,
-                        provincia, estado, tratamiento, sexo, primerApellido, SegundoApellido,
-                        nacionalidad, categoria, pasaporte, email, discapacitado, fechaExpPasaporte,
-                        fechaExpPasaporte, fechaNacimiento, comentario,codigoPersona);
-                listaHuespedes.add(huesped);
-            }
-        }
-        return listaHuespedes;
-    }
 
     public TablaHuesped() {
 
+    }
+
+    @Override
+    public ObservableList<CreadorDeTabla> getListaObjetosColumnas() {
+        ObservableList<CreadorDeTabla> lista = FXCollections.observableArrayList();
+        lista.add(new CreadorDeTabla("Dni", "numeroDocumento", 100));
+        lista.add(new CreadorDeTabla("Nombre", "nombre", 100));
+        lista.add(new CreadorDeTabla("Primer Apellido", "primerApellido", 100));
+        lista.add(new CreadorDeTabla("Segundo Apellido", "segundoApellido", 100));
+        lista.add(new CreadorDeTabla("Tratamiento", "tratamiento", 100));
+        lista.add(new CreadorDeTabla("Categoria", "categoria", 100));
+        lista.add(new CreadorDeTabla("Pasaporte", "pasaporte", 100));
+        lista.add(new CreadorDeTabla("Nacionalidad", "nacionalidad", 100));
+        lista.add(new CreadorDeTabla("Sexo", "sexoHombre", 100));
+        lista.add(new CreadorDeTabla("Fecha nacimiento", "fechaNacimiento", 100));
+        lista.add(new CreadorDeTabla("Exp. pasaporte", "expPasaporte", 100));
+        lista.add(new CreadorDeTabla("Discapacitado", "discapacitado", 100));
+        lista.add(new CreadorDeTabla("Pais", "estado", 100));
+        lista.add(new CreadorDeTabla("Provincia", "provincia", 100));
+        lista.add(new CreadorDeTabla("Ciudad", "ciudad", 100));
+        lista.add(new CreadorDeTabla("Calle", "calle", 100));
+        lista.add(new CreadorDeTabla("Numero", "numero", 100));
+        lista.add(new CreadorDeTabla("Código Postal", "codigoPostal", 100));
+        lista.add(new CreadorDeTabla("E-mail", "email", 200));
+        lista.add(new CreadorDeTabla("Página web", "paginaWeb", 200));
+
+        return lista;
+    }
+
+    @Override
+    public ObservableList<TablaHuesped> getListaObjetosDeTabla(ObservableList<Persona> listaPersona) {
+        ObservableList<TablaHuesped> listaHuespedes = FXCollections.observableArrayList();
+        if (listaPersona != null) {
+            if (!listaPersona.isEmpty()) {
+                for (Persona persona : listaPersona) {
+                    String numero = persona.getNumero();
+                    String nombre = persona.getNombre();
+                    String primerApellido = persona.getFisPrimerApellido();
+                    String SegundoApellido = persona.getFisSegundoApellido();
+                    Date fechaNacimiento = persona.getFisFechaNacimiento();
+                    Date fechaExpPasaporte = persona.getFisExpPasaporte();
+                    String nacionalidad = persona.getFisNacionalidad();
+                    String tratamiento = persona.getFisTratamiento();
+                    String ciudad = persona.getCiudad();
+                    String provincia = persona.getProvincia();
+                    String calle = persona.getCalle();
+                    String codigoPostal = persona.getCodPostal();
+                    String dni = persona.getDocumentoNumero();
+                    String estado = persona.getEstado();
+                    String pasaporte = persona.getPasaporte();
+                    String email = persona.getEmail();
+                    String categoria = persona.getCategoria();
+                    String comentario = persona.getComentario();
+                    String paginaWeb = persona.getPaginaWeb();
+                    String sexo = "";
+                    int codigoPersona = persona.getCodPersona();
+                    if (persona.getFisSexoHombre() != null) {
+                        sexo = (persona.getFisSexoHombre() == 0) ? "mujer" : "hombre";
+                    }
+                    String discapacitado = "";
+                    if (persona.getFisSexoHombre() != null) {
+                        discapacitado = (persona.getFisSexoHombre() == 0) ? "Discapacitado" : "No";
+                    }
+
+                    TablaHuesped huesped = new TablaHuesped(numero, dni, nombre, calle, codigoPostal, ciudad,
+                            provincia, estado, tratamiento, sexo, primerApellido, SegundoApellido,
+                            nacionalidad, categoria, pasaporte, email, discapacitado, fechaExpPasaporte,
+                            fechaExpPasaporte, fechaNacimiento, comentario, codigoPersona, paginaWeb);
+                    listaHuespedes.add(huesped);
+                }
+            }
+        }
+        return listaHuespedes;
     }
 
     public TablaHuesped(String numero, String documentoNumero, String nombre, String calle, String codPostal,
             String ciudad, String provincia, String estado, String tratamiento, String SexoHombre,
             String PrimerApellido, String SegundoApellido, String Nacionalidad, String categoria,
             String pasaporte, String email, String discapacitado, Date expPasaporte, Date vencPasaporte,
-            Date fechaNacimiento, String comentario,Integer codigoPersona) {
+            Date fechaNacimiento, String comentario, Integer codigoPersona, String paginaWeb) {
         this.numero = numero;
         this.numeroDocumento = documentoNumero;
         this.nombre = nombre;
@@ -90,6 +122,7 @@ public class TablaHuesped {
         this.vencPasaporte = vencPasaporte;
         this.fechaNacimiento = fechaNacimiento;
         this.comentario = comentario;
+        this.paginaWeb = paginaWeb;
     }
 
     public String getNumeroDocumento() {
@@ -99,6 +132,7 @@ public class TablaHuesped {
     public int getCodigoPersona() {
         return codigoPersona;
     }
+
     public void setCodigoPersona(int codigoPersona) {
         this.codigoPersona = codigoPersona;
     }
@@ -219,7 +253,6 @@ public class TablaHuesped {
         this.comentario = comentario;
     }
 
-   
     public String getPrimerApellido() {
         return primerApellido;
     }

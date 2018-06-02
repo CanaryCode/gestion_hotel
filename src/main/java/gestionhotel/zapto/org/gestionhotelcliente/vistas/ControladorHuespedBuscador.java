@@ -1,18 +1,17 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.CreadorDeTabla;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.LimitadorDeCaracteres;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBuscador;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.BuscadorInterface;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.Consultas;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.clases.Select;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaHuesped;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersona;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -24,11 +23,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 
@@ -65,14 +62,7 @@ public class ControladorHuespedBuscador implements Initializable, BuscadorInterf
     @FXML
     private TableView<TablaHuesped> tabla;
 
-    @FXML
-    private TableColumn tableColumnNumero, tableColumnDni, tableColumnNombre, tableColumnPrimerApellido,
-            tableColumnSegundoApellido, tableColumnFechaNacimiento, tableColumnSexo, tableColumnDiscapacitado,
-            tableColumnCiudad, tableColumnProvincia, tableColumnPais, tableColumnCalle, tableColumnCodigoPostal,
-            tableColumnPasaporte, tableColumnFechaExpedicion, tableColumnEmail, tableColumnTratamiento,
-            tableColumnCategoria;
-
-    private List<TablaHuesped> listaTablaHuespedes = new ArrayList<>();
+    private ObservableList<TablaHuesped> listaTablaHuespedes;
     private Persona huespedEnVista;
     private ObservableList<Persona> listaAddHuesped, listaFiltro;
     private ObservableList<TelefonoPersona> listaAddTelefono;
@@ -107,9 +97,6 @@ public class ControladorHuespedBuscador implements Initializable, BuscadorInterf
         toggleDni.selectedProperty().addListener((e) -> {
             UtilBuscador.apagaToggle(toggleDni, dni, panelPrincipal, nodosApagables);
         });
-//        toggleEstado.selectedProperty().addListener((e) -> {
-//             UtilBuscador.apagaToggle(toggleEstado, estado, panelPrincipal, nodosApagables);
-//        });
         toggleEstado.selectedProperty().addListener((e) -> {
             UtilBuscador.apagaToggle(toggleEstado, estado, panelPrincipal, nodosApagables);
         });
@@ -153,65 +140,48 @@ public class ControladorHuespedBuscador implements Initializable, BuscadorInterf
         UtilBuscador.iniciaComboBox(nacionalidad, Registro.listaPaises);
         UtilBuscador.iniciaComboBox(estado, Registro.listaPaises);
         //----------------------------------------------------------------------------------------
-         nombre.textProperty().addListener((observable, oldValue, newValue) -> {
-             LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
-         });
-         primerApellido.textProperty().addListener((observable, oldValue, newValue) -> {
-             LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
-         });
-         segundoApellido.textProperty().addListener((observable, oldValue, newValue) -> {
-             LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
-         });
-         provincia.textProperty().addListener((observable, oldValue, newValue) -> {
-             LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
-         });
-         ciudad.textProperty().addListener((observable, oldValue, newValue) -> {
-             LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
-         });
-         calle.textProperty().addListener((observable, oldValue, newValue) -> {
-             LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
-         });
-         pasaporte.textProperty().addListener((observable, oldValue, newValue) -> {
-             LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
-         });
-         numero.textProperty().addListener((observable, oldValue, newValue) -> {
-             LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
-         });
-         codigoPostal.textProperty().addListener((observable, oldValue, newValue) -> {
-             LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
-         });
-         dni.textProperty().addListener((observable, oldValue, newValue) -> {
-             LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
-         });
-         correoElectronico.textProperty().addListener((observable, oldValue, newValue) -> {
-             LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
-         });
-         paginaWeb.textProperty().addListener((observable, oldValue, newValue) -> {
-             LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
-         });
+        nombre.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
+        });
+        primerApellido.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
+        });
+        segundoApellido.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
+        });
+        provincia.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
+        });
+        ciudad.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
+        });
+        calle.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
+        });
+        pasaporte.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
+        });
+        numero.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
+        });
+        codigoPostal.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
+        });
+        dni.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
+        });
+        correoElectronico.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
+        });
+        paginaWeb.textProperty().addListener((observable, oldValue, newValue) -> {
+            LimitadorDeCaracteres.addLimitacion(nombre, newValue, oldValue, 40);
+        });
         //----------------------------------------------------------------------------------------
-        tableColumnDni.setCellValueFactory(new PropertyValueFactory("numeroDocumento"));
-        tableColumnNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
-        tableColumnPrimerApellido.setCellValueFactory(new PropertyValueFactory("primerApellido"));
-        tableColumnSegundoApellido.setCellValueFactory(new PropertyValueFactory("SegundoApellido"));
-        tableColumnFechaNacimiento.setCellValueFactory(new PropertyValueFactory("fechaNacimiento"));
-        tableColumnSexo.setCellValueFactory(new PropertyValueFactory("sexoHombre"));
-        tableColumnDiscapacitado.setCellValueFactory(new PropertyValueFactory("discapacitado"));
-        tableColumnCiudad.setCellValueFactory(new PropertyValueFactory("ciudad"));
-        tableColumnProvincia.setCellValueFactory(new PropertyValueFactory("provincia"));
-        tableColumnPais.setCellValueFactory(new PropertyValueFactory("estado"));
-        tableColumnCalle.setCellValueFactory(new PropertyValueFactory("calle"));
-        tableColumnCodigoPostal.setCellValueFactory(new PropertyValueFactory("codigoPostal"));
-        tableColumnPasaporte.setCellValueFactory(new PropertyValueFactory("pasaporte"));
-        tableColumnFechaExpedicion.setCellValueFactory(new PropertyValueFactory("expPasaporte"));
-        tableColumnEmail.setCellValueFactory(new PropertyValueFactory("email"));
-        tableColumnTratamiento.setCellValueFactory(new PropertyValueFactory("tratamiento"));
-        tableColumnCategoria.setCellValueFactory(new PropertyValueFactory("categoria"));
-        tableColumnNumero.setCellValueFactory(new PropertyValueFactory("numero"));
+
         //--------------------------------------------------------------------------------------
         tabla.setOnMouseClicked((event) -> {
-            huespedEnVista=UtilBuscador.onMouseClickedOnTable(tabla, event, VentanasFactory.getObjetoVentanaHuespedFormulario(Ventanas.HUESPED_BUSCADOR, Modality.WINDOW_MODAL, null), huespedEnVista,
-                    listaFiltro, seleccionar,actualizar, telefono, borrar);
+            huespedEnVista = UtilBuscador.onMouseClickedOnTable(tabla, event, VentanasFactory.getHuespedFormulario(Ventanas.HUESPED_BUSCADOR, Modality.WINDOW_MODAL, null), huespedEnVista,
+                    listaFiltro, seleccionar, actualizar, telefono, borrar);
         });
         //--------------------------------------------------------------------------------------------
         borrar.setOnAction((e) -> {
@@ -219,17 +189,17 @@ public class ControladorHuespedBuscador implements Initializable, BuscadorInterf
         });
 
         crear.setOnAction((e) -> {
-            UtilBuscador.accionCrear(VentanasFactory.getObjetoVentanaHuespedFormulario(Ventanas.HUESPED_BUSCADOR, Modality.WINDOW_MODAL, null));
+            UtilBuscador.accionCrear(VentanasFactory.getHuespedFormulario(Ventanas.HUESPED_BUSCADOR, Modality.WINDOW_MODAL, null));
 
         });
         actualizar.setOnAction((e) -> {
-            UtilBuscador.accionActualizar(VentanasFactory.getObjetoVentanaHuespedFormulario(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null), huespedEnVista);
+            UtilBuscador.accionActualizar(VentanasFactory.getHuespedFormulario(Ventanas.HUESPED_BUSCADOR, Modality.APPLICATION_MODAL, null), huespedEnVista);
         });
 
         seleccionar.setOnAction((e) -> {
             UtilBuscador.accionSeleccionar(listaAddHuesped, huespedEnVista, Ventanas.HUESPED_BUSCADOR);
-
         });
+        
         buscar.setOnAction((e) -> {
             UtilBuscador.accionBuscar();
         });
@@ -237,9 +207,9 @@ public class ControladorHuespedBuscador implements Initializable, BuscadorInterf
             UtilBuscador.ResetearCampos(panelPrincipal);
         });
         telefono.setOnAction((e) -> {
-            ObservableList<TelefonoPersona> listaFiltroTelefono=Consultas.getListaFiltroTelefono(huespedEnVista);
+            ObservableList<TelefonoPersona> listaFiltroTelefono = Select.getListaFiltroTelefono(huespedEnVista);
             Platform.runLater(() -> {
-                UtilBuscador.abrirTelefono(VentanasFactory.getObjetoVentanaTelefonoBuscador(Ventanas.HUESPED_BUSCADOR, Modality.WINDOW_MODAL, null), listaAddTelefono, listaFiltroTelefono, Ventanas.MODO_FORMULARIO_LECTURA);
+                UtilBuscador.abrirTelefono(VentanasFactory.getTelefonoBuscador(Ventanas.HUESPED_BUSCADOR, Modality.WINDOW_MODAL, null), listaAddTelefono, listaFiltroTelefono, Ventanas.MODO_FORMULARIO_LECTURA);
 
             });
         });
@@ -261,7 +231,8 @@ public class ControladorHuespedBuscador implements Initializable, BuscadorInterf
     @Override
     public <T> ControladorHuespedBuscador setFiltro(ObservableList<T> ListaObjeto) {
         this.listaFiltro = (ObservableList<Persona>) ListaObjeto;
-        tabla.setItems(TablaHuesped.getTablaBuscadorHuesped(listaFiltro));
+        listaTablaHuespedes = new TablaHuesped().getListaObjetosDeTabla(listaFiltro);
+        CreadorDeTabla.generaTabla(panelPrincipal, tabla, listaTablaHuespedes, new TablaHuesped().getListaObjetosColumnas());
         return this;
     }
 

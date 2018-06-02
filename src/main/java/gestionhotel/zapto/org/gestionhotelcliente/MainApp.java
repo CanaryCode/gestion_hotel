@@ -15,7 +15,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Sistema.setHostServicesDelegate(HostServicesFactory.getInstance(this));
-        ObjetoVentana obj=VentanasFactory.getObjetoVentanaLogIn();
+        ObjetoVentana obj=VentanasFactory.getLogIn();
           if (obj != null) {
                 obj.ver();
           }

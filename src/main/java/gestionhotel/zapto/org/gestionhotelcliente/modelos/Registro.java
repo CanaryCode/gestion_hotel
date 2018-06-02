@@ -118,4 +118,9 @@ public class Registro {
     };
     public static ObservableList<String> ListaNumeroHabitacion= FXCollections.observableArrayList(numeroHabitacion);
    
+    private static final String[] estadoHabitacion = {
+        "Desconocido", "Ocupada", "Libre"
+    };
+    public static ObservableList<String> ListaEstadoHabitacion= FXCollections.observableArrayList(estadoHabitacion);
+   
 }
