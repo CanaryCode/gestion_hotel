@@ -37,7 +37,7 @@ public class TablaHabitacion implements TablaInterface<TablaHabitacion, Habitaci
     @Override
     public ObservableList<TablaHabitacion> getListaObjetosDeTabla(ObservableList<Habitacion> listaHabitacion) {
         ObservableList<TablaHabitacion> listaTablaHabitacion = FXCollections.observableArrayList();
-        if (!listaHabitacion.isEmpty()) {
+        if (!listaHabitacion.isEmpty()&&listaHabitacion!=null) {
             for (Habitacion habitacion : listaHabitacion) {
                 String numero = String.valueOf(habitacion.getNumero());
                 String vista = habitacion.getVistas();

@@ -127,20 +127,17 @@
 .etiquetaNormal{
     -fx-font-size: 8pt;
     -fx-text-fill: white;
-    -fx-alignment: left;
 }
 
 /*------------------TEXTFIELD------------------------------------------------------*/
 .texfieldNormal{
     -fx-font-size: 8pt;
     -fx-text-fill: black;
-    -fx-alignment: left;
 
 }
 .text-field{
     -fx-font-size: 8pt;
     -fx-text-fill: black;
-    -fx-alignment: left;
 
 }
 /*------------------TEXTAREA------------------------------------------------------*/
@@ -188,7 +185,6 @@
     -fx-text-fill: black;
     -fx-font-weight: bold;
     -fx-font-size: 8pt;
-    -fx-alignment: left;
 }
 .table-view .column-header {
     -fx-border-color: #3366ff;
@@ -576,7 +572,6 @@
     -fx-cursor:hand;
     -fx-font-size: 8pt;
     -fx-text-fill: white;
-    -fx-alignment: left;
 }
 .menu-bar{
     -fx-background-color: #3366ff;
@@ -587,8 +582,6 @@
     -fx-font-size: 10pt;
     -fx-text-fill: white; 
     -fx-font-size: 8pt;
-    -fx-alignment: left;
-
 }
 .menu:hover {
     -fx-background-color: white;

@@ -1,5 +1,6 @@
 package gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles;
 
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.LanzadorDeAvisos;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.RecorredorPaneles;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.FormularioInterface;
@@ -92,8 +93,8 @@ public class UtilBuscador {
         if (!listaObjeto.contains(objetoEnVista)) {
             listaObjeto.add(objetoEnVista);
             Ventanas.cerrarVentana(NombreVentana);
-        }else{
-            Alert alert= new Alert(Alert.AlertType.WARNING,
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING,
                     "Item repetido no se puede seleccionar", ButtonType.CLOSE);
             alert.show();
         }
@@ -184,5 +185,14 @@ public class UtilBuscador {
     public static <T> void iniciaComboBox(ComboBox combo, ObservableList<T> lista) {
         combo.setItems(lista);
         combo.getSelectionModel().selectFirst();
+    }
+
+    public static <T> ObservableList<T> creaFiltro(ObservableList<T> lista, ObservableList<T>... listasExclusion) {
+        for (ObservableList<T> lexclusion : listasExclusion) {
+            if (lexclusion != null&&!lexclusion.isEmpty()) {
+                lista.removeAll(lexclusion);
+            }
+        }
+        return lista;
     }
 }

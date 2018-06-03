@@ -103,8 +103,7 @@ public class Select {
     }
 
     public static boolean realizaCheckin(DetallesReserva detallesReserva,
-            Habitacion habitacion, ObservableList<Persona> huespedes, 
-            ObservableList<DetallesReserva> listaAlojamientos) {
+            Habitacion habitacion, ObservableList<Persona> huespedes) {
         
         for (DetallesReserva d : PruebasModelo.getListaDeAlojamientos()) {
             if (d.equals(detallesReserva)) {
@@ -115,13 +114,13 @@ public class Select {
                     huespedHabitacion.setPersona(huesped);
                     huespedHabitacion.setDetallesReserva(detallesReserva);
                     huespedHabitacion.setComentario("comentario " + contador);
-                    PruebasModelo.getListaDeHuespedHabitacion().add(huespedHabitacion);
                     PruebasModelo.getListaDeHuespedesDentro().add(huesped);
                     PruebasModelo.getListaDeHuespedes().remove(huesped);
                     PruebasModelo.getListaDeHuespedes().remove(huesped);
                     contador++;
                 }
-                listaAlojamientos.remove(detallesReserva);
+                
+                habitacion.setEstado(Registro.ListaEstadoHabitacion.get(1));
                 PruebasModelo.getListaDeHabitaciones().remove(habitacion);
                 
                 break;

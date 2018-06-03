@@ -393,6 +393,11 @@ public class Persona  implements java.io.Serializable {
         this.telefonoPersonas = telefonoPersonas;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return ((Persona)obj).getCodPersona()==this.getCodPersona();
+    }
+
 
 
 
