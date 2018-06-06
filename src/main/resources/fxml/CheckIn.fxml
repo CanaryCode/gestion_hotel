@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -36,7 +37,11 @@
                      <children>
                         <AnchorPane>
                            <children>
-                              <Button id="botonActualizar" fx:id="modificaReserva" layoutX="48.0" layoutY="62.0" mnemonicParsing="false" style="-fx-content-display: left;" text="Modificar Reserva" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Button fx:id="modificaReserva" layoutX="48.0" layoutY="62.0" mnemonicParsing="false" style="-fx-content-display: left;" text="Modificar Reserva" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <styleClass>
+                                    <String fx:value="baseBotonesAzules" />
+                                    <String fx:value="botonActualizar" />
+                                 </styleClass></Button>
                            </children>
                            <GridPane.margin>
                               <Insets />
@@ -71,7 +76,11 @@
                      <children>
                         <AnchorPane>
                            <children>
-                              <Button id="botonActualizar" fx:id="modificaHuesped" layoutX="48.0" layoutY="62.0" mnemonicParsing="false" style="-fx-content-display: left;" text="Modificar Huespedes" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Button fx:id="modificaHuesped" layoutX="48.0" layoutY="62.0" mnemonicParsing="false" style="-fx-content-display: left;" text="Modificar Huespedes" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <styleClass>
+                                    <String fx:value="baseBotonesAzules" />
+                                    <String fx:value="botonActualizar" />
+                                 </styleClass></Button>
                            </children>
                            <GridPane.margin>
                               <Insets />
@@ -106,7 +115,11 @@
                      <children>
                         <AnchorPane>
                            <children>
-                              <Button id="botonActualizar" fx:id="modificaHabitacion" layoutX="48.0" layoutY="62.0" mnemonicParsing="false" style="-fx-content-display: left;" text="Modificar Habitación" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Button fx:id="modificaHabitacion" layoutX="48.0" layoutY="62.0" mnemonicParsing="false" style="-fx-content-display: left;" text="Modificar Habitación" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <styleClass>
+                                    <String fx:value="baseBotonesAzules" />
+                                    <String fx:value="botonActualizar" />
+                                 </styleClass></Button>
                            </children>
                            <GridPane.margin>
                               <Insets />
@@ -132,7 +145,11 @@
                      <children>
                         <AnchorPane GridPane.rowIndex="1">
                            <children>
-                              <Button id="botonOk" fx:id="botonOk" disable="true" mnemonicParsing="false" text="Ok" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Button fx:id="botonOk" disable="true" mnemonicParsing="false" style="-fx-content-display: left;" text="Ok" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <styleClass>
+                                    <String fx:value="baseBotonesVerdes" />
+                                    <String fx:value="botonOk" />
+                                 </styleClass></Button>
                            </children>
                            <GridPane.margin>
                               <Insets />
@@ -140,7 +157,11 @@
                         </AnchorPane>
                         <AnchorPane>
                            <children>
-                              <Button id="botonLimpiar" fx:id="reseteaCampos" mnemonicParsing="false" style="-fx-content-display: left;" text="%button.resetearCampos" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Button fx:id="reseteaCampos" mnemonicParsing="false" style="-fx-content-display: left;" text="%button.resetearCampos" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <styleClass>
+                                    <String fx:value="baseBotonesNaranja" />
+                                    <String fx:value="botonLimpiar" />
+                                 </styleClass></Button>
                            </children>
                            <GridPane.margin>
                               <Insets bottom="20.0" />

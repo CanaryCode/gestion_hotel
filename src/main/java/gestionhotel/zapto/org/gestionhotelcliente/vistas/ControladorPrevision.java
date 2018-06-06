@@ -104,13 +104,11 @@ public class ControladorPrevision implements Initializable, BuscadorInterface {
     private void accionCheckIn() {
         if (detallesReservaEnVista != null) {
             ObjetoVentana obj = VentanasFactory.getCheckin(Ventanas.PREVISION, Modality.WINDOW_MODAL, null);
-            if (obj != null) {
                 ((ControladorCheckIn) obj.getfXMLLoader().getController()).
                         setDetalleReserva(detallesReservaEnVista).
                         setListaAlojamientos(listaAlojamientos);
                 obj.ver();
             }
-        }
     }
 
     private void accionReserva() {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -97,10 +98,14 @@
                         </PasswordField>
                      </children>
                   </VBox>
-                  <Button id="botonOk" fx:id="botonEntrar" mnemonicParsing="false" style="-fx-content-display: top;" text="%button.ingresar" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                  <Button fx:id="botonEntrar" mnemonicParsing="false" style="-fx-content-display: top;" text="%button.ingresar" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                      <font>
                         <Font size="15.0" />
                      </font>
+                     <styleClass>
+                        <String fx:value="baseBotonesVerdes" />
+                        <String fx:value="botonOk" />
+                     </styleClass>
                   </Button>
                   <Label fx:id="mensajeError" alignment="CENTER" opacity="0.0" text="mensajes de errores" textAlignment="CENTER" textFill="RED" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                      <font>

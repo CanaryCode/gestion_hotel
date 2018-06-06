@@ -131,6 +131,8 @@ public class Select {
         return true;
     }
     public static ObservableList<Persona> getHuespedesFuera(){
+        ObservableList<Persona> lista=PruebasModelo.getListaDeHuespedesFuera();
+        FXCollections.copy(lista, PruebasModelo.getListaDeHuespedesFuera());
         return PruebasModelo.getListaDeHuespedesFuera();
     }
     public static ObservableList<Habitacion> getHabitacionesDesOcupadas(){

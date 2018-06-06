@@ -1,6 +1,6 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos;
 
-import gestionhotel.zapto.org.gestionhotelcliente.controladores.LanzadorDeError;
+import gestionhotel.zapto.org.gestionhotelcliente.controladores.LanzadorDeAvisos;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -150,7 +150,7 @@ public class ObjetoVentana {
             VentanaCustom ventanaOwner = Ventanas.getVentana(ownerName);
             ventana.initOwner(ventanaOwner);
         } catch (Exception ex) {
-            LanzadorDeError.lanzarErrorUsuario(ex.getMessage());
+            LanzadorDeAvisos.lanzarErrorUsuario(ex.getMessage());
             Logger
                     .getLogger(ObjetoVentana.class
                             .getName()).log(Level.SEVERE, null, ex);

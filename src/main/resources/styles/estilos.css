@@ -31,7 +31,9 @@
     -fx-background-size: stretch;
 }
 
+/*-----------------------------------------------------------------------------*/
 /*------------------RELOJ------------------------------------------------------*/
+/*-----------------------------------------------------------------------------*/
 
 #face {
     -fx-fill: radial-gradient(radius 180%, white, #3366ff, derive(#1d1d1d, 10%));
@@ -81,7 +83,9 @@
     -fx-stroke-line-cap: round;
 }
 
+/*--------------------------------------------------------------------------------*/
 /*------------------COMBOBOX------------------------------------------------------*/
+/*--------------------------------------------------------------------------------*/
 .combo-box{
     -fx-background-color: white;
     -fx-cursor:hand;
@@ -90,7 +94,9 @@
     -fx-alignment: left;
 
 }
+/*----------------------------------------------------------------------------------*/
 /*------------------DATEPICKER------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
 
 .date-picker .day-cell {
     -fx-cursor: hand ;
@@ -103,7 +109,9 @@
     -fx-alignment: left;
 
 }
+/*-----------------------------------------------------------------------------*/
 /*------------------LABEL------------------------------------------------------*/
+/*-----------------------------------------------------------------------------*/
 .etiquetaTitulo{
     -fx-background-color: #329fe6;
     -fx-font-size: 7pt;
@@ -129,7 +137,9 @@
     -fx-text-fill: white;
 }
 
+/*---------------------------------------------------------------------------------*/
 /*------------------TEXTFIELD------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 .texfieldNormal{
     -fx-font-size: 8pt;
     -fx-text-fill: black;
@@ -140,13 +150,17 @@
     -fx-text-fill: black;
 
 }
+/*--------------------------------------------------------------------------------*/
 /*------------------TEXTAREA------------------------------------------------------*/
+/*--------------------------------------------------------------------------------*/
 .text-area{
     -fx-font-size: 8pt;
     -fx-text-fill: black;
     -fx-alignment: left;
 }
+/*-------------------------------------------------------------------------------*/
 /*------------------TABPANE------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
 .tab {
     -fx-background-color:#3366ff;
     -fx-cursor:hand;
@@ -165,7 +179,9 @@
     -fx-background-image:url(../imagenes/gridFondo.png);
 }
 
+/*----------------------------------------------------------------------------*/
 /*------------------PANE------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 .scroll-bar:horizontal .thumb,
 .scroll-bar:vertical .thumb {
     -fx-background-color: #3366ff;
@@ -180,7 +196,9 @@
     -fx-background-color: #7493f8;
 }
 
+/*-----------------------------------------------------------------------------*/
 /*------------------TABLE------------------------------------------------------*/
+/*-----------------------------------------------------------------------------*/
 .table-view .column-header .label {
     -fx-text-fill: black;
     -fx-font-weight: bold;
@@ -191,7 +209,9 @@
     -fx-background-color: #ffff99;
     -fx-cursor: hand;
 }
+/*--------------------------------------------------------------------------------*/
 /*------------------VENTANAS------------------------------------------------------*/
+/*--------------------------------------------------------------------------------*/
 .ventanaPrincipal{
     -fx-background-image: url(../imagenes/FondoVentanaMain.png);
     -fx-background-size: stretch;
@@ -201,81 +221,10 @@
     -fx-background-image: url(../imagenes/FondoVentanaLogIn.jpg);
     -fx-background-size: stretch;
 }
-/*------------------BUTTON------------------------------------------------------*/
-.button{
-    -fx-cursor:hand;
-    -fx-background-color: white;
-    -fx-alignment:CENTER;
-    -fx-text-fill: black;
-    -fx-opacity: 0.9;
-    -fx-cursor:hand;
-    -fx-font-size: 8pt;
-}
-.button:hover{
-    -fx-background-color: #329fe6;
-    -fx-cursor:hand;
-    -fx-text-fill: white;
-}
-.button:pressed{
-    -fx-cursor:hand;
-    -fx-background-color: white;
-    -fx-alignment:CENTER;
-    -fx-text-fill: black;
-    -fx-opacity: 0.9;
-    -fx-cursor:hand;
-    -fx-font-size: 8pt;
-}
-.botonDanger{
-    -fx-background-color: orange;
-    -fx-alignment:CENTER;
-    -fx-text-fill: red;
-    -fx-opacity: 0.9;
-    -fx-cursor:hand;
-    -fx-font-size: 8pt;
-}
 
-.botonDanger:hover{
-    -fx-background-color: orangered;
-    -fx-cursor:hand;
-}
-.botonDanger:pressed{
-    -fx-cursor:hand;
-    -fx-background-color: orange;
-}
-.botonExito{
-    -fx-background-color:green;
-    -fx-alignment:CENTER;
-    -fx-text-fill: white;
-    -fx-opacity: 0.9;
-    -fx-cursor:hand;
-    -fx-font-size: 8pt;
-}
-
-.botonExito:hover{
-    -fx-background-color:  #00c622;
-    -fx-cursor:hand;
-}
-.botonExito:pressed{
-    -fx-cursor:hand;
-    -fx-background-color: #00c622;
-}
-.botonError{
-    -fx-background-color: red;
-    -fx-alignment:CENTER;
-    -fx-text-fill: yellow;
-    -fx-opacity: 0.9;
-    -fx-cursor:hand;
-    -fx-font-size: 8pt;
-}
-
-.botonError:hover{
-    -fx-background-color: orange;
-    -fx-cursor:hand;
-}
-.botonError:pressed{
-    -fx-cursor:hand;
-    -fx-background-color: red;
-}
+/*----------------------------------------------------------------------------------*/
+/*------------------------------TOGGLEBUTTON-------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 .toogleButtonOn{
     -fx-text-fill: white;
     -fx-background-color: red;
@@ -285,9 +234,16 @@
     -fx-text-fill: white;
     -fx-background-color: green;
 }
-/*------------------BOTONES ESPECIALES------------------------------------------------------*/
-#botonAdd{
-    -fx-graphic:url(../imagenes/add24.png);
+
+/*---------------------------------------------------------------------------*/
+/*------------------BUTTON------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
+
+
+/*----------------------------------------------------------------------------*/
+.baseBotonesAzules{
+    -fx-font-size: 10pt;
+    -fx-scale-y: 0.7;
     -fx-background-color: #3366ff;
     -fx-alignment:BOTTOM_CENTER;
     -fx-text-fill: white;
@@ -296,171 +252,48 @@
     -fx-border-radius: 10;
     -fx-background-radius: 10;
     -fx-cursor:hand;
-    -fx-font-size: 8pt;
-}
-#botonAdd:hover{
-    -fx-graphic:url(../imagenes/add32.png);
-    -fx-background-color: #329fe6;
-    -fx-cursor:hand;
-}
-#botonAdd:pressed{
-    -fx-graphic:url(../imagenes/add24.png);
-    -fx-cursor:hand;
-}
-#botonError{
-    -fx-graphic:url(../imagenes/cancel24.png);
-    -fx-background-color: red;
-    -fx-alignment:BOTTOM_CENTER;
-    -fx-text-fill: white;
-    -fx-opacity: 0.9;
-    -fx-border-color: #ffffff;
-    -fx-border-radius: 10;
-    -fx-background-radius: 10;
-    -fx-cursor:hand;
-    -fx-font-size: 8pt;
-}
-#botonError:hover{
-    -fx-graphic:url(../imagenes/cancel32.png);
-    -fx-background-color: #ff5517;
-    -fx-cursor:hand;
-}
-#botonError:pressed{
-    -fx-graphic:url(../imagenes/cancel24.png);
-    -fx-cursor:hand;
-}
-#botonTelefono{
-    -fx-graphic:url(../imagenes/telefono24.png);
-    -fx-background-color: #3366ff;
-    -fx-alignment:BOTTOM_CENTER;
-    -fx-text-fill: white;
-    -fx-opacity: 0.9;
-    -fx-border-color: #ffffff;
-    -fx-border-radius: 10;
-    -fx-background-radius: 10;
-    -fx-cursor:hand;
-    -fx-font-size: 8pt;
-}
-#botonTelefono:hover{
-    -fx-graphic:url(../imagenes/telefono32.png);
-    -fx-background-color: #329fe6;
-    -fx-cursor:hand;
-}
-#botonTelefono:pressed{
-    -fx-graphic:url(../imagenes/telefono24.png);
-    -fx-cursor:hand;
-}
-#botonVer{
-    -fx-graphic:url(../imagenes/ver24.png);
-    -fx-background-color: #3366ff;
-    -fx-alignment:BOTTOM_CENTER;
-    -fx-text-fill: white;
-    -fx-opacity: 0.9;
-    -fx-border-color: #ffffff;
-    -fx-border-radius: 10;
-    -fx-background-radius: 10;
-    -fx-cursor:hand;
-    -fx-font-size: 8pt;
-}
-#botonVer:hover{
-    -fx-graphic:url(../imagenes/ver32.png);
-    -fx-background-color: #329fe6;
-    -fx-cursor:hand;
-}
-#botonVer:pressed{
-    -fx-graphic:url(../imagenes/ver24.png);
-    -fx-cursor:hand;
-}
-#botonActualizar{
-    -fx-graphic:url(../imagenes/actualizar24.png);
-    -fx-background-color: #3366ff;
-    -fx-background-radius: 10;
-    -fx-alignment:BOTTOM_CENTER;
-    -fx-text-fill: white;
-    -fx-opacity: 0.9;
-    -fx-border-color: #ffffff;
-    -fx-border-radius: 10;
-    -fx-background-radius: 10;
-    -fx-cursor:hand;
-    -fx-font-size: 8pt;
-}
-#botonActualizar:hover{
-    -fx-graphic:url(../imagenes/actualizar32.png);
-    -fx-background-color: #329fe6;
-    -fx-cursor:hand;
-}
-#botonActualizar:pressed{
-    -fx-graphic:url(../imagenes/actualizar24.png);
-    -fx-cursor:hand;
-}
-#botonLimpiar{
-    -fx-graphic:url(../imagenes/limpiar24.png);
-    -fx-background-color: orangered;
-    -fx-alignment:BOTTOM_CENTER;
-    -fx-text-fill: white;
-    -fx-opacity: 0.9;
-    -fx-border-color: #ffffff;
-    -fx-border-radius: 10;
-    -fx-background-radius: 10;
-    -fx-cursor:hand;
-    -fx-font-size: 8pt;
-}
-#botonLimpiar:hover{
-    -fx-graphic:url(../imagenes/limpiar32.png);
-    -fx-background-color: orange;
-    -fx-cursor:hand;
-}
-#botonLimpiar:pressed{
-    -fx-graphic:url(../imagenes/limpiar24.png);
-    -fx-cursor:hand;
-}
-#botonBorrar{
-    -fx-graphic:url(../imagenes/borrar24.png);
-    -fx-background-color: red;
-    -fx-alignment:BOTTOM_CENTER;
-    -fx-text-fill: white;
-    -fx-opacity: 0.9;
-    -fx-border-color: #ffffff;
-    -fx-border-radius: 10;
-    -fx-background-radius: 10;
-    -fx-cursor:hand;
-    -fx-font-size: 8pt;
 }
 
-#botonBorrar:hover{
-    -fx-graphic:url(../imagenes/borrar32.png);
-    -fx-opacity: 0.9;
-    -fx-cursor:hand;
-    -fx-font-size: 8pt;
-    -fx-background-color: orange;
-    -fx-cursor:hand;
+.baseBotonesAzules:hover{
+    -fx-scale-y: 1;
+    -fx-background-color:#329fe6;
 }
-#botonBorrar:pressed{
-    -fx-graphic:url(../imagenes/borrar24.png);
-    -fx-cursor:hand;
-}
-#botonBuscar{
-    -fx-graphic:url(../imagenes/buscar24.png);
-    -fx-background-color: #3366ff;
-    -fx-alignment:BOTTOM_CENTER;
+.baseBotonesAzules:pressed{
+    -fx-background-color:#3366ff;
     -fx-text-fill: white;
-    -fx-opacity: 0.9;
-    -fx-border-color: #ffffff;
-    -fx-border-radius: 10;
-    -fx-background-radius: 10;
-    -fx-cursor:hand;
-    -fx-font-size: 8pt;
+    -fx-scale-y: 0.7;
 }
-#botonBuscar:hover{
+.baseBotonesAzules.botonAdd{
+    -fx-graphic:url(../imagenes/add32.png);
+}
+.baseBotonesAzules.botonTelefono{
+    -fx-graphic:url(../imagenes/telefono32.png)
+}
+.baseBotonesAzules.botonVer{
+    -fx-graphic:url(../imagenes/ver32.png);
+}
+.baseBotonesAzules.botonActualizar{
+    -fx-graphic:url(../imagenes/actualizar32.png);
+}
+.baseBotonesAzules.botonCalculadora{
+    -fx-graphic:url(../imagenes/calculadora64.png);
+}
+.baseBotonesAzules.botonChat{
+    -fx-graphic:url(../imagenes/chat64.png);
+}
+.baseBotonesAzules.botonParte{
+    -fx-graphic:url(../imagenes/parte64.png);
+}
+.baseBotonesAzules.botonCalendario{
+    -fx-graphic:url(../imagenes/calendario64.png);
+}
+.baseBotonesAzules.botonBuscar{
     -fx-graphic:url(../imagenes/buscar32.png);
-    -fx-cursor:hand;
-    -fx-background-color: #3366ff;
 }
-#botonBuscar:pressed{
-    -fx-graphic:url(../imagenes/buscar24.png);
-    -fx-cursor:hand;
-}
-#botonOk{
-    -fx-graphic:url(../imagenes/ok24.png);
+/*------------------------------------------------------------------------------*/
+.baseBotonesVerdes{
+    -fx-font-size: 10pt;
+    -fx-scale-y: 0.7;
     -fx-background-color: green;
     -fx-alignment:BOTTOM_CENTER;
     -fx-text-fill: white;
@@ -469,102 +302,77 @@
     -fx-border-radius: 10;
     -fx-background-radius: 10;
     -fx-cursor:hand;
-    -fx-font-size: 8pt;
 }
-#botonOk:hover{
+.baseBotonesVerdes:hover{
+    -fx-scale-y: 1;
+    -fx-background-color: #00c622;
+}
+.baseBotonesVerdes:pressed{
+    -fx-background-color:green;
+    -fx-text-fill: white;
+    -fx-scale-y: 0.7;
+}
+
+.baseBotonesVerdes.botonOk{
     -fx-graphic:url(../imagenes/ok32.png);
-    -fx-background-color: #00ff00;
-    -fx-cursor:hand;
 }
-#botonOk:pressed{
-    -fx-graphic:url(../imagenes/ok24.png);
-    -fx-cursor:hand;
-}
-#botonCalculadora{
-    -fx-graphic:url(../imagenes/calculadora32.png);
-    -fx-background-color: #3366ff;
+/*----------------------------------------------------------------------------*/
+.baseBotonesRojos{
+    -fx-font-size: 10pt;
+    -fx-scale-y: 0.8;
+    -fx-background-color: red;
     -fx-alignment:BOTTOM_CENTER;
     -fx-text-fill: white;
     -fx-opacity: 0.9;
-    -fx-border-color: #ffffff;
+    -fx-border-color: #00c622;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
     -fx-cursor:hand;
-    -fx-font-size: 8pt;
 }
-#botonCalculadora:hover{
-    -fx-graphic:url(../imagenes/calculadora64.png);
-    -fx-background-color: #329fe6;
-    -fx-cursor:hand;
+.baseBotonesRojos:hover{
+    -fx-scale-y: 1;
+    -fx-background-color:orangered;
 }
-#botonCalculadora:pressed{
-    -fx-graphic:url(../imagenes/calculadora32.png);
-    -fx-cursor:hand;
+.baseBotonesRojos:pressed{
+    -fx-background-color:red;
+    -fx-text-fill: white;
+    -fx-scale-y: 0.7;
 }
-#botonChat{
-    -fx-graphic:url(../imagenes/chat32.png);
-    -fx-background-color: #3366ff;
+.baseBotonesRojos.botonBorrar{
+    -fx-graphic:url(../imagenes/borrar32.png);  
+} 
+.baseBotonesRojos.botonError{
+    -fx-graphic:url(../imagenes/cancel32.png);
+}
+/*----------------------------------------------------------------------------*/
+.baseBotonesNaranja{
+    -fx-font-size: 10pt;
+    -fx-scale-y: 0.7;
+    -fx-background-color: orangered;
     -fx-alignment:BOTTOM_CENTER;
     -fx-text-fill: white;
     -fx-opacity: 0.9;
-    -fx-border-color: #ffffff;
+    -fx-border-color: red;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
     -fx-cursor:hand;
-    -fx-font-size: 8pt;
 }
-#botonChat:hover{
-    -fx-graphic:url(../imagenes/chat64.png);
-    -fx-background-color: #329fe6;
-    -fx-cursor:hand;
+.baseBotonesNaranja:hover{
+    -fx-scale-y: 1;
+    -fx-background-color: orange;
 }
-#botonChat:pressed{
-    -fx-graphic:url(../imagenes/chat32.png);
-    -fx-cursor:hand;
-}
-#botonParte{
-    -fx-graphic:url(../imagenes/parte32.png);
-    -fx-background-color: #3366ff;
-    -fx-alignment:BOTTOM_CENTER;
+.baseBotonesNaranja:pressed{
+    -fx-background-color: orangered;
     -fx-text-fill: white;
-    -fx-opacity: 0.9;
-    -fx-border-color: #ffffff;
-    -fx-border-radius: 10;
-    -fx-background-radius: 10;
-    -fx-cursor:hand;
-    -fx-font-size: 8pt;
+    -fx-scale-y: 0.7;
+
+}.baseBotonesNaranja.botonLimpiar{
+    -fx-graphic:url(../imagenes/limpiar32.png);
 }
-#botonParte:hover{
-    -fx-graphic:url(../imagenes/parte64.png);
-    -fx-background-color: #329fe6;
-    -fx-cursor:hand;
-}
-#botonParte:pressed{
-    -fx-graphic:url(../imagenes/parte32.png);
-    -fx-cursor:hand;
-}
-#botonCalendario{
-    -fx-graphic:url(../imagenes/calendario32.png);
-    -fx-background-color: #3366ff;
-    -fx-alignment:BOTTOM_CENTER;
-    -fx-text-fill: white;
-    -fx-opacity: 0.9;
-    -fx-border-color: #ffffff;
-    -fx-border-radius: 10;
-    -fx-background-radius: 10;
-    -fx-cursor:hand;
-    -fx-font-size: 8pt;
-}
-#botonCalendario:hover{
-    -fx-graphic:url(../imagenes/calendario64.png);
-    -fx-background-color: #329fe6;
-    -fx-cursor:hand;
-}
-#botonCalendario:pressed{
-    -fx-graphic:url(../imagenes/calendario32.png);
-    -fx-cursor:hand;
-}
+
+/*--------------------------------------------------------------------------*/
 /*--------------------------MENUS-------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 .menu{
     -fx-cursor:hand;
 }
@@ -591,7 +399,9 @@
 .menu:hover .label{
     -fx-text-fill: black; 
 }
+/*---------------------------------------------------------------*/
 /*---------------------RADIOBUTTON-------------------------------*/
+/*---------------------------------------------------------------*/
 .radio-button .label{
     -fx-font-size: 8pt;
     -fx-text-fill: black;

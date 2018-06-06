@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -282,16 +283,24 @@
                <children>
                   <AnchorPane GridPane.rowIndex="1">
                      <children>
-                        <Button id="botonOk" fx:id="aceptar" mnemonicParsing="false" text="%button.crear" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Button fx:id="aceptar" mnemonicParsing="false" text="%button.crear" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font size="15.0" />
                            </font>
+                           <styleClass>
+                              <String fx:value="baseBotonesVerdes" />
+                              <String fx:value="botonOk" />
+                           </styleClass>
                         </Button>
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Button id="botonLimpiar" fx:id="reseteaCampos" layoutX="130.0" layoutY="-4.0" mnemonicParsing="false" text="Resetear campos" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button fx:id="reseteaCampos" layoutX="130.0" layoutY="-4.0" mnemonicParsing="false" text="Resetear campos" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <styleClass>
+                              <String fx:value="baseBotonesNaranja" />
+                              <String fx:value="botonLimpiar" />
+                           </styleClass></Button>
                      </children>
                      <GridPane.margin>
                         <Insets bottom="20.0" />

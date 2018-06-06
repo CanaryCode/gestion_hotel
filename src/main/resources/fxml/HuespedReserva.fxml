@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -37,7 +38,11 @@
                      <children>
                         <AnchorPane>
                            <children>
-                              <Button id="botonAdd" fx:id="botonAddResponsable" disable="true" layoutX="73.0" layoutY="63.0" mnemonicParsing="false" style="-fx-content-display: left;" text="añadir" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Button fx:id="botonAddResponsable" disable="true" layoutX="73.0" layoutY="63.0" mnemonicParsing="false" style="-fx-content-display: left;" text="añadir" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <styleClass>
+                                    <String fx:value="botonAdd" />
+                                    <String fx:value="baseBotonesAzules" />
+                                 </styleClass></Button>
                            </children>
                            <GridPane.margin>
                               <Insets right="10.0" />
@@ -45,7 +50,11 @@
                         </AnchorPane>
                         <AnchorPane GridPane.columnIndex="1">
                            <children>
-                              <Button id="botonBorrar" fx:id="botonBorrarResponsable" disable="true" layoutX="115.0" layoutY="31.0" mnemonicParsing="false" text="borrar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Button fx:id="botonBorrarResponsable" disable="true" layoutX="115.0" layoutY="31.0" mnemonicParsing="false" text="borrar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <styleClass>
+                                    <String fx:value="baseBotonesRojos" />
+                                    <String fx:value="botonError" />
+                                 </styleClass></Button>
                            </children>
                            <GridPane.margin>
                               <Insets left="10.0" />
@@ -80,7 +89,11 @@
                      <children>
                         <AnchorPane>
                            <children>
-                              <Button id="botonAdd" fx:id="botonAddOtros" disable="true" layoutX="48.0" layoutY="62.0" mnemonicParsing="false" style="-fx-content-display: left;" text="añadir" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Button fx:id="botonAddOtros" disable="true" layoutX="48.0" layoutY="62.0" mnemonicParsing="false" style="-fx-content-display: left;" text="añadir" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <styleClass>
+                                    <String fx:value="baseBotonesAzules" />
+                                    <String fx:value="botonAdd" />
+                                 </styleClass></Button>
                            </children>
                            <GridPane.margin>
                               <Insets right="10.0" />
@@ -88,7 +101,11 @@
                         </AnchorPane>
                         <AnchorPane GridPane.columnIndex="1">
                            <children>
-                              <Button id="botonBorrar" fx:id="botonBorrarOtros" disable="true" layoutX="127.0" layoutY="31.0" mnemonicParsing="false" text="borrar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Button fx:id="botonBorrarOtros" disable="true" layoutX="127.0" layoutY="31.0" mnemonicParsing="false" text="borrar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <styleClass>
+                                    <String fx:value="baseBotonesRojos" />
+                                    <String fx:value="botonError" />
+                                 </styleClass></Button>
                            </children>
                            <GridPane.margin>
                               <Insets left="10.0" />
@@ -124,7 +141,11 @@
                      <children>
                         <AnchorPane>
                            <children>
-                              <Button id="botonAdd" fx:id="botonAddChild" disable="true" layoutX="48.0" layoutY="62.0" mnemonicParsing="false" style="-fx-content-display: left;" text="añadir" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Button fx:id="botonAddChild" disable="true" layoutX="48.0" layoutY="62.0" mnemonicParsing="false" style="-fx-content-display: left;" text="añadir" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <styleClass>
+                                    <String fx:value="baseBotonesAzules" />
+                                    <String fx:value="botonAdd" />
+                                 </styleClass></Button>
                            </children>
                            <GridPane.margin>
                               <Insets right="10.0" />
@@ -132,7 +153,11 @@
                         </AnchorPane>
                         <AnchorPane GridPane.columnIndex="1">
                            <children>
-                              <Button id="botonBorrar" fx:id="botonBorrarChild" disable="true" layoutX="127.0" layoutY="31.0" mnemonicParsing="false" style="-fx-content-display: left;" text="borrar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Button fx:id="botonBorrarChild" disable="true" layoutX="127.0" layoutY="31.0" mnemonicParsing="false" style="-fx-content-display: left;" text="borrar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <styleClass>
+                                    <String fx:value="baseBotonesRojos" />
+                                    <String fx:value="botonError" />
+                                 </styleClass></Button>
                            </children>
                            <GridPane.margin>
                               <Insets left="10.0" />
@@ -168,7 +193,11 @@
                      <children>
                         <AnchorPane>
                            <children>
-                              <Button id="botonAdd" fx:id="botonAddBebes" disable="true" layoutX="48.0" layoutY="62.0" mnemonicParsing="false" style="-fx-content-display: left;" text="añadir" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Button fx:id="botonAddBebes" disable="true" layoutX="48.0" layoutY="62.0" mnemonicParsing="false" style="-fx-content-display: left;" text="añadir" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <styleClass>
+                                    <String fx:value="baseBotonesAzules" />
+                                    <String fx:value="botonAdd" />
+                                 </styleClass></Button>
                            </children>
                            <GridPane.margin>
                               <Insets right="10.0" />
@@ -176,7 +205,11 @@
                         </AnchorPane>
                         <AnchorPane GridPane.columnIndex="1">
                            <children>
-                              <Button id="botonBorrar" fx:id="botonBorrarBebes" disable="true" layoutX="127.0" layoutY="31.0" mnemonicParsing="false" style="-fx-content-display: left;" text="borrar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Button fx:id="botonBorrarBebes" disable="true" layoutX="127.0" layoutY="31.0" mnemonicParsing="false" style="-fx-content-display: left;" text="borrar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <styleClass>
+                                    <String fx:value="baseBotonesRojos" />
+                                    <String fx:value="botonError" />
+                                 </styleClass></Button>
                            </children>
                            <GridPane.margin>
                               <Insets left="10.0" />
@@ -202,7 +235,11 @@
                      <children>
                         <AnchorPane GridPane.rowIndex="1">
                            <children>
-                              <Button id="botonOk" fx:id="botonOk" disable="true" mnemonicParsing="false" text="Ok" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Button fx:id="botonOk" disable="true" mnemonicParsing="false" text="Ok" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <styleClass>
+                                    <String fx:value="baseBotonesVerdes" />
+                                    <String fx:value="botonOk" />
+                                 </styleClass></Button>
                            </children>
                            <GridPane.margin>
                               <Insets />
@@ -210,7 +247,11 @@
                         </AnchorPane>
                         <AnchorPane>
                            <children>
-                              <Button id="botonLimpiar" fx:id="reseteaCampos" disable="true" layoutX="552.0" layoutY="31.0" mnemonicParsing="false" text="Resetear Campos" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Button fx:id="reseteaCampos" disable="true" layoutX="552.0" layoutY="31.0" mnemonicParsing="false" text="Resetear Campos" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <styleClass>
+                                    <String fx:value="baseBotonesNaranja" />
+                                    <String fx:value="botonLimpiar" />
+                                 </styleClass></Button>
                            </children>
                            <GridPane.margin>
                               <Insets bottom="20.0" />

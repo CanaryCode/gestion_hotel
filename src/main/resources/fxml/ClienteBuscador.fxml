@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -469,19 +470,27 @@
                                     <Insets right="10.0" />
                                  </GridPane.margin>
                                  <children>
-                                    <Button id="botonLimpiar" fx:id="resetearCampos" disable="true" mnemonicParsing="false" prefHeight="34.0" prefWidth="479.0" text="ResetearCampos" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <Button fx:id="resetearCampos" disable="true" mnemonicParsing="false" prefHeight="34.0" prefWidth="479.0" text="ResetearCampos" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
+                                       <styleClass>
+                                          <String fx:value="baseBotonesNaranja" />
+                                          <String fx:value="botonLimpiar" />
+                                       </styleClass>
                                     </Button>
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                                  <children>
-                                    <Button id="botonBuscar" fx:id="buscar" disable="true" mnemonicParsing="false" text="Buscar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <Button fx:id="buscar" disable="true" mnemonicParsing="false" text="Buscar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
+                                       <styleClass>
+                                          <String fx:value="baseBotonesVerdes" />
+                                          <String fx:value="botonOk" />
+                                       </styleClass>
                                     </Button>
                                  </children>
                                  <GridPane.margin>
@@ -515,7 +524,11 @@
                                  <children>
                                     <AnchorPane>
                                        <children>
-                                          <Button id="botonTelefono" fx:id="telefono" disable="true" mnemonicParsing="false" text="Teléfono" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <Button fx:id="telefono" disable="true" mnemonicParsing="false" text="Teléfono" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <styleClass>
+                                                <String fx:value="baseBotonesAzules" />
+                                                <String fx:value="botonTelefono" />
+                                             </styleClass></Button>
                                        </children>
                                        <GridPane.margin>
                                           <Insets />
@@ -540,7 +553,11 @@
                            <children>
                               <AnchorPane GridPane.columnIndex="2">
                                  <children>
-                                    <Button id="botonBorrar" fx:id="borrar" disable="true" mnemonicParsing="false" text="borrar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <Button fx:id="borrar" disable="true" mnemonicParsing="false" text="borrar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <styleClass>
+                                          <String fx:value="baseBotonesRojos" />
+                                          <String fx:value="botonBorrar" />
+                                       </styleClass></Button>
                                  </children>
                                  <padding>
                                     <Insets left="10.0" />
@@ -548,7 +565,11 @@
                               </AnchorPane>
                               <AnchorPane>
                                  <children>
-                                    <Button id="botonAdd" fx:id="crear" mnemonicParsing="false" text="Crear" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <Button fx:id="crear" mnemonicParsing="false" text="Crear" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <styleClass>
+                                          <String fx:value="baseBotonesAzules" />
+                                          <String fx:value="botonAdd" />
+                                       </styleClass></Button>
                                  </children>
                                  <GridPane.margin>
                                     <Insets right="10.0" />
@@ -556,7 +577,11 @@
                               </AnchorPane>
                               <AnchorPane GridPane.columnIndex="1">
                                  <children>
-                                    <Button id="botonActualizar" fx:id="actualizar" disable="true" mnemonicParsing="false" text="Actualizar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <Button fx:id="actualizar" disable="true" mnemonicParsing="false" text="Actualizar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <styleClass>
+                                          <String fx:value="baseBotonesAzules" />
+                                          <String fx:value="botonActualizar" />
+                                       </styleClass></Button>
                                  </children>
                               </AnchorPane>
                            </children>
@@ -574,10 +599,14 @@
                            <children>
                               <AnchorPane>
                                  <children>
-                                    <Button id="botonOk" fx:id="seleccionar" disable="true" mnemonicParsing="false" text="Seleccionar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <Button fx:id="seleccionar" disable="true" mnemonicParsing="false" text="Seleccionar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
+                                       <styleClass>
+                                          <String fx:value="baseBotonesVerdes" />
+                                          <String fx:value="botonOk" />
+                                       </styleClass>
                                     </Button>
                                  </children>
                                  <GridPane.margin>

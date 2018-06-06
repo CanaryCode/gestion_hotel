@@ -1,5 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos;
-// Generated 02-jun-2018 20:17:43 by Hibernate Tools 4.3.1
+// Generated 05-jun-2018 18:15:23 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -391,11 +391,6 @@ public class Persona  implements java.io.Serializable {
     
     public void setTelefonoPersonas(Set telefonoPersonas) {
         this.telefonoPersonas = telefonoPersonas;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return ((Persona)obj).getCodPersona()==this.getCodPersona();
     }
 
 

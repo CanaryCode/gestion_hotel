@@ -25,4 +25,10 @@ public class LanzadorDeAvisos {
         a.show();
         return a;
     }
+    public static void lanzarErrorUsuario(String mensaje){
+    Alert alert = new Alert(Alert.AlertType.ERROR, "Ha ocurrido un error grave,\npongase en contacto con el suministrador de software:\n"
+            + "Enigma Software S.L.N.E.\nCapture la pantalla con este error para informar al servicio técnico.\n"
+            + "El error es este:\n"+mensaje, ButtonType.CLOSE);
+    alert.show();
+}
 }
