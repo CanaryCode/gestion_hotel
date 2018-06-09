@@ -3,9 +3,10 @@ package gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.CreadorDeTabla;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import java.util.Date;
-import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -14,8 +15,9 @@ import javafx.collections.ObservableList;
 public class TablaHuesped implements TablaInterface<TablaHuesped, Persona> {
 
     private String numeroDocumento, nombre, calle, codigoPostal, ciudad, provincia, estado,
-            sexoHombre, nacionalidad, categoria, pasaporte, email, discapacitado, numero, comentario,
+            nacionalidad, categoria, pasaporte, email,  numero, comentario,
             primerApellido, segundoApellido, tratamiento, paginaWeb;
+    private ImageView discapacitado,sexoHombre;
     private int codigoPersona;
     private Date fechaNacimiento, expPasaporte, vencPasaporte;
 
@@ -75,16 +77,17 @@ public class TablaHuesped implements TablaInterface<TablaHuesped, Persona> {
                     String categoria = persona.getCategoria();
                     String comentario = persona.getComentario();
                     String paginaWeb = persona.getPaginaWeb();
-                    String sexo = "";
+                    ImageView sexo = null;
                     int codigoPersona = persona.getCodPersona();
                     if (persona.getFisSexoHombre() != null) {
-                        sexo = (persona.getFisSexoHombre() == 0) ? "mujer" : "hombre";
-                    }
-                    String discapacitado = "";
+                        sexo = (persona.getFisSexoHombre() == 0) ?new ImageView(new Image(getClass().getResource("/imagenes/tablas/mujer.png").toExternalForm())) :
+                            new ImageView(new Image(getClass().getResource("/imagenes/tablas/hombre.png").toExternalForm()));
+                }
+                    ImageView discapacitado = null;
                     if (persona.getFisSexoHombre() != null) {
-                        discapacitado = (persona.getFisSexoHombre() == 0) ? "Discapacitado" : "No";
-                    }
-
+                        discapacitado = (persona.getFisSexoHombre() == 0) ? new ImageView(new Image(getClass().getResource("/imagenes/tablas/discapacitado.png").toExternalForm())) :
+                            new ImageView();
+                }
                     TablaHuesped huesped = new TablaHuesped(numero, dni, nombre, calle, codigoPostal, ciudad,
                             provincia, estado, tratamiento, sexo, primerApellido, SegundoApellido,
                             nacionalidad, categoria, pasaporte, email, discapacitado, fechaExpPasaporte,
@@ -97,9 +100,9 @@ public class TablaHuesped implements TablaInterface<TablaHuesped, Persona> {
     }
 
     public TablaHuesped(String numero, String documentoNumero, String nombre, String calle, String codPostal,
-            String ciudad, String provincia, String estado, String tratamiento, String SexoHombre,
+            String ciudad, String provincia, String estado, String tratamiento, ImageView SexoHombre,
             String PrimerApellido, String SegundoApellido, String Nacionalidad, String categoria,
-            String pasaporte, String email, String discapacitado, Date expPasaporte, Date vencPasaporte,
+            String pasaporte, String email, ImageView discapacitado, Date expPasaporte, Date vencPasaporte,
             Date fechaNacimiento, String comentario, Integer codigoPersona, String paginaWeb) {
         this.numero = numero;
         this.numeroDocumento = documentoNumero;
@@ -189,13 +192,6 @@ public class TablaHuesped implements TablaInterface<TablaHuesped, Persona> {
         this.estado = estado;
     }
 
-    public String getSexoHombre() {
-        return sexoHombre;
-    }
-
-    public void setSexoHombre(String sexoHombre) {
-        this.sexoHombre = sexoHombre;
-    }
 
     public String getNacionalidad() {
         return nacionalidad;
@@ -229,14 +225,23 @@ public class TablaHuesped implements TablaInterface<TablaHuesped, Persona> {
         this.email = email;
     }
 
-    public String getDiscapacitado() {
+    public ImageView getDiscapacitado() {
         return discapacitado;
     }
 
-    public void setDiscapacitado(String discapacitado) {
+    public void setDiscapacitado(ImageView discapacitado) {
         this.discapacitado = discapacitado;
     }
 
+    public ImageView getSexoHombre() {
+        return sexoHombre;
+    }
+
+    public void setSexoHombre(ImageView sexoHombre) {
+        this.sexoHombre = sexoHombre;
+    }
+
+ 
     public String getNumero() {
         return numero;
     }

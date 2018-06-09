@@ -21,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -168,6 +169,7 @@ public class ControladorPrevision implements Initializable, BuscadorInterface {
         listaFiltroAlojamientos = listaAlojamientos;
         listaTablaCheckIn = new TablaPrevision().getListaObjetosDeTabla(listaFiltroAlojamientos);
         CreadorDeTabla.generaTabla(principal, tabla, listaTablaCheckIn, new TablaPrevision().getListaObjetosColumnas());
+    
         listaAlojamientos.addListener(new ListChangeListener<DetallesReserva>() {
             @Override
             public void onChanged(ListChangeListener.Change<? extends DetallesReserva> c) {

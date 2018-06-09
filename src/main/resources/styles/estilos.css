@@ -94,6 +94,15 @@
     -fx-alignment: left;
 
 }
+.combo-box:hover{
+    -fx-scale-y: 1.2;
+}
+
+.combo-box-popup .list-view .list-cell:hover {
+    -fx-scale-y: 1.2;
+    -fx-cursor: hand;
+}
+
 /*----------------------------------------------------------------------------------*/
 /*------------------DATEPICKER------------------------------------------------------*/
 /*----------------------------------------------------------------------------------*/
@@ -109,11 +118,14 @@
     -fx-alignment: left;
 
 }
+.date-picker:hover{
+   -fx-scale:1.2;
+}
 /*-----------------------------------------------------------------------------*/
 /*------------------LABEL------------------------------------------------------*/
 /*-----------------------------------------------------------------------------*/
 .etiquetaTitulo{
-    -fx-background-color: #329fe6;
+    -fx-background-color: linear-gradient(to bottom right,#329fe6,#3366ff);
     -fx-font-size: 7pt;
     -fx-text-fill: yellow;
     -fx-font-weight: bold;
@@ -165,6 +177,9 @@
     -fx-background-color:#3366ff;
     -fx-cursor:hand;
 }
+.tab:hover {
+    -fx-scale-y: 1.2;
+}
 
 .tab:selected {
     -fx-background-color: white;
@@ -206,8 +221,26 @@
 }
 .table-view .column-header {
     -fx-border-color: #3366ff;
-    -fx-background-color: #ffff99;
+    -fx-background-color:linear-gradient(to bottom right, #ffff66, derive(#ffff66, 20%));
     -fx-cursor: hand;
+}
+.table-view .column-header:hover {
+    -fx-scale-y: 1.2;
+}
+.table-view .column-header .label:hover {
+    -fx-scale-y: 1.2;
+}
+.table-view .table-cell:hover{
+    -fx-scale-y: 1.2;
+}
+.table-row-cell:hover{
+    -fx-scale-y: 1.2;
+    -fx-cursor:hand;
+    -fx-background-color: derive(#329fe6, 40%);
+    -fx-text-fill: white;
+}
+.table-row-cell:selected{
+    -fx-scale-y: 1
 }
 /*--------------------------------------------------------------------------------*/
 /*------------------VENTANAS------------------------------------------------------*/
@@ -225,26 +258,50 @@
 /*----------------------------------------------------------------------------------*/
 /*------------------------------TOGGLEBUTTON-------------------------------------------*/
 /*---------------------------------------------------------------------------------*/
+
 .toogleButtonOn{
     -fx-text-fill: white;
-    -fx-background-color: red;
+    -fx-scale-y: 0.8;
+    -fx-background-color: radial-gradient(focus-angle 0deg, focus-distance 0%, center 50% 50%, radius 98%, reflect,orangered , derive(red,-10%), derive(black,30%));
     -fx-cursor: hand;
+    -fx-graphic: url(../imagenes/botones/onOff16.png);
+}
+.toogleButtonOn:hover{
+    -fx-scale-y: 1;
 }
 .toogleButtonOn:selected{
+    -fx-scale-y: 0.8;
     -fx-text-fill: white;
-    -fx-background-color: green;
+    -fx-background-color: radial-gradient(focus-angle 0deg, focus-distance 0%, center 50% 50%, radius 98%, reflect, #00c622 , derive(green,-10%), derive(black,30%));
 }
 
 /*---------------------------------------------------------------------------*/
 /*------------------BUTTON------------------------------------------------------*/
 /*----------------------------------------------------------------------------*/
-
-
 /*----------------------------------------------------------------------------*/
+.button{
+    -fx-scale-y: 0.8;
+    -fx-font-size: 10pt;
+    -fx-background-color:white;
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+    -fx-border-color: #ffffff;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-cursor:hand;
+}
+.button:hover{
+    -fx-scale-y: 1;
+    -fx-background-color:transparent;
+}
+.button:selected{
+    -fx-scale-y: 0.8;
+    -fx-background-color:white;
+}
 .baseBotonesAzules{
     -fx-font-size: 10pt;
     -fx-scale-y: 0.7;
-    -fx-background-color: #3366ff;
+    -fx-background-color: radial-gradient(focus-angle 0deg, focus-distance 0%, center 50% 50%, radius 98%, reflect,#329fe6 , derive(#3366ff,-10%), derive(black,30%));
     -fx-alignment:BOTTOM_CENTER;
     -fx-text-fill: white;
     -fx-opacity: 0.9;
@@ -256,45 +313,45 @@
 
 .baseBotonesAzules:hover{
     -fx-scale-y: 1;
-    -fx-background-color:#329fe6;
+    -fx-background-color: radial-gradient(focus-angle 0deg, focus-distance 0%, center 50% 50%, radius 98%, reflect,#3366ff , derive(#329fe6,-10%), derive(white,-30%));
 }
 .baseBotonesAzules:pressed{
-    -fx-background-color:#3366ff;
+    -fx-background-color: radial-gradient(focus-angle 0deg, focus-distance 0%, center 50% 50%, radius 98%, reflect,#329fe6 , derive(#3366ff,-10%), derive(black,30%));
     -fx-text-fill: white;
     -fx-scale-y: 0.7;
 }
 .baseBotonesAzules.botonAdd{
-    -fx-graphic:url(../imagenes/add32.png);
+    -fx-graphic:url(../imagenes/botones/add32.png);
 }
 .baseBotonesAzules.botonTelefono{
-    -fx-graphic:url(../imagenes/telefono32.png)
+    -fx-graphic:url(../imagenes/botones/telefono32.png)
 }
 .baseBotonesAzules.botonVer{
-    -fx-graphic:url(../imagenes/ver32.png);
+    -fx-graphic:url(../imagenes/botones/ver32.png);
 }
 .baseBotonesAzules.botonActualizar{
-    -fx-graphic:url(../imagenes/actualizar32.png);
+    -fx-graphic:url(../imagenes/botones/actualizar32.png);
 }
 .baseBotonesAzules.botonCalculadora{
-    -fx-graphic:url(../imagenes/calculadora64.png);
+    -fx-graphic:url(../imagenes/ribbon/calculadora64.png);
 }
 .baseBotonesAzules.botonChat{
-    -fx-graphic:url(../imagenes/chat64.png);
+    -fx-graphic:url(../imagenes/ribbon/chat64.png);
 }
 .baseBotonesAzules.botonParte{
-    -fx-graphic:url(../imagenes/parte64.png);
+    -fx-graphic:url(../imagenes/ribbon/parte64.png);
 }
 .baseBotonesAzules.botonCalendario{
-    -fx-graphic:url(../imagenes/calendario64.png);
+    -fx-graphic:url(../imagenes/ribbon/calendario64.png);
 }
 .baseBotonesAzules.botonBuscar{
-    -fx-graphic:url(../imagenes/buscar32.png);
+    -fx-graphic:url(../imagenes/botones/buscar32.png);
 }
 /*------------------------------------------------------------------------------*/
 .baseBotonesVerdes{
     -fx-font-size: 10pt;
     -fx-scale-y: 0.7;
-    -fx-background-color: green;
+    -fx-background-color:radial-gradient(focus-angle 0deg, focus-distance 0%, center 50% 50%, radius 98%, reflect,#00c622, derive(green,-10%), derive(black,30%));
     -fx-alignment:BOTTOM_CENTER;
     -fx-text-fill: white;
     -fx-opacity: 0.9;
@@ -305,22 +362,22 @@
 }
 .baseBotonesVerdes:hover{
     -fx-scale-y: 1;
-    -fx-background-color: #00c622;
+    -fx-background-color:radial-gradient(focus-angle 0deg, focus-distance 0%, center 50% 50%, radius 98%, reflect,green, derive(#00c622,-10%), derive(white,-30%));
 }
 .baseBotonesVerdes:pressed{
-    -fx-background-color:green;
+    -fx-background-color:radial-gradient(focus-angle 0deg, focus-distance 0%, center 50% 50%, radius 98%, reflect,#00c622, derive(green,-10%), derive(black,30%));
     -fx-text-fill: white;
     -fx-scale-y: 0.7;
 }
 
 .baseBotonesVerdes.botonOk{
-    -fx-graphic:url(../imagenes/ok32.png);
+    -fx-graphic:url(../imagenes/botones/ok32.png);
 }
 /*----------------------------------------------------------------------------*/
 .baseBotonesRojos{
     -fx-font-size: 10pt;
     -fx-scale-y: 0.8;
-    -fx-background-color: red;
+    -fx-background-color:radial-gradient(focus-angle 0deg, focus-distance 0%, center 50% 50%, radius 98%, reflect,orangered , derive(red,-10%), derive(black,30%));
     -fx-alignment:BOTTOM_CENTER;
     -fx-text-fill: white;
     -fx-opacity: 0.9;
@@ -331,24 +388,24 @@
 }
 .baseBotonesRojos:hover{
     -fx-scale-y: 1;
-    -fx-background-color:orangered;
+    -fx-background-color:radial-gradient(focus-angle 0deg, focus-distance 0%, center 50% 50%, radius 98%, reflect,red , derive(orangered,-10%), derive(white,-30%));
 }
 .baseBotonesRojos:pressed{
-    -fx-background-color:red;
+    -fx-background-color:radial-gradient(focus-angle 0deg, focus-distance 0%, center 50% 50%, radius 98%, reflect,orangered , derive(red,-10%), derive(black,30%));
     -fx-text-fill: white;
     -fx-scale-y: 0.7;
 }
 .baseBotonesRojos.botonBorrar{
-    -fx-graphic:url(../imagenes/borrar32.png);  
+    -fx-graphic:url(../imagenes/botones/borrar32.png);  
 } 
 .baseBotonesRojos.botonError{
-    -fx-graphic:url(../imagenes/cancel32.png);
+    -fx-graphic:url(../imagenes/botones/cancel32.png);
 }
 /*----------------------------------------------------------------------------*/
 .baseBotonesNaranja{
     -fx-font-size: 10pt;
     -fx-scale-y: 0.7;
-    -fx-background-color: orangered;
+    -fx-background-color:radial-gradient(focus-angle 0deg, focus-distance 0%, center 50% 50%, radius 98%, reflect,orange , orangered,derive(orangered,-10%), derive(black,30%));
     -fx-alignment:BOTTOM_CENTER;
     -fx-text-fill: white;
     -fx-opacity: 0.9;
@@ -359,15 +416,15 @@
 }
 .baseBotonesNaranja:hover{
     -fx-scale-y: 1;
-    -fx-background-color: orange;
+    -fx-background-color:radial-gradient(focus-angle 0deg, focus-distance 0%, center 50% 50%, radius 98%, reflect,orangered , orange,derive(orangered,-10%), derive(white,-30%));
 }
 .baseBotonesNaranja:pressed{
-    -fx-background-color: orangered;
+    -fx-background-color:radial-gradient(focus-angle 0deg, focus-distance 0%, center 50% 50%, radius 98%, reflect,orange , orangered,derive(orangered,-10%), derive(black,30%));
     -fx-text-fill: white;
     -fx-scale-y: 0.7;
 
 }.baseBotonesNaranja.botonLimpiar{
-    -fx-graphic:url(../imagenes/limpiar32.png);
+    -fx-graphic:url(../imagenes/botones/limpiar32.png);
 }
 
 /*--------------------------------------------------------------------------*/
@@ -380,6 +437,9 @@
     -fx-cursor:hand;
     -fx-font-size: 8pt;
     -fx-text-fill: white;
+}
+.menu-item:hover{
+    -fx-scale-y: 1.2;
 }
 .menu-bar{
     -fx-background-color: #3366ff;
@@ -395,6 +455,7 @@
     -fx-background-color: white;
     -fx-text-fill: black; 
     -fx-cursor: hand;
+    -fx-scale-y: 1.2;
 }
 .menu:hover .label{
     -fx-text-fill: black; 
@@ -410,4 +471,8 @@
 .radio-button .radio{
     -fx-background-color: white;
     -fx-cursor: hand;
+}
+.radio-button .radio:hover{
+    -fx-scale-y: 1.2;
+    -fx-scale-x: 1.2;
 }

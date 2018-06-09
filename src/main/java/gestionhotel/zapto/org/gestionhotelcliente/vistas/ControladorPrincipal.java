@@ -19,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -41,6 +42,8 @@ public class ControladorPrincipal implements Initializable {
     private HBox panelReloj;
     @FXML
     private Button botonCalculadora;
+    @FXML
+    private AnchorPane principal;
 
     private Fechas fechas;
     private Reloj reloj;
@@ -97,14 +100,14 @@ public class ControladorPrincipal implements Initializable {
 
     private void codigoMenuReserva() {
         ObjetoVentana obj = VentanasFactory.getPrevision(Ventanas.PRINCIPAL, Modality.NONE, null);
-        ((ControladorPrevision)obj.getfXMLLoader().getController()).
+        ((ControladorPrevision) obj.getfXMLLoader().getController()).
                 setFiltro(Select.getAlojamientosPendientesCheckIn());
         obj.verReajustable();
     }
 
     private void codigoMenuQuienesSomos() {
         ObjetoVentana obj = VentanasFactory.getQuienesSomos(Ventanas.PRINCIPAL, Modality.NONE, null);
-        obj.ver();
+        obj.verReajustable();
         ((ControladorQuienesSomos) obj.getfXMLLoader().getController()).reproduceVideo();
     }
 
@@ -115,18 +118,22 @@ public class ControladorPrincipal implements Initializable {
 
     private void codigoMenuBuscadorHuesped() {
         ObjetoVentana obj = VentanasFactory.getBuscarHuesped(Ventanas.PRINCIPAL, Modality.NONE, null);
-        obj.ver();
+        obj.verReajustable();
 
     }
 
     private void codigoMenuBuscadorCliente() {
         ObjetoVentana obj = VentanasFactory.getBuscarCliente(Ventanas.PRINCIPAL, Modality.NONE, null);
-        obj.ver();
+        obj.verReajustable();
+
+    }
+
+    private void creaBarraMenuPrincipal(AnchorPane principal) {
 
     }
 
     private void configuracionReloj() {
-//configuración reloj
+        //configuración reloj
         fechas = new Fechas();
         reloj = new Reloj();
         Thread hilo = new Thread(new Runnable() {
@@ -151,7 +158,7 @@ public class ControladorPrincipal implements Initializable {
 
     private void codigoMenuHuespedesDentro() {
         ObjetoVentana obj = VentanasFactory.getListaVacia(Ventanas.PRINCIPAL, Modality.NONE, null);
-        ObservableList l=Select.getHuespedesDentro();
+        ObservableList l = Select.getHuespedesDentro();
         if (obj != null) {
             ((ControladorListaVacia) obj.getfXMLLoader().getController()).configuraTabla(new TablaHuesped().getListaObjetosDeTabla(Select.getHuespedesDentro()),
                     new TablaHuesped().getListaObjetosColumnas(), "Huéspedes dentro");

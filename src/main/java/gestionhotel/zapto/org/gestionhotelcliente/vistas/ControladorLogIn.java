@@ -79,6 +79,10 @@ public class ControladorLogIn implements Initializable {
     private void logicaBoton() {
         if (loginValido() && !validado) {
             validado = true;
+            botonEntrar.setDisable(true);
+            lenguaje.setDisable(true);
+            password.setDisable(true);
+            usuario.setDisable(true);
             ConfiguradorMensajes.mensajeExito("Usuario y contraseña validos", mensajeError);
             desvaneceCandado();
             evaneceMensaje();

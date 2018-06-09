@@ -5,6 +5,8 @@ import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import java.util.Date;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -12,10 +14,10 @@ import javafx.collections.ObservableList;
  */
 public class TablaCliente implements TablaInterface<TablaCliente, Persona> {
 
-    private String numeroDocumento, nombre, calle, codigoPostal, ciudad, provincia, estado,
-            sexoHombre, nacionalidad, categoria, email, numero, comentario,
-            teléfonoFijo, teléfonoMovil, primerApellido, segundoApellido, tratamiento, paginaWeb, esEmpresa,
+    private String numeroDocumento, nombre, calle, codigoPostal, ciudad, provincia, estado, nacionalidad, categoria, email, numero, comentario,
+            primerApellido, segundoApellido, tratamiento, paginaWeb,
             razonSocial, nombreComercial;
+    private ImageView esEmpresa,sexoHombre;
 
     public TablaCliente() {
 
@@ -78,22 +80,22 @@ public class TablaCliente implements TablaInterface<TablaCliente, Persona> {
                 String email = persona.getEmail();
                 String categoria = persona.getCategoria();
                 String comentario = persona.getComentario();
-                String telefonoFijo = null;
-                String telefonoMovil = null;
                 String tratamiento = persona.getFisTratamiento();
                 String paginaWeb = persona.getPaginaWeb();
-                String esEmpresa = "";
+                ImageView esEmpresa = null;
                 if (persona.getEsEmpresa() != null) {
-                    esEmpresa = (persona.getEsEmpresa() == 0) ? "Persona" : "Empresa";
+                    esEmpresa = (persona.getEsEmpresa() == 0) ? new ImageView(new Image(getClass().getResource("/imagenes/tablas/persona.png").toExternalForm())) :
+                            new ImageView(new Image(getClass().getResource("/imagenes/tablas/empresa.png").toExternalForm()));
                 }
-                String sexo = "";
+                ImageView sexo = null;
                 if (persona.getFisSexoHombre() != null) {
-                    sexo = (persona.getFisSexoHombre() == 0) ? "mujer" : "hombre";
+                    sexo = (persona.getFisSexoHombre() == 0) ? new ImageView(new Image(getClass().getResource("/imagenes/tablas/mujer.png").toExternalForm())) :
+                            new ImageView(new Image(getClass().getResource("/imagenes/tablas/hombre.png").toExternalForm()));
                 }
                 TablaCliente cliente = new TablaCliente(numeroDocumento, nombre, calle, codigoPostal, ciudad,
-                        provincia, estado, sexo, nacionalidad, categoria, email, numero, comentario,
-                        telefonoFijo, telefonoMovil, primerApellido, SegundoApellido,
-                        tratamiento, paginaWeb, esEmpresa, razonSocial, nombreComercial, fechaNacimiento);
+                        provincia, estado, sexo, nacionalidad, categoria, email, numero, comentario, 
+                        primerApellido, SegundoApellido,tratamiento, paginaWeb, esEmpresa, razonSocial,
+                        nombreComercial, fechaNacimiento);
                 listaClientes.add(cliente);
             }
         }
@@ -101,11 +103,10 @@ public class TablaCliente implements TablaInterface<TablaCliente, Persona> {
     }
 
     public TablaCliente(String numeroDocumento, String nombre, String calle, String codigoPostal,
-            String ciudad, String provincia, String estado, String sexoHombre, String nacionalidad,
-            String categoria, String email, String numero, String comentario, String teléfonoFijo,
-            String teléfonoMovil, String primerApellido, String segundoApellido, String tratamiento,
-            String paginaWeb, String esEmpresa, String razonSocial, String nombreComercial,
-            Date fechaNacimiento) {
+            String ciudad, String provincia, String estado, ImageView sexoHombre, String nacionalidad,
+            String categoria, String email, String numero, String comentario, String primerApellido,
+            String segundoApellido, String tratamiento,String paginaWeb, ImageView esEmpresa, String razonSocial,
+            String nombreComercial,Date fechaNacimiento) {
 
         this.numeroDocumento = numeroDocumento;
         this.nombre = nombre;
@@ -120,8 +121,6 @@ public class TablaCliente implements TablaInterface<TablaCliente, Persona> {
         this.email = email;
         this.numero = numero;
         this.comentario = comentario;
-        this.teléfonoFijo = teléfonoFijo;
-        this.teléfonoMovil = teléfonoMovil;
         this.primerApellido = primerApellido;
         this.segundoApellido = segundoApellido;
         this.tratamiento = tratamiento;
@@ -196,11 +195,11 @@ public class TablaCliente implements TablaInterface<TablaCliente, Persona> {
         this.estado = estado;
     }
 
-    public String getSexoHombre() {
+    public ImageView getSexoHombre() {
         return sexoHombre;
     }
 
-    public void setSexoHombre(String sexoHombre) {
+    public void setSexoHombre(ImageView sexoHombre) {
         this.sexoHombre = sexoHombre;
     }
 
@@ -244,22 +243,6 @@ public class TablaCliente implements TablaInterface<TablaCliente, Persona> {
         this.comentario = comentario;
     }
 
-    public String getTeléfonoFijo() {
-        return teléfonoFijo;
-    }
-
-    public void setTeléfonoFijo(String teléfonoFijo) {
-        this.teléfonoFijo = teléfonoFijo;
-    }
-
-    public String getTeléfonoMovil() {
-        return teléfonoMovil;
-    }
-
-    public void setTeléfonoMovil(String teléfonoMovil) {
-        this.teléfonoMovil = teléfonoMovil;
-    }
-
     public String getPrimerApellido() {
         return primerApellido;
     }
@@ -292,14 +275,6 @@ public class TablaCliente implements TablaInterface<TablaCliente, Persona> {
         this.paginaWeb = paginaWeb;
     }
 
-    public String getEsEmpresa() {
-        return esEmpresa;
-    }
-
-    public void setEsEmpresa(String esEmpresa) {
-        this.esEmpresa = esEmpresa;
-    }
-
     public String getRazonSocial() {
         return razonSocial;
     }
@@ -316,5 +291,13 @@ public class TablaCliente implements TablaInterface<TablaCliente, Persona> {
         this.fechaNacimiento = fechaNacimiento;
     }
     private Date fechaNacimiento;
+
+    public ImageView getEsEmpresa() {
+        return esEmpresa;
+    }
+
+    public void setEsEmpresa(ImageView esEmpresa) {
+        this.esEmpresa = esEmpresa;
+    }
 
 }

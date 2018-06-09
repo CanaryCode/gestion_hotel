@@ -48,11 +48,13 @@ public class ControladorCheckIn implements Initializable {
     //-----------------------------------------------------------------------------------------------
     private DetallesReserva detalleReserva;
     private ObservableList<Persona> listaTodosLosHuespedes = FXCollections.observableArrayList();
-    private ObservableList<Persona> listaHuespedResponsable = FXCollections.observableArrayList();
-    private ObservableList<Persona> listaHuespedOtros = FXCollections.observableArrayList();
+    private ObservableList<Persona> listaHuespedAdultos = FXCollections.observableArrayList();
     private ObservableList<Persona> listaHuespedChild = FXCollections.observableArrayList();
     private ObservableList<Persona> listaHuespedBebes = FXCollections.observableArrayList();
     private ObservableList<TablaHuesped> listaTablaHuespedTodos = FXCollections.observableArrayList();
+    private ObservableList<TablaHuesped> listaTablaHuespedAdultos = FXCollections.observableArrayList();
+    private ObservableList<TablaHuesped> listaTablaHuespedChild = FXCollections.observableArrayList();
+    private ObservableList<TablaHuesped> listaTablaHuespedBebes = FXCollections.observableArrayList();
     private ObservableList<TablaHabitacion> listaTablaHabitacion = FXCollections.observableArrayList();
     private ObservableList<Habitacion> listaHabitacion = FXCollections.observableArrayList();
     private ObservableList<TablaReserva> listaTablaReserva = FXCollections.observableArrayList();
@@ -62,7 +64,7 @@ public class ControladorCheckIn implements Initializable {
     private Reserva ReservaEnVista;
     private Habitacion habitacionEnVista;
     private Persona huespedEnVista;
-
+public static int contador=0;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         CreadorDeTabla.generaTabla(principal, tablaHabitacion, listaTablaHabitacion, new TablaHabitacion().getListaObjetosColumnas());
@@ -138,6 +140,52 @@ public class ControladorCheckIn implements Initializable {
             }
 
         });
+        listaHuespedAdultos.addListener(new ListChangeListener<Persona>() {
+            @Override
+            public void onChanged(ListChangeListener.Change<? extends Persona> c) {
+                VinculadorModeloATabla.vinculaAListaTabla(listaHuespedAdultos, listaTablaHuespedAdultos, new TablaHuesped(), c);       
+                if (c.wasAdded()) {
+                    listaTodosLosHuespedes.addAll(c.getAddedSubList());
+                         contador++;
+                System.out.println("contador " + contador);
+                System.out.println("la lista de adultos: " + listaHuespedAdultos.size());
+                System.out.println("la lista de tabla adultos: " + listaTablaHuespedAdultos.size());
+                } else if (c.wasRemoved()) {
+                    listaTodosLosHuespedes.removeAll(c.getRemoved());
+                         contador++;
+                System.out.println("contador " + contador);
+                System.out.println("la lista de adultos: " + listaHuespedAdultos.size());
+                System.out.println("la lista de tabla adultos: " + listaTablaHuespedAdultos.size());
+                }
+            }
+        }
+        );
+        listaHuespedChild.addListener(new ListChangeListener<Persona>() {
+            @Override
+            public void onChanged(ListChangeListener.Change<? extends Persona> c) {
+                VinculadorModeloATabla.vinculaAListaTabla(listaHuespedChild, listaTablaHuespedChild, new TablaHuesped(), c);
+                if (c.wasAdded()) {
+                    listaTodosLosHuespedes.addAll(c.getAddedSubList());
+                } else if (c.wasRemoved()) {
+                    listaTodosLosHuespedes.removeAll(c.getRemoved());
+                }
+            }
+        }
+        );
+
+        listaHuespedBebes.addListener(new ListChangeListener<Persona>() {
+            @Override
+            public void onChanged(ListChangeListener.Change<? extends Persona> c) {
+                VinculadorModeloATabla.vinculaAListaTabla(listaHuespedBebes, listaTablaHuespedBebes, new TablaHuesped(), c);
+                if (c.wasAdded()) {
+                    listaTodosLosHuespedes.addAll(c.getAddedSubList());
+                } else if (c.wasRemoved()) {
+                    listaTodosLosHuespedes.removeAll(c.getRemoved());
+                }
+               
+            }
+        }
+        );
     }
 
     public ControladorCheckIn setDetalleReserva(DetallesReserva detalleReserva) {
@@ -159,10 +207,10 @@ public class ControladorCheckIn implements Initializable {
     private void codigoModificaHuesped() {
         ObjetoVentana obj = VentanasFactory.getHuespedReserva(Ventanas.CHECK_IN, Modality.APPLICATION_MODAL, null);
         ((ControladorHuespedReserva) obj.getfXMLLoader().getController()).
-                setNumeroHuespedes(1, detalleReserva.getNumeroAdultos() - 1, detalleReserva.getNumeroChild(),
+                setNumeroHuespedes( detalleReserva.getNumeroAdultos(), detalleReserva.getNumeroChild(),
                         detalleReserva.getNumeroBebes()).
-                setListas(listaTodosLosHuespedes,listaHuespedOtros, listaHuespedResponsable, listaHuespedChild,
-                        listaHuespedBebes);
+                setListas(listaTodosLosHuespedes,listaHuespedAdultos, listaHuespedChild,
+                        listaHuespedBebes,listaTablaHuespedAdultos,listaTablaHuespedChild,listaTablaHuespedBebes);
         obj.ver();
         ((ControladorHuespedReserva) obj.getfXMLLoader().getController()).configuraVentana();
     }

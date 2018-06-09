@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -16,6 +18,7 @@ public class TablaPrevision implements TablaInterface<TablaPrevision, DetallesRe
 
     String numeroReserva, cliente, tipo, habitacion, nombreAgencia,voucher;
     LocalDate fechaPrevistaEntrada, fechaPrevistaSalida;
+    ImageView img;
     public TablaPrevision(){
         
     }
@@ -30,6 +33,7 @@ public class TablaPrevision implements TablaInterface<TablaPrevision, DetallesRe
         lista.add(new CreadorDeTabla("Nombre agencia", "nombreAgencia", 300));
         lista.add(new CreadorDeTabla("Fecha prevista entrada", "fechaPrevistaEntrada", 150));
         lista.add(new CreadorDeTabla("Fecha prevista salida", "fechaPrevistaSalida", 150));
+        lista.add(new CreadorDeTabla("Imagen", "img", 150));
 
         return lista;
     }
@@ -78,6 +82,7 @@ public class TablaPrevision implements TablaInterface<TablaPrevision, DetallesRe
                 fechaPrevistaSalida = detallesReserva.getFechaSalidaPrevista().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 tipo = detallesReserva.getPreferenciaTipoHabitacion();
                 TablaPrevision c = new TablaPrevision(voucher,nombreAgencia, numeroReserva, nombrecliente, habitacion, tipo, fechaPrevistaEntrada, fechaPrevistaSalida);
+                c.setImg(new ImageView(new Image(getClass().getResource("/imagenes/tablas/empresa.png").toExternalForm())));
                 listaCheckIn.add(c);
             }
         }
@@ -158,4 +163,13 @@ public class TablaPrevision implements TablaInterface<TablaPrevision, DetallesRe
     public void setVoucher(String voucher) {
         this.voucher = voucher;
     }
+
+    public ImageView getImg() {
+        return img;
+    }
+
+    public void setImg(ImageView img) {
+        this.img = img;
+    }
+    
 }

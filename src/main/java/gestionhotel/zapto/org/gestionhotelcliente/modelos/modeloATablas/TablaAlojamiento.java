@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -15,8 +17,10 @@ public class TablaAlojamiento implements TablaInterface<TablaAlojamiento, Detall
 
     private LocalDate fechaInicio, fechaFin;
     private int numeroAdultos, numeroChild, numeroBebes;
-    private String pension, camaExtra, cuna, prefTipoHabitacion, prefHabitacion, prefTipoCama,
+    private String pension, prefTipoHabitacion, prefHabitacion, prefTipoCama,
             prefVistas, prefTurnoRestaurante, prefTipoRestaurante;
+    
+    ImageView cuna,camaExtra;
 
     public TablaAlojamiento() {
 
@@ -52,9 +56,10 @@ public class TablaAlojamiento implements TablaInterface<TablaAlojamiento, Detall
 
             int NumeroAdultos = 0, NumeroChild = 0, NumeroBebes = 0;
 
-            String Pension = "", CamaExtra = "", cuna = "", PrefTipoHabitacion = "",
+            String Pension = "", PrefTipoHabitacion = "",
                     PrefHabitacion = "", PrefTipoCama = "", PrefVistas = "", PrefTurnoRestaurante = "",
                     PrefTipoRestaurante = "";
+            ImageView CamaExtra = null, cuna = null;
             if (detallesReserva.getFechaEntradaPrevista() != null) {
                 FechaInicio = detallesReserva.getFechaEntradaPrevista().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             }
@@ -74,10 +79,13 @@ public class TablaAlojamiento implements TablaInterface<TablaAlojamiento, Detall
                 Pension = detallesReserva.getPension();
             }
             if (detallesReserva.getCamaExtra() != null) {
-                CamaExtra = (detallesReserva.getCamaExtra() == 0) ? "No" : "Si";
+                CamaExtra = (detallesReserva.getCamaExtra() == 0) ?  new ImageView(new Image(getClass().getResource("/imagenes/tablas/no.png").toExternalForm())) :
+                            new ImageView(new Image(getClass().getResource("/imagenes/tablas/si.png").toExternalForm()));
+                
             }
             if (detallesReserva.getCuna() != null) {
-                cuna = (detallesReserva.getCuna() == 0) ? "No" : "Si";
+                cuna = (detallesReserva.getCuna() == 0) ? new ImageView(new Image(getClass().getResource("/imagenes/tablas/no.png").toExternalForm())) :
+                            new ImageView(new Image(getClass().getResource("/imagenes/tablas/si.png").toExternalForm()));
             }
             if (detallesReserva.getPreferenciaTipoHabitacion() != null) {
                 PrefTipoHabitacion = detallesReserva.getPreferenciaTipoHabitacion();
@@ -109,7 +117,7 @@ public class TablaAlojamiento implements TablaInterface<TablaAlojamiento, Detall
     }
 
     public TablaAlojamiento(LocalDate FechaInicio, LocalDate FechaFin, int NumeroAdultos,
-            int NumeroChild, int NumeroBebes, String Pension, String CamaExtra, String cuna,
+            int NumeroChild, int NumeroBebes, String Pension, ImageView CamaExtra, ImageView cuna,
             String PrefTipoHabitacion, String PrefHabitacion, String PrefTipoCama,
             String PrefVistas, String PrefTurnoRestaurante, String PrefTipoRestaurante) {
 
@@ -177,22 +185,6 @@ public class TablaAlojamiento implements TablaInterface<TablaAlojamiento, Detall
         this.pension = Pension;
     }
 
-    public String getCamaExtra() {
-        return camaExtra;
-    }
-
-    public void setCamaExtra(String CamaExtra) {
-        this.camaExtra = CamaExtra;
-    }
-
-    public String getCuna() {
-        return cuna;
-    }
-
-    public void setCuna(String cuna) {
-        this.cuna = cuna;
-    }
-
     public String getPrefTipoHabitacion() {
         return prefTipoHabitacion;
     }
@@ -239,6 +231,22 @@ public class TablaAlojamiento implements TablaInterface<TablaAlojamiento, Detall
 
     public void setPrefTipoRestaurante(String PrefTipoRestaurante) {
         this.prefTipoRestaurante = PrefTipoRestaurante;
+    }
+
+    public ImageView getCuna() {
+        return cuna;
+    }
+
+    public void setCuna(ImageView cuna) {
+        this.cuna = cuna;
+    }
+
+    public ImageView getCamaExtra() {
+        return camaExtra;
+    }
+
+    public void setCamaExtra(ImageView camaExtra) {
+        this.camaExtra = camaExtra;
     }
 
 }
