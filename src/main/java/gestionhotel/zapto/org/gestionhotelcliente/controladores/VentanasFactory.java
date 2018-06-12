@@ -49,7 +49,7 @@ public class VentanasFactory {
      */
     public static Ventana getHuespedFormulario(String owner, Modality modalidad, Object controlador) {
         Ventana obj = Ventana.crear("HuespedFormulario", Ventanas.HUESPED_FORMULARIO,
-                owner, Ventana.resourceBundle.getString("windows.huesped"), modalidad, controlador,Ventanas.DESVANECIBLE);
+                owner, "Formulario huésped", modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
 
@@ -94,7 +94,7 @@ public class VentanasFactory {
      */
     public static Ventana getClienteFormulario(String owner, Modality modalidad, Object controlador) {
         Ventana obj = Ventana.crear("ClienteFormulario", Ventanas.CLIENTE_FORMULARIO,
-                owner, Ventana.resourceBundle.getString("windows.cliente"), modalidad, controlador,Ventanas.DESVANECIBLE);
+                owner, "Formulario cliente", modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
 
@@ -109,7 +109,7 @@ public class VentanasFactory {
      */
     public static Ventana getReservaFormulario(String owner, Modality modalidad, Object controlador) {
         Ventana obj = Ventana.crear("ReservaFormulario", Ventanas.RESERVA_FORMULARIO,
-                owner, Ventana.resourceBundle.getString("windows.addReserva"), modalidad, controlador,Ventanas.DESVANECIBLE);
+                owner,"Formulario reserva", modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
 
@@ -197,7 +197,7 @@ public class VentanasFactory {
      */
     public static Ventana getTelefonoFormulario(String owner, Modality modalidad, Object controlador) {
         Ventana obj = Ventana.crear("TelefonoFormulario", Ventanas.TELEFONO_FORMULARIO,
-                owner,"Teléfonos", modalidad, controlador,Ventanas.DESVANECIBLE);
+                owner,"Formulario Teléfono", modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
  
@@ -226,7 +226,7 @@ public class VentanasFactory {
      */
     public static Ventana getAlojamientoFormulario(String owner, Modality modalidad, Object controlador) {
         Ventana obj = Ventana.crear("AlojamientoFormulario", Ventanas.ALOJAMIENTO_FORMULARIO,
-                owner,"Alojamiento", modalidad, controlador,Ventanas.DESVANECIBLE);
+                owner,"Formulario alojamiento", modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
     /**
@@ -266,8 +266,8 @@ public class VentanasFactory {
      * @param controlador controlador del fxml.
      * @return ventana preconfigurada lista para abrir.
      */
-    public static Ventana getListaVacia(String owner, Modality modalidad, Object controlador) {
-        Ventana obj = Ventana.crear("ListaVacia", Ventanas.LISTA_VACIA,
+    public static Ventana getListaVacia(String owner, Modality modalidad, Object controlador,String nombreVentana) {
+        Ventana obj = Ventana.crear("ListaVacia", nombreVentana,
                 owner,"Lista", modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }

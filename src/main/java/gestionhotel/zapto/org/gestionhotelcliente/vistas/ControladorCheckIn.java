@@ -13,7 +13,6 @@ import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaRes
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Alojamiento;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Habitacion;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Huesped;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Reserva;
 import java.net.URL;
 import java.util.ResourceBundle;

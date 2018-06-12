@@ -1,6 +1,5 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas;
 
-import gestionhotel.zapto.org.gestionhotelcliente.MainApp;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Agencia;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Alojamiento;
@@ -12,8 +11,6 @@ import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Reserva;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Telefono;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersona;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Trabajador;
-import java.io.File;
-import java.io.FileInputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Date;
@@ -140,19 +137,19 @@ public class PruebasModelo {
             listaAgencias = FXCollections.observableArrayList();
             Agencia agencia1 = new Agencia();
             agencia1.setId(1);
-            agencia1.setPersona(getListaDePersonas().get(0));
+            agencia1.setPersona(getListaDePersonas().get(6));
 
             Agencia agencia2 = new Agencia();
             agencia2.setId(2);
-            agencia2.setPersona(getListaDePersonas().get(1));
+            agencia2.setPersona(getListaDePersonas().get(7));
 
             Agencia agencia3 = new Agencia();
             agencia3.setId(3);
-            agencia3.setPersona(getListaDePersonas().get(2));
+            agencia3.setPersona(getListaDePersonas().get(6));
 
             Agencia agencia4 = new Agencia();
             agencia4.setId(4);
-            agencia4.setPersona(getListaDePersonas().get(3));
+            agencia4.setPersona(getListaDePersonas().get(7));
 
             listaAgencias.add(agencia1);
             listaAgencias.add(agencia2);

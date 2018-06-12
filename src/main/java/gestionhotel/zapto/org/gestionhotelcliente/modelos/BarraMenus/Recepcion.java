@@ -34,27 +34,42 @@ public class Recepcion {
 
         MenuItem menuItemListaHuespedesDentro = new MenuItem("Huéspedes Dentro");
         menuItemListaHuespedesDentro.setOnAction((event) -> {
-            Ventana vent = VentanasFactory.getListaVacia(Ventanas.PRINCIPAL, Modality.NONE, null);
+            Ventana vent = VentanasFactory.getListaVacia(Ventanas.PRINCIPAL, Modality.NONE, null,"Huespedes Dentro");
             ((ControladorListaVacia) vent.getfXMLLoader().getController()).
                     configuraTabla(new TablaHuesped().getListaObjetosDeTabla(Select.getHuespedesDentro()),
                     new TablaHuesped().getListaObjetosColumnas(), "Huéspedes dentro");
             vent.verReajustable();
         });
         
+        Menu menuListaHuesped = new Menu("Huéspedes");
+        menuListaHuesped.getItems().addAll(menuItemListaHuespedesDentro);
+        
+        //--------------------------------------------------------------------------
+        
         MenuItem menuItemListaHabitacionesOcupadas = new MenuItem("Habitaciones ocupadas");
         menuItemListaHabitacionesOcupadas.setOnAction((event) -> {
-            Ventana vent = VentanasFactory.getListaVacia(Ventanas.PRINCIPAL, Modality.NONE, null);
+            Ventana vent = VentanasFactory.getListaVacia(Ventanas.PRINCIPAL, Modality.NONE, null, "habitaciones ocupadas");
             ((ControladorListaVacia) vent.getfXMLLoader().getController()).
                     configuraTabla(new TablaHabitacion().getListaObjetosDeTabla(Select.getHabitacionesOcupadas()),
                     new TablaHabitacion().getListaObjetosColumnas(), "Habitaciones ocupadas");
             vent.verReajustable();
         });
         
-        Menu menuListaHuesped = new Menu("Huéspedes");
-        menuListaHuesped.getItems().addAll(menuItemListaHuespedesDentro);
+        MenuItem menuItemListaHabitacionesLibres = new MenuItem("Habitaciones libres");
+        menuItemListaHabitacionesLibres.setOnAction((event) -> {
+            ControladorListaVacia controladorListaVacia=new ControladorListaVacia();
+            Ventana vent = VentanasFactory.getListaVacia(Ventanas.PRINCIPAL, Modality.NONE, null, "habitaciones libres");
+            ((ControladorListaVacia) vent.getfXMLLoader().getController()).
+                    configuraTabla(new TablaHabitacion().getListaObjetosDeTabla(Select.getHabitacionesDesOcupadas()),
+                    new TablaHabitacion().getListaObjetosColumnas(), "Habitaciones libres");
+            vent.verReajustable();
+        });
+        
+        
         
         Menu menuListaHabitaciones = new Menu("Habitaciones");
-        menuListaHabitaciones.getItems().addAll(menuItemListaHabitacionesOcupadas);
+        menuListaHabitaciones.getItems().addAll(menuItemListaHabitacionesOcupadas,menuItemListaHabitacionesLibres);
+        //--------------------------------------------------------------------------
         
         Menu menuListas = new Menu("listas");
         menuListas.getItems().addAll(menuListaHuesped,menuListaHabitaciones);

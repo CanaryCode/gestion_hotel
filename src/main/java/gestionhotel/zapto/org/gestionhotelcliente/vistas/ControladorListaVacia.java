@@ -7,6 +7,7 @@ package gestionhotel.zapto.org.gestionhotelcliente.vistas;
  */
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.CreadorDeTabla;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.VentanaCustom;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -42,8 +43,8 @@ public class ControladorListaVacia implements Initializable {
         
         CreadorDeTabla.generaTabla(principal, tabla, listaItems, listaCreadorDeTablas);
         Platform.runLater(() -> {
-            Ventanas.getVentana(Ventanas.LISTA_VACIA).setTitle(
-                Ventanas.getVentana(Ventanas.LISTA_VACIA).getTitle()+" "+tituloVentana);
+          ((VentanaCustom) principal.getScene().getWindow()).
+                  setTitle( ((VentanaCustom) principal.getScene().getWindow()).getTitle()+" "+tituloVentana);
         });
         
     }

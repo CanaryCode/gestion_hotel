@@ -154,7 +154,7 @@ public class Select {
     }
 
     public static ObservableList<Habitacion> getHabitacionesOcupadas() {
-        ObservableList<Habitacion> lista = PruebasModelo.getListaDeHabitaciones();
+        ObservableList<Habitacion> lista = FXCollections.observableArrayList();
         ObservableList<Habitacion> listaTodas = PruebasModelo.getListaDeHabitaciones();
         for (Habitacion hab : listaTodas) {
             if (hab.getEstado().equals(Registro.ListaEstadoHabitacion.get(1))) {

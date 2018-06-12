@@ -54,7 +54,7 @@ public class Ventana {
 
         Ventana obj = new Ventana(
                 new FXMLLoader(), new VentanaCustom(NombreVentana, NombreOwner),
-                nombreFXML, NombreVentana, titulo, NombreOwner, modalidad, null,
+                nombreFXML, NombreVentana, titulo, NombreOwner, modalidad, controlador,
                 modoDesvanecimiento, true);
 
         obj.configuraVentana();
@@ -77,7 +77,10 @@ public class Ventana {
      * @param controlador controlador que se pudiera cargar al FXML
      * @param cargado propiedad que tendra la ventana.
      */
-    public Ventana(FXMLLoader fXMLLoader, VentanaCustom ventana, String nombreFXML, String nombreVentana, String titulo, String ownerName, Modality modalidad, Object controlador, int modoDesvanecimiento, boolean cargado) {
+    public Ventana(FXMLLoader fXMLLoader, VentanaCustom ventana, String nombreFXML, String nombreVentana,
+            String titulo, String ownerName, Modality modalidad, Object controlador,
+            int modoDesvanecimiento, boolean cargado) {
+        
         this.fXMLLoader = fXMLLoader;
         this.ventana = ventana;
         this.nombreFXML = nombreFXML;
