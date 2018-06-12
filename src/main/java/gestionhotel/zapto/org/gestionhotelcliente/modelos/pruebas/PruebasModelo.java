@@ -16,7 +16,6 @@ import java.nio.file.Paths;
 import java.util.Date;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.hibernate.Hibernate;
 
 /**
  *
