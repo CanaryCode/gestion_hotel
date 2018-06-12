@@ -1,6 +1,7 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.CreadorDeTabla;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Cliente;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import java.util.Date;
 import javafx.collections.FXCollections;
@@ -12,7 +13,7 @@ import javafx.scene.image.ImageView;
  *
  * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
-public class TablaCliente implements TablaInterface<TablaCliente, Persona> {
+public class TablaCliente implements TablaInterface<TablaCliente, Cliente> {
 
     private String numeroDocumento, nombre, calle, codigoPostal, ciudad, provincia, estado, nacionalidad, categoria, email, numero, comentario,
             primerApellido, segundoApellido, tratamiento, paginaWeb,
@@ -54,49 +55,49 @@ public class TablaCliente implements TablaInterface<TablaCliente, Persona> {
      * con una lista del modelo personas de la base de datos crea una lista del
      * modelo de tabla para la visualización en dicha tabla.
      *
-     * @param listaPersona lista de personas normalmente retornada de una
+     * @param listaCliente lista de personas normalmente retornada de una
      * consulta a las base de datos
      * @return lista del modelo de la tabla
      */
     @Override
-    public ObservableList<TablaCliente> getListaObjetosDeTabla(ObservableList<Persona> listaPersona) {
+    public ObservableList<TablaCliente> getListaObjetosDeTabla(ObservableList<Cliente> listaCliente) {
         ObservableList<TablaCliente> listaClientes = FXCollections.observableArrayList();
-        if (!listaPersona.isEmpty()) {
-            for (Persona persona : listaPersona) {
-                String numero = persona.getNumero();
-                String nombre = persona.getNombre();
-                String primerApellido = persona.getFisPrimerApellido();
-                String SegundoApellido = persona.getFisSegundoApellido();
-                Date fechaNacimiento = persona.getFisFechaNacimiento();
-                String razonSocial = persona.getJurRazonSocial();
-                String nombreComercial = persona.getJurNombreComercial();
-                String nacionalidad = persona.getFisNacionalidad();
-                String ciudad = persona.getCiudad();
-                String provincia = persona.getProvincia();
-                String calle = persona.getCalle();
-                String codigoPostal = persona.getCodPostal();
-                String numeroDocumento = persona.getDocumentoNumero();
-                String estado = persona.getEstado();
-                String email = persona.getEmail();
-                String categoria = persona.getCategoria();
-                String comentario = persona.getComentario();
-                String tratamiento = persona.getFisTratamiento();
-                String paginaWeb = persona.getPaginaWeb();
+        if (!listaCliente.isEmpty()) {
+            for (Cliente cliente : listaCliente) {
+                String numero = cliente.getPersona().getNumero();
+                String nombre = cliente.getPersona().getNombre();
+                String primerApellido = cliente.getPersona().getFisPrimerApellido();
+                String SegundoApellido = cliente.getPersona().getFisSegundoApellido();
+                Date fechaNacimiento = cliente.getPersona().getFisFechaNacimiento();
+                String razonSocial = cliente.getPersona().getJurRazonSocial();
+                String nombreComercial = cliente.getPersona().getJurNombreComercial();
+                String nacionalidad = cliente.getPersona().getFisNacionalidad();
+                String ciudad = cliente.getPersona().getCiudad();
+                String provincia = cliente.getPersona().getProvincia();
+                String calle = cliente.getPersona().getCalle();
+                String codigoPostal = cliente.getPersona().getCodPostal();
+                String numeroDocumento = cliente.getPersona().getNumeroDocumento();
+                String estado = cliente.getPersona().getEstado();
+                String email = cliente.getPersona().getEmail();
+                String categoria = cliente.getPersona().getCategoria();
+                String comentario = cliente.getPersona().getComentario();
+                String tratamiento = cliente.getPersona().getFisTratamiento();
+                String paginaWeb = cliente.getPersona().getPaginaWeb();
                 ImageView esEmpresa = null;
-                if (persona.getEsEmpresa() != null) {
-                    esEmpresa = (persona.getEsEmpresa() == 0) ? new ImageView(new Image(getClass().getResource("/imagenes/tablas/persona.png").toExternalForm())) :
+                if (cliente.getPersona().getEsEmpresa() != null) {
+                    esEmpresa = (cliente.getPersona().getEsEmpresa() == false) ? new ImageView(new Image(getClass().getResource("/imagenes/tablas/persona.png").toExternalForm())) :
                             new ImageView(new Image(getClass().getResource("/imagenes/tablas/empresa.png").toExternalForm()));
                 }
                 ImageView sexo = null;
-                if (persona.getFisSexoHombre() != null) {
-                    sexo = (persona.getFisSexoHombre() == 0) ? new ImageView(new Image(getClass().getResource("/imagenes/tablas/mujer.png").toExternalForm())) :
+                if (cliente.getPersona().getFisSexoHombre() != null) {
+                    sexo = (cliente.getPersona().getFisSexoHombre() == false) ? new ImageView(new Image(getClass().getResource("/imagenes/tablas/mujer.png").toExternalForm())) :
                             new ImageView(new Image(getClass().getResource("/imagenes/tablas/hombre.png").toExternalForm()));
                 }
-                TablaCliente cliente = new TablaCliente(numeroDocumento, nombre, calle, codigoPostal, ciudad,
+                TablaCliente nuevoCliente = new TablaCliente(numeroDocumento, nombre, calle, codigoPostal, ciudad,
                         provincia, estado, sexo, nacionalidad, categoria, email, numero, comentario, 
                         primerApellido, SegundoApellido,tratamiento, paginaWeb, esEmpresa, razonSocial,
                         nombreComercial, fechaNacimiento);
-                listaClientes.add(cliente);
+                listaClientes.add(nuevoCliente);
             }
         }
         return listaClientes;

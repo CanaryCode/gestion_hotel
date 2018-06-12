@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-jun-2018 9:29:00 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Alojamiento" table="alojamiento" catalog="gestionhotel" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="agencia" class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Agencia" fetch="select">
+            <column name="fk_habitacion" />
+        </many-to-one>
+        <many-to-one name="reserva" class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Reserva" fetch="select">
+            <column name="fk_reserva" />
+        </many-to-one>
+        <property name="fechaEntradaPrevista" type="date">
+            <column name="fecha_entrada_prevista" length="10" not-null="true" />
+        </property>
+        <property name="fechaSalidaPrevista" type="date">
+            <column name="fecha_salida_prevista" length="10" not-null="true" />
+        </property>
+        <property name="fechaEntrada" type="date">
+            <column name="fecha_entrada" length="10" />
+        </property>
+        <property name="fechaSalida" type="date">
+            <column name="fecha_salida" length="10" />
+        </property>
+        <property name="pension" type="string">
+            <column name="pension" length="40" not-null="true" />
+        </property>
+        <property name="tipoCama" type="string">
+            <column name="tipo_cama" length="40" />
+        </property>
+        <property name="numeroAdultos" type="java.lang.Integer">
+            <column name="numero_adultos" />
+        </property>
+        <property name="numeroChild" type="java.lang.Integer">
+            <column name="numero_child" />
+        </property>
+        <property name="numeroBebes" type="java.lang.Integer">
+            <column name="numero_bebes" />
+        </property>
+        <property name="prefHabitacion" type="string">
+            <column name="pref_habitacion" length="40" />
+        </property>
+        <property name="prefTipoHabitacion" type="string">
+            <column name="pref_tipo_habitacion" length="40" />
+        </property>
+        <property name="prefVistas" type="string">
+            <column name="pref_vistas" length="40" />
+        </property>
+        <property name="prefTipoCama" type="string">
+            <column name="pref_tipo_cama" length="40" />
+        </property>
+        <property name="prefTipoRestaurante" type="string">
+            <column name="pref_tipo_restaurante" length="40" />
+        </property>
+        <property name="prefTurnoRestaurante" type="string">
+            <column name="pref_turno_restaurante" />
+        </property>
+        <property name="cuna" type="java.lang.Boolean">
+            <column name="cuna" />
+        </property>
+        <property name="camaExtra" type="java.lang.Boolean">
+            <column name="cama_extra" />
+        </property>
+        <property name="comentario" type="string">
+            <column name="comentario" length="300" />
+        </property>
+        <property name="noShow" type="int">
+            <column name="no_show" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

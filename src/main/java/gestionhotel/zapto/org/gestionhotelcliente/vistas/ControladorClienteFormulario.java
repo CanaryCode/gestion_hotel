@@ -5,7 +5,7 @@ import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilFormu
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.FormularioInterface;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Cliente;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -59,7 +59,7 @@ public class ControladorClienteFormulario implements Initializable, FormularioIn
     public ControladorClienteFormulario() {
     }
     private int modoFormulario;
-    private Persona clienteEnVista;
+    private Cliente clienteEnVista;
     private ObservableList listaBotones;
 
     @Override
@@ -124,36 +124,36 @@ public class ControladorClienteFormulario implements Initializable, FormularioIn
 
     @Override
     public ControladorClienteFormulario setObjetoEnVista(Object objetoEnVista) {
-        clienteEnVista = (Persona) objetoEnVista;
+        clienteEnVista = (Cliente) objetoEnVista;
         //---------------------------------------------------------------------------------
-        if (clienteEnVista.getEsEmpresa()!=null&&clienteEnVista.getEsEmpresa() == 0) {
-            UtilFormularios.ValidarNodo(nombre, clienteEnVista.getNombre());
-            UtilFormularios.ValidarNodo(sexoM, clienteEnVista.getFisSexoHombre());
-            UtilFormularios.ValidarNodo(fechaNacimiento, clienteEnVista.getFisFechaNacimiento());
-            UtilFormularios.ValidarNodo(tratamiento, clienteEnVista.getFisTratamiento());
-            UtilFormularios.ValidarNodo(nacionalidad, clienteEnVista.getFisNacionalidad());
-            UtilFormularios.ValidarNodo(primerApellido, clienteEnVista.getFisPrimerApellido());
-            UtilFormularios.ValidarNodo(segundoApellido, clienteEnVista.getFisSegundoApellido());
-            UtilFormularios.ValidarNodo(dni, clienteEnVista.getDocumentoNumero());
+        if (clienteEnVista.getPersona().getEsEmpresa()!=null&&clienteEnVista.getPersona().getEsEmpresa() == false) {
+            UtilFormularios.ValidarNodo(nombre, clienteEnVista.getPersona().getNombre());
+            UtilFormularios.ValidarNodo(sexoM, clienteEnVista.getPersona().getFisSexoHombre());
+            UtilFormularios.ValidarNodo(fechaNacimiento, clienteEnVista.getPersona().getFisFechaNacimiento());
+            UtilFormularios.ValidarNodo(tratamiento, clienteEnVista.getPersona().getFisTratamiento());
+            UtilFormularios.ValidarNodo(nacionalidad, clienteEnVista.getPersona().getFisNacionalidad());
+            UtilFormularios.ValidarNodo(primerApellido, clienteEnVista.getPersona().getFisPrimerApellido());
+            UtilFormularios.ValidarNodo(segundoApellido, clienteEnVista.getPersona().getFisSegundoApellido());
+            UtilFormularios.ValidarNodo(dni, clienteEnVista.getPersona().getNumeroDocumento());
         } else {
-            UtilFormularios.ValidarNodo(cif, clienteEnVista.getDocumentoNumero());
-            UtilFormularios.ValidarNodo(razonSocial, clienteEnVista.getJurRazonSocial());
-            UtilFormularios.ValidarNodo(nombreEmpresa, clienteEnVista.getJurNombreComercial());
+            UtilFormularios.ValidarNodo(cif, clienteEnVista.getPersona().getNumeroDocumento());
+            UtilFormularios.ValidarNodo(razonSocial, clienteEnVista.getPersona().getJurRazonSocial());
+            UtilFormularios.ValidarNodo(nombreEmpresa, clienteEnVista.getPersona().getJurNombreComercial());
         }
         //------------------------------------------------------------------------------
-        UtilFormularios.ValidarNodo(provincia, clienteEnVista.getProvincia());
-        UtilFormularios.ValidarNodo(codigoPostal, clienteEnVista.getCodPostal());
-        UtilFormularios.ValidarNodo(correoElectronico, clienteEnVista.getEmail());
-        UtilFormularios.ValidarNodo(calle, clienteEnVista.getCalle());
-        UtilFormularios.ValidarNodo(ciudad, clienteEnVista.getCiudad());
-        UtilFormularios.ValidarNodo(comentario, clienteEnVista.getComentario());
-        UtilFormularios.ValidarNodo(numero, clienteEnVista.getNumero());
-        UtilFormularios.ValidarNodo(paginaWeb, clienteEnVista.getPaginaWeb());
+        UtilFormularios.ValidarNodo(provincia, clienteEnVista.getPersona().getProvincia());
+        UtilFormularios.ValidarNodo(codigoPostal, clienteEnVista.getPersona().getCodPostal());
+        UtilFormularios.ValidarNodo(correoElectronico, clienteEnVista.getPersona().getEmail());
+        UtilFormularios.ValidarNodo(calle, clienteEnVista.getPersona().getCalle());
+        UtilFormularios.ValidarNodo(ciudad, clienteEnVista.getPersona().getCiudad());
+        UtilFormularios.ValidarNodo(comentario, clienteEnVista.getPersona().getComentario());
+        UtilFormularios.ValidarNodo(numero, clienteEnVista.getPersona().getNumero());
+        UtilFormularios.ValidarNodo(paginaWeb, clienteEnVista.getPersona().getPaginaWeb());
         //----------------------------------------------------------------------------
-        UtilFormularios.ValidarNodo(estado, clienteEnVista.getEstado());
-        UtilFormularios.ValidarNodo(categoria, clienteEnVista.getCategoria());
+        UtilFormularios.ValidarNodo(estado, clienteEnVista.getPersona().getEstado());
+        UtilFormularios.ValidarNodo(categoria, clienteEnVista.getPersona().getCategoria());
         // ----------------------------------------------------------------------------
-        UtilFormularios.ValidarNodo(tabPanel, clienteEnVista.getEsEmpresa());
+        UtilFormularios.ValidarNodo(tabPanel, clienteEnVista.getPersona().getEsEmpresa());
         return this;
     }
 

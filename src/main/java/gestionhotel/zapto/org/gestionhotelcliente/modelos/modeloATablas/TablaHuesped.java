@@ -1,6 +1,7 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.CreadorDeTabla;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Huesped;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import java.util.Date;
 import javafx.collections.FXCollections;
@@ -12,7 +13,7 @@ import javafx.scene.image.ImageView;
  *
  * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
-public class TablaHuesped implements TablaInterface<TablaHuesped, Persona> {
+public class TablaHuesped implements TablaInterface<TablaHuesped, Huesped> {
 
     private String numeroDocumento, nombre, calle, codigoPostal, ciudad, provincia, estado,
             nacionalidad, categoria, pasaporte, email,  numero, comentario,
@@ -53,46 +54,47 @@ public class TablaHuesped implements TablaInterface<TablaHuesped, Persona> {
     }
 
     @Override
-    public ObservableList<TablaHuesped> getListaObjetosDeTabla(ObservableList<Persona> listaPersona) {
+    public ObservableList<TablaHuesped> getListaObjetosDeTabla(ObservableList<Huesped> listaHuesped) {
         ObservableList<TablaHuesped> listaHuespedes = FXCollections.observableArrayList();
-        if (listaPersona != null) {
-            if (!listaPersona.isEmpty()) {
-                for (Persona persona : listaPersona) {
-                    String numero = persona.getNumero();
-                    String nombre = persona.getNombre();
-                    String primerApellido = persona.getFisPrimerApellido();
-                    String SegundoApellido = persona.getFisSegundoApellido();
-                    Date fechaNacimiento = persona.getFisFechaNacimiento();
-                    Date fechaExpPasaporte = persona.getFisExpPasaporte();
-                    String nacionalidad = persona.getFisNacionalidad();
-                    String tratamiento = persona.getFisTratamiento();
-                    String ciudad = persona.getCiudad();
-                    String provincia = persona.getProvincia();
-                    String calle = persona.getCalle();
-                    String codigoPostal = persona.getCodPostal();
-                    String dni = persona.getDocumentoNumero();
-                    String estado = persona.getEstado();
-                    String pasaporte = persona.getPasaporte();
-                    String email = persona.getEmail();
-                    String categoria = persona.getCategoria();
-                    String comentario = persona.getComentario();
-                    String paginaWeb = persona.getPaginaWeb();
+        if (listaHuesped != null||!listaHuesped.isEmpty()) {
+            if (!listaHuesped.isEmpty()) {
+                for (Huesped huesped : listaHuesped) {
+                    String numero = huesped.getPersona().getNumero();
+                    String nombre = huesped.getPersona().getNombre();
+                    String primerApellido = huesped.getPersona().getFisPrimerApellido();
+                    String SegundoApellido = huesped.getPersona().getFisSegundoApellido();
+                    Date fechaNacimiento = huesped.getPersona().getFisFechaNacimiento();
+                    //Date fechaExpPasaporte = huesped.ge;
+                    String nacionalidad = huesped.getPersona().getFisNacionalidad();
+                    String tratamiento = huesped.getPersona().getFisTratamiento();
+                    String ciudad = huesped.getPersona().getCiudad();
+                    String provincia = huesped.getPersona().getProvincia();
+                    String calle = huesped.getPersona().getCalle();
+                    String codigoPostal = huesped.getPersona().getCodPostal();
+                    String dni = huesped.getPersona().getNumeroDocumento();
+                    String estado = huesped.getPersona().getEstado();
+                    String pasaporte = huesped.getPersona().getPasaporte();
+                    String email = huesped.getPersona().getEmail();
+                    String categoria = huesped.getPersona().getCategoria();
+                    String comentario = huesped.getPersona().getComentario();
+                    String paginaWeb = huesped.getPersona().getPaginaWeb();
                     ImageView sexo = null;
-                    int codigoPersona = persona.getCodPersona();
-                    if (persona.getFisSexoHombre() != null) {
-                        sexo = (persona.getFisSexoHombre() == 0) ?new ImageView(new Image(getClass().getResource("/imagenes/tablas/mujer.png").toExternalForm())) :
+                    int codigoPersona = huesped.getId();
+                    
+                    if (huesped.getPersona().getFisSexoHombre() != null) {
+                        sexo = (huesped.getPersona().getFisSexoHombre() == false) ?new ImageView(new Image(getClass().getResource("/imagenes/tablas/mujer.png").toExternalForm())) :
                             new ImageView(new Image(getClass().getResource("/imagenes/tablas/hombre.png").toExternalForm()));
                 }
                     ImageView discapacitado = null;
-                    if (persona.getFisSexoHombre() != null) {
-                        discapacitado = (persona.getFisSexoHombre() == 0) ? new ImageView(new Image(getClass().getResource("/imagenes/tablas/discapacitado.png").toExternalForm())) :
+                    if (huesped.getPersona().getFisSexoHombre() != null) {
+                        discapacitado = (huesped.getPersona().getFisSexoHombre() == false) ? new ImageView(new Image(getClass().getResource("/imagenes/tablas/discapacitado.png").toExternalForm())) :
                             new ImageView();
                 }
-                    TablaHuesped huesped = new TablaHuesped(numero, dni, nombre, calle, codigoPostal, ciudad,
+                    TablaHuesped huespedNuevo = new TablaHuesped(numero, dni, nombre, calle, codigoPostal, ciudad,
                             provincia, estado, tratamiento, sexo, primerApellido, SegundoApellido,
-                            nacionalidad, categoria, pasaporte, email, discapacitado, fechaExpPasaporte,
-                            fechaExpPasaporte, fechaNacimiento, comentario, codigoPersona, paginaWeb);
-                    listaHuespedes.add(huesped);
+                            nacionalidad, categoria, pasaporte, email, discapacitado, null,
+                            null, fechaNacimiento, comentario, codigoPersona, paginaWeb);
+                    listaHuespedes.add(huespedNuevo);
                 }
             }
         }

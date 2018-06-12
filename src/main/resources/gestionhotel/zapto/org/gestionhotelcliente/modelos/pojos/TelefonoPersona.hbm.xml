@@ -1,28 +1,18 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 05-jun-2018 18:15:24 by Hibernate Tools 4.3.1 -->
+<!-- Generated 09-jun-2018 9:29:00 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersona" table="telefono_persona" catalog="gestionhotel" optimistic-lock="version">
-        <composite-id name="id" class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersonaId">
-            <key-property name="codPersona" type="int">
-                <column name="cod_persona" />
-            </key-property>
-            <key-property name="numTelefono" type="string">
-                <column name="num_telefono" length="30" />
-            </key-property>
-        </composite-id>
-        <many-to-one name="persona" class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona" update="false" insert="false" fetch="select">
-            <column name="cod_persona" not-null="true" />
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="persona" class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona" fetch="select">
+            <column name="fk_persona" not-null="true" />
         </many-to-one>
-        <property name="descripcion" type="string">
-            <column name="descripcion" length="300" />
-        </property>
-        <property name="tipo" type="string">
-            <column name="tipo" length="40" not-null="true" />
-        </property>
-        <property name="comentario" type="string">
-            <column name="comentario" length="300" not-null="true" />
-        </property>
+        <many-to-one name="telefono" class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Telefono" fetch="select">
+            <column name="numero" length="15" not-null="true" />
+        </many-to-one>
     </class>
 </hibernate-mapping>

@@ -5,12 +5,14 @@ import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBuscador;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilFormularios;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.FormularioInterface;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaAlojamiento;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaCliente;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Agencia;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Alojamiento;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Cliente;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Reserva;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo;
@@ -77,17 +79,18 @@ public class ControladorReservaFormulario implements Initializable, FormularioIn
             tableColumnPrefTipoHabitacion, tableColumnPrefHabitacion, tableColumnPrefTipoCama,
             tableColumnPrefVistas, tableColumnPrefRestaurante, tableColumnPrefTipoRestaurante;
 
-    private ObservableList<Persona> listaCliente = FXCollections.observableArrayList();
+    private ObservableList<Cliente> listaCliente = FXCollections.observableArrayList();
     private ObservableList<TablaCliente> listaTablaCliente = FXCollections.observableArrayList();
-    private ObservableList<Persona> listaAgencia = FXCollections.observableArrayList();
+    private ObservableList<Agencia> listaAgencia = FXCollections.observableArrayList();
     private ObservableList<TablaCliente> listaTablaAgencia = FXCollections.observableArrayList();
-    private ObservableList<DetallesReserva> listaDetalleReserva = FXCollections.observableArrayList();
+    private ObservableList<Alojamiento> listaDetalleReserva = FXCollections.observableArrayList();
     private ObservableList<TablaAlojamiento> listaTablaAlojamientos = FXCollections.observableArrayList();
-    private ObservableList<DetallesReserva> listaAlojamientos = FXCollections.observableArrayList();
+    private ObservableList<Alojamiento> listaAlojamientos = FXCollections.observableArrayList();
 
     private Reserva reservaEnVista;
-    private Persona ClienteEnVista, AgenciaEnVista;
-    private DetallesReserva AlojamientoEnVista;
+    private Cliente ClienteEnVista; 
+    private Agencia AgenciaEnVista;
+    private Alojamiento AlojamientoEnVista;
     private int modo;
 
     @Override
@@ -200,7 +203,7 @@ public class ControladorReservaFormulario implements Initializable, FormularioIn
     }
 
     private void codigoModificaAgencia() {
-        ObjetoVentana obj = VentanasFactory.getBuscarCliente(Ventanas.RESERVA_FORMULARIO, Modality.APPLICATION_MODAL, null);
+        Ventana obj = VentanasFactory.getBuscarCliente(Ventanas.RESERVA_FORMULARIO, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
             ((ControladorClienteBuscador) obj.getfXMLLoader().getController()).
                     setListaToAdd(listaAgencia).
@@ -211,7 +214,7 @@ public class ControladorReservaFormulario implements Initializable, FormularioIn
     }
 
     private void codigoModificaCliente() {
-        ObjetoVentana obj = VentanasFactory.getBuscarCliente(Ventanas.RESERVA_FORMULARIO, Modality.APPLICATION_MODAL, null);
+        Ventana obj = VentanasFactory.getBuscarCliente(Ventanas.RESERVA_FORMULARIO, Modality.APPLICATION_MODAL, null);
         if (obj != null) {
             ((ControladorClienteBuscador) obj.getfXMLLoader().getController()).
                     setListaToAdd(listaCliente).
@@ -238,28 +241,28 @@ public class ControladorReservaFormulario implements Initializable, FormularioIn
         //----------------------------------------------------------------------
         //------------------Lista Cliente---------------------------------------
         //----------------------------------------------------------------------
-        if (reservaEnVista.getPersonaByCodCliente() != null) {
-            listaCliente.add(reservaEnVista.getPersonaByCodCliente());
+        if (reservaEnVista.getCliente() != null) {
+            listaCliente.add(reservaEnVista.getCliente());
             listaTablaCliente.addAll(new TablaCliente().getListaObjetosDeTabla(listaCliente));
         }
         tablaCliente.setItems(listaTablaCliente);
         //----------------------------------------------------------------------
         //------------------Lista Agencia---------------------------------------
         //----------------------------------------------------------------------
-        if (reservaEnVista.getPersonaByAgencia() != null) {
-            listaAgencia.add(reservaEnVista.getPersonaByAgencia());
-            listaTablaAgencia.addAll(new TablaCliente().getListaObjetosDeTabla(listaAgencia));
+        if (reservaEnVista.getAgencia() != null) {
+            listaAgencia.add(reservaEnVista.getAgencia());
+           // listaTablaAgencia.addAll(new TablaCliente().getListaObjetosDeTabla(listaAgencia));
 
         }
         tablaAgencia.setItems(listaTablaAgencia);
         //----------------------------------------------------------------------
         //------------------Lista Alojamientos----------------------------------
         //----------------------------------------------------------------------
-        if (reservaEnVista.getDetallesReservas() != null) {
-            for (DetallesReserva dr : PruebasModelo.getListaDeAlojamientos()) {
-                if (reservaEnVista.getCodReserva() != null) {
-                    if (reservaEnVista.getCodReserva().equals(dr.getReserva().getCodReserva())) {
-                        listaAlojamientos.add(dr);
+        if (reservaEnVista.getAlojamientos() != null) {
+            for (Alojamiento alo : PruebasModelo.getListaDeAlojamientos()) {
+                if (reservaEnVista.getId() != null) {
+                    if (reservaEnVista.getId().equals(alo.getReserva().getId())) {
+                        listaAlojamientos.add(alo);
                     }
                 }
             }
@@ -267,7 +270,7 @@ public class ControladorReservaFormulario implements Initializable, FormularioIn
         }
         tablaAlojamiento.setItems(listaTablaAlojamientos);
         //---------------------------------------------------
-        listaDetalleReserva.addAll(reservaEnVista.getDetallesReservas());
+        listaDetalleReserva.addAll(reservaEnVista.getAlojamientos());
         //----------------------------------------------------
 
         if (reservaEnVista.getTipoTarjetaCredito() != null) {

@@ -4,7 +4,7 @@ import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilFormu
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.FormularioInterface;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Alojamiento;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -42,7 +42,7 @@ public class ControladorAlojamientoFormulario implements Initializable, Formular
     private AnchorPane principal;
 
     private int modo;
-    private DetallesReserva alojamientoEnVista;
+    private Alojamiento alojamientoEnVista;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -75,7 +75,7 @@ public class ControladorAlojamientoFormulario implements Initializable, Formular
 
     @Override
     public ControladorAlojamientoFormulario setObjetoEnVista(Object objetoEnVista) {
-        alojamientoEnVista=(DetallesReserva) objetoEnVista;
+        alojamientoEnVista=(Alojamiento) objetoEnVista;
         
       UtilFormularios.ValidarNodo(fechaInicio,alojamientoEnVista.getFechaEntradaPrevista());
       UtilFormularios.ValidarNodo(fechaFin,alojamientoEnVista.getFechaSalidaPrevista());
@@ -86,12 +86,12 @@ public class ControladorAlojamientoFormulario implements Initializable, Formular
       UtilFormularios.ValidarNodo(numeroChild,String.valueOf(alojamientoEnVista.getNumeroChild()));
       UtilFormularios.ValidarNodo(numeroBebes,String.valueOf(alojamientoEnVista.getNumeroBebes()));
       UtilFormularios.ValidarNodo(pension,alojamientoEnVista.getPension());
-      UtilFormularios.ValidarNodo(vistas,alojamientoEnVista.getPreferenciaVistas());
-      UtilFormularios.ValidarNodo(tipoCama,alojamientoEnVista.getPreferenciaTipoCama());
-      UtilFormularios.ValidarNodo(numeroHabitacion,alojamientoEnVista.getPreferenciaHabitacion());
-      UtilFormularios.ValidarNodo(turnoRestaurante,alojamientoEnVista.getPreferenciaTurnoRestaurante());
-      UtilFormularios.ValidarNodo(tipoRestaurante,alojamientoEnVista.getPreferenciaTipoRestaurante());
-      UtilFormularios.ValidarNodo(tipoHabitacion,alojamientoEnVista.getPreferenciaTipoHabitacion());
+      UtilFormularios.ValidarNodo(vistas,alojamientoEnVista.getPrefVistas());
+      UtilFormularios.ValidarNodo(tipoCama,alojamientoEnVista.getPrefTipoCama());
+      UtilFormularios.ValidarNodo(numeroHabitacion,alojamientoEnVista.getPrefHabitacion());
+      UtilFormularios.ValidarNodo(turnoRestaurante,alojamientoEnVista.getPrefTurnoRestaurante());
+      UtilFormularios.ValidarNodo(tipoRestaurante,alojamientoEnVista.getPrefTipoRestaurante());
+      UtilFormularios.ValidarNodo(tipoHabitacion,alojamientoEnVista.getPrefTipoHabitacion());
         
         return this;
     }

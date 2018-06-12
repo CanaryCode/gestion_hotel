@@ -4,9 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.Light.Distant?>
@@ -166,33 +164,6 @@
             </AnchorPane>
          </right>
       </BorderPane>
-      <MenuBar layoutX="35.0" layoutY="14.0" styleClass="menuPrincipal" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="%menu.reservas">
-            <items>
-              <MenuItem fx:id="reserva" mnemonicParsing="false" text="%menuItem.prevision" />
-                  <MenuItem fx:id="addReservas" mnemonicParsing="false" text="añadir reserva" />
-                  <MenuItem fx:id="huespedesDentro" mnemonicParsing="false" text="Huespes dentro" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="%menu.recepcion">
-            <items>
-              <MenuItem fx:id="kardex" mnemonicParsing="false" text="%menuItem.kardex" />
-            </items>
-          </Menu>
-            <Menu mnemonicParsing="false" text="%menu.gestion">
-              <items>
-                <MenuItem fx:id="registroClientes" mnemonicParsing="false" text="%menuItem.registroCliente" />
-                  <MenuItem fx:id="buscadorHuesped" mnemonicParsing="false" text="Buscador huésped" />
-                  <MenuItem fx:id="buscadorCliente" mnemonicParsing="false" text="Buscador Cliente" />
-              </items>
-            </Menu>
-          <Menu mnemonicParsing="false" text="%menu.acercaDe">
-            <items>
-              <MenuItem fx:id="quienesSomos" mnemonicParsing="false" text="%menuItem.quienesSomos" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
+      <MenuBar fx:id="barra" layoutX="35.0" layoutY="14.0" styleClass="menuPrincipal" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

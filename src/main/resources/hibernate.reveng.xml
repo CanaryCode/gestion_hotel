@@ -41,14 +41,21 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="gestionhotel"/>
-  <table-filter match-name="detalles_reserva"/>
-  <table-filter match-name="reserva"/>
-  <table-filter match-name="habitacion"/>
-  <table-filter match-name="usuario"/>
   <table-filter match-name="telefono_persona"/>
-  <table-filter match-name="situacion"/>
-  <table-filter match-name="huesped_habitacion"/>
+  <table-filter match-name="factura"/>
+  <table-filter match-name="tipo_habitacion"/>
+  <table-filter match-name="parte_persona"/>
+  <table-filter match-name="factura_articulo"/>
+  <table-filter match-name="articulo"/>
+  <table-filter match-name="agencia"/>
+  <table-filter match-name="trabajador"/>
+  <table-filter match-name="proveedor"/>
+  <table-filter match-name="huesped"/>
   <table-filter match-name="persona"/>
-  <table-filter match-name="parentesco"/>
-  <table-filter match-name="estado_habitacion"/>
+  <table-filter match-name="parte"/>
+  <table-filter match-name="habitacion"/>
+  <table-filter match-name="cliente"/>
+  <table-filter match-name="alojamiento"/>
+  <table-filter match-name="reserva"/>
+  <table-filter match-name="telefono"/>
 </hibernate-reverse-engineering>

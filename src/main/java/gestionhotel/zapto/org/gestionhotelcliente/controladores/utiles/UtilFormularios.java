@@ -49,7 +49,7 @@ public class UtilFormularios {
             }
         } else if (nodo instanceof RadioButton) {
             if (input != null) {
-                if (((Byte) input).equals(0)) {
+                if (((boolean) input)==false) {
                     ((RadioButton) nodo).getToggleGroup().selectToggle(((RadioButton) nodo).getToggleGroup().getToggles().get(0));
                 } else {
                     ((RadioButton) nodo).getToggleGroup().getToggles().get(1);
@@ -62,7 +62,7 @@ public class UtilFormularios {
             }
         } else if (nodo instanceof TabPane) {
             if (input != null) {
-                if (((Byte) input).byteValue() == 0) {
+                if (((boolean) input) == false) {
                     ((TabPane) nodo).getSelectionModel().select(((TabPane) nodo).getTabs().get(0));
                     ((TabPane) nodo).getTabs().get(1).setDisable(true);
                 } else {

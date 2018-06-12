@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-jun-2018 9:29:00 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.FacturaArticulo" table="factura_articulo" catalog="gestionhotel" optimistic-lock="version">
+        <composite-id name="id" class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.FacturaArticuloId">
+            <key-property name="fkFactura" type="int">
+                <column name="fk_factura" />
+            </key-property>
+            <key-property name="fkArticulo" type="int">
+                <column name="fk_articulo" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

@@ -7,9 +7,9 @@ import gestionhotel.zapto.org.gestionhotelcliente.controladores.VinculadorModelo
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBuscador;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilFormularios;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.BuscadorInterface;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Alojamiento;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaPrevision;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -45,9 +45,9 @@ public class ControladorPrevision implements Initializable, BuscadorInterface {
     private TableView<TablaPrevision> tabla;
     
     private ObservableList<TablaPrevision> listaTablaCheckIn = FXCollections.observableArrayList(), listaFiltroTabla;
-    private ObservableList<DetallesReserva> listaAlojamientos = FXCollections.observableArrayList();
-    private ObservableList<DetallesReserva> listaFiltroAlojamientos = FXCollections.observableArrayList();
-    public DetallesReserva detallesReservaEnVista;
+    private ObservableList<Alojamiento> listaAlojamientos = FXCollections.observableArrayList();
+    private ObservableList<Alojamiento> listaFiltroAlojamientos = FXCollections.observableArrayList();
+    public Alojamiento alojamientoEnVista;
     public int modo;
 
     @Override
@@ -80,7 +80,7 @@ public class ControladorPrevision implements Initializable, BuscadorInterface {
         //-------------------------------------------------------------------------------------------
       
         tabla.setOnMouseClicked((event) -> {
-            detallesReservaEnVista = UtilBuscador.onMouseClickedOnTable(tabla, event, VentanasFactory.getAlojamientoFormulario(Ventanas.PREVISION, Modality.WINDOW_MODAL, null), detallesReservaEnVista,
+            alojamientoEnVista = UtilBuscador.onMouseClickedOnTable(tabla, event, VentanasFactory.getAlojamientoFormulario(Ventanas.PREVISION, Modality.WINDOW_MODAL, null), alojamientoEnVista,
                     listaAlojamientos, checkIn, noShow);
         });
         //---------------------------------------------------------------------------------------------
@@ -103,17 +103,16 @@ public class ControladorPrevision implements Initializable, BuscadorInterface {
     }
 
     private void accionCheckIn() {
-        if (detallesReservaEnVista != null) {
-            ObjetoVentana obj = VentanasFactory.getCheckin(Ventanas.PREVISION, Modality.WINDOW_MODAL, null);
-                ((ControladorCheckIn) obj.getfXMLLoader().getController()).
-                        setDetalleReserva(detallesReservaEnVista).
+        if (alojamientoEnVista != null) {
+            Ventana obj = VentanasFactory.getCheckin(Ventanas.PREVISION, Modality.WINDOW_MODAL, null);
+                ((ControladorCheckIn) obj.getfXMLLoader().getController()).setAlojamiento(alojamientoEnVista).
                         setListaAlojamientos(listaAlojamientos);
                 obj.ver();
             }
     }
 
     private void accionReserva() {
-        ObjetoVentana obj = VentanasFactory.getReservaFormulario(Ventanas.PREVISION, Modality.WINDOW_MODAL, null);
+        Ventana obj = VentanasFactory.getReservaFormulario(Ventanas.PREVISION, Modality.WINDOW_MODAL, null);
         if (obj != null) {
             obj.ver();
         }
@@ -121,10 +120,10 @@ public class ControladorPrevision implements Initializable, BuscadorInterface {
 
     private void accionNoshow() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Seguro que quiere marcar como: \"NO-SHOW\"."
-                + "\n\na la reserva: " + detallesReservaEnVista.getReserva().getNumero()
-                + "\n\npertenciente al cliente: " + detallesReservaEnVista.getReserva().getPersonaByCodCliente().getNombre() + " "
-                + detallesReservaEnVista.getReserva().getPersonaByCodCliente().getFisPrimerApellido() + " "
-                + detallesReservaEnVista.getReserva().getPersonaByCodCliente().getFisPrimerApellido(),
+                + "\n\na la reserva: " + alojamientoEnVista.getReserva().getCodigo()
+                + "\n\npertenciente al cliente: " + alojamientoEnVista.getReserva().getCliente().getPersona().getNombre() + " "
+                + alojamientoEnVista.getReserva().getCliente().getPersona().getFisPrimerApellido() + " "
+                + alojamientoEnVista.getReserva().getCliente().getPersona().getFisPrimerApellido(),
                 ButtonType.YES, ButtonType.NO);
         alert.show();
     }
@@ -164,15 +163,15 @@ public class ControladorPrevision implements Initializable, BuscadorInterface {
 
     @Override
     public <T> ControladorPrevision setFiltro(ObservableList<T> ListaObjeto) {
-        listaAlojamientos=(ObservableList<DetallesReserva>)ListaObjeto;
-        FXCollections.copy(listaAlojamientos, (ObservableList<DetallesReserva>)ListaObjeto);
+        listaAlojamientos=(ObservableList<Alojamiento>)ListaObjeto;
+        FXCollections.copy(listaAlojamientos, (ObservableList<Alojamiento>)ListaObjeto);
         listaFiltroAlojamientos = listaAlojamientos;
         listaTablaCheckIn = new TablaPrevision().getListaObjetosDeTabla(listaFiltroAlojamientos);
         CreadorDeTabla.generaTabla(principal, tabla, listaTablaCheckIn, new TablaPrevision().getListaObjetosColumnas());
     
-        listaAlojamientos.addListener(new ListChangeListener<DetallesReserva>() {
+        listaAlojamientos.addListener(new ListChangeListener<Alojamiento>() {
             @Override
-            public void onChanged(ListChangeListener.Change<? extends DetallesReserva> c) {
+            public void onChanged(ListChangeListener.Change<? extends Alojamiento> c) {
           VinculadorModeloATabla.vinculaAListaTabla(listaAlojamientos,listaTablaCheckIn, 
                   new TablaPrevision(), c);
             }

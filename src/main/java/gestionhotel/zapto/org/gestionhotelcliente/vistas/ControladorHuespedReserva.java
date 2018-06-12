@@ -4,10 +4,11 @@ import gestionhotel.zapto.org.gestionhotelcliente.controladores.CreadorDeTabla;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VinculadorModeloATabla;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBuscador;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.clases.Select;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaHuesped;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Huesped;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -41,14 +42,14 @@ public class ControladorHuespedReserva implements Initializable {
     @FXML
     private TableView<TablaHuesped> tablaAdultos, tablaChild, tablaBebes;
     //-------------------------------------------------------------------------------------------
-    private ObservableList<Persona> listaHuespedAdultos, listaHuespedChild,
+    private ObservableList<Huesped> listaHuespedAdultos, listaHuespedChild,
             listaHuespedBebes, listaHuespedTodos;
     private ObservableList<TablaHuesped> listaTablaHuespedAdultos;
     private ObservableList<TablaHuesped> listaTablaHuespedChild;
     private ObservableList<TablaHuesped> listaTablaHuespedBebes;
     ;
     private int maxHuespedAdultos, maxHuespedChild, maxHuespedBebes;
-    private Persona HuespedesEnVista, ChildEnVista, BebesEnVista;
+    private Huesped HuespedesEnVista, ChildEnVista, BebesEnVista;
     private ListChangeListener<TablaHuesped> listenerAdultos, listenerChild, listenerBebes;
 
     @Override
@@ -87,7 +88,7 @@ public class ControladorHuespedReserva implements Initializable {
     }
 
     private void accionAddAdultos() {
-        ObjetoVentana obj = VentanasFactory.getBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
+        Ventana obj = VentanasFactory.getBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
         ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
                 setListaToAdd(listaHuespedAdultos).
                 setFiltro(UtilBuscador.creaFiltro(Select.getHuespedesFuera(), listaHuespedBebes,
@@ -97,7 +98,7 @@ public class ControladorHuespedReserva implements Initializable {
     }
 
     private void accionAddChild() {
-        ObjetoVentana obj = VentanasFactory.getBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
+        Ventana obj = VentanasFactory.getBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
         ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
                 setListaToAdd(listaHuespedChild).
                 setFiltro(UtilBuscador.creaFiltro(Select.getHuespedesFuera(), listaHuespedBebes,
@@ -107,7 +108,7 @@ public class ControladorHuespedReserva implements Initializable {
     }
 
     private void accionAddBebes() {
-        ObjetoVentana obj = VentanasFactory.getBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
+        Ventana obj = VentanasFactory.getBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
         ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
                 setListaToAdd(listaHuespedBebes).
                 setFiltro(UtilBuscador.creaFiltro(Select.getHuespedesFuera(), listaHuespedBebes,
@@ -144,9 +145,9 @@ public class ControladorHuespedReserva implements Initializable {
 
         return this;
     }
-    public ControladorHuespedReserva setListas(ObservableList<Persona> listaTodosLosHuespedes,
-            ObservableList<Persona> huespedAdultosLista, ObservableList<Persona> huespedChildLista,
-            ObservableList<Persona> huespedBebesLista, ObservableList<TablaHuesped> listaTablaAdultos,
+    public ControladorHuespedReserva setListas(ObservableList<Huesped> listaTodosLosHuespedes,
+            ObservableList<Huesped> huespedAdultosLista, ObservableList<Huesped> huespedChildLista,
+            ObservableList<Huesped> huespedBebesLista, ObservableList<TablaHuesped> listaTablaAdultos,
             ObservableList<TablaHuesped> listaTablaChild, ObservableList<TablaHuesped> listaTablaBebes) {
         this.listaHuespedBebes = huespedBebesLista;
         this.listaHuespedChild = huespedChildLista;
@@ -237,14 +238,14 @@ public class ControladorHuespedReserva implements Initializable {
         return this;
     }
 
-    private void logicaBorrar(ObservableList<Persona> listaHuesped, TableView<TablaHuesped> tabla) {
+    private void logicaBorrar(ObservableList<Huesped> listaHuesped, TableView<TablaHuesped> tabla) {
         TablaHuesped th = tabla.getSelectionModel().getSelectedItem();
         if (th != null) {
             listaHuesped.remove(tabla.getSelectionModel().getSelectedIndex());
         }
     }
 
-    private void enciendoAdds(ObservableList<Persona> lista, int max, Button boton) {
+    private void enciendoAdds(ObservableList<Huesped> lista, int max, Button boton) {
         if (lista.size() < max) {
             boton.setDisable(false);
         } else {

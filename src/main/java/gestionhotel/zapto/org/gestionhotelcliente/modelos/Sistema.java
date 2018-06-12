@@ -7,7 +7,7 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos;
 
 import com.sun.javafx.application.HostServicesDelegate;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Usuario;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Trabajador;
 
 /**
  *
@@ -15,7 +15,7 @@ import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Usuario;
  */
 public class Sistema {
     private static HostServicesDelegate hostServicesDelegate;
-    private static Usuario usuarioSistema;
+    private static Trabajador usuarioSistema;
     public static HostServicesDelegate getHostServicesDelegate() {
         return hostServicesDelegate;
     }
@@ -24,11 +24,11 @@ public class Sistema {
         Sistema.hostServicesDelegate = hostServicesDelegate;
     }
 
-    public static Usuario getUsuarioSistema() {
+    public static Trabajador getUsuarioSistema() {
         return usuarioSistema;
     }
 
-    public static void setUsuarioSistema(Usuario usuarioSistema) {
+    public static void setUsuarioSistema(Trabajador usuarioSistema) {
         Sistema.usuarioSistema = usuarioSistema;
     }
     

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-jun-2018 9:29:00 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Trabajador" table="trabajador" catalog="gestionhotel" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="persona" class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona" fetch="select">
+            <column name="fk_persona" not-null="true" />
+        </many-to-one>
+        <property name="dentro" type="boolean">
+            <column name="dentro" not-null="true" />
+        </property>
+        <property name="departamento" type="string">
+            <column name="departamento" length="40" not-null="true" />
+        </property>
+        <property name="usuario" type="string">
+            <column name="usuario" length="20" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="20" not-null="true" />
+        </property>
+        <property name="sector" type="string">
+            <column name="sector" length="40" not-null="true" />
+        </property>
+        <property name="rol" type="string">
+            <column name="rol" length="20" not-null="true" />
+        </property>
+        <set name="facturas" table="factura" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fk_trabajador" not-null="true" />
+            </key>
+            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Factura" />
+        </set>
+        <set name="partes" table="parte" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fk_trabajador" not-null="true" />
+            </key>
+            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Parte" />
+        </set>
+        <set name="habitacions" table="habitacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fk_tipo_habitacion" not-null="true" />
+            </key>
+            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Habitacion" />
+        </set>
+        <set name="reservas" table="reserva" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fk_empleado" not-null="true" />
+            </key>
+            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Reserva" />
+        </set>
+    </class>
+</hibernate-mapping>

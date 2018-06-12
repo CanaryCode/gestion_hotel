@@ -47,15 +47,22 @@ Contributor(s):
     <property name="hibernate.connection.password">123456</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
-    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/Usuario.hbm.xml"/>
+    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/Parte.hbm.xml"/>
+    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/Telefono.hbm.xml"/>
     <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/TelefonoPersona.hbm.xml"/>
-    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/Reserva.hbm.xml"/>
-    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/DetallesReserva.hbm.xml"/>
-    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/Situacion.hbm.xml"/>
-    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/EstadoHabitacion.hbm.xml"/>
-    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/Parentesco.hbm.xml"/>
-    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/HuespedHabitacion.hbm.xml"/>
+    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/PartePersona.hbm.xml"/>
+    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/Agencia.hbm.xml"/>
+    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/Articulo.hbm.xml"/>
+    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/TipoHabitacion.hbm.xml"/>
     <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/Persona.hbm.xml"/>
+    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/FacturaArticulo.hbm.xml"/>
+    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/Huesped.hbm.xml"/>
+    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/Proveedor.hbm.xml"/>
+    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/Cliente.hbm.xml"/>
+    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/Factura.hbm.xml"/>
+    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/Reserva.hbm.xml"/>
+    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/Trabajador.hbm.xml"/>
     <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/Habitacion.hbm.xml"/>
+    <mapping resource="gestionhotel/zapto/org/gestionhotelcliente/modelos/pojos/Alojamiento.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

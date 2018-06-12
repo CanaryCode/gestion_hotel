@@ -4,7 +4,7 @@ import gestionhotel.zapto.org.gestionhotelcliente.controladores.LanzadorDeAvisos
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.RecorredorPaneles;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.FormularioInterface;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersona;
 import gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorTelefonoBuscador;
@@ -35,14 +35,14 @@ public class UtilBuscador {
 
     }
 
-    public static void accionCrear(ObjetoVentana obj) {
+    public static void accionCrear(Ventana obj) {
         if (obj != null) {
             ((FormularioInterface) obj.getfXMLLoader().getController()).setModo(Ventanas.MODO_FORMULARIO_INSERTAR);
             obj.ver();
         }
     }
 
-    public static <T> void accionActualizar(ObjetoVentana obj, T objetoEnVista) {
+    public static <T> void accionActualizar(Ventana obj, T objetoEnVista) {
 
         if (obj != null) {
             ((FormularioInterface) obj.getfXMLLoader().getController()).
@@ -53,7 +53,7 @@ public class UtilBuscador {
     }
 
     public static <T> T onMouseClickedOnTable(TableView tabla, MouseEvent event,
-            ObjetoVentana obj, T objetoEnVista, ObservableList<T> listaObjeto,
+            Ventana obj, T objetoEnVista, ObservableList<T> listaObjeto,
             Node... nodosHabilitados) {
 
         T Objeto = null;
@@ -104,7 +104,7 @@ public class UtilBuscador {
 
     }
 
-    public static <T> void abrirTelefono(ObjetoVentana obj, ObservableList<TelefonoPersona> listaAddTelefono, ObservableList<TelefonoPersona> listaAddFiltro, int modo) {
+    public static <T> void abrirTelefono(Ventana obj, ObservableList<TelefonoPersona> listaAddTelefono, ObservableList<TelefonoPersona> listaAddFiltro, int modo) {
         if (obj != null) {
             ((ControladorTelefonoBuscador) obj.getfXMLLoader().getController()).
                     setListaToAdd(listaAddTelefono).

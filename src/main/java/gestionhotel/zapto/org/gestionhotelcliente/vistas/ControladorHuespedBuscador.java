@@ -10,6 +10,7 @@ import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaHuesped;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Huesped;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersona;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -63,8 +64,8 @@ public class ControladorHuespedBuscador implements Initializable, BuscadorInterf
     private TableView<TablaHuesped> tabla;
 
     private ObservableList<TablaHuesped> listaTablaHuespedes;
-    private Persona huespedEnVista;
-    private ObservableList<Persona> listaAddHuesped, listaFiltro;
+    private Huesped huespedEnVista;
+    private ObservableList<Huesped> listaAddHuesped, listaFiltro;
     private ObservableList<TelefonoPersona> listaAddTelefono;
     private ObservableList<Node> nodosApagables;
     int modo;
@@ -207,9 +208,9 @@ public class ControladorHuespedBuscador implements Initializable, BuscadorInterf
             UtilBuscador.ResetearCampos(panelPrincipal);
         });
         telefono.setOnAction((e) -> {
-            ObservableList<TelefonoPersona> listaFiltroTelefono = Select.getListaFiltroTelefono(huespedEnVista);
+            ObservableList<TelefonoPersona> listaFiltroTelefono = Select.getListaFiltroTelefono(huespedEnVista.getPersona());
             Platform.runLater(() -> {
-                UtilBuscador.abrirTelefono(VentanasFactory.getTelefonoBuscador(Ventanas.HUESPED_BUSCADOR, Modality.WINDOW_MODAL, null), listaAddTelefono, listaFiltroTelefono, Ventanas.MODO_FORMULARIO_LECTURA);
+                UtilBuscador.abrirTelefono(VentanasFactory.getTelefonoBuscador(Ventanas.HUESPED_BUSCADOR, Modality.WINDOW_MODAL, null),listaAddTelefono, listaFiltroTelefono, Ventanas.MODO_FORMULARIO_LECTURA);
 
             });
         });
@@ -224,13 +225,13 @@ public class ControladorHuespedBuscador implements Initializable, BuscadorInterf
 
     @Override
     public <T> ControladorHuespedBuscador setListaToAdd(ObservableList<T> ListaObjeto) {
-        this.listaAddHuesped = (ObservableList<Persona>) ListaObjeto;
+        this.listaAddHuesped = (ObservableList<Huesped>) ListaObjeto;
         return this;
     }
 
     @Override
     public <T> ControladorHuespedBuscador setFiltro(ObservableList<T> ListaObjeto) {
-        this.listaFiltro = (ObservableList<Persona>) ListaObjeto;
+        this.listaFiltro = (ObservableList<Huesped>) ListaObjeto;
         listaTablaHuespedes = new TablaHuesped().getListaObjetosDeTabla(listaFiltro);
         CreadorDeTabla.generaTabla(panelPrincipal, tabla, listaTablaHuespedes, new TablaHuesped().getListaObjetosColumnas());
         return this;

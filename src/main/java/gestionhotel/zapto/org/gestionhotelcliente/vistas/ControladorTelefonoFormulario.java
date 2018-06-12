@@ -73,11 +73,11 @@ public class ControladorTelefonoFormulario implements Initializable, FormularioI
     @Override
     public ControladorTelefonoFormulario setObjetoEnVista(Object objetoEnVista) {
         this.telefonoEnVista = (TelefonoPersona) objetoEnVista;
-        UtilFormularios.ValidarNodo(tipo, telefonoEnVista.getTipo());
-        UtilFormularios.ValidarNodo(numero, telefonoEnVista.getId().getNumTelefono());
-        UtilFormularios.ValidarNodo(comentario, telefonoEnVista.getComentario());
+        UtilFormularios.ValidarNodo(tipo, telefonoEnVista.getTelefono().getTipo());
+        UtilFormularios.ValidarNodo(numero, telefonoEnVista.getTelefono().getNumero());
+        UtilFormularios.ValidarNodo(comentario, telefonoEnVista.getTelefono().getComentario());
         Persona p = telefonoEnVista.getPersona();
-        if (p != null && p.getEsEmpresa() == 1) {
+        if (p != null && p.getEsEmpresa() == true) {
             UtilFormularios.ValidarNodo(nombre, telefonoEnVista.getPersona().getJurNombreComercial());
         } else {
             UtilFormularios.ValidarNodo(nombre, telefonoEnVista.getPersona().getNombre() + " "

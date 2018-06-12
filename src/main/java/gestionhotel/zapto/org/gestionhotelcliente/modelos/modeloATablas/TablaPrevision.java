@@ -1,24 +1,22 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.CreadorDeTabla;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Agencia;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Alojamiento;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Cliente;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 /**
  *
  * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
-public class TablaPrevision implements TablaInterface<TablaPrevision, DetallesReserva>{
+public class TablaPrevision implements TablaInterface<TablaPrevision, Alojamiento>{
 
     String numeroReserva, cliente, tipo, habitacion, nombreAgencia,voucher;
     LocalDate fechaPrevistaEntrada, fechaPrevistaSalida;
-    ImageView img;
     public TablaPrevision(){
         
     }
@@ -33,17 +31,16 @@ public class TablaPrevision implements TablaInterface<TablaPrevision, DetallesRe
         lista.add(new CreadorDeTabla("Nombre agencia", "nombreAgencia", 300));
         lista.add(new CreadorDeTabla("Fecha prevista entrada", "fechaPrevistaEntrada", 150));
         lista.add(new CreadorDeTabla("Fecha prevista salida", "fechaPrevistaSalida", 150));
-        lista.add(new CreadorDeTabla("Imagen", "img", 150));
 
         return lista;
     }
 
     @Override
-    public ObservableList<TablaPrevision> getListaObjetosDeTabla(ObservableList<DetallesReserva> listaDetallesReserva) {
+    public ObservableList<TablaPrevision> getListaObjetosDeTabla(ObservableList<Alojamiento> listaAlojamietos) {
         ObservableList<TablaPrevision> listaCheckIn = FXCollections.observableArrayList();
-        if (!listaDetallesReserva.isEmpty()) {
-            for (DetallesReserva detallesReserva : listaDetallesReserva) {
-                String numeroReserva = "";
+        if (!listaAlojamietos.isEmpty()) {
+            for (Alojamiento alojamiento : listaAlojamietos) {
+                String codigo = "";
                 String nombrecliente = "";
                 String habitacion = "";
                 String nombreAgencia = "";
@@ -51,38 +48,37 @@ public class TablaPrevision implements TablaInterface<TablaPrevision, DetallesRe
                 LocalDate fechaPrevistaEntrada = null;
                 LocalDate fechaPrevistaSalida = null;
                 String tipo = "";
-                numeroReserva = detallesReserva.getReserva().getNumero();
-                Persona cliente = detallesReserva.getReserva().getPersonaByCodCliente();
-                Persona agencia = detallesReserva.getReserva().getPersonaByAgencia();
+                codigo = alojamiento.getReserva().getCodigo();
+                Cliente cliente = alojamiento.getReserva().getCliente();
+                Agencia agencia = alojamiento.getReserva().getAgencia();
                 if (cliente != null) {
                     String nombre = "";
                     String primerApellido = "";
                     String segundoApellido = "";
-                    if (cliente.getNombre() != null) {
-                        nombre = cliente.getNombre();
+                    if (cliente.getPersona().getNombre() != null) {
+                        nombre = cliente.getPersona().getNombre();
                     }
-                    if (agencia.getJurNombreComercial() != null) {
-                        nombreAgencia = agencia.getJurNombreComercial();
+                    if (agencia.getPersona().getJurNombreComercial() != null) {
+                        nombreAgencia = agencia.getPersona().getJurNombreComercial();
                     }
-                    if (cliente.getFisPrimerApellido() != null) {
-                        primerApellido = cliente.getFisPrimerApellido();
+                    if (cliente.getPersona().getFisPrimerApellido() != null) {
+                        primerApellido = cliente.getPersona().getFisPrimerApellido();
                     }
-                    if (cliente.getFisSegundoApellido() != null) {
-                        segundoApellido = cliente.getFisSegundoApellido();
+                    if (cliente.getPersona().getFisSegundoApellido() != null) {
+                        segundoApellido = cliente.getPersona().getFisSegundoApellido();
                     }
                     nombrecliente = nombre + " " + primerApellido + " " + segundoApellido;
                 }
-                if(detallesReserva.getReserva()!=null){
-                    if(detallesReserva.getReserva().getVoucher()!=null){
-                        voucher=detallesReserva.getReserva().getVoucher();
+                if(alojamiento.getReserva()!=null){
+                    if(alojamiento.getReserva().getVoucher()!=null){
+                        voucher=alojamiento.getReserva().getVoucher();
                     }
                 }
-                habitacion = detallesReserva.getPreferenciaHabitacion();
-                fechaPrevistaEntrada = detallesReserva.getFechaEntradaPrevista().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                fechaPrevistaSalida = detallesReserva.getFechaSalidaPrevista().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                tipo = detallesReserva.getPreferenciaTipoHabitacion();
-                TablaPrevision c = new TablaPrevision(voucher,nombreAgencia, numeroReserva, nombrecliente, habitacion, tipo, fechaPrevistaEntrada, fechaPrevistaSalida);
-                c.setImg(new ImageView(new Image(getClass().getResource("/imagenes/tablas/empresa.png").toExternalForm())));
+                habitacion = alojamiento.getPrefHabitacion();
+                fechaPrevistaEntrada = alojamiento.getFechaEntradaPrevista().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                fechaPrevistaSalida = alojamiento.getFechaSalidaPrevista().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                tipo = alojamiento.getPrefHabitacion();
+                TablaPrevision c = new TablaPrevision(voucher,nombreAgencia, codigo, nombrecliente, habitacion, tipo, fechaPrevistaEntrada, fechaPrevistaSalida);
                 listaCheckIn.add(c);
             }
         }
@@ -162,14 +158,5 @@ public class TablaPrevision implements TablaInterface<TablaPrevision, DetallesRe
 
     public void setVoucher(String voucher) {
         this.voucher = voucher;
-    }
-
-    public ImageView getImg() {
-        return img;
-    }
-
-    public void setImg(ImageView img) {
-        this.img = img;
-    }
-    
+    }  
 }

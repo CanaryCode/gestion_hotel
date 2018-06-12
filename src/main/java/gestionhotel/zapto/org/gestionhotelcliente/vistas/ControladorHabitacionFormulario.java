@@ -78,7 +78,7 @@ public class ControladorHabitacionFormulario implements Initializable, Formulari
         this.habitacionEnVista=(Habitacion) objetoEnVista;
         //---------------------------------------------------------------------------
         UtilFormularios.ValidarNodo(tipoCama, habitacionEnVista.getTipoCama());
-        UtilFormularios.ValidarNodo(tipoHabitacion, habitacionEnVista.getTipo());
+//        UtilFormularios.ValidarNodo(tipoHabitacion, habitacionEnVista.getTipo());
         UtilFormularios.ValidarNodo(numeroHabitacion, String.valueOf(habitacionEnVista.getNumero()));
         UtilFormularios.ValidarNodo(vistas, habitacionEnVista.getVistas());
         UtilFormularios.ValidarNodo(comentario, habitacionEnVista.getComentario());

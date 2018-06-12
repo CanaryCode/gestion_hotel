@@ -32,7 +32,7 @@ import javafx.util.Duration;
  *
  * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
-public class ObjetoVentana {
+public class Ventana {
 
     /**
      * mapa de recursos de internacionalización.
@@ -48,11 +48,11 @@ public class ObjetoVentana {
     int modoDesvanecimiento;
     boolean cargado;
 
-    public static ObjetoVentana crear(String nombreFXML, String NombreVentana, String NombreOwner,
+    public static Ventana crear(String nombreFXML, String NombreVentana, String NombreOwner,
             String titulo, Modality modalidad, Object controlador, int modoDesvanecimiento) {
         VentanaCustom vc = Ventanas.getVentana(NombreVentana);
 
-        ObjetoVentana obj = new ObjetoVentana(
+        Ventana obj = new Ventana(
                 new FXMLLoader(), new VentanaCustom(NombreVentana, NombreOwner),
                 nombreFXML, NombreVentana, titulo, NombreOwner, modalidad, null,
                 modoDesvanecimiento, true);
@@ -77,7 +77,7 @@ public class ObjetoVentana {
      * @param controlador controlador que se pudiera cargar al FXML
      * @param cargado propiedad que tendra la ventana.
      */
-    public ObjetoVentana(FXMLLoader fXMLLoader, VentanaCustom ventana, String nombreFXML, String nombreVentana, String titulo, String ownerName, Modality modalidad, Object controlador, int modoDesvanecimiento, boolean cargado) {
+    public Ventana(FXMLLoader fXMLLoader, VentanaCustom ventana, String nombreFXML, String nombreVentana, String titulo, String ownerName, Modality modalidad, Object controlador, int modoDesvanecimiento, boolean cargado) {
         this.fXMLLoader = fXMLLoader;
         this.ventana = ventana;
         this.nombreFXML = nombreFXML;
@@ -152,7 +152,7 @@ public class ObjetoVentana {
         } catch (Exception ex) {
             LanzadorDeAvisos.lanzarErrorUsuario(ex.getMessage());
             Logger
-                    .getLogger(ObjetoVentana.class
+                    .getLogger(Ventana.class
                             .getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -324,7 +324,7 @@ public class ObjetoVentana {
         this.scene = scene;
     }
 
-    public ObjetoVentana() {
+    public Ventana() {
 
     }
 

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-jun-2018 9:29:00 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Parte" table="parte" catalog="gestionhotel" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="persona" class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona" fetch="select">
+            <column name="fk_persona" not-null="true" />
+        </many-to-one>
+        <many-to-one name="trabajador" class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Trabajador" fetch="select">
+            <column name="fk_trabajador" not-null="true" />
+        </many-to-one>
+        <property name="categoria" type="string">
+            <column name="categoria" length="40" not-null="true" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="300" not-null="true" />
+        </property>
+        <property name="concepto" type="string">
+            <column name="concepto" length="40" not-null="true" />
+        </property>
+        <property name="grado" type="string">
+            <column name="grado" length="40" not-null="true" />
+        </property>
+        <set name="personas" table="parte_persona" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="fk_parte" not-null="true" />
+            </key>
+            <many-to-many entity-name="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona">
+                <column name="fk_persona" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

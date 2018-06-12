@@ -1,18 +1,15 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 05-jun-2018 18:15:24 by Hibernate Tools 4.3.1 -->
+<!-- Generated 09-jun-2018 9:29:00 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona" table="persona" catalog="gestionhotel" optimistic-lock="version">
-        <id name="codPersona" type="java.lang.Integer">
-            <column name="cod_persona" />
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
             <generator class="identity" />
         </id>
-        <property name="tipoDocumento" type="string">
-            <column name="tipo_documento" length="20" />
-        </property>
-        <property name="documentoNumero" type="string">
-            <column name="documento_numero" length="20" />
+        <property name="numeroDocumento" type="string">
+            <column name="numero_documento" length="20" unique="true" />
         </property>
         <property name="nombre" type="string">
             <column name="nombre" length="40" />
@@ -32,7 +29,7 @@
         <property name="estado" type="string">
             <column name="estado" length="40" />
         </property>
-        <property name="esEmpresa" type="java.lang.Byte">
+        <property name="esEmpresa" type="java.lang.Boolean">
             <column name="es_empresa" />
         </property>
         <property name="jurNombreComercial" type="string">
@@ -47,19 +44,7 @@
         <property name="fisTratamiento" type="string">
             <column name="fis_tratamiento" length="40" />
         </property>
-        <property name="fisCodPersona" type="java.lang.Integer">
-            <column name="fis_cod_persona" />
-        </property>
-        <property name="fisCargo" type="string">
-            <column name="fis_cargo" length="40" />
-        </property>
-        <property name="esCliente" type="java.lang.Byte">
-            <column name="es_cliente" />
-        </property>
-        <property name="esEmpleado" type="java.lang.Byte">
-            <column name="es_empleado" />
-        </property>
-        <property name="fisSexoHombre" type="java.lang.Byte">
+        <property name="fisSexoHombre" type="java.lang.Boolean">
             <column name="fis_sexo_hombre" />
         </property>
         <property name="jurRazonSocial" type="string">
@@ -78,79 +63,75 @@
             <column name="categoria" length="40" />
         </property>
         <property name="pasaporte" type="string">
-            <column name="pasaporte" length="40" />
+            <column name="pasaporte" length="20" />
         </property>
         <property name="email" type="string">
-            <column name="email" length="40" />
+            <column name="email" length="100" />
         </property>
         <property name="paginaWeb" type="string">
-            <column name="pagina_web" length="40" />
-        </property>
-        <property name="fisExpPasaporte" type="date">
-            <column name="fis_exp_pasaporte" length="10" />
-        </property>
-        <property name="fisVencPasaporte" type="date">
-            <column name="fis_venc_pasaporte" length="10" />
+            <column name="pagina_web" length="100" />
         </property>
         <property name="comentario" type="string">
             <column name="comentario" length="300" />
         </property>
-        <property name="fisDiscapacitado" type="java.lang.Byte">
+        <property name="fisDiscapacitado" type="java.lang.Boolean">
             <column name="fis_discapacitado" />
         </property>
         <property name="numero" type="string">
-            <column name="numero" length="10" not-null="true" />
+            <column name="numero" length="10" />
         </property>
-        <property name="dentro" type="byte">
-            <column name="dentro" not-null="true" />
+        <property name="foto" type="binary">
+            <column name="foto" />
         </property>
-        <set name="parentescosForCodPariente" table="parentesco" inverse="true" lazy="true" fetch="select">
+        <set name="partes" table="parte" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="cod_pariente" not-null="true" />
+                <column name="fk_persona" not-null="true" />
             </key>
-            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Parentesco" />
-        </set>
-        <set name="parentescosForCodPersona" table="parentesco" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="cod_persona" not-null="true" />
-            </key>
-            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Parentesco" />
-        </set>
-        <set name="reservasForCodCliente" table="reserva" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="cod_cliente" />
-            </key>
-            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Reserva" />
-        </set>
-        <set name="usuarios" table="usuario" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="cod_persona" />
-            </key>
-            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Usuario" />
-        </set>
-        <set name="reservasForCodEmpleado" table="reserva" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="cod_empleado" />
-            </key>
-            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Reserva" />
-        </set>
-        <set name="reservasForAgencia" table="reserva" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="agencia" />
-            </key>
-            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Reserva" />
-        </set>
-        <set name="huespedHabitacions" table="huesped_habitacion" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="cod_huesped" not-null="true" />
-            </key>
-            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.HuespedHabitacion" />
+            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Parte" />
         </set>
         <set name="telefonoPersonas" table="telefono_persona" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="cod_persona" not-null="true" />
+                <column name="fk_persona" not-null="true" />
             </key>
             <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersona" />
+        </set>
+        <set name="trabajadors" table="trabajador" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fk_persona" not-null="true" />
+            </key>
+            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Trabajador" />
+        </set>
+        <set name="clientes" table="cliente" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fk_persona" not-null="true" />
+            </key>
+            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Cliente" />
+        </set>
+        <set name="partes_1" table="parte_persona" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="fk_persona" not-null="true" />
+            </key>
+            <many-to-many entity-name="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Parte">
+                <column name="fk_parte" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="proveedors" table="proveedor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fk_persona" not-null="true" />
+            </key>
+            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Proveedor" />
+        </set>
+        <set name="agencias" table="agencia" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fk_persona" not-null="true" />
+            </key>
+            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Agencia" />
+        </set>
+        <set name="huespeds" table="huesped" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fk_persona" not-null="true" />
+            </key>
+            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Huesped" />
         </set>
     </class>
 </hibernate-mapping>

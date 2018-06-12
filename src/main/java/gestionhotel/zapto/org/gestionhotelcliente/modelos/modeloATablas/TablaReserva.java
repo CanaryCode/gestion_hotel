@@ -30,23 +30,23 @@ public class TablaReserva implements TablaInterface<TablaReserva, Reserva>{
         for (Reserva reserva : listaReservas) {
             String nombreAgencia = "";
             String nombreCliente = "";
-            String numero = "";
-            if (reserva.getNumero() != null) {
-                numero = reserva.getNumero();
+            String codigo = "";
+            if (reserva.getCodigo() != null) {
+                codigo = reserva.getCodigo();
             }
-            if (reserva.getPersonaByAgencia() != null) {
-                nombreAgencia = reserva.getPersonaByAgencia().getJurNombreComercial();
+            if (reserva.getAgencia() != null) {
+                nombreAgencia = reserva.getAgencia().getPersona().getJurNombreComercial();
             }
-            if (reserva.getPersonaByCodCliente() != null) {
-                if (reserva.getPersonaByCodCliente().getEsEmpresa().byteValue() == 1) {
-                    nombreCliente = reserva.getPersonaByCodCliente().getJurNombreComercial();
+            if (reserva.getCliente() != null) {
+                if (reserva.getCliente().getPersona().getEsEmpresa() == true) {
+                    nombreCliente = reserva.getCliente().getPersona().getJurNombreComercial();
                 }else{
-                    nombreCliente = reserva.getPersonaByCodCliente().getNombre()+" "+
-                             reserva.getPersonaByCodCliente().getFisPrimerApellido()+" "+
-                             reserva.getPersonaByCodCliente().getFisSegundoApellido();
+                    nombreCliente = reserva.getCliente().getPersona().getNombre()+" "+
+                             reserva.getCliente().getPersona().getFisPrimerApellido()+" "+
+                             reserva.getCliente().getPersona().getFisSegundoApellido();
                 }
             }
-            TablaReserva tablaReserva = new TablaReserva(nombreAgencia, nombreCliente, numero);
+            TablaReserva tablaReserva = new TablaReserva(nombreAgencia, nombreCliente, codigo);
             listaTablaReserva.add(tablaReserva);
         }
         return listaTablaReserva;

@@ -5,6 +5,7 @@ import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilFormu
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.FormularioInterface;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Huesped;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -45,7 +46,7 @@ public class ControladorHuespedFormulario implements Initializable, FormularioIn
     @FXML
     AnchorPane principal;
     private int modo;
-    private Persona huespedEnVista;
+    private Huesped huespedEnVista;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -108,37 +109,37 @@ public class ControladorHuespedFormulario implements Initializable, FormularioIn
 
     @Override
     public ControladorHuespedFormulario setObjetoEnVista(Object objetoEnVista) {
-        huespedEnVista = (Persona) objetoEnVista;
-        UtilFormularios.ValidarNodo(nombre, huespedEnVista.getNombre());
-        UtilFormularios.ValidarNodo(primerApellido, huespedEnVista.getFisPrimerApellido());
-        UtilFormularios.ValidarNodo(segundoApellido, huespedEnVista.getFisSegundoApellido());
-        UtilFormularios.ValidarNodo(dni, huespedEnVista.getDocumentoNumero());
-        UtilFormularios.ValidarNodo(provincia, huespedEnVista.getProvincia());
-        UtilFormularios.ValidarNodo(codigoPostal, huespedEnVista.getCodPostal());
-        UtilFormularios.ValidarNodo(ciudad, huespedEnVista.getCiudad());
-        UtilFormularios.ValidarNodo(correoElectronico, huespedEnVista.getEmail());
-        UtilFormularios.ValidarNodo(calle, huespedEnVista.getCalle());
-        UtilFormularios.ValidarNodo(comentario, huespedEnVista.getComentario());
-        UtilFormularios.ValidarNodo(numero, huespedEnVista.getNumero());
-        UtilFormularios.ValidarNodo(pasaporte, huespedEnVista.getPasaporte());
-        UtilFormularios.ValidarNodo(paginaWeb, huespedEnVista.getPaginaWeb());
+        huespedEnVista = (Huesped) objetoEnVista;
+        UtilFormularios.ValidarNodo(nombre, huespedEnVista.getPersona().getNombre());
+        UtilFormularios.ValidarNodo(primerApellido, huespedEnVista.getPersona().getFisPrimerApellido());
+        UtilFormularios.ValidarNodo(segundoApellido, huespedEnVista.getPersona().getFisSegundoApellido());
+        UtilFormularios.ValidarNodo(dni, huespedEnVista.getPersona().getNumeroDocumento());
+        UtilFormularios.ValidarNodo(provincia, huespedEnVista.getPersona().getProvincia());
+        UtilFormularios.ValidarNodo(codigoPostal, huespedEnVista.getPersona().getCodPostal());
+        UtilFormularios.ValidarNodo(ciudad, huespedEnVista.getPersona().getCiudad());
+        UtilFormularios.ValidarNodo(correoElectronico, huespedEnVista.getPersona().getEmail());
+        UtilFormularios.ValidarNodo(calle, huespedEnVista.getPersona().getCalle());
+        UtilFormularios.ValidarNodo(comentario, huespedEnVista.getPersona().getComentario());
+        UtilFormularios.ValidarNodo(numero, huespedEnVista.getPersona().getNumero());
+        UtilFormularios.ValidarNodo(pasaporte, huespedEnVista.getPersona().getPasaporte());
+        UtilFormularios.ValidarNodo(paginaWeb, huespedEnVista.getPersona().getPaginaWeb());
         /**
          * --------------------------------------------------------------
          */
-        UtilFormularios.ValidarNodo(nacionalidad, huespedEnVista.getFisNacionalidad());
-        UtilFormularios.ValidarNodo(tratamiento, huespedEnVista.getFisTratamiento());
-        UtilFormularios.ValidarNodo(categoria, huespedEnVista.getCategoria());
-        UtilFormularios.ValidarNodo(estado, huespedEnVista.getEstado());
+        UtilFormularios.ValidarNodo(nacionalidad, huespedEnVista.getPersona().getFisNacionalidad());
+        UtilFormularios.ValidarNodo(tratamiento, huespedEnVista.getPersona().getFisTratamiento());
+        UtilFormularios.ValidarNodo(categoria, huespedEnVista.getPersona().getCategoria());
+        UtilFormularios.ValidarNodo(estado, huespedEnVista.getPersona().getEstado());
         /**
          * --------------------------------------------------------------
          */
-        UtilFormularios.ValidarNodo(discapacitadoSi, huespedEnVista.getFisDiscapacitado());
-        UtilFormularios.ValidarNodo(sexoF, huespedEnVista.getFisSexoHombre());
+        UtilFormularios.ValidarNodo(discapacitadoSi, huespedEnVista.getPersona().getFisDiscapacitado());
+        UtilFormularios.ValidarNodo(sexoF, huespedEnVista.getPersona().getFisSexoHombre());
         /**
          * -----------------------------------------------------------------
          */
-        UtilFormularios.ValidarNodo(fechaNacimiento, huespedEnVista.getFisFechaNacimiento());
-        UtilFormularios.ValidarNodo(fechaExpedicion, huespedEnVista.getFisExpPasaporte());
+        UtilFormularios.ValidarNodo(fechaNacimiento, huespedEnVista.getPersona().getFisFechaNacimiento());
+       // UtilFormularios.ValidarNodo(fechaExpedicion, huespedEnVista.getFisExpPasaporte());
 
         return this;
     }

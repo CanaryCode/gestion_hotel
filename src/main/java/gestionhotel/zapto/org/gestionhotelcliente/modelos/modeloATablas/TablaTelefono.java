@@ -42,15 +42,15 @@ public class TablaTelefono implements TablaInterface<TablaTelefono, TelefonoPers
                 Persona p = telefonoPersona.getPersona();
 
                 if (p != null) {
-                    String comentario = telefonoPersona.getComentario();
+                    String comentario = telefonoPersona.getTelefono().getComentario();
                     String nombre = telefonoPersona.getPersona().getNombre() + " "
                             + telefonoPersona.getPersona().getFisPrimerApellido() + " "
                             + telefonoPersona.getPersona().getFisSegundoApellido();
-                    String tipo = telefonoPersona.getTipo();
-                    String numero = telefonoPersona.getId().getNumTelefono();
+                    String tipo = telefonoPersona.getTelefono().getTipo();
+                    String numero = telefonoPersona.getTelefono().getNumero();
                     TablaTelefono tablaTelefono = new TablaTelefono(numero, nombre, comentario, tipo);
                     Telefonos.add(tablaTelefono);
-                }
+                };
             }
         }
         return Telefonos;

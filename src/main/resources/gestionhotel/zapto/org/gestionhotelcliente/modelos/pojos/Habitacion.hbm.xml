@@ -1,24 +1,18 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 05-jun-2018 18:15:24 by Hibernate Tools 4.3.1 -->
+<!-- Generated 09-jun-2018 9:29:00 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Habitacion" table="habitacion" catalog="gestionhotel" optimistic-lock="version">
-        <id name="numero" type="int">
-            <column name="numero" />
+        <id name="numero" type="string">
+            <column name="numero" length="10" />
             <generator class="assigned" />
         </id>
+        <many-to-one name="trabajador" class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Trabajador" fetch="select">
+            <column name="fk_tipo_habitacion" not-null="true" />
+        </many-to-one>
         <property name="descripcion" type="string">
-            <column name="descripcion" length="300" />
-        </property>
-        <property name="tipo" type="string">
-            <column name="tipo" length="100" />
-        </property>
-        <property name="limpiar" type="java.lang.Byte">
-            <column name="limpiar" />
-        </property>
-        <property name="camaExtra" type="java.lang.Byte">
-            <column name="cama_extra" />
+            <column name="descripcion" length="300" not-null="true" />
         </property>
         <property name="comentario" type="string">
             <column name="comentario" length="300" not-null="true" />
@@ -32,11 +26,5 @@
         <property name="estado" type="string">
             <column name="estado" length="40" not-null="true" />
         </property>
-        <set name="detallesReservas" table="detalles_reserva" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_habitacion" />
-            </key>
-            <one-to-many class="gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva" />
-        </set>
     </class>
 </hibernate-mapping>

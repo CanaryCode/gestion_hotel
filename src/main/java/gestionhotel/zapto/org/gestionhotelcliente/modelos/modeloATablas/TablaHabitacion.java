@@ -41,7 +41,7 @@ public class TablaHabitacion implements TablaInterface<TablaHabitacion, Habitaci
             for (Habitacion habitacion : listaHabitacion) {
                 String numero = String.valueOf(habitacion.getNumero());
                 String vista = habitacion.getVistas();
-                String tipo = habitacion.getTipo();
+               // String tipo = habitacion.getTipo();
                 String cama = habitacion.getTipoCama();
                 TablaHabitacion tH = new TablaHabitacion(vista, numero, tipo, cama);
 

@@ -1,7 +1,7 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.CreadorDeTabla;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Alojamiento;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import javafx.collections.FXCollections;
@@ -13,7 +13,7 @@ import javafx.scene.image.ImageView;
  *
  * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
-public class TablaAlojamiento implements TablaInterface<TablaAlojamiento, DetallesReserva> {
+public class TablaAlojamiento implements TablaInterface<TablaAlojamiento, Alojamiento> {
 
     private LocalDate fechaInicio, fechaFin;
     private int numeroAdultos, numeroChild, numeroBebes;
@@ -48,9 +48,9 @@ public class TablaAlojamiento implements TablaInterface<TablaAlojamiento, Detall
     }
 
     @Override
-    public ObservableList<TablaAlojamiento> getListaObjetosDeTabla(ObservableList<DetallesReserva> listaReservas) {
+    public ObservableList<TablaAlojamiento> getListaObjetosDeTabla(ObservableList<Alojamiento> listaAlojamientos){
         ObservableList<TablaAlojamiento> listaTablaAlojamientos = FXCollections.observableArrayList();
-        for (DetallesReserva detallesReserva : listaReservas) {
+        for (Alojamiento alojamiento : listaAlojamientos) {
 
             LocalDate FechaInicio = null, FechaFin = null;
 
@@ -60,50 +60,50 @@ public class TablaAlojamiento implements TablaInterface<TablaAlojamiento, Detall
                     PrefHabitacion = "", PrefTipoCama = "", PrefVistas = "", PrefTurnoRestaurante = "",
                     PrefTipoRestaurante = "";
             ImageView CamaExtra = null, cuna = null;
-            if (detallesReserva.getFechaEntradaPrevista() != null) {
-                FechaInicio = detallesReserva.getFechaEntradaPrevista().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            if (alojamiento.getFechaEntradaPrevista() != null) {
+                FechaInicio = alojamiento.getFechaEntradaPrevista().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             }
-            if (detallesReserva.getFechaSalidaPrevista() != null) {
-                FechaFin = detallesReserva.getFechaSalidaPrevista().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            if (alojamiento.getFechaSalidaPrevista() != null) {
+                FechaFin = alojamiento.getFechaSalidaPrevista().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             }
-            if (detallesReserva.getNumeroAdultos() != null) {
-                NumeroAdultos = detallesReserva.getNumeroAdultos();
+            if (alojamiento.getNumeroAdultos() != null) {
+                NumeroAdultos = alojamiento.getNumeroAdultos();
             }
-            if (detallesReserva.getNumeroChild() != null) {
-                NumeroChild = detallesReserva.getNumeroChild();
+            if (alojamiento.getNumeroChild() != null) {
+                NumeroChild = alojamiento.getNumeroChild();
             }
-            if (detallesReserva.getNumeroBebes() != null) {
-                NumeroBebes = detallesReserva.getNumeroBebes();
+            if (alojamiento.getNumeroBebes() != null) {
+                NumeroBebes = alojamiento.getNumeroBebes();
             }
-            if (detallesReserva.getPension() != null) {
-                Pension = detallesReserva.getPension();
+            if (alojamiento.getPension() != null) {
+                Pension = alojamiento.getPension();
             }
-            if (detallesReserva.getCamaExtra() != null) {
-                CamaExtra = (detallesReserva.getCamaExtra() == 0) ?  new ImageView(new Image(getClass().getResource("/imagenes/tablas/no.png").toExternalForm())) :
+            if (alojamiento.getCamaExtra() != null) {
+                CamaExtra = (alojamiento.getCamaExtra() == false) ?  new ImageView(new Image(getClass().getResource("/imagenes/tablas/no.png").toExternalForm())) :
                             new ImageView(new Image(getClass().getResource("/imagenes/tablas/si.png").toExternalForm()));
                 
             }
-            if (detallesReserva.getCuna() != null) {
-                cuna = (detallesReserva.getCuna() == 0) ? new ImageView(new Image(getClass().getResource("/imagenes/tablas/no.png").toExternalForm())) :
+            if (alojamiento.getCuna() != null) {
+                cuna = (alojamiento.getCuna() == false) ? new ImageView(new Image(getClass().getResource("/imagenes/tablas/no.png").toExternalForm())) :
                             new ImageView(new Image(getClass().getResource("/imagenes/tablas/si.png").toExternalForm()));
             }
-            if (detallesReserva.getPreferenciaTipoHabitacion() != null) {
-                PrefTipoHabitacion = detallesReserva.getPreferenciaTipoHabitacion();
+            if (alojamiento.getPrefTipoHabitacion() != null) {
+                PrefTipoHabitacion = alojamiento.getPrefTipoHabitacion();
             }
-            if (detallesReserva.getPreferenciaHabitacion() != null) {
-                PrefHabitacion = detallesReserva.getPreferenciaHabitacion();
+            if (alojamiento.getPrefHabitacion() != null) {
+                PrefHabitacion = alojamiento.getPrefHabitacion();
             }
-            if (detallesReserva.getPreferenciaTipoCama() != null) {
-                PrefTipoCama = detallesReserva.getTipoCama();
+            if (alojamiento.getPrefTipoCama() != null) {
+                PrefTipoCama = alojamiento.getTipoCama();
             }
-            if (detallesReserva.getPreferenciaVistas() != null) {
-                PrefVistas = detallesReserva.getPreferenciaVistas();
+            if (alojamiento.getPrefVistas() != null) {
+                PrefVistas = alojamiento.getPrefVistas();
             }
-            if (detallesReserva.getPreferenciaTurnoRestaurante() != null) {
-                PrefTurnoRestaurante = detallesReserva.getPreferenciaTurnoRestaurante();
+            if (alojamiento.getPrefTurnoRestaurante() != null) {
+                PrefTurnoRestaurante = alojamiento.getPrefTurnoRestaurante();
             }
-            if (detallesReserva.getPreferenciaTipoRestaurante() != null) {
-                PrefTipoRestaurante = detallesReserva.getPreferenciaTipoRestaurante();
+            if (alojamiento.getPrefTipoRestaurante() != null) {
+                PrefTipoRestaurante = alojamiento.getPrefTipoRestaurante();
             }
 
             TablaAlojamiento tablaAlojamiento = new TablaAlojamiento(FechaInicio, FechaFin,

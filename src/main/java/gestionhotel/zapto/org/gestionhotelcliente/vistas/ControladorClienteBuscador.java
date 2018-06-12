@@ -9,6 +9,7 @@ import gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.clases.Selec
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaCliente;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Cliente;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersona;
 import java.net.URL;
@@ -73,10 +74,10 @@ public class ControladorClienteBuscador implements Initializable, BuscadorInterf
     private TableView<TablaCliente> tabla;
 
     private ObservableList<TablaCliente> listaTablaClientes = FXCollections.observableArrayList();
-    private ObservableList<Persona> listaAddClientes = FXCollections.observableArrayList();
-    private ObservableList<Persona> listaFiltro = FXCollections.observableArrayList();
+    private ObservableList<Cliente> listaAddClientes = FXCollections.observableArrayList();
+    private ObservableList<Cliente> listaFiltro = FXCollections.observableArrayList();
     private ObservableList<TelefonoPersona> listaAddTelefono = FXCollections.observableArrayList();
-    private Persona ClienteEnVista;
+    private Cliente ClienteEnVista;
 
     private ObservableList<Node> nodosApagables;
 
@@ -218,8 +219,8 @@ public class ControladorClienteBuscador implements Initializable, BuscadorInterf
             UtilBuscador.ResetearCampos(panelPrincipal);
         });
         telefono.setOnAction((e) -> {
-            ObservableList<TelefonoPersona> listaFiltroTelefono = Select.getListaFiltroTelefono(ClienteEnVista);
-            UtilBuscador.abrirTelefono(VentanasFactory.getTelefonoBuscador(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null), listaAddTelefono, Select.getListaFiltroTelefono(ClienteEnVista), Ventanas.MODO_FORMULARIO_LECTURA);
+            ObservableList<TelefonoPersona> listaFiltroTelefono = Select.getListaFiltroTelefono(ClienteEnVista.getPersona());
+            UtilBuscador.abrirTelefono(VentanasFactory.getTelefonoBuscador(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null), listaAddTelefono, Select.getListaFiltroTelefono(ClienteEnVista.getPersona()), Ventanas.MODO_FORMULARIO_LECTURA);
 
         });
 
@@ -241,13 +242,13 @@ public class ControladorClienteBuscador implements Initializable, BuscadorInterf
 
     @Override
     public <T> ControladorClienteBuscador setListaToAdd(ObservableList<T> ListaObjeto) {
-        this.listaAddClientes = (ObservableList<Persona>) ListaObjeto;
+        this.listaAddClientes = (ObservableList<Cliente>) ListaObjeto;
         return this;
     }
 
     @Override
     public <T> ControladorClienteBuscador setFiltro(ObservableList<T> ListaObjeto) {
-        this.listaFiltro = (ObservableList<Persona>) ListaObjeto;
+        this.listaFiltro = (ObservableList<Cliente>) ListaObjeto;
         listaTablaClientes = new TablaCliente().getListaObjetosDeTabla(listaFiltro);
         CreadorDeTabla.generaTabla(panelPrincipal, tabla, listaTablaClientes, new TablaCliente().getListaObjetosColumnas());
         return this;

@@ -1,6 +1,6 @@
 package gestionhotel.zapto.org.gestionhotelcliente.controladores;
 
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import javafx.stage.Modality;
 
@@ -19,9 +19,9 @@ public class VentanasFactory {
      *
      * @return ventana preconfigurada lista para ver
      */
-    public static ObjetoVentana getLogIn() {
-        ObjetoVentana obj = ObjetoVentana.crear("LogIn", Ventanas.LOGIN, null,
-                ObjetoVentana.resourceBundle.getString("windows.logIn"), Modality.NONE, null,Ventanas.NO_DESVANECIBLE);
+    public static Ventana getLogIn() {
+        Ventana obj = Ventana.crear("LogIn", Ventanas.LOGIN, null,
+                Ventana.resourceBundle.getString("windows.logIn"), Modality.NONE, null,Ventanas.NO_DESVANECIBLE);
         return obj;
     }
 
@@ -31,9 +31,9 @@ public class VentanasFactory {
      *
      * @return ventana preconfigurada lista para ver
      */
-    public static ObjetoVentana getPrincipal() {
-        ObjetoVentana obj = ObjetoVentana.crear("Principal", Ventanas.PRINCIPAL,
-                null, ObjetoVentana.resourceBundle.getString("windows.principal"), Modality.NONE, null,Ventanas.NO_DESVANECIBLE);
+    public static Ventana getPrincipal() {
+        Ventana obj = Ventana.crear("Principal", Ventanas.PRINCIPAL,
+                null, Ventana.resourceBundle.getString("windows.principal"), Modality.NONE, null,Ventanas.NO_DESVANECIBLE);
         return obj;
 
     }
@@ -47,9 +47,9 @@ public class VentanasFactory {
      * @param controlador controlador del fxml.
      * @return ventana preconfigurada lista para ver
      */
-    public static ObjetoVentana getHuespedFormulario(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentana.crear("HuespedFormulario", Ventanas.HUESPED_FORMULARIO,
-                owner, ObjetoVentana.resourceBundle.getString("windows.huesped"), modalidad, controlador,Ventanas.DESVANECIBLE);
+    public static Ventana getHuespedFormulario(String owner, Modality modalidad, Object controlador) {
+        Ventana obj = Ventana.crear("HuespedFormulario", Ventanas.HUESPED_FORMULARIO,
+                owner, Ventana.resourceBundle.getString("windows.huesped"), modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
 
@@ -62,8 +62,8 @@ public class VentanasFactory {
      * @param controlador controlador del fxml.
      * @return ventana preconfigurada lista para abrir
      */
-    public static ObjetoVentana getPrevision(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentana.crear("Prevision", Ventanas.PREVISION,
+    public static Ventana getPrevision(String owner, Modality modalidad, Object controlador) {
+        Ventana obj = Ventana.crear("Prevision", Ventanas.PREVISION,
                 owner,"Prevision", modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
@@ -77,9 +77,9 @@ public class VentanasFactory {
      * @param controlador controlador del fxml.
      * @return ventana preconfigurada lista para abrir
      */
-    public static ObjetoVentana getQuienesSomos(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentana.crear("QuienesSomos", Ventanas.QUIENES_SOMOS,
-                owner, ObjetoVentana.resourceBundle.getString("windows.quienesSomos"), modalidad, controlador,Ventanas.DESVANECIBLE);
+    public static Ventana getQuienesSomos(String owner, Modality modalidad, Object controlador) {
+        Ventana obj = Ventana.crear("QuienesSomos", Ventanas.QUIENES_SOMOS,
+                owner, Ventana.resourceBundle.getString("windows.quienesSomos"), modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
 
@@ -92,9 +92,9 @@ public class VentanasFactory {
      * @param controlador controlador del fxml.
      * @return ventana preconfigurada lista para abrir.
      */
-    public static ObjetoVentana getClienteFormulario(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentana.crear("ClienteFormulario", Ventanas.CLIENTE_FORMULARIO,
-                owner, ObjetoVentana.resourceBundle.getString("windows.cliente"), modalidad, controlador,Ventanas.DESVANECIBLE);
+    public static Ventana getClienteFormulario(String owner, Modality modalidad, Object controlador) {
+        Ventana obj = Ventana.crear("ClienteFormulario", Ventanas.CLIENTE_FORMULARIO,
+                owner, Ventana.resourceBundle.getString("windows.cliente"), modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
 
@@ -107,9 +107,9 @@ public class VentanasFactory {
      * @param controlador controlador del fxml.
      * @return ventana preconfigurada lista para abrir.
      */
-    public static ObjetoVentana getReservaFormulario(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentana.crear("ReservaFormulario", Ventanas.RESERVA_FORMULARIO,
-                owner, ObjetoVentana.resourceBundle.getString("windows.addReserva"), modalidad, controlador,Ventanas.DESVANECIBLE);
+    public static Ventana getReservaFormulario(String owner, Modality modalidad, Object controlador) {
+        Ventana obj = Ventana.crear("ReservaFormulario", Ventanas.RESERVA_FORMULARIO,
+                owner, Ventana.resourceBundle.getString("windows.addReserva"), modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
 
@@ -122,9 +122,9 @@ public class VentanasFactory {
      * @param controlador controlador del fxml.
      * @return ventana preconfigurada lista para abrir.
      */
-    public static ObjetoVentana getBuscarHuesped(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentana.crear("HuespedBuscador", Ventanas.HUESPED_BUSCADOR,
-                owner, ObjetoVentana.resourceBundle.getString("windows.huespedBuscador"), modalidad, controlador,Ventanas.DESVANECIBLE);
+    public static Ventana getBuscarHuesped(String owner, Modality modalidad, Object controlador) {
+        Ventana obj = Ventana.crear("HuespedBuscador", Ventanas.HUESPED_BUSCADOR,
+                owner, Ventana.resourceBundle.getString("windows.huespedBuscador"), modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
 
@@ -137,9 +137,9 @@ public class VentanasFactory {
      * @param controlador controlador del fxml.
      * @return ventana preconfigurada lista para abrir.
      */
-    public static ObjetoVentana getBuscarCliente(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentana.crear("ClienteBuscador", Ventanas.CLIENTE_BUSCADOR,
-                owner, ObjetoVentana.resourceBundle.getString("windows.clienteBuscador"), modalidad, controlador,Ventanas.DESVANECIBLE);
+    public static Ventana getBuscarCliente(String owner, Modality modalidad, Object controlador) {
+        Ventana obj = Ventana.crear("ClienteBuscador", Ventanas.CLIENTE_BUSCADOR,
+                owner, Ventana.resourceBundle.getString("windows.clienteBuscador"), modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
 
@@ -152,9 +152,9 @@ public class VentanasFactory {
      * @param controlador controlador del fxml.
      * @return ventana preconfigurada lista para abrir.
      */
-    public static ObjetoVentana getCalculadora(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentana.crear("Calculadora", Ventanas.CALCULADORA,
-                owner, ObjetoVentana.resourceBundle.getString("windows.calculadora"), modalidad, controlador,Ventanas.NO_DESVANECIBLE);
+    public static Ventana getCalculadora(String owner, Modality modalidad, Object controlador) {
+        Ventana obj = Ventana.crear("Calculadora", Ventanas.CALCULADORA,
+                owner, Ventana.resourceBundle.getString("windows.calculadora"), modalidad, controlador,Ventanas.NO_DESVANECIBLE);
         return obj;
     }
 
@@ -167,9 +167,9 @@ public class VentanasFactory {
      * @param controlador controlador del fxml.
      * @return ventana preconfigurada lista para abrir.
      */
-    public static ObjetoVentana getHuespedReserva(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentana.crear("HuespedReserva", Ventanas.HUESPED_RESERVA,
-                owner, ObjetoVentana.resourceBundle.getString("windows.HuespedReserva"), modalidad, controlador,Ventanas.DESVANECIBLE);
+    public static Ventana getHuespedReserva(String owner, Modality modalidad, Object controlador) {
+        Ventana obj = Ventana.crear("HuespedReserva", Ventanas.HUESPED_RESERVA,
+                owner, Ventana.resourceBundle.getString("windows.HuespedReserva"), modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
     /**
@@ -181,8 +181,8 @@ public class VentanasFactory {
      * @param controlador controlador del fxml.
      * @return ventana preconfigurada lista para abrir.
      */
-    public static ObjetoVentana getTelefonoBuscador(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentana.crear("TelefonoBuscador", Ventanas.TELEFONO_BUSCADOR,
+    public static Ventana getTelefonoBuscador(String owner, Modality modalidad, Object controlador) {
+        Ventana obj = Ventana.crear("TelefonoBuscador", Ventanas.TELEFONO_BUSCADOR,
                 owner,"Buscador de teléfonos", modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
@@ -195,8 +195,8 @@ public class VentanasFactory {
      * @param controlador controlador del fxml.
      * @return ventana preconfigurada lista para abrir.
      */
-    public static ObjetoVentana getTelefonoFormulario(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentana.crear("TelefonoFormulario", Ventanas.TELEFONO_FORMULARIO,
+    public static Ventana getTelefonoFormulario(String owner, Modality modalidad, Object controlador) {
+        Ventana obj = Ventana.crear("TelefonoFormulario", Ventanas.TELEFONO_FORMULARIO,
                 owner,"Teléfonos", modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
@@ -210,8 +210,8 @@ public class VentanasFactory {
      * @param controlador controlador del fxml.
      * @return ventana preconfigurada lista para abrir.
      */
-    public static ObjetoVentana getCheckin(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentana.crear("CheckIn", Ventanas.CHECK_IN,
+    public static Ventana getCheckin(String owner, Modality modalidad, Object controlador) {
+        Ventana obj = Ventana.crear("CheckIn", Ventanas.CHECK_IN,
                 owner,"Check-In", modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
@@ -224,8 +224,8 @@ public class VentanasFactory {
      * @param controlador controlador del fxml.
      * @return ventana preconfigurada lista para abrir.
      */
-    public static ObjetoVentana getAlojamientoFormulario(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentana.crear("AlojamientoFormulario", Ventanas.ALOJAMIENTO_FORMULARIO,
+    public static Ventana getAlojamientoFormulario(String owner, Modality modalidad, Object controlador) {
+        Ventana obj = Ventana.crear("AlojamientoFormulario", Ventanas.ALOJAMIENTO_FORMULARIO,
                 owner,"Alojamiento", modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
@@ -238,8 +238,8 @@ public class VentanasFactory {
      * @param controlador controlador del fxml.
      * @return ventana preconfigurada lista para abrir.
      */
-    public static ObjetoVentana getHabitacionFormulario(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentana.crear("HabitacionFormulario", Ventanas.HABITACION_FORMULARIO,
+    public static Ventana getHabitacionFormulario(String owner, Modality modalidad, Object controlador) {
+        Ventana obj = Ventana.crear("HabitacionFormulario", Ventanas.HABITACION_FORMULARIO,
                 owner,"Formulario habitación", modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
@@ -252,8 +252,8 @@ public class VentanasFactory {
      * @param controlador controlador del fxml.
      * @return ventana preconfigurada lista para abrir.
      */
-    public static ObjetoVentana getHabitacionBuscador(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentana.crear("HabitacionBuscador", Ventanas.HABITACION_BUSCADOR,
+    public static Ventana getHabitacionBuscador(String owner, Modality modalidad, Object controlador) {
+        Ventana obj = Ventana.crear("HabitacionBuscador", Ventanas.HABITACION_BUSCADOR,
                 owner,"Buscador Habitación", modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
@@ -266,8 +266,8 @@ public class VentanasFactory {
      * @param controlador controlador del fxml.
      * @return ventana preconfigurada lista para abrir.
      */
-    public static ObjetoVentana getListaVacia(String owner, Modality modalidad, Object controlador) {
-        ObjetoVentana obj = ObjetoVentana.crear("ListaVacia", Ventanas.LISTA_VACIA,
+    public static Ventana getListaVacia(String owner, Modality modalidad, Object controlador) {
+        Ventana obj = Ventana.crear("ListaVacia", Ventanas.LISTA_VACIA,
                 owner,"Lista", modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }

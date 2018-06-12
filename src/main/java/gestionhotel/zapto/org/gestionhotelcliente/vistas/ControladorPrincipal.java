@@ -1,23 +1,21 @@
 package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.clases.Select;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.BarraMenus.Barra;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Fechas;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.Sistema;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaHuesped;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Reserva;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo;
 import gestionhotel.zapto.org.gestionhotelcliente.vistas.reloj.Reloj;
+import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.MenuBar;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -30,14 +28,13 @@ import javafx.stage.Modality;
  * @author Antonio Jesús Pérez Delgado
  */
 public class ControladorPrincipal implements Initializable {
-
+    
     @FXML
-    private MenuItem kardex, reserva, quienesSomos, registroClientes, addReservas,
-            buscadorHuesped, buscadorCliente, huespedesDentro;
+    private MenuBar barra;
     @FXML
     private Label nombreUsuario, pieDePágina, horaActual;
     @FXML
-    private ImageView ImagenUsuario;
+    private ImageView imagenUsuario;
     @FXML
     private HBox panelReloj;
     @FXML
@@ -51,85 +48,15 @@ public class ControladorPrincipal implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-        kardex.setOnAction((ActionEvent event) -> {
-            codigoMenuKardex();
-        });
-
-        reserva.setOnAction((ActionEvent event) -> {
-            codigoMenuReserva();
-        });
-
-        quienesSomos.setOnAction((ActionEvent event) -> {
-            codigoMenuQuienesSomos();
-        });
-        registroClientes.setOnAction((ActionEvent event) -> {
-            codigoMenuRegistroClientes();
-        });
-        addReservas.setOnAction((ActionEvent event) -> {
-            codigoMenuAddReservas();
-        });
-        buscadorHuesped.setOnAction((ActionEvent event) -> {
-            codigoMenuBuscadorHuesped();
-        });
-        buscadorCliente.setOnAction((ActionEvent event) -> {
-            codigoMenuBuscadorCliente();
-        });
-
+        configuraNombreUsuario();
+        configuraFotoUsuario();
+        Barra.creaBarra(barra);
+        
         botonCalculadora.setOnAction((e) -> {
             codigoAbrirCalculadora();
         });
-        huespedesDentro.setOnAction((e) -> {
-            codigoMenuHuespedesDentro();
-        });
+     
         configuracionReloj();
-    }
-
-    private void codigoMenuAddReservas() {
-        ObjetoVentana obj = VentanasFactory.getReservaFormulario(Ventanas.PRINCIPAL, Modality.NONE, null);
-        ((ControladorReservaFormulario) obj.getfXMLLoader().getController()).
-                setObjetoEnVista(new Reserva()).
-                setModo(Ventanas.MODO_FORMULARIO_INSERTAR);
-        obj.ver();
-    }
-
-    private void codigoMenuKardex() {
-        ObjetoVentana obj = VentanasFactory.getClienteFormulario(Ventanas.PRINCIPAL, Modality.NONE, null);
-        obj.ver();
-    }
-
-    private void codigoMenuReserva() {
-        ObjetoVentana obj = VentanasFactory.getPrevision(Ventanas.PRINCIPAL, Modality.NONE, null);
-        ((ControladorPrevision) obj.getfXMLLoader().getController()).
-                setFiltro(Select.getAlojamientosPendientesCheckIn());
-        obj.verReajustable();
-    }
-
-    private void codigoMenuQuienesSomos() {
-        ObjetoVentana obj = VentanasFactory.getQuienesSomos(Ventanas.PRINCIPAL, Modality.NONE, null);
-        obj.verReajustable();
-        ((ControladorQuienesSomos) obj.getfXMLLoader().getController()).reproduceVideo();
-    }
-
-    private void codigoMenuRegistroClientes() {
-        ObjetoVentana obj = VentanasFactory.getClienteFormulario(Ventanas.PRINCIPAL, Modality.NONE, null);
-        obj.ver();
-    }
-
-    private void codigoMenuBuscadorHuesped() {
-        ObjetoVentana obj = VentanasFactory.getBuscarHuesped(Ventanas.PRINCIPAL, Modality.NONE, null);
-        obj.verReajustable();
-
-    }
-
-    private void codigoMenuBuscadorCliente() {
-        ObjetoVentana obj = VentanasFactory.getBuscarCliente(Ventanas.PRINCIPAL, Modality.NONE, null);
-        obj.verReajustable();
-
-    }
-
-    private void creaBarraMenuPrincipal(AnchorPane principal) {
-
     }
 
     private void configuracionReloj() {
@@ -150,19 +77,33 @@ public class ControladorPrincipal implements Initializable {
     }
 
     private void codigoAbrirCalculadora() {
-        ObjetoVentana obj = VentanasFactory.getCalculadora(Ventanas.PRINCIPAL, Modality.NONE, null);
+        Ventana obj = VentanasFactory.getCalculadora(Ventanas.PRINCIPAL, Modality.NONE, null);
         if (obj != null && Ventanas.getVentana(obj.getNombreVentana()) == null) {
             obj.ver();
         }
     }
 
-    private void codigoMenuHuespedesDentro() {
-        ObjetoVentana obj = VentanasFactory.getListaVacia(Ventanas.PRINCIPAL, Modality.NONE, null);
-        ObservableList l = Select.getHuespedesDentro();
-        if (obj != null) {
-            ((ControladorListaVacia) obj.getfXMLLoader().getController()).configuraTabla(new TablaHuesped().getListaObjetosDeTabla(Select.getHuespedesDentro()),
-                    new TablaHuesped().getListaObjetosColumnas(), "Huéspedes dentro");
-            obj.verReajustable();
+    private void configuraNombreUsuario() {
+        String nombre = "", primerApellido = "", segundoApellido = "";
+        if (Sistema.getUsuarioSistema().getPersona().getNombre() != null) {
+            nombre = Sistema.getUsuarioSistema().getPersona().getNombre();
+            if (Sistema.getUsuarioSistema().getPersona().getFisPrimerApellido() != null) {
+                primerApellido = Sistema.getUsuarioSistema().getPersona().getFisPrimerApellido();
+                if (Sistema.getUsuarioSistema().getPersona().getFisSegundoApellido() != null) {
+                    segundoApellido = Sistema.getUsuarioSistema().getPersona().getFisSegundoApellido();
+                }
+                nombreUsuario.setText(nombre + " " + primerApellido + " " + segundoApellido);
+            }
+        } else {
+            nombreUsuario.setText("Nombre usuario desconocido");
         }
     }
+
+    private void configuraFotoUsuario() {
+        byte[] b = Sistema.getUsuarioSistema().getPersona().getFoto();
+        if (b != null) {
+            imagenUsuario.setImage(new Image(new ByteArrayInputStream(b)));
+        }
+    }
+   
 }

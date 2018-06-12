@@ -5,11 +5,11 @@ import gestionhotel.zapto.org.gestionhotelcliente.controladores.ConfiguradorIdio
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.LimitadorDeCaracteres;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.clases.Select;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.ObjetoVentana;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Sistema;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Usuario;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Trabajador;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -88,7 +88,7 @@ public class ControladorLogIn implements Initializable {
             evaneceMensaje();
             reproduceVideo();
             Locale.setDefault(ConfiguradorIdioma.cambiaIdioma(lenguaje.getSelectionModel().getSelectedItem().toString()));
-            ObjetoVentana obj = VentanasFactory.getPrincipal();
+            Ventana obj = VentanasFactory.getPrincipal();
             if (obj != null) {
                 Timeline t = new Timeline(new KeyFrame(Duration.seconds(8), (event) -> {
                     obj.verReajustable();
@@ -103,7 +103,7 @@ public class ControladorLogIn implements Initializable {
 
     private boolean loginValido() {
         boolean resultado = false;
-        Usuario usuarioSistema = null;
+        Trabajador usuarioSistema = null;
         String user = this.usuario.getText();
         String passw = this.password.getText();
         usuarioSistema = Select.isUserAndPasswordRight(user, passw);

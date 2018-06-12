@@ -2,12 +2,12 @@ package gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.clases;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.Conexiones;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.DetallesReserva;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Alojamiento;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Habitacion;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.HuespedHabitacion;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Huesped;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersona;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Usuario;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Trabajador;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -74,8 +74,8 @@ public class Select {
 
     public static ObservableList<TelefonoPersona> getListaFiltroTelefono(Persona personaEnVista) {
         ObservableList<TelefonoPersona> lista = FXCollections.observableArrayList();
-        for (TelefonoPersona t : PruebasModelo.getListaDeTelefono()) {
-            if (t.getId().getCodPersona() == personaEnVista.getCodPersona()) {
+        for (TelefonoPersona t : PruebasModelo.getListaDeTelefonoPersona()) {
+            if (t.getPersona().getId() == personaEnVista.getId()) {
                 lista.add(t);
             }
         }
@@ -83,46 +83,46 @@ public class Select {
         return lista;
     }
 
-    public static Usuario isUserAndPasswordRight(String usuario, String password) {
-        Usuario user = null;
-        for (Usuario u : PruebasModelo.getListaDeUsuarios()) {
-            if (u.getNombreUsuario().equals(usuario) && u.getPassUsuario().equals(password)) {
-                user = u;
-                break;
+    public static Trabajador isUserAndPasswordRight(String usuario, String password) {
+        Trabajador user = null;
+        for (Trabajador t : PruebasModelo.getListaDeTrabajadores()) {
+            if (t.getUsuario() != null || t.getPassword() != null) {
+                if (t.getUsuario().equals(usuario) && t.getPassword().equals(password)) {
+                    user = t;
+                    break;
+                }
             }
         }
         return user;
     }
 
-    public static ObservableList<Persona> getHuespedesDentro() {
-        return PruebasModelo.getListaDeHuespedesDentro();
+    public static ObservableList<Huesped> getHuespedesDentro() {
+        ObservableList<Huesped> lista = FXCollections.observableArrayList();
+        for (Huesped h : PruebasModelo.getListaDeHuespedes()) {
+            if(h.isDentro()){
+                lista.add(h);
+            }
+        }
+        return lista;
     }
 
-    public static ObservableList<DetallesReserva> getAlojamientosPendientesCheckIn() {
+    public static ObservableList<Alojamiento> getAlojamientosPendientesCheckIn() {
         return PruebasModelo.getListaDeAlojamientos();
     }
 
-    public static boolean realizaCheckin(DetallesReserva detallesReserva,
-            Habitacion habitacion, ObservableList<Persona> huespedes) {
-        
-        for (DetallesReserva d : PruebasModelo.getListaDeAlojamientos()) {
-            if (d.equals(detallesReserva)) {
-                PruebasModelo.getListaDeAlojamientos().remove(d);
-                int contador = 1;
-                for (Persona huesped : huespedes) {
-                    HuespedHabitacion huespedHabitacion = new HuespedHabitacion();
-                    huespedHabitacion.setPersona(huesped);
-                    huespedHabitacion.setDetallesReserva(detallesReserva);
-                    huespedHabitacion.setComentario("comentario " + contador);
-                    PruebasModelo.getListaDeHuespedesDentro().add(huesped);
-                    PruebasModelo.getListaDeHuespedes().remove(huesped);
-                    PruebasModelo.getListaDeHuespedes().remove(huesped);
-                    contador++;
+    public static boolean realizaCheckin(Alojamiento alojamiento,
+            Habitacion habitacion, ObservableList<Huesped> huespedes) {
+
+        for (Alojamiento a : PruebasModelo.getListaDeAlojamientos()) {
+            if (a.equals(alojamiento)) {
+                PruebasModelo.getListaDeAlojamientos().remove(a);
+                for (Huesped huesped : huespedes) {
+                    huesped.setDentro(true);
                 }
-                
+
                 habitacion.setEstado(Registro.ListaEstadoHabitacion.get(1));
                 PruebasModelo.getListaDeHabitaciones().remove(habitacion);
-                
+
                 break;
             }
         }
@@ -130,24 +130,36 @@ public class Select {
         alert.show();
         return true;
     }
-    public static ObservableList<Persona> getHuespedesFuera(){
-        return PruebasModelo.getListaDeHuespedesFuera();
-    }
-    public static ObservableList<Habitacion> getHabitacionesDesOcupadas(){
-        ObservableList<Habitacion> lista =FXCollections.observableArrayList();
-        ObservableList<Habitacion> listaTodas =PruebasModelo.getListaDeHabitaciones();
-        for (Habitacion hab : listaTodas) {
-            if(hab.getEstado().equals(Registro.ListaEstadoHabitacion.get(2)))
-            lista.add(hab);
+
+    public static ObservableList<Huesped> getHuespedesFuera() {
+        ObservableList<Huesped> lista = FXCollections.observableArrayList();
+
+        for (Huesped huesped : PruebasModelo.getListaDeHuespedes()) {
+            if (!huesped.isDentro()) {
+                lista.add(huesped);
+            }
         }
         return lista;
     }
-    public static ObservableList<Habitacion> getHabitacionesOcupadas(){
-        ObservableList<Habitacion> lista =PruebasModelo.getListaDeHabitaciones();
-        ObservableList<Habitacion> listaTodas =PruebasModelo.getListaDeHabitaciones();
+
+    public static ObservableList<Habitacion> getHabitacionesDesOcupadas() {
+        ObservableList<Habitacion> lista = FXCollections.observableArrayList();
+        ObservableList<Habitacion> listaTodas = PruebasModelo.getListaDeHabitaciones();
         for (Habitacion hab : listaTodas) {
-            if(hab.getEstado().equals(Registro.ListaEstadoHabitacion.get(1)))
-            lista.add(hab);
+            if (hab.getEstado().equals(Registro.ListaEstadoHabitacion.get(2))) {
+                lista.add(hab);
+            }
+        }
+        return lista;
+    }
+
+    public static ObservableList<Habitacion> getHabitacionesOcupadas() {
+        ObservableList<Habitacion> lista = PruebasModelo.getListaDeHabitaciones();
+        ObservableList<Habitacion> listaTodas = PruebasModelo.getListaDeHabitaciones();
+        for (Habitacion hab : listaTodas) {
+            if (hab.getEstado().equals(Registro.ListaEstadoHabitacion.get(1))) {
+                lista.add(hab);
+            }
         }
         return lista;
     }
