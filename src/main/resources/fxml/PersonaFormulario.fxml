@@ -19,13 +19,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="principal" prefWidth="700.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorClienteFormulario">
+<AnchorPane id="AnchorPane" fx:id="principal" styleClass="mainFxmlClass" stylesheets="@../styles/estilos.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorPersonaFormulario">
    <children>
-      <VBox prefHeight="469.0" prefWidth="680.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+      <VBox layoutX="10.0" layoutY="10.0" prefHeight="468.0" prefWidth="680.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
          <children>
             <TabPane fx:id="tabPanel" prefHeight="140.0" prefWidth="680.0" tabClosingPolicy="UNAVAILABLE">
-              <tabs>
-                <Tab fx:id="tabPersona" text="%tab.persona">
+               <tabs>
+                  <Tab fx:id="tabPersona" text="%tab.persona">
                      <content>
                         <AnchorPane fx:id="panelPersona">
                            <children>
@@ -109,10 +109,10 @@
                            </children>
                         </AnchorPane>
                      </content>
-                </Tab>
-                <Tab fx:id="tabEmpresa" text="%tab.empresa">
-                  <content>
-                    <AnchorPane fx:id="panelEmpresa">
+                  </Tab>
+                  <Tab fx:id="tabEmpresa" text="%tab.empresa">
+                     <content>
+                        <AnchorPane fx:id="panelEmpresa">
                            <children>
                               <VBox layoutX="67.0" layoutY="45.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
@@ -156,9 +156,9 @@
                               </VBox>
                            </children>
                         </AnchorPane>
-                  </content>
-                </Tab>
-              </tabs>
+                     </content>
+                  </Tab>
+               </tabs>
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
@@ -253,13 +253,13 @@
                </VBox.margin>
             </GridPane>
             <GridPane prefHeight="72.0" prefWidth="680.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="333.0" minWidth="10.0" prefWidth="113.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="576.0" minWidth="10.0" prefWidth="567.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="333.0" minWidth="10.0" prefWidth="113.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="576.0" minWidth="10.0" prefWidth="567.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
                <children>
                   <Label styleClass="etiquetaNormal" text="%label.textArea.comentario" textFill="WHITE" />
                   <AnchorPane GridPane.columnIndex="1">
@@ -300,7 +300,8 @@
                            <styleClass>
                               <String fx:value="baseBotonesNaranja" />
                               <String fx:value="botonLimpiar" />
-                           </styleClass></Button>
+                           </styleClass>
+                        </Button>
                      </children>
                      <GridPane.margin>
                         <Insets bottom="20.0" />

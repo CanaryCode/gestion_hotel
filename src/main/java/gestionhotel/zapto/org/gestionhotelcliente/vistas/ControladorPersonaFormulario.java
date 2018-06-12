@@ -5,7 +5,7 @@ import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilFormu
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.FormularioInterface;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Cliente;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -25,11 +25,10 @@ import javafx.scene.layout.AnchorPane;
 /**
  * FXML Controller class
  *
- * @author Antonio Jesús Pérez Delgado
+ * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
-public class ControladorClienteFormulario implements Initializable, FormularioInterface {
-
-    @FXML
+public class ControladorPersonaFormulario implements Initializable, FormularioInterface  {
+  @FXML
     private TextField nombre, primerApellido, segundoApellido, calle, numero, provincia, ciudad,
             correoElectronico, codigoPostal, cif, nombreEmpresa, paginaWeb,
             dni;
@@ -56,10 +55,10 @@ public class ControladorClienteFormulario implements Initializable, FormularioIn
     @FXML
     private Tab tabPersona, tabEmpresa;
 
-    public ControladorClienteFormulario() {
+    public ControladorPersonaFormulario() {
     }
     private int modoFormulario;
-    private Cliente clienteEnVista;
+    private Persona personaEnVista;
     private ObservableList listaBotones;
 
     @Override
@@ -123,42 +122,42 @@ public class ControladorClienteFormulario implements Initializable, FormularioIn
     }
 
     @Override
-    public ControladorClienteFormulario setObjetoEnVista(Object objetoEnVista) {
-        clienteEnVista = (Cliente) objetoEnVista;
+    public ControladorPersonaFormulario setObjetoEnVista(Object objetoEnVista) {
+        personaEnVista = (Persona) objetoEnVista;
         //---------------------------------------------------------------------------------
-        if (clienteEnVista.getPersona().getEsEmpresa()!=null&&clienteEnVista.getPersona().getEsEmpresa() == false) {
-            UtilFormularios.ValidarNodo(nombre, clienteEnVista.getPersona().getNombre());
-            UtilFormularios.ValidarNodo(sexoM, clienteEnVista.getPersona().getFisSexoHombre());
-            UtilFormularios.ValidarNodo(fechaNacimiento, clienteEnVista.getPersona().getFisFechaNacimiento());
-            UtilFormularios.ValidarNodo(tratamiento, clienteEnVista.getPersona().getFisTratamiento());
-            UtilFormularios.ValidarNodo(nacionalidad, clienteEnVista.getPersona().getFisNacionalidad());
-            UtilFormularios.ValidarNodo(primerApellido, clienteEnVista.getPersona().getFisPrimerApellido());
-            UtilFormularios.ValidarNodo(segundoApellido, clienteEnVista.getPersona().getFisSegundoApellido());
-            UtilFormularios.ValidarNodo(dni, clienteEnVista.getPersona().getNumeroDocumento());
+        if (personaEnVista.getEsEmpresa()!=null&&personaEnVista.getEsEmpresa() == false) {
+            UtilFormularios.ValidarNodo(nombre, personaEnVista.getNombre());
+            UtilFormularios.ValidarNodo(sexoM, personaEnVista.getFisSexoHombre());
+            UtilFormularios.ValidarNodo(fechaNacimiento, personaEnVista.getFisFechaNacimiento());
+            UtilFormularios.ValidarNodo(tratamiento, personaEnVista.getFisTratamiento());
+            UtilFormularios.ValidarNodo(nacionalidad, personaEnVista.getFisNacionalidad());
+            UtilFormularios.ValidarNodo(primerApellido, personaEnVista.getFisPrimerApellido());
+            UtilFormularios.ValidarNodo(segundoApellido, personaEnVista.getFisSegundoApellido());
+            UtilFormularios.ValidarNodo(dni, personaEnVista.getNumeroDocumento());
         } else {
-            UtilFormularios.ValidarNodo(cif, clienteEnVista.getPersona().getNumeroDocumento());
-            UtilFormularios.ValidarNodo(razonSocial, clienteEnVista.getPersona().getJurRazonSocial());
-            UtilFormularios.ValidarNodo(nombreEmpresa, clienteEnVista.getPersona().getJurNombreComercial());
+            UtilFormularios.ValidarNodo(cif, personaEnVista.getNumeroDocumento());
+            UtilFormularios.ValidarNodo(razonSocial, personaEnVista.getJurRazonSocial());
+            UtilFormularios.ValidarNodo(nombreEmpresa, personaEnVista.getJurNombreComercial());
         }
         //------------------------------------------------------------------------------
-        UtilFormularios.ValidarNodo(provincia, clienteEnVista.getPersona().getProvincia());
-        UtilFormularios.ValidarNodo(codigoPostal, clienteEnVista.getPersona().getCodPostal());
-        UtilFormularios.ValidarNodo(correoElectronico, clienteEnVista.getPersona().getEmail());
-        UtilFormularios.ValidarNodo(calle, clienteEnVista.getPersona().getCalle());
-        UtilFormularios.ValidarNodo(ciudad, clienteEnVista.getPersona().getCiudad());
-        UtilFormularios.ValidarNodo(comentario, clienteEnVista.getPersona().getComentario());
-        UtilFormularios.ValidarNodo(numero, clienteEnVista.getPersona().getNumero());
-        UtilFormularios.ValidarNodo(paginaWeb, clienteEnVista.getPersona().getPaginaWeb());
+        UtilFormularios.ValidarNodo(provincia, personaEnVista.getProvincia());
+        UtilFormularios.ValidarNodo(codigoPostal, personaEnVista.getCodPostal());
+        UtilFormularios.ValidarNodo(correoElectronico, personaEnVista.getEmail());
+        UtilFormularios.ValidarNodo(calle, personaEnVista.getCalle());
+        UtilFormularios.ValidarNodo(ciudad, personaEnVista.getCiudad());
+        UtilFormularios.ValidarNodo(comentario, personaEnVista.getComentario());
+        UtilFormularios.ValidarNodo(numero, personaEnVista.getNumero());
+        UtilFormularios.ValidarNodo(paginaWeb, personaEnVista.getPaginaWeb());
         //----------------------------------------------------------------------------
-        UtilFormularios.ValidarNodo(estado, clienteEnVista.getPersona().getEstado());
-        UtilFormularios.ValidarNodo(categoria, clienteEnVista.getPersona().getCategoria());
+        UtilFormularios.ValidarNodo(estado, personaEnVista.getEstado());
+        UtilFormularios.ValidarNodo(categoria, personaEnVista.getCategoria());
         // ----------------------------------------------------------------------------
-        UtilFormularios.ValidarNodo(tabPanel, clienteEnVista.getPersona().getEsEmpresa());
+        UtilFormularios.ValidarNodo(tabPanel, personaEnVista.getEsEmpresa());
         return this;
     }
 
     @Override
-    public ControladorClienteFormulario setModo(int modoFormulario) {
+    public ControladorPersonaFormulario setModo(int modoFormulario) {
         this.modoFormulario = modoFormulario;
         UtilFormularios.configurarModo(Ventanas.CLIENTE_FORMULARIO,modoFormulario, aceptar, reseteaCampos, principal);
         return this;

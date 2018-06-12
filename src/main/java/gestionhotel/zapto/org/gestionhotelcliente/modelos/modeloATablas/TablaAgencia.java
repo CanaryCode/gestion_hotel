@@ -32,8 +32,8 @@ public class TablaAgencia implements TablaInterface<TablaAgencia, Agencia> {
         lista.add(new CreadorDeTabla("Calle", "calle", 100));
         lista.add(new CreadorDeTabla("Número", "numero", 100));
         lista.add(new CreadorDeTabla("Código postal", "codigoPostal", 100));
-        lista.add(new CreadorDeTabla("Correo electrónico", "email", 100));
-        lista.add(new CreadorDeTabla("Página web", "paginaWeb", 100));
+        lista.add(new CreadorDeTabla("Correo electrónico", "email", 200));
+        lista.add(new CreadorDeTabla("Página web", "paginaWeb", 200));
 
         return lista;
     }

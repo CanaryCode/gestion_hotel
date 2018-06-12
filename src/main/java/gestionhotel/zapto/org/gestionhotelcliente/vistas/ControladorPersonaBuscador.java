@@ -5,11 +5,11 @@ import gestionhotel.zapto.org.gestionhotelcliente.controladores.LimitadorDeCarac
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBuscador;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.BuscadorInterface;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.clases.Select;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaCliente;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Cliente;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.clases.Select;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaPersona;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersona;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -34,9 +34,7 @@ import javafx.stage.Modality;
  *
  * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
-
-
-public class ControladorClienteBuscador implements Initializable, BuscadorInterface {
+public class ControladorPersonaBuscador implements Initializable, BuscadorInterface {
 
     @FXML
     private TextField nombre, primerApellido, segundoApellido, dni, nombreEmpresa,
@@ -62,13 +60,13 @@ public class ControladorClienteBuscador implements Initializable, BuscadorInterf
             toggleCiudad, toggleCalle, toggleNumero, toggleCodigoPostal,
             togglePaginaWeb, toggleEmail, toggleCategoria;
     @FXML
-    private TableView<TablaCliente> tabla;
+    private TableView<TablaPersona> tabla;
 
-    private ObservableList<TablaCliente> listaTablaClientes = FXCollections.observableArrayList();
-    private ObservableList<Cliente> listaAddClientes = FXCollections.observableArrayList();
-    private ObservableList<Cliente> listaFiltro = FXCollections.observableArrayList();
+    private ObservableList<TablaPersona> listaTablaPersona = FXCollections.observableArrayList();
+    private ObservableList<Persona> listaAddPersona = FXCollections.observableArrayList();
+    private ObservableList<Persona> listaFiltro = FXCollections.observableArrayList();
     private ObservableList<TelefonoPersona> listaAddTelefono = FXCollections.observableArrayList();
-    private Cliente ClienteEnVista;
+    private Persona PersonaEnVista;
 
     private ObservableList<Node> nodosApagables;
 
@@ -195,30 +193,30 @@ public class ControladorClienteBuscador implements Initializable, BuscadorInterf
         });
 
         crear.setOnAction((e) -> {
-            UtilBuscador.accionCrear(VentanasFactory.getClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null));
+            UtilBuscador.accionCrear(VentanasFactory.getPersonaFormulario(Ventanas.PERSONA_BUSCADOR ,Modality.APPLICATION_MODAL, null));
         });
         actualizar.setOnAction((e) -> {
-            UtilBuscador.accionActualizar(VentanasFactory.getClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null), ClienteEnVista);
+            UtilBuscador.accionActualizar(VentanasFactory.getPersonaFormulario(Ventanas.PERSONA_BUSCADOR, Modality.APPLICATION_MODAL, null), PersonaEnVista);
         });
         buscar.setOnAction((e) -> {
             //--------------------------
         });
         seleccionar.setOnAction((e) -> {
-            UtilBuscador.accionSeleccionar(listaAddClientes, ClienteEnVista, Ventanas.CLIENTE_BUSCADOR);
+            UtilBuscador.accionSeleccionar(listaAddPersona, PersonaEnVista, Ventanas.PERSONA_BUSCADOR);
         });
         resetearCampos.setOnAction((e) -> {
             UtilBuscador.ResetearCampos(panelPrincipal);
         });
         telefono.setOnAction((e) -> {
-            ObservableList<TelefonoPersona> listaFiltroTelefono = Select.getListaFiltroTelefono(ClienteEnVista.getPersona());
-            UtilBuscador.abrirTelefono(VentanasFactory.getTelefonoBuscador(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null), listaAddTelefono, Select.getListaFiltroTelefono(ClienteEnVista.getPersona()), Ventanas.MODO_FORMULARIO_LECTURA);
+            ObservableList<TelefonoPersona> listaFiltroTelefono = Select.getListaFiltroTelefono(PersonaEnVista);
+            UtilBuscador.abrirTelefono(VentanasFactory.getTelefonoBuscador(Ventanas.PERSONA_BUSCADOR, Modality.APPLICATION_MODAL, null), listaAddTelefono, Select.getListaFiltroTelefono(PersonaEnVista), Ventanas.MODO_FORMULARIO_LECTURA);
 
         });
 
         //---------------------------------------------------------------------
         tabla.setOnMouseClicked((event) -> {
-            ClienteEnVista = UtilBuscador.onMouseClickedOnTable(tabla, event, VentanasFactory.getClienteFormulario(Ventanas.CLIENTE_BUSCADOR, Modality.APPLICATION_MODAL, null),
-                    ClienteEnVista, listaFiltro, seleccionar,
+            PersonaEnVista = UtilBuscador.onMouseClickedOnTable(tabla, event, VentanasFactory.getPersonaFormulario(Ventanas.PERSONA_BUSCADOR, Modality.APPLICATION_MODAL, null),
+                    PersonaEnVista, listaFiltro, seleccionar,
                     actualizar, telefono, borrar);
         });
         //----------------------------------------------------------------------------------------
@@ -226,22 +224,22 @@ public class ControladorClienteBuscador implements Initializable, BuscadorInterf
     }
 
     @Override
-    public ControladorClienteBuscador setModo(int modo) {
+    public ControladorPersonaBuscador setModo(int modo) {
         this.modo = modo;
         return this;
     }
 
     @Override
-    public <T> ControladorClienteBuscador setListaToAdd(ObservableList<T> ListaObjeto) {
-        this.listaAddClientes = (ObservableList<Cliente>) ListaObjeto;
+    public <T> ControladorPersonaBuscador setListaToAdd(ObservableList<T> ListaObjeto) {
+        this.listaAddPersona = (ObservableList<Persona>) ListaObjeto;
         return this;
     }
 
     @Override
-    public <T> ControladorClienteBuscador setFiltro(ObservableList<T> ListaObjeto) {
-        this.listaFiltro = (ObservableList<Cliente>) ListaObjeto;
-        listaTablaClientes = new TablaCliente().getListaObjetosDeTabla(listaFiltro);
-        CreadorDeTabla.generaTabla(panelPrincipal, tabla, listaTablaClientes, new TablaCliente().getListaObjetosColumnas());
+    public <T> ControladorPersonaBuscador setFiltro(ObservableList<T> ListaObjeto) {
+        this.listaFiltro = (ObservableList<Persona>) ListaObjeto;
+        listaTablaPersona = new TablaPersona().getListaObjetosDeTabla(listaFiltro);
+        CreadorDeTabla.generaTabla(panelPrincipal, tabla, listaTablaPersona, new TablaPersona().getListaObjetosColumnas());
         return this;
     }
 }

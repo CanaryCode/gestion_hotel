@@ -14,13 +14,13 @@ public class Ventanas {
     /**
      * todas de las ventanas de la app
      */
-    public static final String RESERVA_FORMULARIO = "Reservaformulario", CLIENTE_BUSCADOR = "ClienteBuscador", LOGIN = "LogIn",
-            HUESPED_FORMULARIO = "HuespedFormulario", HUESPED_BUSCADOR = "HuespedBuscador", PREVISION=  "Prevision",
-            CLIENTE_FORMULARIO = "ClienteFormulario", HUESPED_RESERVA = "HuespedReserva", PRINCIPAL = "Principal",
-            QUIENES_SOMOS = "QuienesSomos", CALCULADORA = "Calculadora",TELEFONO_BUSCADOR="telefonoBuscador",
-            TELEFONO_FORMULARIO="TelefonoFormulario",LISTA_VACIA="listaVacia",CHECK_IN="CheckIn",
-            ALOJAMIENTO_FORMULARIO="Alojamiento",HABITACION_FORMULARIO="HabitacionFormulario",
-            HABITACION_BUSCADOR="HabitacionBuscador";
+    public static final String RESERVA_FORMULARIO = "reservaformulario", CLIENTE_BUSCADOR = "clienteBuscador", LOGIN = "logIn",
+            HUESPED_FORMULARIO = "huespedFormulario", HUESPED_BUSCADOR = "huespedBuscador", PREVISION=  "prevision",
+            CLIENTE_FORMULARIO = "clienteFormulario", HUESPED_RESERVA = "huespedReserva", PRINCIPAL = "principal",
+            QUIENES_SOMOS = "quienesSomos", CALCULADORA = "calculadora",TELEFONO_BUSCADOR="telefonoBuscador",
+            TELEFONO_FORMULARIO="telefonoFormulario",LISTA_VACIA="listaVacia",CHECK_IN="checkIn",
+            ALOJAMIENTO_FORMULARIO="alojamiento",HABITACION_FORMULARIO="habitacionFormulario",
+            HABITACION_BUSCADOR="habitacionBuscador",PERSONA_BUSCADOR="personaBuscador",PERSONA_FORMULARIO="personaFormulario";
     
     /**
      * modos en los que se puede abrir una ventana se modifica en el controlador de la misma.

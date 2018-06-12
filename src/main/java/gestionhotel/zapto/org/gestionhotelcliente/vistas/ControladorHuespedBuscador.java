@@ -8,7 +8,6 @@ import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interface
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.clases.Select;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaHuesped;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Huesped;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersona;
@@ -136,7 +135,7 @@ public class ControladorHuespedBuscador implements Initializable, BuscadorInterf
             UtilBuscador.apagaToggle(toggleExpPasaporte, fechaExpedicion, panelPrincipal, nodosApagables);
         });
         //-------------------------------------------------------------------------
-        UtilBuscador.iniciaComboBox(categoria, Registro.ListaCategoriaCliente);
+        UtilBuscador.iniciaComboBox(categoria, Registro.ListaCategoriaPersona);
         UtilBuscador.iniciaComboBox(tratamiento, Registro.ListaTratamiento);
         UtilBuscador.iniciaComboBox(nacionalidad, Registro.listaPaises);
         UtilBuscador.iniciaComboBox(estado, Registro.listaPaises);

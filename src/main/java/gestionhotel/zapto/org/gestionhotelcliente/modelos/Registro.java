@@ -43,11 +43,6 @@ public class Registro {
 
     public static final ObservableList<String> listaPaises = FXCollections.observableArrayList(arrayPaises);
 
-    private static final String[] arrayCategoria = {
-        "desconocido", "Normal", "V.I.P", "Especial", "Repetidor", "Otro"
-    };
-    public static final ObservableList<String> listaCategoriaHuesped = FXCollections.observableArrayList(arrayCategoria);
-
     private static String[] arrayPension = {
         "desconocido", "M.P.", "Completa", "Alo Y Des", "Otro"
     };
@@ -64,17 +59,17 @@ public class Registro {
     public static final ObservableList<String> ListaLenguajes = FXCollections.observableArrayList(lenguajes);
 
     private static final String[] razonSocial = {
-        "desconocido", "Emp. Individual", "S.L", "S.L.N.E", "S.A", "COOP", "C.B", "Otro"
+        "Desconocido", "Emp. Individual", "S.L", "S.L.N.E", "S.A", "COOP", "C.B", "Otro"
     };
     public static final ObservableList<String> ListaRazonSocial = FXCollections.observableArrayList(razonSocial);
 
-    private static final String[] categoriaCliente = {
-        "desconocido", "Especial", "Mongolo", "Mongolo profundo", "Otro"
+    private static final String[] categoriaPersona = {
+        "Desconocido", "Especial", "Mongolo", "Mongolo profundo", "Otro"
     };
-    public static final ObservableList<String> ListaCategoriaCliente = FXCollections.observableArrayList(categoriaCliente);
+    public static final ObservableList<String> ListaCategoriaPersona = FXCollections.observableArrayList(categoriaPersona);
 
     private static final String[] numeroPersonas = {
-        "desconocido", "1", "2", "3", "4", "5"
+        "Desconocido", "1", "2", "3", "4", "5"
     };
     public static final ObservableList<String> ListaNumeroPersonas = FXCollections.observableArrayList(numeroPersonas);
 

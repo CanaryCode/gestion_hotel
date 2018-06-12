@@ -6,7 +6,6 @@ import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interface
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Huesped;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -51,7 +50,7 @@ public class ControladorHuespedFormulario implements Initializable, FormularioIn
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         UtilFormularios.iniciaComboBox(tratamiento, Registro.ListaTratamiento);
-        UtilFormularios.iniciaComboBox(categoria, Registro.listaCategoriaHuesped);
+        UtilFormularios.iniciaComboBox(categoria, Registro.ListaCategoriaPersona);
         UtilFormularios.iniciaComboBox(nacionalidad, Registro.listaPaises);
         UtilFormularios.iniciaComboBox(estado, Registro.listaPaises);
         //-----------------------------------------------------------------------

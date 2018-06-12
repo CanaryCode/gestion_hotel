@@ -271,4 +271,32 @@ public class VentanasFactory {
                 owner,"Lista", modalidad, controlador,Ventanas.DESVANECIBLE);
         return obj;
     }
+    /**
+     * abre la ventana "Telefono buscador". Se apoya en las clases privadas para
+     * configurarla.
+     *
+     * @param owner ventana padre.
+     * @param modalidad modalidad de esta ventana (modal,normal, etc).
+     * @param controlador controlador del fxml.
+     * @return ventana preconfigurada lista para abrir.
+     */
+    public static Ventana getPersonaBuscador(String owner, Modality modalidad, Object controlador) {
+        Ventana obj = Ventana.crear("PersonaBuscador", Ventanas.PERSONA_BUSCADOR,
+                owner,"Persona Buscasor", modalidad, controlador,Ventanas.DESVANECIBLE);
+        return obj;
+    }
+    /**
+     * abre la ventana "Telefono buscador". Se apoya en las clases privadas para
+     * configurarla.
+     *
+     * @param owner ventana padre.
+     * @param modalidad modalidad de esta ventana (modal,normal, etc).
+     * @param controlador controlador del fxml.
+     * @return ventana preconfigurada lista para abrir.
+     */
+    public static Ventana getPersonaFormulario(String owner, Modality modalidad, Object controlador) {
+        Ventana obj = Ventana.crear("PersonaFormulario", Ventanas.PERSONA_FORMULARIO,
+                owner,"Persona Formulario", modalidad, controlador,Ventanas.DESVANECIBLE);
+        return obj;
+    }
 }

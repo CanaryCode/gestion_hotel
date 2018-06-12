@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -29,21 +28,6 @@
                </VBox.margin>
             </AnchorPane>
             <TableView fx:id="tablaAgencia" prefHeight="70.0">
-               <columns>
-                  <TableColumn fx:id="tableColumnRazonSocialAgencia" prefWidth="100.0" text="Razón social" />
-                  <TableColumn fx:id="tableColumnDocumentoNumeroAgencia" prefWidth="100.0" text="NumeroDocumento" />
-                  <TableColumn fx:id="tableColumnNombreComercialAgencia" prefWidth="100.0" text="Nombre comercial" />
-                  <TableColumn fx:id="tableColumnNombreAgencia" prefWidth="100.0" text="Nombre" />
-                  <TableColumn fx:id="tableColumnCategoriaAgencia" prefWidth="100.0" text="Categoría" />
-                  <TableColumn fx:id="tableColumnEstadoAgencia" prefWidth="100.0" text="Estado" />
-                  <TableColumn fx:id="tableColumnProvinciaAgencia" minWidth="-1.0" prefWidth="100.0" text="Provincia" />
-                  <TableColumn fx:id="tableColumnCiudadAgencia" prefWidth="100.0" text="Ciudad" />
-                  <TableColumn fx:id="tableColumnCalleAgencia" prefWidth="100.0" text="Calle" />
-                  <TableColumn fx:id="tableColumnNumeroAgencia" prefWidth="100.0" text="Número" />
-                  <TableColumn fx:id="tableColumnCodigoPostalAgencia" prefWidth="100.0" text="Código Postal" />
-                  <TableColumn fx:id="tableColumnEmailAgencia" prefWidth="200.0" text="Email" />
-                  <TableColumn fx:id="tableColumnPaginaWebAgencia" prefWidth="200.0" text="Página web" />
-               </columns>
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
@@ -82,28 +66,6 @@
                </VBox.margin>
             </AnchorPane>
             <TableView fx:id="tablaCliente" prefHeight="70.0">
-               <columns>
-                  <TableColumn fx:id="tableColumnTipoCliente" prefWidth="100.0" text="Tipo" />
-                  <TableColumn fx:id="tableColumnCategoriaCliente" prefWidth="100.0" text="Categoría" />
-                  <TableColumn fx:id="tableColumnRazonSocialCliente" prefWidth="100.0" text="Razón social" />
-                  <TableColumn fx:id="tableColumnNombreComercialCliente" prefWidth="100.0" text="Nombre comercial" />
-                  <TableColumn fx:id="tableColumnDocumentoNumeroCliente" prefWidth="100.0" text="NumeroDocumento" />
-                  <TableColumn fx:id="tableColumnNombreCliente" prefWidth="100.0" text="Nombre" />
-                  <TableColumn fx:id="tableColumnPrimerApellidoCliente" prefWidth="100.0" text="Primer Apellido" />
-                  <TableColumn fx:id="tableColumnSegundoApellidoCliente" prefWidth="100.0" text="Segundo Apellido" />
-                  <TableColumn fx:id="tableColumnTratamientoCliente" prefWidth="100.0" text="Tratamiento" />
-                  <TableColumn fx:id="tableColumnSexoCliente" prefWidth="100.0" text="Sexo" />
-                  <TableColumn fx:id="tableColumnFechaNacimientoCliente" prefWidth="100.0" text="Fecha de nacimiento" />
-                  <TableColumn fx:id="tableColumnEstadoCliente" prefWidth="100.0" text="Estado" />
-                  <TableColumn fx:id="tableColumnNacionalidadCliente" prefWidth="100.0" text="Nacionalidad" />
-                  <TableColumn fx:id="tableColumnProvinciaCliente" prefWidth="100.0" text="Provincia" />
-                  <TableColumn fx:id="tableColumnCiudadCliente" prefWidth="100.0" text="Ciudad" />
-                  <TableColumn fx:id="tableColumnCalleCliente" prefWidth="100.0" text="Calle" />
-                  <TableColumn fx:id="tableColumnNumeroCliente" prefWidth="100.0" text="Número" />
-                  <TableColumn fx:id="tableColumnCodigoPostalCliente" prefWidth="100.0" text="Código Postal" />
-                  <TableColumn fx:id="tableColumnPaginaWebCliente" prefWidth="200.0" text="Página web" />
-                  <TableColumn fx:id="tableColumnEmailCliente" prefWidth="200.0" text="Email" />
-               </columns>
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
@@ -142,22 +104,6 @@
                </VBox.margin>
             </AnchorPane>
             <TableView fx:id="tablaAlojamiento" prefHeight="120.0">
-               <columns>
-                  <TableColumn fx:id="tableColumnFechaInicio" prefWidth="75.0" text="Fecha inicio" />
-                  <TableColumn fx:id="tableColumnFechaFin" prefWidth="100.0" text="Fecha fin" />
-                  <TableColumn fx:id="tableColumnNumeroAdultos" prefWidth="100.0" text="Número adultos" />
-                  <TableColumn fx:id="tableColumnNumeroChild" prefWidth="100.0" text="Número niños" />
-                  <TableColumn fx:id="tableColumnNumeroBebes" prefWidth="100.0" text="Numero bebés" />
-                  <TableColumn fx:id="tableColumnPension" prefWidth="100.0" text="Pensión" />
-                  <TableColumn fx:id="tableColumnCamaExtra" prefWidth="100.0" text="Cama extra" />
-                  <TableColumn fx:id="tableColumnCuna" prefWidth="100.0" text="Cuna" />
-                  <TableColumn fx:id="tableColumnPrefTipoHabitacion" prefWidth="100.0" text="Pref. tipo habitación" />
-                  <TableColumn fx:id="tableColumnPrefHabitacion" minWidth="8.0" prefWidth="100.0" text="Pref. habitación" />
-                  <TableColumn fx:id="tableColumnPrefTipoCama" prefWidth="100.0" text="Pref. tipo cama" />
-                  <TableColumn fx:id="tableColumnPrefVistas" prefWidth="100.0" text="Pref. vistas" />
-                  <TableColumn fx:id="tableColumnPrefRestaurante" prefWidth="100.0" text="Pref. restaurante" />
-                  <TableColumn fx:id="tableColumnPrefTipoRestaurante" prefWidth="100.0" text="Pref. tipo restaurante" />
-               </columns>
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>

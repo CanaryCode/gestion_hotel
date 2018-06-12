@@ -1,7 +1,7 @@
 package gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.CreadorDeTabla;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Cliente;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import java.util.Date;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,14 +12,13 @@ import javafx.scene.image.ImageView;
  *
  * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
-public class TablaCliente implements TablaInterface<TablaCliente, Cliente> {
-
-    private String numeroDocumento, nombre, calle, codigoPostal, ciudad, provincia, estado, nacionalidad, categoria, email, numero, comentario,
+public class TablaPersona implements TablaInterface<TablaPersona, Persona>{
+      private String numeroDocumento, nombre, calle, codigoPostal, ciudad, provincia, estado, nacionalidad, categoria, email, numero, comentario,
             primerApellido, segundoApellido, tratamiento, paginaWeb,
             razonSocial, nombreComercial;
     private ImageView esEmpresa, sexoHombre;
 
-    public TablaCliente() {
+    public TablaPersona() {
 
     }
 
@@ -54,55 +53,55 @@ public class TablaCliente implements TablaInterface<TablaCliente, Cliente> {
      * con una lista del modelo personas de la base de datos crea una lista del
      * modelo de tabla para la visualización en dicha tabla.
      *
-     * @param listaCliente lista de personas normalmente retornada de una
+     * @param listaPersona lista de personas normalmente retornada de una
      * consulta a las base de datos
      * @return lista del modelo de la tabla
      */
     @Override
-    public ObservableList<TablaCliente> getListaObjetosDeTabla(ObservableList<Cliente> listaCliente) {
-        ObservableList<TablaCliente> listaClientes = FXCollections.observableArrayList();
-        if (!listaCliente.isEmpty()) {
-            for (Cliente cliente : listaCliente) {
-                String numero = cliente.getPersona().getNumero();
-                String nombre = cliente.getPersona().getNombre();
-                String primerApellido = cliente.getPersona().getFisPrimerApellido();
-                String SegundoApellido = cliente.getPersona().getFisSegundoApellido();
-                Date fechaNacimiento = cliente.getPersona().getFisFechaNacimiento();
-                String razonSocial = cliente.getPersona().getJurRazonSocial();
-                String nombreComercial = cliente.getPersona().getJurNombreComercial();
-                String nacionalidad = cliente.getPersona().getFisNacionalidad();
-                String ciudad = cliente.getPersona().getCiudad();
-                String provincia = cliente.getPersona().getProvincia();
-                String calle = cliente.getPersona().getCalle();
-                String codigoPostal = cliente.getPersona().getCodPostal();
-                String numeroDocumento = cliente.getPersona().getNumeroDocumento();
-                String estado = cliente.getPersona().getEstado();
-                String email = cliente.getPersona().getEmail();
-                String categoria = cliente.getPersona().getCategoria();
-                String comentario = cliente.getPersona().getComentario();
-                String tratamiento = cliente.getPersona().getFisTratamiento();
-                String paginaWeb = cliente.getPersona().getPaginaWeb();
+    public ObservableList<TablaPersona> getListaObjetosDeTabla(ObservableList<Persona> listaPersona) {
+        ObservableList<TablaPersona> listaPersonas = FXCollections.observableArrayList();
+        if (!listaPersona.isEmpty()) {
+            for (Persona persona : listaPersona) {
+                String numero = persona.getNumero();
+                String nombre = persona.getNombre();
+                String primerApellido = persona.getFisPrimerApellido();
+                String SegundoApellido = persona.getFisSegundoApellido();
+                Date fechaNacimiento = persona.getFisFechaNacimiento();
+                String razonSocial = persona.getJurRazonSocial();
+                String nombreComercial = persona.getJurNombreComercial();
+                String nacionalidad = persona.getFisNacionalidad();
+                String ciudad = persona.getCiudad();
+                String provincia = persona.getProvincia();
+                String calle = persona.getCalle();
+                String codigoPostal = persona.getCodPostal();
+                String numeroDocumento = persona.getNumeroDocumento();
+                String estado = persona.getEstado();
+                String email = persona.getEmail();
+                String categoria = persona.getCategoria();
+                String comentario = persona.getComentario();
+                String tratamiento = persona.getFisTratamiento();
+                String paginaWeb = persona.getPaginaWeb();
                 ImageView esEmpresa = null;
-                if (cliente.getPersona().getEsEmpresa() != null) {
-                    esEmpresa = (cliente.getPersona().getEsEmpresa() == false) ? new ImageView(new Image(getClass().getResource("/imagenes/tablas/persona.png").toExternalForm()))
+                if (persona.getEsEmpresa() != null) {
+                    esEmpresa = (persona.getEsEmpresa() == false) ? new ImageView(new Image(getClass().getResource("/imagenes/tablas/persona.png").toExternalForm()))
                             : new ImageView(new Image(getClass().getResource("/imagenes/tablas/empresa.png").toExternalForm()));
                 }
                 ImageView sexo = null;
-                if (cliente.getPersona().getFisSexoHombre() != null) {
-                    sexo = (cliente.getPersona().getFisSexoHombre() == false) ? new ImageView(new Image(getClass().getResource("/imagenes/tablas/mujer.png").toExternalForm()))
+                if (persona.getFisSexoHombre() != null) {
+                    sexo = (persona.getFisSexoHombre() == false) ? new ImageView(new Image(getClass().getResource("/imagenes/tablas/mujer.png").toExternalForm()))
                             : new ImageView(new Image(getClass().getResource("/imagenes/tablas/hombre.png").toExternalForm()));
                 }
-                TablaCliente nuevoCliente = new TablaCliente(numeroDocumento, nombre, calle, codigoPostal, ciudad,
+                TablaPersona nuevaPersona = new TablaPersona(numeroDocumento, nombre, calle, codigoPostal, ciudad,
                         provincia, estado, sexo, nacionalidad, categoria, email, numero, comentario,
                         primerApellido, SegundoApellido, tratamiento, paginaWeb, esEmpresa, razonSocial,
                         nombreComercial, fechaNacimiento);
-                listaClientes.add(nuevoCliente);
+                listaPersonas.add(nuevaPersona);
             }
         }
-        return listaClientes;
+        return listaPersonas;
     }
 
-    public TablaCliente(String numeroDocumento, String nombre, String calle, String codigoPostal,
+    public TablaPersona(String numeroDocumento, String nombre, String calle, String codigoPostal,
             String ciudad, String provincia, String estado, ImageView sexoHombre, String nacionalidad,
             String categoria, String email, String numero, String comentario, String primerApellido,
             String segundoApellido, String tratamiento, String paginaWeb, ImageView esEmpresa, String razonSocial,
@@ -299,5 +298,6 @@ public class TablaCliente implements TablaInterface<TablaCliente, Cliente> {
     public void setEsEmpresa(ImageView esEmpresa) {
         this.esEmpresa = esEmpresa;
     }
+
 
 }

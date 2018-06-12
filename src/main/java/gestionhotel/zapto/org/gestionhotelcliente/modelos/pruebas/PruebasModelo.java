@@ -232,7 +232,7 @@ public class PruebasModelo {
             persona5.setNumero("100");
             persona5.setCodPostal("34433");
             persona5.setNumeroDocumento("742573239m");
-            persona5.setCategoria(Registro.ListaCategoriaCliente.get(1));
+            persona5.setCategoria(Registro.ListaCategoriaPersona.get(1));
             persona5.setPaginaWeb("wwww.soyrico.com");
             persona5.setEmail("soyrico@gmail.com");
             persona5.setFisTratamiento(Registro.ListaTratamiento.get(4));
@@ -261,7 +261,7 @@ public class PruebasModelo {
             persona6.setNumero("10");
             persona6.setCodPostal("345532");
             persona6.setNumeroDocumento("72354353m");
-            persona6.setCategoria(Registro.ListaCategoriaCliente.get(4));
+            persona6.setCategoria(Registro.ListaCategoriaPersona.get(4));
             persona6.setPaginaWeb("wwww.soyunflipao.com");
             persona6.setEmail("soyunflipao@gmail.com");
             persona6.setFisTratamiento(Registro.ListaTratamiento.get(3));
@@ -286,7 +286,7 @@ public class PruebasModelo {
             persona7.setNumero("23");
             persona7.setCodPostal("33632");
             persona7.setNumeroDocumento("cif33322");
-            persona7.setCategoria(Registro.ListaCategoriaCliente.get(2));
+            persona7.setCategoria(Registro.ListaCategoriaPersona.get(2));
             persona7.setPaginaWeb("wwww.acs.com");
             persona7.setEmail("acs@gmail.com");
             persona7.setComentario("multinacinal");
@@ -310,7 +310,7 @@ public class PruebasModelo {
             persona8.setNumero("33");
             persona8.setCodPostal("334455");
             persona8.setNumeroDocumento("cif34355");
-            persona8.setCategoria(Registro.ListaCategoriaCliente.get(3));
+            persona8.setCategoria(Registro.ListaCategoriaPersona.get(3));
             persona8.setPaginaWeb("wwww.Iberdrola.com");
             persona8.setEmail("iberdrola@gmail.com");
             persona8.setComentario("Renovables");
@@ -339,7 +339,7 @@ public class PruebasModelo {
             persona1.setCodPostal("38430");
             persona1.setNumeroDocumento("78633049m");
             persona1.setPasaporte("pas333");
-            persona1.setCategoria(Registro.listaCategoriaHuesped.get(3));
+            persona1.setCategoria(Registro.ListaCategoriaPersona.get(3));
             persona1.setPaginaWeb("wwww.soyunmaquina.com");
             persona1.setEmail("soyunmaquina@gmail.com");
             persona1.setFisTratamiento(Registro.ListaTratamiento.get(1));
@@ -369,7 +369,7 @@ public class PruebasModelo {
             persona2.setCodPostal("304d3v");
             persona2.setNumeroDocumento("78422449m");
             persona2.setPasaporte("pas344");
-            persona2.setCategoria(Registro.listaCategoriaHuesped.get(2));
+            persona2.setCategoria(Registro.ListaCategoriaPersona.get(2));
             persona2.setPaginaWeb("wwww.soyungay.com");
             persona2.setEmail("soyungay@gmail.com");
             persona2.setFisTratamiento(Registro.ListaTratamiento.get(2));
@@ -399,7 +399,7 @@ public class PruebasModelo {
             persona3.setCodPostal("ert3");
             persona3.setNumeroDocumento("78e3s29m");
             persona3.setPasaporte("pas333");
-            persona3.setCategoria(Registro.listaCategoriaHuesped.get(4));
+            persona3.setCategoria(Registro.ListaCategoriaPersona.get(4));
             persona3.setPaginaWeb("wwww.soyuntranque.com");
             persona3.setEmail("soyuntranque@gmail.com");
             persona3.setFisTratamiento(Registro.ListaTratamiento.get(3));
@@ -429,7 +429,7 @@ public class PruebasModelo {
             persona4.setCodPostal("384e23");
             persona4.setNumeroDocumento("23dss39m");
             persona4.setPasaporte("pas345cdsd");
-            persona4.setCategoria(Registro.listaCategoriaHuesped.get(1));
+            persona4.setCategoria(Registro.ListaCategoriaPersona.get(1));
             persona4.setPaginaWeb("wwww.soyunnegro.com");
             persona4.setEmail("soyunnegro@gmail.com");
             persona4.setFisTratamiento(Registro.ListaTratamiento.get(4));
