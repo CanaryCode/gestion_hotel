@@ -11,6 +11,7 @@ import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Reserva;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Telefono;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersona;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Trabajador;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Date;
@@ -27,10 +28,9 @@ public class PruebasModelo {
     private static ObservableList<Reserva> listaReservas = null;
     private static ObservableList<Cliente> listaClientes = null;
     private static ObservableList<Persona> listaPersonas = null;
-    private static ObservableList<Huesped> listaHuespedes = null;
+    private static volatile ObservableList<Huesped> listaHuespedes = null;
     private static ObservableList<Habitacion> listaHabitaciones = null;
     private static ObservableList<Agencia> listaAgencias = null;
-//    private static ObservableList<HuespedHabitacion> listaHuespedHabitacion = null;
     private static ObservableList<TelefonoPersona> listaTelefonoPersona = null;
     private static ObservableList<Telefono> listaTelefono = null;
     private static ObservableList<Trabajador> listaUsuario = null;
@@ -241,8 +241,7 @@ public class PruebasModelo {
                 byte[] b = Files.readAllBytes(Paths.get("C:\\Users\\deico\\OneDrive\\Documentos\\NetBeansProjects\\gestion_hotel_cliente\\src\\main\\resources\\imagenes\\pruebas\\user1.png"));
                 System.out.println();
                 persona5.setFoto(b);
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (IOException e) {
             }
 
             Persona persona6 = new Persona();
@@ -270,8 +269,7 @@ public class PruebasModelo {
             try {
                byte[] b = Files.readAllBytes(Paths.get("C:\\Users\\deico\\OneDrive\\Documentos\\NetBeansProjects\\gestion_hotel_cliente\\src\\main\\resources\\imagenes\\pruebas\\user1.png"));
                 persona6.setFoto(b);
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (IOException e) {
             }
 
             Persona persona7 = new Persona();
@@ -294,8 +292,7 @@ public class PruebasModelo {
             try {
                 byte[] b = Files.readAllBytes(Paths.get("C:\\Users\\deico\\OneDrive\\Documentos\\NetBeansProjects\\gestion_hotel_cliente\\src\\main\\resources\\imagenes\\pruebas\\user1.png"));
                 persona7.setFoto(b);
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (IOException e) {
             }
 
             Persona persona8 = new Persona();
@@ -318,8 +315,7 @@ public class PruebasModelo {
             try {
                 byte[] b = Files.readAllBytes(Paths.get("C:\\Users\\deico\\OneDrive\\Documentos\\NetBeansProjects\\gestion_hotel_cliente\\src\\main\\resources\\imagenes\\pruebas\\user1.png"));
                 persona8.setFoto(b);
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (IOException e) {
             }
 
             Persona persona1 = new Persona();
@@ -348,8 +344,7 @@ public class PruebasModelo {
             try {
                 byte[] b = Files.readAllBytes(Paths.get("C:\\Users\\deico\\OneDrive\\Documentos\\NetBeansProjects\\gestion_hotel_cliente\\src\\main\\resources\\imagenes\\pruebas\\user1.png"));
                 persona1.setFoto(b);
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (IOException e) {
             }
 
             Persona persona2 = new Persona();
@@ -378,8 +373,7 @@ public class PruebasModelo {
             try {
                 byte[] b = Files.readAllBytes(Paths.get("C:\\Users\\deico\\OneDrive\\Documentos\\NetBeansProjects\\gestion_hotel_cliente\\src\\main\\resources\\imagenes\\pruebas\\user1.png"));
                 persona2.setFoto(b);
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (IOException e) {
             }
 
             Persona persona3 = new Persona();
@@ -408,8 +402,7 @@ public class PruebasModelo {
             try {
                 byte[] b = Files.readAllBytes(Paths.get("C:\\Users\\deico\\OneDrive\\Documentos\\NetBeansProjects\\gestion_hotel_cliente\\src\\main\\resources\\imagenes\\pruebas\\user1.png"));
                 persona3.setFoto(b);
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (IOException e) {
             }
 
             Persona persona4 = new Persona();
@@ -438,8 +431,7 @@ public class PruebasModelo {
             try {
                 byte[] b = Files.readAllBytes(Paths.get("C:\\Users\\deico\\OneDrive\\Documentos\\NetBeansProjects\\gestion_hotel_cliente\\src\\main\\resources\\imagenes\\pruebas\\user1.png"));
                 persona4.setFoto(b);
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (IOException e) {
             }
 
             listaPersonas.add(persona1);
@@ -476,10 +468,12 @@ public class PruebasModelo {
     }
 
     public static ObservableList<Huesped> getListaDeHuespedes() {
-        if (listaHuespedes == null) {
+        ObservableList<Huesped> listaHuesped = PruebasModelo.listaHuespedes;
+        if (listaHuesped == null) {
             synchronized (new Object()) {
-                if (listaHuespedes == null) {
-                    listaHuespedes = FXCollections.observableArrayList();
+                listaHuesped = PruebasModelo.listaHuespedes;
+                if (listaHuesped == null) {
+                    PruebasModelo.listaHuespedes = listaHuesped = FXCollections.observableArrayList();
 
                     Huesped huesped1 = new Huesped();
                     huesped1.setId(1);
@@ -511,16 +505,16 @@ public class PruebasModelo {
                     huesped6.setPersona(getListaDePersonas().get(5));
                     huesped6.setDentro(false);
 
-                    listaHuespedes.add(huesped1);
-                    listaHuespedes.add(huesped2);
-                    listaHuespedes.add(huesped3);
-                    listaHuespedes.add(huesped4);
-                    listaHuespedes.add(huesped5);
-                    listaHuespedes.add(huesped6);
+                    listaHuesped.add(huesped1);
+                    listaHuesped.add(huesped2);
+                    listaHuesped.add(huesped3);
+                    listaHuesped.add(huesped4);
+                    listaHuesped.add(huesped5);
+                    listaHuesped.add(huesped6);
                 }
             }
         }
-        return listaHuespedes;
+        return listaHuesped;
     }
 
     public static ObservableList<Habitacion> getListaDeHabitaciones() {
