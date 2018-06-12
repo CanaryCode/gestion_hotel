@@ -6,7 +6,9 @@ import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.FormularioInterface;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersona;
+import gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorPersonaBuscador;
 import gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorTelefonoBuscador;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -109,6 +111,15 @@ public class UtilBuscador {
             ((ControladorTelefonoBuscador) obj.getfXMLLoader().getController()).
                     setListaToAdd(listaAddTelefono).
                     setFiltro(listaAddFiltro).
+                    setModo(modo);
+            obj.ver();
+        }
+    }
+    public static <T> void abrirPersona(Ventana obj, ObservableList<Persona> listaAddPersona, ObservableList<Persona> listaFiltroPersona, int modo) {
+        if (obj != null) {
+            ((ControladorPersonaBuscador) obj.getfXMLLoader().getController()).
+                    setListaToAdd(listaAddPersona).
+                    setFiltro(listaFiltroPersona).
                     setModo(modo);
             obj.ver();
         }

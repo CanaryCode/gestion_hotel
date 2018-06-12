@@ -34,6 +34,11 @@ public class PruebasModelo {
     private static ObservableList<TelefonoPersona> listaTelefonoPersona = null;
     private static ObservableList<Telefono> listaTelefono = null;
     private static ObservableList<Trabajador> listaUsuario = null;
+    
+    
+//-----------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------
 
     public static ObservableList<Alojamiento> getListaDeAlojamientos() {
         if (listaAlojamientos == null) {
@@ -123,10 +128,7 @@ public class PruebasModelo {
             alojamiento4.setPrefVistas(Registro.ListaVistas.get(2));
             alojamiento4.setComentario("comentario alojamiento 2");
 
-            listaAlojamientos.add(alojamiento1);
-            listaAlojamientos.add(alojamiento2);
-            listaAlojamientos.add(alojamiento3);
-            listaAlojamientos.add(alojamiento4);
+            listaAlojamientos.addAll(alojamiento1,alojamiento2,alojamiento3,alojamiento4);
         }
         return listaAlojamientos;
     }
@@ -150,10 +152,7 @@ public class PruebasModelo {
             agencia4.setId(4);
             agencia4.setPersona(getListaDePersonas().get(7));
 
-            listaAgencias.add(agencia1);
-            listaAgencias.add(agencia2);
-            listaAgencias.add(agencia3);
-            listaAgencias.add(agencia4);
+            listaAgencias.addAll(agencia1,agencia2,agencia3,agencia4);
         }
         return listaAgencias;
     }
@@ -205,10 +204,7 @@ public class PruebasModelo {
             reserva4.setCliente(getListaDeClientes().get(0));
             reserva4.setAgencia(getListaDeAgencia().get(3));
 
-            listaReservas.add(reserva1);
-            listaReservas.add(reserva2);
-            listaReservas.add(reserva3);
-            listaReservas.add(reserva4);
+            listaReservas.addAll(reserva1,reserva2,reserva3,reserva4);
         }
         return listaReservas;
     }
@@ -434,14 +430,8 @@ public class PruebasModelo {
             } catch (IOException e) {
             }
 
-            listaPersonas.add(persona1);
-            listaPersonas.add(persona2);
-            listaPersonas.add(persona3);
-            listaPersonas.add(persona4);
-            listaPersonas.add(persona5);
-            listaPersonas.add(persona6);
-            listaPersonas.add(persona7);
-            listaPersonas.add(persona8);
+            listaPersonas.addAll(persona1,persona2,persona3,persona4,persona5,persona6,
+                    persona7,persona8);
         }
         return listaPersonas;
     }
@@ -459,10 +449,7 @@ public class PruebasModelo {
             Cliente cliente4 = new Cliente(getListaDePersonas().get(4));
             cliente4.setId(4);
 
-            listaClientes.add(cliente1);
-            listaClientes.add(cliente2);
-            listaClientes.add(cliente3);
-            listaClientes.add(cliente4);
+            listaClientes.addAll(cliente1,cliente2,cliente3,cliente4);
         }
         return listaClientes;
     }
@@ -505,12 +492,7 @@ public class PruebasModelo {
                     huesped6.setPersona(getListaDePersonas().get(5));
                     huesped6.setDentro(false);
 
-                    listaHuesped.add(huesped1);
-                    listaHuesped.add(huesped2);
-                    listaHuesped.add(huesped3);
-                    listaHuesped.add(huesped4);
-                    listaHuesped.add(huesped5);
-                    listaHuesped.add(huesped6);
+                    listaHuesped.addAll(huesped1,huesped2,huesped3,huesped4,huesped5,huesped6);
                 }
             }
         }
@@ -548,10 +530,7 @@ public class PruebasModelo {
             hab4.setTipoCama(Registro.ListaTipoCama.get(1));
             hab4.setEstado(Registro.ListaEstadoHabitacion.get(2));
 
-            listaHabitaciones.add(hab1);
-            listaHabitaciones.add(hab2);
-            listaHabitaciones.add(hab3);
-            listaHabitaciones.add(hab4);
+            listaHabitaciones.addAll(hab1,hab2,hab3,hab4);
         }
         return listaHabitaciones;
     }
@@ -600,13 +579,8 @@ public class PruebasModelo {
             telefono7.setTipo(Registro.ListaTipoTelefono.get(1));
             telefono7.setComentario("comentario numero 7");
 
-            listaTelefono.add(telefono1);
-            listaTelefono.add(telefono2);
-            listaTelefono.add(telefono3);
-            listaTelefono.add(telefono4);
-            listaTelefono.add(telefono5);
-            listaTelefono.add(telefono6);
-            listaTelefono.add(telefono7);
+            listaTelefono.addAll(telefono1,telefono2,telefono3,telefono4,telefono5,
+                    telefono6,telefono7);
         }
         return listaTelefono;
     }
@@ -635,13 +609,8 @@ public class PruebasModelo {
             TelefonoPersona telefonoPersona7 = new TelefonoPersona();
             telefonoPersona7.setId(7);
 
-            listaTelefonoPersona.add(telefonoPersona1);
-            listaTelefonoPersona.add(telefonoPersona2);
-            listaTelefonoPersona.add(telefonoPersona3);
-            listaTelefonoPersona.add(telefonoPersona4);
-            listaTelefonoPersona.add(telefonoPersona5);
-            listaTelefonoPersona.add(telefonoPersona6);
-            listaTelefonoPersona.add(telefonoPersona7);
+            listaTelefonoPersona.addAll(telefonoPersona1,telefonoPersona2,telefonoPersona3,
+                    telefonoPersona4,telefonoPersona5,telefonoPersona6,telefonoPersona7);
         }
         return listaTelefonoPersona;
     }
@@ -681,15 +650,8 @@ public class PruebasModelo {
             trabajador4.setPersona(getListaDePersonas().get(3));
             trabajador4.setDepartamento(Registro.ListaDeparmentos.get(2));
 
-            listaUsuario.add(trabajador1);
-            listaUsuario.add(trabajador2);
-            listaUsuario.add(trabajador3);
-            listaUsuario.add(trabajador4);
+            listaUsuario.addAll(trabajador1,trabajador2,trabajador3,trabajador4);
         }
         return listaUsuario;
     }
-
-//-----------------------------------------------------------------------------------------
-//-----------------------------------------------------------------------------------------
-//-----------------------------------------------------------------------------------------
 }
