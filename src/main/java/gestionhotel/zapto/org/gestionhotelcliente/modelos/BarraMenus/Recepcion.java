@@ -3,7 +3,8 @@ package gestionhotel.zapto.org.gestionhotelcliente.modelos.BarraMenus;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.clases.Select;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.selects.Select;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.selects.SelectHuesped;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaHabitacion;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaHuesped;
 import gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorListaVacia;
@@ -36,7 +37,7 @@ public class Recepcion {
         menuItemListaHuespedesDentro.setOnAction((event) -> {
             Ventana vent = VentanasFactory.getListaVacia(Ventanas.PRINCIPAL, Modality.NONE, null,"Huespedes Dentro");
             ((ControladorListaVacia) vent.getfXMLLoader().getController()).
-                    configuraTabla(new TablaHuesped().getListaObjetosDeTabla(Select.getHuespedesDentro()),
+                    configuraTabla(new TablaHuesped().getListaObjetosDeTabla(SelectHuesped.getHuespedesDentro()),
                     new TablaHuesped().getListaObjetosColumnas(), "Huéspedes dentro");
             vent.verReajustable();
         });

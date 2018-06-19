@@ -1,8 +1,6 @@
 package gestionhotel.zapto.org.gestionhotelcliente;
 
 import com.sun.deploy.uitoolkit.impl.fx.HostServicesFactory;
-import com.sun.javafx.application.HostServicesDelegate;
-import gestionhotel.zapto.org.gestionhotelcliente.controladores.Conexiones;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Sistema;

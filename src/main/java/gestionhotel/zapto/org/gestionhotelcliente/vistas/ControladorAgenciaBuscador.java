@@ -5,9 +5,10 @@ import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBuscador;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.BuscadorInterface;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaAgencia;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaCliente;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaPersona;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Cliente;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Agencia;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pruebas.PruebasModelo;
 import java.net.URL;
@@ -28,9 +29,9 @@ import javafx.stage.Modality;
  *
  * @author Antonio Jesús Pérez Delgado <A. Jesús with netbeans>
  */
-public class ControladorClienteBuscador implements Initializable, BuscadorInterface {
+public class ControladorAgenciaBuscador implements Initializable,BuscadorInterface {
 
-    @FXML
+   @FXML
     private AnchorPane panelPrincipal, panelFiltro;
 
     @FXML
@@ -42,12 +43,12 @@ public class ControladorClienteBuscador implements Initializable, BuscadorInterf
     @FXML
     private ToggleButton toggleButtonModificaPersona;
 
-    private ObservableList<TablaCliente> listaTablaClientes = FXCollections.observableArrayList();
-    private ObservableList<Cliente> listaAddClientes = FXCollections.observableArrayList();
-    private ObservableList<Cliente> listaFiltro = FXCollections.observableArrayList();
+    private ObservableList<TablaAgencia> listaTablaClientes = FXCollections.observableArrayList();
+    private ObservableList<Agencia> listaAddClientes = FXCollections.observableArrayList();
+    private ObservableList<Agencia> listaFiltro = FXCollections.observableArrayList();
     private ObservableList<Persona> listaPersona = FXCollections.observableArrayList();
     private ObservableList<TablaPersona> listaTablaPersona = FXCollections.observableArrayList();
-    private Cliente ClienteEnVista;
+    private Agencia ClienteEnVista;
 
     private ObservableList<Node> nodosApagables;
 
@@ -94,21 +95,21 @@ public class ControladorClienteBuscador implements Initializable, BuscadorInterf
     }
 
     @Override
-    public ControladorClienteBuscador setModo(int modo) {
+    public ControladorAgenciaBuscador setModo(int modo) {
         this.modo = modo;
         return this;
     }
 
     @Override
-    public <T> ControladorClienteBuscador setListaToAdd(ObservableList<T> ListaObjeto) {
-        this.listaAddClientes = (ObservableList<Cliente>) ListaObjeto;
+    public <T> ControladorAgenciaBuscador setListaToAdd(ObservableList<T> ListaObjeto) {
+        this.listaAddClientes = (ObservableList<Agencia>) ListaObjeto;
         return this;
     }
 
     @Override
-    public <T> ControladorClienteBuscador setFiltro(ObservableList<T> ListaObjeto) {
-        this.listaFiltro = (ObservableList<Cliente>) ListaObjeto;
-        listaTablaClientes = new TablaCliente().getListaObjetosDeTabla(listaFiltro);
+    public <T> ControladorAgenciaBuscador setFiltro(ObservableList<T> ListaObjeto) {
+        this.listaFiltro = (ObservableList<Agencia>) ListaObjeto;
+        listaTablaClientes = new TablaAgencia().getListaObjetosDeTabla(listaFiltro);
         CreadorDeTabla.generaTabla(panelPrincipal, tabla, listaTablaClientes, new TablaCliente().getListaObjetosColumnas());
         return this;
     }

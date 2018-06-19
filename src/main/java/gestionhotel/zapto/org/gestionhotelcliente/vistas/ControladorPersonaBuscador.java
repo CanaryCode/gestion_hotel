@@ -7,7 +7,7 @@ import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBusca
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.interfaces.BuscadorInterface;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.clases.Select;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.selects.Select;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaPersona;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.TelefonoPersona;

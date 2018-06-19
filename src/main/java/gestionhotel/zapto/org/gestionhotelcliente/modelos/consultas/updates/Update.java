@@ -1,4 +1,4 @@
-package gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.clases;
+package gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.updates;
 
 /**
  *

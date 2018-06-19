@@ -2,18 +2,14 @@ package gestionhotel.zapto.org.gestionhotelcliente.vistas;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.CreadorDeTabla;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
-import gestionhotel.zapto.org.gestionhotelcliente.controladores.VinculadorModeloATabla;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBuscador;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.clases.Select;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.selects.SelectHuesped;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaHuesped;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Huesped;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.pojos.Persona;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.beans.InvalidationListener;
-import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -91,7 +87,7 @@ public class ControladorHuespedReserva implements Initializable {
         Ventana obj = VentanasFactory.getBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
         ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
                 setListaToAdd(listaHuespedAdultos).
-                setFiltro(UtilBuscador.creaFiltro(Select.getHuespedesFuera(), listaHuespedBebes,
+                setFiltro(UtilBuscador.creaFiltro(SelectHuesped.getHuespedesFuera(), listaHuespedBebes,
                         listaHuespedChild, listaHuespedAdultos)).
                 setModo(Ventanas.MODO_BUSCADOR_SELECCIONAR);
         obj.verReajustable();
@@ -101,7 +97,7 @@ public class ControladorHuespedReserva implements Initializable {
         Ventana obj = VentanasFactory.getBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
         ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
                 setListaToAdd(listaHuespedChild).
-                setFiltro(UtilBuscador.creaFiltro(Select.getHuespedesFuera(), listaHuespedBebes,
+                setFiltro(UtilBuscador.creaFiltro(SelectHuesped.getHuespedesFuera(), listaHuespedBebes,
                         listaHuespedChild, listaHuespedAdultos)).
                 setModo(Ventanas.MODO_BUSCADOR_SELECCIONAR);
         obj.verReajustable();
@@ -111,7 +107,7 @@ public class ControladorHuespedReserva implements Initializable {
         Ventana obj = VentanasFactory.getBuscarHuesped(Ventanas.HUESPED_RESERVA, Modality.APPLICATION_MODAL, null);
         ((ControladorHuespedBuscador) obj.getfXMLLoader().getController()).
                 setListaToAdd(listaHuespedBebes).
-                setFiltro(UtilBuscador.creaFiltro(Select.getHuespedesFuera(), listaHuespedBebes,
+                setFiltro(UtilBuscador.creaFiltro(SelectHuesped.getHuespedesFuera(), listaHuespedBebes,
                         listaHuespedChild, listaHuespedAdultos)).
                 setModo(Ventanas.MODO_BUSCADOR_SELECCIONAR);
         obj.verReajustable();

@@ -4,9 +4,10 @@ import gestionhotel.zapto.org.gestionhotelcliente.controladores.CreadorDeTabla;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VinculadorModeloATabla;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.utiles.UtilBuscador;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.clases.Select;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.selects.Select;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventanas;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.transacciones.Checkin;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaHabitacion;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaHuesped;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.modeloATablas.TablaReserva;
@@ -243,7 +244,7 @@ public static int contador=0;
 
     private void codigoBotonOk() {
         listaTablaHuespedTodos.clear();
-        Select.realizaCheckin(listaAlojamientos.get(0), listaHabitacion.get(0),listaTodosLosHuespedes);
+        Checkin.realizaCheckin(listaAlojamientos.get(0), listaHabitacion.get(0),listaTodosLosHuespedes);
         Ventanas.cerrarVentana(Ventanas.CHECK_IN);
     }
 

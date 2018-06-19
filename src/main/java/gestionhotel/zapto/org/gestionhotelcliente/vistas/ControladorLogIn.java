@@ -4,7 +4,7 @@ import gestionhotel.zapto.org.gestionhotelcliente.controladores.ConfiguradorMens
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.ConfiguradorIdioma;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.LimitadorDeCaracteres;
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.VentanasFactory;
-import gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.clases.Select;
+import gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.selects.Select;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Ventana;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Sistema;

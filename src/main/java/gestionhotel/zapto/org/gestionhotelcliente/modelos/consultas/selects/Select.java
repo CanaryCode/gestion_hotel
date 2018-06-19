@@ -1,4 +1,4 @@
-package gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.clases;
+package gestionhotel.zapto.org.gestionhotelcliente.modelos.consultas.selects;
 
 import gestionhotel.zapto.org.gestionhotelcliente.controladores.Conexiones;
 import gestionhotel.zapto.org.gestionhotelcliente.modelos.Registro;
@@ -96,56 +96,17 @@ public class Select {
         return user;
     }
 
-    public static ObservableList<Huesped> getHuespedesDentro() {
-        ObservableList<Huesped> lista = FXCollections.observableArrayList();
-        for (Huesped h : PruebasModelo.getListaDeHuespedes()) {
-            if(h.isDentro()){
-                lista.add(h);
-            }
-        }
-        return lista;
-    }
+   
 
     public static ObservableList<Alojamiento> getAlojamientosPendientesCheckIn() {
         return PruebasModelo.getListaDeAlojamientos();
     }
 
-    public static boolean realizaCheckin(Alojamiento alojamiento,
-            Habitacion habitacion, ObservableList<Huesped> huespedes) {
-
-        for (Alojamiento a : PruebasModelo.getListaDeAlojamientos()) {
-            if (a.equals(alojamiento)) {
-                PruebasModelo.getListaDeAlojamientos().remove(a);
-                for (Huesped huesped : huespedes) {
-                    huesped.setDentro(true);
-                }
-
-                habitacion.setEstado(Registro.ListaEstadoHabitacion.get(1));
-                PruebasModelo.getListaDeHabitaciones().remove(habitacion);
-
-                break;
-            }
-        }
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Consulta realizada con exito", ButtonType.OK);
-        alert.show();
-        return true;
-    }
-
-    public static ObservableList<Huesped> getHuespedesFuera() {
-        ObservableList<Huesped> lista = FXCollections.observableArrayList();
-
-        for (Huesped huesped : PruebasModelo.getListaDeHuespedes()) {
-            if (!huesped.isDentro()) {
-                lista.add(huesped);
-            }
-        }
-        return lista;
-    }
+  
 
     public static ObservableList<Habitacion> getHabitacionesDesOcupadas() {
         ObservableList<Habitacion> lista = FXCollections.observableArrayList();
-        ObservableList<Habitacion> listaTodas = PruebasModelo.getListaDeHabitaciones();
-        for (Habitacion hab : listaTodas) {
+        for (Habitacion hab : PruebasModelo.getListaDeHabitaciones()) {
             if (hab.getEstado().equals(Registro.ListaEstadoHabitacion.get(2))) {
                 lista.add(hab);
             }

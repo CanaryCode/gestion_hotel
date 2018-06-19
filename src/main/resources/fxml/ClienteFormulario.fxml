@@ -3,15 +3,9 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -19,295 +13,171 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="principal" prefWidth="700.0" styleClass="baseVentanas" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorClienteFormulario">
+<AnchorPane id="AnchorPane" fx:id="principal" styleClass="baseVentanas" stylesheets="@../styles/estilos.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionhotel.zapto.org.gestionhotelcliente.vistas.ControladorClienteFormulario">
    <children>
-      <VBox prefHeight="469.0" prefWidth="680.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+      <VBox AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <TabPane fx:id="tabPanel" prefHeight="140.0" prefWidth="680.0" tabClosingPolicy="UNAVAILABLE">
-              <tabs>
-                <Tab fx:id="tabPersona" text="%tab.persona">
-                     <content>
-                        <AnchorPane fx:id="panelPersona">
+            <AnchorPane>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+               <children>
+                  <Label styleClass="etiquetaTitulo" text="FILTROS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane>
+               <children>
+                  <Label styleClass="etiquetaTitulo" text="DATOS PERSONA" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </AnchorPane>
+            <TableView fx:id="tablaPersona" prefHeight="80.0">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TableView>
+            <AnchorPane>
+               <children>
+                  <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="380.0" minWidth="10.0" prefWidth="38.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="752.0" minWidth="10.0" prefWidth="740.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <AnchorPane GridPane.columnIndex="1">
                            <children>
-                              <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Button fx:id="modificaPersona" disable="true" mnemonicParsing="false" text="Modificar Persona" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="baseBotonesAzules" />
+                                    <String fx:value="botonActualizar" />
+                                 </styleClass>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane>
+                           <children>
+                              <ToggleButton fx:id="toggleButtonModificaPersona" mnemonicParsing="false" styleClass="toogleButtonOn" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </AnchorPane>
+                     </children>
+                  </GridPane>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </AnchorPane>
+            <AnchorPane>
+               <children>
+                  <Label styleClass="etiquetaTitulo" text="DATOS CLIENTE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </AnchorPane>
+            <AnchorPane>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+               <children>
+                  <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane>
+               <children>
+                  <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                           <children>
+                              <Label prefHeight="13.0" prefWidth="778.0" styleClass="etiquetaTitulo" text="ACCIONES" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane>
+                           <children>
+                              <GridPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
                                  <children>
-                                    <Label prefWidth="5000.0" styleClass="etiquetaTitulo" text="%label.titulos.datosPersonales">
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <GridPane>
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
+                                    <AnchorPane GridPane.columnIndex="1">
                                        <children>
-                                          <Label styleClass="etiquetaNormal" text="%label.textField.nombre" textFill="WHITE" />
-                                          <TextField fx:id="nombre" styleClass="texfieldNormal" GridPane.columnIndex="1" />
-                                          <Label styleClass="etiquetaNormal" text="%label.textField.primerApellido" textFill="WHITE" GridPane.columnIndex="2">
-                                             <GridPane.margin>
-                                                <Insets left="10.0" />
-                                             </GridPane.margin>
-                                          </Label>
-                                          <TextField fx:id="primerApellido" styleClass="texfieldNormal" GridPane.columnIndex="3" />
-                                          <Label styleClass="etiquetaNormal" text="%label.datePicker.fechaNacimiento" textFill="WHITE" GridPane.rowIndex="1" />
-                                          <DatePicker fx:id="fechaNacimiento" prefWidth="5000.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <Label styleClass="etiquetaNormal" text="%label.textField.segundoApellido" textFill="WHITE" GridPane.columnIndex="4">
-                                             <GridPane.margin>
-                                                <Insets left="10.0" />
-                                             </GridPane.margin>
-                                          </Label>
-                                          <TextField fx:id="segundoApellido" styleClass="texfieldNormal" GridPane.columnIndex="5" />
-                                          <Label styleClass="etiquetaNormal" text="%label.radioButton.sexo" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                             <padding>
-                                                <Insets left="10.0" />
-                                             </padding>
-                                          </Label>
-                                          <RadioButton fx:id="sexoM" mnemonicParsing="false" selected="true" text="%radioButton.masculino" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                             <padding>
-                                                <Insets left="10.0" />
-                                             </padding>
-                                             <toggleGroup>
-                                                <ToggleGroup fx:id="sexo" />
-                                             </toggleGroup>
-                                          </RadioButton>
-                                          <RadioButton fx:id="sexoF" mnemonicParsing="false" text="%radioButton.femenino" textFill="WHITE" toggleGroup="$sexo" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                             <GridPane.margin>
-                                                <Insets left="80.0" />
-                                             </GridPane.margin>
-                                          </RadioButton>
-                                          <ComboBox fx:id="nacionalidad" prefWidth="5000.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                                          <Label styleClass="etiquetaNormal" text="%label.comboBox.nacionalidad" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                                             <GridPane.margin>
-                                                <Insets left="10.0" />
-                                             </GridPane.margin>
-                                          </Label>
-                                          <ComboBox fx:id="tratamiento" prefWidth="5000.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                          <Label styleClass="etiquetaNormal" text="%label.comboBox.tratamiento" textFill="WHITE" GridPane.rowIndex="2" />
-                                          <TextField fx:id="dni" styleClass="texfieldNormal" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                          <Label styleClass="etiquetaNormal" text="%label.textField.dni" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                             <GridPane.margin>
-                                                <Insets left="10.0" />
-                                             </GridPane.margin>
-                                          </Label>
+                                          <Button fx:id="buscar" disable="true" mnemonicParsing="false" text="%button.buscar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                             <styleClass>
+                                                <String fx:value="baseBotonesAzules" />
+                                                <String fx:value="botonBuscar" />
+                                             </styleClass>
+                                          </Button>
                                        </children>
-                                       <VBox.margin>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" />
+                                       </GridPane.margin>
+                                       <opaqueInsets>
                                           <Insets />
-                                       </VBox.margin>
-                                    </GridPane>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                </Tab>
-                <Tab fx:id="tabEmpresa" text="%tab.empresa">
-                  <content>
-                    <AnchorPane fx:id="panelEmpresa">
-                           <children>
-                              <VBox layoutX="67.0" layoutY="45.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <Label prefWidth="5000.0" styleClass="etiquetaTitulo" text="%label.titulos.datosJuridicos">
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <GridPane>
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
+                                       </opaqueInsets>
+                                    </AnchorPane>
+                                    <AnchorPane>
                                        <children>
-                                          <Label styleClass="etiquetaNormal" text="%label.textField.nombreEmpresa" textFill="WHITE" />
-                                          <TextField fx:id="nombreEmpresa" styleClass="texfieldNormal" GridPane.columnIndex="1" />
-                                          <Label styleClass="etiquetaNormal" text="%label.comboBox.razonSocial" textFill="WHITE" GridPane.columnIndex="2">
-                                             <GridPane.margin>
-                                                <Insets left="10.0" />
-                                             </GridPane.margin>
-                                          </Label>
-                                          <Label styleClass="etiquetaNormal" text="%label.textField.cif" textFill="WHITE" GridPane.columnIndex="4">
-                                             <GridPane.margin>
-                                                <Insets left="10.0" />
-                                             </GridPane.margin>
-                                          </Label>
-                                          <ComboBox fx:id="razonSocial" prefWidth="5000.0" GridPane.columnIndex="3" />
-                                          <TextField fx:id="cif" styleClass="texfieldNormal" GridPane.columnIndex="5" />
+                                          <Button fx:id="resetearCampos" disable="true" layoutX="259.0" layoutY="-10.0" mnemonicParsing="false" text="Resetear campos" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                             <styleClass>
+                                                <String fx:value="botonLimpiar" />
+                                                <String fx:value="baseBotonesNaranja" />
+                                             </styleClass>
+                                          </Button>
                                        </children>
-                                    </GridPane>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <GridPane.margin>
+                                          <Insets right="10.0" />
+                                       </GridPane.margin>
+                                    </AnchorPane>
                                  </children>
-                              </VBox>
+                              </GridPane>
                            </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
                         </AnchorPane>
-                  </content>
-                </Tab>
-              </tabs>
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </TabPane>
-            <Label prefWidth="5000.0" styleClass="etiquetaTitulo" text="%label.titulos.datosDireccion">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </Label>
-            <GridPane prefWidth="5000.0">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <ComboBox fx:id="estado" prefWidth="5000.0" GridPane.columnIndex="1" />
-                  <Label styleClass="etiquetaNormal" text="%label.comboBox.estado" textFill="WHITE" />
-                  <Label styleClass="etiquetaNormal" text="%label.textField.provincia" textFill="WHITE" GridPane.columnIndex="2">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <TextField fx:id="provincia" styleClass="texfieldNormal" GridPane.columnIndex="3" />
-                  <Label styleClass="etiquetaNormal" text="%label.textField.ciudad" textFill="WHITE" GridPane.columnIndex="4">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <TextField fx:id="ciudad" styleClass="texfieldNormal" GridPane.columnIndex="5" />
-                  <TextField fx:id="calle" styleClass="texfieldNormal" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label styleClass="etiquetaNormal" text="%label.textField.calle" textFill="WHITE" GridPane.rowIndex="1" />
-                  <Label styleClass="etiquetaNormal" text="%label.textField.numero" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <TextField fx:id="numero" styleClass="texfieldNormal" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                  <Label styleClass="etiquetaNormal" text="%label.textField.codigoPostal" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <TextField fx:id="codigoPostal" styleClass="texfieldNormal" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-               </children>
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </GridPane>
-            <Label prefWidth="5000.0" styleClass="etiquetaTitulo" text="%label.titulos.otrosDatos">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </Label>
-            <GridPane>
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Label styleClass="etiquetaNormal" text="Página web" textFill="WHITE" GridPane.columnIndex="2">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <TextField fx:id="paginaWeb" styleClass="texfieldNormal" GridPane.columnIndex="3" />
-                  <Label styleClass="etiquetaNormal" text="%label.textField.correoElectronico" textFill="WHITE" GridPane.columnIndex="4">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <TextField fx:id="correoElectronico" styleClass="texfieldNormal" GridPane.columnIndex="5" />
-                  <Label styleClass="etiquetaNormal" text="%label.comboBox.categoria" textFill="WHITE" />
-                  <ComboBox fx:id="categoria" prefWidth="5000.0" GridPane.columnIndex="1" />
-               </children>
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </GridPane>
-            <GridPane prefHeight="72.0" prefWidth="680.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="333.0" minWidth="10.0" prefWidth="113.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="576.0" minWidth="10.0" prefWidth="567.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label styleClass="etiquetaNormal" text="%label.textArea.comentario" textFill="WHITE" />
-                  <AnchorPane GridPane.columnIndex="1">
-                     <children>
-                        <TextArea fx:id="comentario" prefWidth="5000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
-                  </AnchorPane>
+                  </VBox>
                </children>
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-            </GridPane>
-            <GridPane>
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <AnchorPane GridPane.rowIndex="1">
-                     <children>
-                        <Button fx:id="aceptar" mnemonicParsing="false" text="%button.crear" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                           <styleClass>
-                              <String fx:value="baseBotonesVerdes" />
-                              <String fx:value="botonOk" />
-                           </styleClass>
-                        </Button>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <Button fx:id="reseteaCampos" layoutX="130.0" layoutY="-4.0" mnemonicParsing="false" text="Resetear campos" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <styleClass>
-                              <String fx:value="baseBotonesNaranja" />
-                              <String fx:value="botonLimpiar" />
-                           </styleClass></Button>
-                     </children>
-                     <GridPane.margin>
-                        <Insets bottom="20.0" />
-                     </GridPane.margin>
-                  </AnchorPane>
-               </children>
-            </GridPane>
+            </AnchorPane>
          </children>
       </VBox>
    </children>
